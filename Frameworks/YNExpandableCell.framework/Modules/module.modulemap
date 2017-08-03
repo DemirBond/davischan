@@ -1,0 +1,10 @@
+framework module YNExpandableCell {
+  umbrella header "YNExpandableCell.h"
+
+  export *
+  module * { export * }
+}
+
+module YNExpandableCell.Swift {
+    header "YNExpandableCell-Swift.h"
+}
