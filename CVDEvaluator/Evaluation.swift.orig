@@ -1,0 +1,88 @@
+//
+//  Evaluation.swift
+//  CVDEvaluator
+//
+//  Created by IgorKhomiak on 2/3/17.
+//  Copyright © 2017 IgorKhomiak. All rights reserved.
+//
+
+import UIKit
+
+
+class Evaluation: EvaluationItem {
+	
+	var evaluationUUID: String!
+	var dateCreated: String?
+	
+	override var itemDict: Dictionary<String, Any> {
+		var dict = super.itemDict
+		
+		dict["dateCreated"] = dateCreated
+		dict["uuid"] = evaluationUUID
+		return dict
+	}
+	
+	
+	let bio = BioPersonal(literal: Presentation.bio)
+	let symptoms = Symptoms(literal: Presentation.symptoms)
+	let physicalExam = PhysicalExam(literal: Presentation.physicalExam)
+	let cvProfile = CVProfile(literal: Presentation.cvProfile)
+	let riskFactors = MajorCVRisks(literal: Presentation.riskFactors)
+	let surgicalRisk = SurgicalRisk(literal: Presentation.surgicalRisk)
+	let laboratories = Laboratories(literal: Presentation.laboratories)
+	let diagnostics = Diagnostics(literal: Presentation.diagnostics)
+	let nsr = HSR(literal: Presentation.hsr)
+	let heartSpecialistManagement = HeartSpecialistManagement(literal: Presentation.heartSpecialistManagement)
+	let outputInMain = Output(literal: Presentation.outputInMain)
+	
+	init() {
+		super.init()
+		self.evaluationUUID = UUID().uuidString.lowercased()
+		let date = Date()
+		self.identifier = "evaluation"
+		self.dateCreated = DataManager.manager.formatter.string(from: date)
+		
+		setupEvaluation(evaluationItem: self)
+	}
+	
+	convenience init(with dict: Dictionary<String, Any>) {
+		self.init()
+		if let uuid = dict["uuid"] as? String {
+			self.evaluationUUID = uuid
+		}
+		if let date = dict["dateCreated"] as? String {
+			self.dateCreated = date
+		}
+		applyForItem(dict: dict)
+	}
+	
+	override var items: [EvaluationItem] {
+<<<<<<< HEAD
+		return [
+			bio,
+			symptoms,
+			physicalExam,
+			cvProfile,
+			riskFactors,
+			surgicalRisk,
+			laboratories,
+			diagnostics,
+			nsr,
+			heartSpecialistManagement,
+			outputInMain
+=======
+		return [bio,
+		        symptoms,
+		        physicalExam,
+		        cvProfile,
+		        riskFactors,
+		        surgicalRisk,
+		        laboratories,
+		        diagnostics,
+		        nsr,
+		        heartSpecialistManagement
+>>>>>>> f9b140e0505e140e2a6e02504ff954bce37ff1e7
+		]
+	}
+	
+}
