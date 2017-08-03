@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DemoController: BaseController, UIScrollViewDelegate {
+class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate {
 	
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var panelView: UIView!
@@ -65,12 +65,21 @@ class DemoController: BaseController, UIScrollViewDelegate {
 			offsetX += self.panelView.frame.size.width
 		}
 		
+		let animation: CATransition = CATransition()
+		animation.delegate = self
+		animation.type = kCATransitionFade
+		animation.duration = 0.7
+		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+		
+		self.scrollView.layer.add(animation, forKey: "FadeAnimation")
+		
 		NSLog("page %@", pageControl.currentPage);
 		
 		if (pageControl.currentPage == 3) {
 			self.contiuneButton.isHidden = false;
 		}
 	}
+	
 	
 	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 	 
