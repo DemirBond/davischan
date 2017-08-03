@@ -9,6 +9,7 @@
 import UIKit
 
 enum ControllerStyle: String {
+	case login =				 "login"
 	case registration =		 "registration"
 	case resetAccount =		 "resetAccount"
 	case codeAutorization =  "codeAutorization"
@@ -27,6 +28,9 @@ enum ControllerStyle: String {
 
 	func styleInfo() -> Dictionary<String, String>? {
 		switch self {
+		case .login:
+			return ["title": "Sign In", "leftButton" : "Cancel"]
+			
 		case .registration:
 			return ["title": "Sign Up", "leftButton" : "Cancel"]
 			

@@ -114,6 +114,7 @@
 		BA49CD311F33A6FE0040060A /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD2C1F33A6FE0040060A /* RegisterRequest.swift */; };
 		BA49CD321F33A6FE0040060A /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD2E1F33A6FE0040060A /* RegisterResponse.swift */; };
 		BA49CD331F33A6FE0040060A /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD2F1F33A6FE0040060A /* RestClient.swift */; };
+		BA49CD381F33D1F90040060A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD371F33D1F90040060A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +270,7 @@
 		BA49CD2C1F33A6FE0040060A /* RegisterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
 		BA49CD2E1F33A6FE0040060A /* RegisterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		BA49CD2F1F33A6FE0040060A /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		BA49CD371F33D1F90040060A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +419,7 @@
 			children = (
 				BA49CC6C1F339AC80040060A /* SplashController.swift */,
 				BA49CC741F339FDD0040060A /* LoginController.swift */,
+				BA49CD371F33D1F90040060A /* LoginViewController.swift */,
 				BA49CC751F339FDD0040060A /* RegistraionController.swift */,
 				BA49CC731F339FDD0040060A /* CodeAutorizationController.swift */,
 				BA49CC761F339FDD0040060A /* ResetAccountController.swift */,
@@ -871,6 +874,7 @@
 				BA49CD011F33A48A0040060A /* OutputController.swift in Sources */,
 				BA49CC771F339FDD0040060A /* CodeAutorizationController.swift in Sources */,
 				BA49CCF21F33A35E0040060A /* ObjectLoader.swift in Sources */,
+				BA49CD381F33D1F90040060A /* LoginViewController.swift in Sources */,
 				BA49CCEF1F33A35E0040060A /* Profile.swift in Sources */,
 				BA49CD281F33A6B00040060A /* Presentation.swift in Sources */,
 				BA49CD161F33A62D0040060A /* FontSetView.swift in Sources */,

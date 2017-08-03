@@ -100,7 +100,7 @@ class RegistraionController: BaseTableController, NVActivityIndicatorViewable {
 	
 	
 
-	//MARK: - EvaluationEditing protocol
+	// MARK: - EvaluationEditing protocol
 	
 	override func keyboardReturnDidPress(model: EvaluationItem) {
 		hideKeyboard()
@@ -150,7 +150,7 @@ class RegistraionController: BaseTableController, NVActivityIndicatorViewable {
 		let itemModel = pageForm.items[indexPath.row]
 			return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
 		} else {
-			return 96.0
+			return 72.0
 		}
 	}
 

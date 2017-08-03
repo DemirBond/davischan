@@ -379,16 +379,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			
 			let model = DataManager.manager.evaluation!
 			
-//			let activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-//			//activity_view.frame =  CGRectMake(0.0, 0.0, 40.0,40.0)
-//			activity_view.center = self.tableView.center
-//			//activity_view.center = self.view.center
-//			self.tableView.addSubview(activity_view)
-//			//				self.view.addSubview(activity_view)
-//			activity_view.bringSubview(toFront: self.tableView)
-//			//				activity_view.bringSubview(toFront: self.view)
-//			activity_view.startAnimating()
-			
 			self.startAnimating()
 			
 			let client: RestClient = RestClient.client
@@ -401,7 +391,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 				let result = DataManager()
 				result.setOutputEvaluation(response: response)
 				
-//				activity_view.stopAnimating()
 				self.stopAnimating()
 				
 				// add pah value false
@@ -422,7 +411,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 				alertTitle = "Network Connection".localized
 				alertDescription = "Check network connection before computing the evaluation.".localized
 				
-//				activity_view.stopAnimating()
 				self.stopAnimating()
 				
 				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)

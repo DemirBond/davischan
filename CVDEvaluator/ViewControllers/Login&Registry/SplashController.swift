@@ -1,5 +1,5 @@
 //
-//  CESplashController.swift
+//  SplashController.swift
 //  CVDEvaluator
 //
 //  Created by Davis Chan on 8/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CESplashController: UIViewController {
+class SplashController: UIViewController {
 	
 	@IBOutlet weak var gotoLogin: UIButton!
 	@IBOutlet weak var gotoSignin: UIButton!
