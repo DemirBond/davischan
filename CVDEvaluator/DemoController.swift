@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class DemoController: BaseController, UIScrollViewDelegate {
 	
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -27,6 +28,7 @@ class DemoController: BaseController, UIScrollViewDelegate {
 	                    "The app has every sympton you would likely think of. No cardiologist needed when using this!",
 	                    "At the end you are given a detailed diagnosis based on the power of the cloud."]
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.pageControl.numberOfPages = imageNames.count
@@ -36,7 +38,7 @@ class DemoController: BaseController, UIScrollViewDelegate {
 		
 		let button = UIButton()
 		button.setTitle("Continue", for: .normal)
-		button.addTarget(self, action: "continueButton:", for: .touchUpInside)
+		button.addTarget(self, action: #selector(continueButton), for: .touchUpInside)
 		
 		let barButton = UIBarButtonItem(title: "Continue", style: .done, target: self, action: #selector(continueButton) )
 		barButton.tintColor = UIColor(palette: ColorPalette.purple)
@@ -72,8 +74,7 @@ class DemoController: BaseController, UIScrollViewDelegate {
 	
 	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 	 
-		var indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
-	//your stuff with index
+		let indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width; //your stuff with index
 		print("the index is \(indexOfPage)")
 		
 		self.pageControl.currentPage = Int(indexOfPage)
@@ -94,16 +95,17 @@ class DemoController: BaseController, UIScrollViewDelegate {
 	}
 	
 	
-	
 	@IBAction func continueButtonPressed(_ sender: Any) {
 		print("button pressed")
 		self.performSegue(withIdentifier: DemoController.demoHomeSegueID, sender: nil)
 	}
 	
+	
 	func continueButton(){
 		print("button pressed")
 		self.performSegue(withIdentifier: DemoController.demoHomeSegueID, sender: nil)
 	}
+	
 	
 	override func bottomRightButtonAction1(_ sender: UIBarButtonItem) {
 		self.performSegue(withIdentifier: DemoController.demoHomeSegueID, sender: nil)

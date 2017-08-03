@@ -89,11 +89,13 @@ class Evaluation: EvaluationItem {
 			nsr
 		]
 	}
+	
 	override var storedItems: [EvaluationItem] {
 		return [
 			heartSpecialistManagement
 		]
 	}
+	
 	
 	init() {
 		super.init()
@@ -122,6 +124,7 @@ class Evaluation: EvaluationItem {
 		}
 		applyForItem(dict: dict)
 	}
+	
 	
 	func applyToEvaluationItems(id: String, value: Any) {
 		for item in items {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class StyleController: UIViewController {
 
 	@IBOutlet weak var sheetView: UIView!
@@ -18,7 +19,8 @@ class StyleController: UIViewController {
 	let duration: TimeInterval = 0.45
 	let sheetHeight: CGFloat = 94.0
 
-    override func viewDidLoad() {
+	
+	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.removeMessage))
@@ -40,8 +42,7 @@ class StyleController: UIViewController {
 	}
 	
 	
-	 private func showMessage() {
-		
+	private func showMessage() {
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
 			self.sheetView.frame = CGRect(x: 0.0, y: self.view.frame.size.height - self.sheetHeight,
 				width: self.view.frame.size.width, height: self.sheetHeight)
@@ -55,6 +56,7 @@ class StyleController: UIViewController {
 		self.dismiss(animated: false, completion: nil)
 	}
 	
+	
 	func updateSelection() {
 		for item in headers {
 			if item.fontSize != CVDStyle.style.currentFontSize {
@@ -64,6 +66,7 @@ class StyleController: UIViewController {
 			}
 		}
 	}
+	
 	
 	private func hideMessage() {
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {

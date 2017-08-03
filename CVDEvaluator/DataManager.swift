@@ -11,13 +11,13 @@ import UIKit
 import CoreData
 import SwiftyJSON
 
+
 class DataManager {
 	
 	static var manager = DataManager()
 	let formatter = DateFormatter()
 	
-	var currentDoctor:
-	Doctor?
+	var currentDoctor: Doctor?
 	var patients: [Patient]?
 	var evaluation: Evaluation?
 	var isPAH = false
@@ -25,13 +25,16 @@ class DataManager {
 	// output object
 	var outputs = [String:Bool]()
 	
+	
 	func setPAHValue(pah : Bool) -> Void{
 		self.isPAH = pah
 	}
 	
+	
 	func getPAHValue() -> Bool {
 		return self.isPAH
 	}
+	
 	
 	func registerWith(doctorName: String, loginName: String, password: String, completionHandler: @escaping (String?, NSError?) -> (Void)) {
 		
@@ -56,6 +59,7 @@ class DataManager {
 				self.saveContext()
 				self.currentDoctor = doc
 				completionHandler("success", nil)
+				
 			} else {
 				let returnError: String = registerResponse.message
 				let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
@@ -68,8 +72,6 @@ class DataManager {
 			let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
 			completionHandler(nil, error)
 		})
-		
-		
 	}
 	
 	
@@ -118,7 +120,6 @@ class DataManager {
 					let doctor = self.fetchDoctor(loginName: loginName, password: password)
 					if ((doctor) == nil) {
 						
-						
 						let entity =  NSEntityDescription.entity(forEntityName: "Doctor", in: self.managedObjectContext)
 						let doc = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Doctor
 						doc.setValue(loginName, forKey: "loginName")
@@ -145,8 +146,8 @@ class DataManager {
 				}
 			)
 		}
-		
 	}
+	
 	
 	func signOut() {
 		saveContext()
@@ -217,7 +218,7 @@ class DataManager {
 		for patient in self.patients!{
 			if patient.identifier == uuid {
 				do {
-					let dict = try JSONSerialization.jsonObject(with: patient.evaluationData as! Data,
+					let dict = try JSONSerialization.jsonObject(with: patient.evaluationData! as Data,
 						options: .mutableContainers) as! Dictionary<String, Any>
 					let evaluation = Evaluation(with: dict)
 					self.evaluation = evaluation
@@ -231,11 +232,13 @@ class DataManager {
 		return nil
 	}
 	
+	
 	func deleteEvaluation(at index: Int) {
 		guard  patients != nil && index >= 0 && index < patients!.count else { return }
 		managedObjectContext.delete(patients!.remove(at: index))
 		saveContext()
 	}
+	
 	
 	lazy var applicationDocumentsDirectory: URL = {
 		// The directory the application uses to store the Core Data store file. This code uses a directory named "com.cadiridris.coreDataTemplate" in the application's documents Application Support directory.
@@ -243,11 +246,13 @@ class DataManager {
 		return urls[urls.count-1]
 	}()
 	
+	
 	lazy var managedObjectModel: NSManagedObjectModel = {
 		// The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
 		let modelURL = Bundle.main.url(forResource: "Evaluation", withExtension: "momd")!
 		return NSManagedObjectModel(contentsOf: modelURL)!
 	}()
+	
 	
 	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 		// The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
@@ -274,6 +279,7 @@ class DataManager {
 		return coordinator
 	}()
 	
+	
 	lazy var managedObjectContext: NSManagedObjectContext = {
 		// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
 		let coordinator = self.persistentStoreCoordinator
@@ -281,6 +287,8 @@ class DataManager {
 		managedObjectContext.persistentStoreCoordinator = coordinator
 		return managedObjectContext
 	}()
+	
+	
 	
 	// MARK: - Core Data Saving support
 	
@@ -298,8 +306,9 @@ class DataManager {
 		}
 	}
 	
+	
+	
 	// MARK: - private
-
 	
 	private func fetchDoctor(loginName: String) -> [Doctor]? {
 		var array: [Doctor] = [Doctor]()
@@ -351,6 +360,7 @@ class DataManager {
 			print("Could not fetch \(error), \(error.userInfo)")
 		}
 	}
+	
 	
 	func fetchEvaluationsFromRestAPI() {
 		patients?.removeAll()
@@ -427,11 +437,11 @@ class DataManager {
 		})
 	}
 	
+	
 	func extractHrefFromHTML(htmlString: String) -> String {
-		
-		
 		return htmlString
 	}
+	
 	
 	func setOutputEvaluation(response:JSON)-> Void{
 		//let bulletPoint: String = "\u{2022}"
@@ -467,8 +477,6 @@ class DataManager {
 				}
 			}
 			
-			
-			
 			switch group["groupname"] {
 			//case "Outputs":
 				//DataManager.manager.evaluation!.outputInMain.resultOutput.subtitle = row
@@ -494,9 +502,11 @@ class DataManager {
 			//print(results)
 	}
 	
+	
 	func getResults()->[String:Bool]{
 		return self.outputs
 	}
+	
 	
 	func cleanUpOutputForm() -> Void{
 		DataManager.manager.evaluation!.outputInMain.diagnosticsResult.subtitle = "No Result" 
@@ -504,6 +514,7 @@ class DataManager {
 		DataManager.manager.evaluation!.outputInMain.icd10Result.subtitle = "No Result"
 		DataManager.manager.evaluation!.outputInMain.references.subtitle = "No Result"
 	}
+	
 	
 	func getEvaluationItemsAsRequestInputsString()->String{
 		
@@ -529,6 +540,7 @@ class DataManager {
 		return result
 	}
 	
+	
 	func recursiveEvaluationItemsByString(evaluationItem:EvaluationItem, inputs: inout [String])-> Void {
 		
 		// search all EvaluationItem inside of model
@@ -546,6 +558,7 @@ class DataManager {
 			}
 		}
 	}
+	
 	
 	//TODO make sure all identifier are compatible with server side
 	func valueToQueryFormat(item: EvaluationItem) -> String {
@@ -598,10 +611,8 @@ class DataManager {
 							inputs.append("rbAnginaIndex=2")
 						}
 					}
-
 				}
 			}
-			
 		}
 		else if (item.storedValue?.isFilled)! {
 			if( prefix == "txt") {
@@ -655,12 +666,10 @@ class DataManager {
 				} else if (item.identifier == pahItem.identifier && pahItem.identifier == "HR") {
 					pahItem.storedValue?.value = item.storedValue?.value
 				}
-					
 			}
-			
 		}
-
 	}
+	
 	
 	func checkInsideofRegularItem(item: [EvaluationItem], pahItem: EvaluationItem) -> Void {
 		
@@ -670,14 +679,14 @@ class DataManager {
 			
 			if (regItem.items.count > 0) {
 				checkInsideofRegularItem(item: regItem.items, pahItem: pahItem)
-			}else if (regItem.identifier == pahItem.identifier && regItem.identifier.characters.count >= 3) {
+			} else if (regItem.identifier == pahItem.identifier && regItem.identifier.characters.count >= 3) {
 //				print(pahItem.identifier + " equals " + regItem.identifier)
 				let index = regItem.identifier.index(regItem.identifier.startIndex, offsetBy: 3)
 				let prefix = regItem.identifier.substring(to: index)
 				
 				if (prefix == "chk" && regItem.storedValue?.isChecked != false){
 					pahItem.storedValue?.isChecked = true
-				}else{
+				} else{
 					pahItem.storedValue?.value = regItem.storedValue?.value
 				}
 			} else if (regItem.identifier == pahItem.identifier && pahItem.identifier == "HR") {
@@ -687,6 +696,7 @@ class DataManager {
 		
 	}
 	
+	
 	func checkInsideofPahItem(item: EvaluationItem, pahItem: [EvaluationItem]) -> Void {
 		
 		for pItem in pahItem {
@@ -695,21 +705,22 @@ class DataManager {
 			
 			if (pItem.items.count > 0) {
 				checkInsideofPahItem(item:item, pahItem: pItem.items)
-			}else if (item.identifier == pItem.identifier && item.identifier.characters.count >= 3) {
+			} else if (item.identifier == pItem.identifier && item.identifier.characters.count >= 3) {
 //				print(pItem.identifier + " -- equals " + item.identifier)
 				let index = item.identifier.index(item.identifier.startIndex, offsetBy: 3)
 				let prefix = item.identifier.substring(to: index)
 				
 				if (prefix == "chk" && item.storedValue?.isChecked != false){
 					pItem.storedValue?.isChecked = true
-				}else{
+				} else{
 					pItem.storedValue?.value = item.storedValue?.value
 				}
-			}else if (item.identifier == pItem.identifier && pItem.identifier == "HR") {
+			} else if (item.identifier == pItem.identifier && pItem.identifier == "HR") {
 				pItem.storedValue?.value = item.storedValue?.value
 			}
 		}
 	}
+	
 	
 	func checkInsideofAllItem(item: [EvaluationItem], pahItem: [EvaluationItem]) -> Void {
 		
@@ -721,11 +732,11 @@ class DataManager {
 				
 				if (regItem.items.count > 0 && pItem.items.count == 0) {
 					checkInsideofRegularItem(item: regItem.items, pahItem: pItem)
-				}else if (regItem.items.count == 0 && pItem.items.count > 0) {
+				} else if (regItem.items.count == 0 && pItem.items.count > 0) {
 					checkInsideofPahItem(item:regItem, pahItem: pItem.items)
-				}else if (regItem.items.count > 0 && pItem.items.count > 0) {
+				} else if (regItem.items.count > 0 && pItem.items.count > 0) {
 					checkInsideofAllItem(item: regItem.items, pahItem: pItem.items)
-				}else if (regItem.identifier == pItem.identifier && regItem.identifier.characters.count >= 3) {
+				} else if (regItem.identifier == pItem.identifier && regItem.identifier.characters.count >= 3) {
 //					print(pItem.identifier + " -- -- equals " + regItem.identifier)
 					
 					let index = regItem.identifier.index(regItem.identifier.startIndex, offsetBy: 3)
@@ -733,18 +744,16 @@ class DataManager {
 					
 					if (prefix == "chk" && regItem.storedValue?.isChecked != false ){
 						pItem.storedValue?.isChecked = true
-					}else{
+					} else{
 						pItem.storedValue?.value = regItem.storedValue?.value
 					}
 				} else if (regItem.identifier == pItem.identifier && pItem.identifier == "HR") {
 					pItem.storedValue?.value = regItem.storedValue?.value
 				}
-				
 			}
-			
 		}
-		
 	}
+	
 	
 	func resetAllPAHItems() -> Void {
 		let pahModel = DataManager.manager.evaluation!.heartSpecialistManagement.items
@@ -753,22 +762,21 @@ class DataManager {
 			
 			if(item.items.count > 0){
 				resetPahItem(item: item.items)
-			}else if (item.identifier.characters.count >= 3){
+			} else if (item.identifier.characters.count >= 3){
 				let index = item.identifier.index(item.identifier.startIndex, offsetBy: 3)
 				let prefix = item.identifier.substring(to: index)
 				
 				if (prefix == "chk"){
 					item.storedValue?.isChecked = false
-				}else{
+				} else{
 					item.storedValue?.value = nil
 				}
 			} else if (item.identifier == "HR") {
 				item.storedValue?.value = nil
 			}
-			
 		}
-		
 	}
+	
 	
 	func resetPahItem(item: [EvaluationItem]) -> Void {
 		
@@ -782,15 +790,12 @@ class DataManager {
 				
 				if (prefix == "chk"){
 					pItem.storedValue?.isChecked = false
-				}else{
+				} else{
 					pItem.storedValue?.value = nil
 				}
 			} else if (pItem.identifier == "HR") {
 				pItem.storedValue?.value = nil
 			}
-			
 		}
-		
 	}
-	
 }

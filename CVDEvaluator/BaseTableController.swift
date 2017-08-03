@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BaseTableController: UITableViewController, BuildAppearance, EvaluationEditing, FontChanging {
 	
 	@IBOutlet weak var accessoryBar: UINavigationBar!
@@ -27,6 +28,7 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 	
 	var whiteView: UIView?
 	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -127,6 +129,8 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		self.present(controller, animated: false)
 	}
 	
+	
+	
 	// MARK: - Actions
 	
 	func checkDependancies() {
@@ -208,20 +212,22 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		hideKeyboard()
 	}
 	
+	
 	func rightButtonAction(_ sender: UIBarButtonItem) {
 	}
 	
+	
 	func leftButtonAction(_ sender: UIBarButtonItem) {
-		
-		
-		
 	}
+	
 	
 	func bottomRightButtonAction(_ sender: UIBarButtonItem) {
 	}
 	
+	
 	func bottomRightButtonAction1(_ sender: UIBarButtonItem) {
 	}
+	
 	
 	func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -230,6 +236,7 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		self.present(controller, animated: false) { () }
 		styleController = controller
 	}
+	
 	
 	func bottomLeftButtonAction1(_ sender: UIBarButtonItem) {
 	}
@@ -242,6 +249,7 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		tableView.reloadData()
 	}
 	
+	
 	func createHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
 		
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -252,6 +260,7 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		}
 		return handler
 	}
+	
 	
 	func createPahHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
 		
@@ -269,7 +278,9 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		return handler
 	}
 	
+	
 	// MARK: - FontChanging delegate
+	
 	func userDidChoose(font: UIFont, withSize size: CGFloat) {
 		CVDStyle.style.currentFont = font
 		CVDStyle.style.currentFontSize = size
@@ -278,6 +289,8 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		self.tableView.reloadData()
 	}
 
+	
+	
 	// MARK: - Table view data source
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -285,10 +298,13 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		return 0
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of rows
 		return 0
 	}
+	
+	
 	
 	//MARK: - EvaluationEditing protocol
 	
@@ -298,14 +314,17 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		self.pageForm.form.status = .valued
 	}
 	
+	
 	func evaluationFieldTogglesDropDown() {
 		tableView.beginUpdates()
 		tableView.endUpdates()
 	}
 	
+	
 	func keyboardReturnDidPress(model: EvaluationItem){
 	}
 
+	
 	func evaluationValueDidChange(model: EvaluationItem) {
 		self.pageForm.form.status = .valued
 		self.tableView.reloadData()
@@ -320,6 +339,7 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		                     repeats: false)
 
 	}
+	
 	
 	func evaluationValueDidNotValidate(model: EvaluationItem, message: String, description: String?) {
 		

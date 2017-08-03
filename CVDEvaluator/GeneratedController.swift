@@ -9,6 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 
+
 class GeneratedController: BaseTableController {
 	
 	let unwindToEvaluationSegueID = "unwindToEvaluationSegueID"
@@ -26,6 +27,7 @@ class GeneratedController: BaseTableController {
 	var isHeartSpecilaistManagement:Bool = false
 	
 	var isHeartSpecilaistManagementPop:Int?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -66,6 +68,7 @@ class GeneratedController: BaseTableController {
 		
 		self.tableView.reloadData()
 	}
+	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -111,6 +114,7 @@ class GeneratedController: BaseTableController {
 
 		self.tableView.reloadData()
 	}
+	
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -141,6 +145,7 @@ class GeneratedController: BaseTableController {
 		}
 	}
 	
+	
 	override func evaluateResponderChain() {
 		
 		var models = [EvaluationItem]()
@@ -157,6 +162,8 @@ class GeneratedController: BaseTableController {
 		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
 		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
 	}
+	
+	
 	
 	// MARK: - Table view data source
 	
@@ -191,6 +198,8 @@ class GeneratedController: BaseTableController {
 		}
 	}
 	
+	
+	
 	// MARK: - Actions
 
 	@IBAction func selectDate(_ sender: UIDatePicker) {
@@ -210,8 +219,6 @@ class GeneratedController: BaseTableController {
 
 	
 	override func rightButtonAction(_ sender: UIBarButtonItem) {
-		
-		
 		if validatePage() {
 			
 			if ( (isHeartSpecilaistManagement  && !(pageForm is HeartSpecialistManagement)) || (pageForm is PAH)  || (pageForm is PAH1) || (pageForm is PAH2) || (pageForm is PAH3)) {

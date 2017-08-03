@@ -8,9 +8,8 @@
 
 import UIKit
 
-class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
-	
 
+class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	@IBOutlet weak var accessoryBar: UINavigationBar!
 	@IBOutlet weak var segmentedControl: UISegmentedControl?
@@ -28,6 +27,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	weak var styleController: StyleController?
 	
 	var whiteView: UIView?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -119,6 +119,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		}
 	}
 	
+	
 	func setupAppearanceTable() {
 		
 		//self.clearsSelectionOnViewWillAppear = true
@@ -184,11 +185,13 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		self.present(controller, animated: false)
 	}
 	
+	
+	
 	// MARK: - Actions to override
 	
+	
+	
 	// MARK: - Actions
-	
-	
 	
 	@IBAction func moveToItem(_ sender: UISegmentedControl) {
 		guard nil != activeField else { return }
@@ -200,6 +203,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	
 	@IBAction func doneAction(_ sender: AnyObject) {
+		
 	}
 	
 	func rightButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
@@ -208,6 +212,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	func bottomRightButtonAction1(_ sender: UIBarButtonItem) { /* tooverride */}
 	func bottomLeftButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
 	func bottomLeftButtonAction1(_ sender: UIBarButtonItem) { /* tooverride */}
+	
 	
 	
 	//MARK: - EvaluationEditing protocol
@@ -219,18 +224,20 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		pageForm.form.status = .valued
 	}
 	
+	
 	func keyboardReturnDidPress(model: EvaluationItem) {
 	
 	}
 
+	
 	func evaluationValueDidChange(model: EvaluationItem) {
 		pageForm.form.status = .valued
 	}
 	
+	
 	func evaluationValueDidEnter(_ textField: UITextField, model: EvaluationItem) {
 		
 	}
-	
 	
 	
 	func evaluationValueDidNotValidate(model: EvaluationItem, message: String, description: String?) {
@@ -245,7 +252,9 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		self.present(controller, animated: false) { controller.showMessage() }
 	}
 	
+	
 	func evaluationFieldTogglesDropDown() {
 		// 
 	}
+	
 }

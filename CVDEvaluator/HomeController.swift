@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class HomeCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
@@ -19,7 +20,6 @@ class HomeCell: UITableViewCell {
 class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource {
 	
 	static let settingsSegueID = "settingsSegueID"
-	static let evaluationSegueID = "evaluationSegueID"
 	static let newEvaluationSegueID = "newEvaluationSegueID"
 	static let savedEvaluationSegueID = "savedEvaluationSegueID"
 	
@@ -36,16 +36,19 @@ class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource
 		tableView.tableFooterView = UIView()
 	}
 	
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
 		DataManager.manager.fetchEvaluations()
+		
 		cellHeight = min(255, (self.view.frame.size.height - 64.0) / 2.0)
 		
 		self.tableView.reloadData()
 	}
+	
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -57,10 +60,14 @@ class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource
 		}
 	}
 	
+	
 	override func rightButtonAction(_ sender: UIBarButtonItem) {
 		performSegue(withIdentifier: HomeController.settingsSegueID, sender: nil)
 	}
 	
+	
+	
+	// MARK: - UITableView DataSource
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -72,43 +79,35 @@ class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource
 	}
 	
 	
+	
+	// MARK: - UITableView Delegates
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		switch indexPath.row {
-		case 0:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
-			cell.titleLabel.text = "New Evaluation".localized
-			cell.descriptionLabel.text = "Create a new evaluation\nfor a patient".localized
-			cell.icon.image = UIImage(named: "clipboard")
+			case 0:
+				let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
+				cell.titleLabel.text = "New Evaluation".localized
+				cell.descriptionLabel.text = "Create a new evaluation\nfor a patient".localized
+				cell.icon.image = UIImage(named: "clipboard")
+				
+				return cell
 			
-			let shadowSize : CGFloat = 5.0
-			let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
-			                                           y: -shadowSize / 2,
-			                                           width: cell.buttonContentView.frame.size.width + shadowSize,
-			                                           height: cell.buttonContentView.frame.size.height + shadowSize))
-			/*
-			cell.buttonContentView.layer.masksToBounds = false
-			cell.buttonContentView.layer.shadowColor = UIColor.black.cgColor
-			cell.buttonContentView.layer.shadowOffset = CGSize(width: -5.0, height: -5.0)
-			cell.buttonContentView.layer.shadowOpacity = 1.0
-			*/
-			// cell.buttonContentView.layer.shadowPath = shadowPath.cgPath
+			case 1:
+				let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
+				cell.titleLabel.text = "Saved Evaluations".localized
+				cell.descriptionLabel.text = "View and edit previously saved\nevaluations".localized
+				cell.icon.image = UIImage(named: "folder")
 			
-			return cell
+				return cell
 			
-		case 1:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
-			cell.titleLabel.text = "Saved Evaluations".localized
-			cell.descriptionLabel.text = "View and edit previously saved\nevaluations".localized
-			cell.icon.image = UIImage(named: "folder")
-			return cell
-			
-		default:
-			return UITableViewCell()
+			default:
+				return UITableViewCell()
 		}
 	}
 	
-	func setButtonShadows(cell:HomeCell){
+	
+	func setButtonShadows(cell:HomeCell) {
 		let shadowSize : CGFloat = 5.0
 		let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
 		                                           y: -shadowSize / 2,
@@ -121,6 +120,7 @@ class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource
 		cell.buttonContentView.layer.shadowPath = shadowPath.cgPath
 	}
 	
+	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return cellHeight
 	}
@@ -130,7 +130,8 @@ class HomeController: BaseController, UITableViewDelegate, UITableViewDataSource
 		if indexPath.row == 0 {
 			DataManager.manager.evaluation = Evaluation()
 			performSegue(withIdentifier: HomeController.newEvaluationSegueID, sender: nil)
-		} else {
+		}
+		else {
 			performSegue(withIdentifier: HomeController.savedEvaluationSegueID, sender: nil)
 		}
 	}

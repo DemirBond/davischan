@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import CoreData
 
+
 class EvaluationListCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var icon: UIImageView!
@@ -18,15 +19,18 @@ class EvaluationListCell: UITableViewCell {
 	@IBOutlet weak var descriptionLabel: UILabel?
 }
 
+
 class SavedListCell: EvaluationListCell {
 	
 }
+
 
 class EvaluationListController: BaseTableController {
 	
 	static let fromListEvaluationSegueID = "fromListEvaluationSegueID"
 	
 	override var createdID: String! { return "evaluationList" }
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,8 +49,9 @@ class EvaluationListController: BaseTableController {
 		self.tableView.reloadData()
 	}
 	
+	
 
-	// MARK: - Table view data source
+	// MARK: - UITableView DataSource
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -58,6 +63,9 @@ class EvaluationListController: BaseTableController {
 		return 1 + ((num != nil) ? num! : 0)
 	}
 	
+	
+	
+	// MARK: - UITableView Delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -80,25 +88,26 @@ class EvaluationListController: BaseTableController {
 			return cell
 		}
 	}
- 
-	/*
+
 	
+	/*
 	To retreive each clicked item
 	
-	let patient = DataManager.manager.patients![indexPath.row - 1]
-	let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
+		let patient = DataManager.manager.patients![indexPath.row - 1]
+		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
 	
-	guard error == nil else {
-	print("Server returned error \(String(describing: error))")
-	return
-	}
+			guard error == nil else {
+				print("Server returned error \(String(describing: error))")
+				return
+			}
 	
-	if data == "success" {
-	self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
-	}
-	}
-	DataManager.manager.fetchEvaluationByIDFromRestAPI(id: 11, completionHandler: completionHandler)
+			if data == "success" {
+				self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
+			}
+		}
+		DataManager.manager.fetchEvaluationByIDFromRestAPI(id: 11, completionHandler: completionHandler)
 	*/
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		if indexPath.row == 0 {
@@ -108,8 +117,8 @@ class EvaluationListController: BaseTableController {
 		} else {
 			let patient = DataManager.manager.patients![indexPath.row - 1]
 			if let evaluationID = patient.identifier, let _ = DataManager.manager.extractEvaluation(by: evaluationID) {
-				
 				performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
+			
 			} else {
 				print("Error - identifier is empty")
 			}

@@ -8,8 +8,10 @@
 //  Updated by EvrimGuler on 4/5/2017
 
 import UIKit
+import NVActivityIndicatorView
 
-class LoginController: UIViewController, UITextFieldDelegate {
+
+class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 	
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var panelView: UIView!
@@ -22,10 +24,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var passwordField: UITextField!
 	@IBOutlet weak var logoSheet: UIImageView!
 	
-	
 	static let loginSegueID = "loginSegueID"
 	static let registerSegueID = "registerSegueID"
 	static let resetSegueID = "resetSegueID"
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -44,8 +46,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
 		
 		//TODO this login should be adapted to rest of this class
 		
-		/*
-		let client: RestClient = RestClient.client
+		/*let client: RestClient = RestClient.client
 		client.login(username: "test5@gmail.com", password: "test1234", success:{(responseObject) in
 			print(responseObject)
 			client.retrieveSavedEvaluations(success: {(responseObject) in
@@ -60,32 +61,101 @@ class LoginController: UIViewController, UITextFieldDelegate {
 			print(response)
 		}, failure: { (error) in
 			print(error)
-		})
-*/
+		})*/
 	}
 	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)),
-			name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillBeHidden(_:)),
-			name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillBeHidden(_:)),	name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		
+		if self.view.frame.size.height > 570.0 {
+			logoSheet?.removeFromSuperview()
+		}
 		
 		let defaults = UserDefaults.standard
 		if let userName = defaults.string(forKey: "loginName") {
 			nameField.text = userName
 			passwordField.text = ""
 		}
-		
-		if self.view.frame.size.height > 570.0 {
-			logoSheet?.removeFromSuperview()
-		}
 	}
 	
 	
-	// MARK: - Methods
+	
+	// MARK: - IBActions
+	
+	@IBAction func signInAction(_ sender: AnyObject) {
+		self.hideKeyboard()
+		
+		guard let name = nameField.text, !name.isEmpty ,
+			let pass = passwordField.text, !pass.isEmpty else {
+				UIAlertController.infoAlert(message: nil, title: "The username or password field is empty", viewcontroller: self, handler: {
+					self.passwordField.text = ""
+				})
+				
+				return
+		}
+		
+		/*let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.view.bounds.height)/2 - 50) , width:100, height:100) )
+		betterActivityView.type = .ballPulse
+		betterActivityView.color = UIColor(palette: ColorPalette.white)!		
+		self.view.addSubview(betterActivityView)
+		
+		betterActivityView.startAnimating()*/
+		self.startAnimating()
+		
+		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
+			
+			//betterActivityView.stopAnimating()
+			self.stopAnimating()
+			
+			guard error == nil else {
+				print("Server returned error \(String(describing: error))")
+				
+				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Login".localized, viewcontroller: self, handler: {
+					self.passwordField.text = ""
+				})
+				
+				return
+			}
+			
+			if data == "success" {
+				UserDefaults.standard.set(name, forKey: "loginName")
+				
+				let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+				let destination = medicalStoriboard.instantiateInitialViewController()
+				UIApplication.shared.keyWindow?.rootViewController = destination
+			}
+		}
+		
+		DataManager.manager.signIn(with: name, password: pass, completionHandler: completionHandler)
+	}
+	
+	
+	@IBAction func skipLoginPressed(_ sender: Any) {
+		UserDefaults.standard.set("test user", forKey: "loginName")
+		let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+		let destination = medicalStoriboard.instantiateInitialViewController()
+		UIApplication.shared.keyWindow?.rootViewController = destination
+	}
+	
+	
+	@IBAction func registerAction(_ sender: AnyObject) {
+		hideKeyboard()
+		self.performSegue(withIdentifier: LoginController.registerSegueID, sender: nil)
+	}
+	
+	
+	@IBAction func resetAction(_ sender: AnyObject) {
+		hideKeyboard()
+		self.performSegue(withIdentifier: LoginController.resetSegueID, sender: nil)
+	}
+
+	
+	
+	// MARK: - Keyboard Handle Methods
 	
 	func hideKeyboard() {
 		self.nameField.resignFirstResponder()
@@ -114,94 +184,29 @@ class LoginController: UIViewController, UITextFieldDelegate {
 		scrollView.scrollIndicatorInsets = contentInsets
 	}
 	
-
-	// MARK: - Actions
-	
-	@IBAction func signInAction(_ sender: AnyObject) {
-		self.hideKeyboard()
-		guard let name = nameField.text, !name.isEmpty ,
-			let pass = passwordField.text, !pass.isEmpty else {
-				let alertController = UIAlertController(title: "The username or password field is empty".localized,
-				   message: nil, preferredStyle: .alert)
-				let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) -> Void in
-					self.passwordField.text = ""
-				}  )
-				alertController.addAction(defaultAction)
-				
-				present(alertController, animated: true, completion: nil)
-				
-				return
-		}
-		
-		let activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-		activity_view.center = self.view.center
-		self.view.addSubview(activity_view)
-		activity_view.bringSubview(toFront: self.view)
-		activity_view.startAnimating()
-		
-		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
-			
-			activity_view.stopAnimating()
-			guard error == nil else {
-				print("Server returned error \(error)")
-				
-				let alertController = UIAlertController(title: "Cannot Login".localized,
-						message: error!.userInfo["message"] as? String, preferredStyle: .alert)
-				let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) -> Void in
-					self.passwordField.text = ""
-				}  )
-				alertController.addAction(defaultAction)
-				self.present(alertController, animated: true, completion: nil)
-				return
-			}
-			
-			if data == "success" {
-				UserDefaults.standard.set(name, forKey: "loginName")
-				let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-				let destination = medicalStoriboard.instantiateInitialViewController()
-				
-				UIApplication.shared.keyWindow?.rootViewController = destination
-			}
-		}
-		
-		DataManager.manager.signIn(with: name, password: pass, completionHandler: completionHandler)
-		
-		
-	}
-	
-	@IBAction func skipLoginPressed(_ sender: Any) {
-		UserDefaults.standard.set("test user", forKey: "loginName")
-		let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-		let destination = medicalStoriboard.instantiateInitialViewController()
-		UIApplication.shared.keyWindow?.rootViewController = destination
-	}
-	
-	@IBAction func registerAction(_ sender: AnyObject) {
-		hideKeyboard()
-		self.performSegue(withIdentifier: LoginController.registerSegueID, sender: nil)
-	}
-	
-	
-	@IBAction func resetAction(_ sender: AnyObject) {
-		hideKeyboard()
-		self.performSegue(withIdentifier: LoginController.resetSegueID, sender: nil)
-	}
 	
 	
 	// MARK: - UITextField delegates
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-	}
-	
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 	}
 	
 	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		hideKeyboard()
-		signInAction(self)
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		textField.resignFirstResponder()
+	}
+	
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {		
+		if textField == self.nameField {
+			self.passwordField.becomeFirstResponder()
+		}
+		else {
+			textField.resignFirstResponder()
+			signInAction(self)
+		}
 		
 		return true
 	}
+	
 }

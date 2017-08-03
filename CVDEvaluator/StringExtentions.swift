@@ -45,6 +45,7 @@ extension Data {
 		return nil
 	}
 }
+
 extension String {
 	var data: Data {
 		return Data(utf8)

@@ -7,9 +7,11 @@
 //  Updated by EvrimGuler 5/18/2017
 
 import UIKit
+import NVActivityIndicatorView
+import ToastSwiftFramework
 
 
-class BioController: BaseTableController { //, UITableViewDelegate, UITableViewDataSource{
+class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITableViewDelegate, UITableViewDataSource{
 	
 	let unwindToEvaluationSegueID = "unwindToEvaluationSegueID"
 	
@@ -28,6 +30,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 	let genderList = ["Male", "Female"]
 	
 	var showingDropDown = false
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -50,12 +53,15 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 				break
 			}
 		}
+		
 		setupAppearance()
 		checkDependancies()
+		
 		self.tableView.tableFooterView = UIView()
 		
 		// tableView.register(DisclosureSimpleCellExpandable.self, forCellReuseIdentifier: "DisclosureSimpleCellExpandable")
 	}
+	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -89,6 +95,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			self.toolbarItems = toolbar.barItems
+		
 		} else {
 			self.navigationController?.setToolbarHidden(true, animated: false)
 			
@@ -97,16 +104,18 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		self.tableView.reloadData()
 	}
 	
+	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
-				if let selectedGender = bioModel.gender.male.storedValue?.radioGroup?.selectedRadioItem {
-					bioModel.gender.subtitle = (selectedGender == bioModel.gender.male.identifier) ? "Male".localized : "Female".localized
-				}
-				self.tableView.reloadData()
-
+		if let selectedGender = bioModel.gender.male.storedValue?.radioGroup?.selectedRadioItem {
+			bioModel.gender.subtitle = (selectedGender == bioModel.gender.male.identifier) ? "Male".localized : "Female".localized
+		}
+		
+		self.tableView.reloadData()
+		
 	}
 	
 	
@@ -120,169 +129,6 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 			}
 		}
 	}
-	
-	override func evaluateResponderChain() {
-		
-		var models = [EvaluationItem]()
-		
-		for (index, item) in pageForm.items.enumerated() {
-			
-			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
-				item.modelIndexPath = IndexPath(row: index, section: 0)
-				models.append(item)
-			}
-		}
-		
-		self.modelChain = models
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
-	}
-	
-	// MARK: - Table view data source
-	
-	func validatePage() -> Bool {
-		do {
-			try pageForm.validateEvaluationItem()
-			return true
-			
-		} catch let err {
-			
-			var actions = [CVDAction] ()
-			
-			actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-			
-			actions.append(CVDAction(title: "Back".localized, type: CVDActionType.cancel, handler: {
-				self.navigationController?.popViewController(animated: true)
-			}, short: true))
-			
-			let alertTitle: String = "Cannot save this form".localized
-			
-			var alertDescription : String?
-			switch err {
-			case InputError.incorrectInput:
-				alertDescription = "One of the fields contains unsupported characters. Please correct and try again.".localized
-			case InputError.toLong:
-				alertDescription = "Entering in one of the fields is too long. Please shorten it and try again.".localized
-			case InputError.outOfBounds:
-				alertDescription = "Entered numerical value into one of field exceeds the limits. Please set number between limits.".localized
-			case InputError.emptyInput:
-				alertDescription = "Required Fields cannot be empty. Please fill in all fields marked (*).".localized
-				
-			default:
-				()
-			}
-			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: actions)
-			return false
-		}
-	}
-	
-	// MARK: - Actions
-	
-	@IBAction func selectDate(_ sender: UIDatePicker) {
-		
-		let date = sender.date
-		
-		let formatter = DateFormatter()
-		formatter.dateFormat = "MM/yyyy"
-		let strDate = formatter.string(from: date)
-		self.dateModel?.storedValue?.value = strDate
-		
-		if let path = dateModel?.modelIndexPath {
-			let cell = tableView.cellForRow(at: path) as! DateCell
-			cell.textField?.text = strDate
-		}
-	}
-	
-	
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
-		}
-	}
-	
-	override func leftButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			DataManager.manager.evaluation!.isBioCompleted = true
-			_ = self.navigationController?.popViewController(animated: true)
-		}
-	}
-	
-	
-	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
-			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-			
-			if generatedID == "bio" {
-				DataManager.manager.setPAHValue(pah: true)
-				let controller = storyboard.instantiateViewController(withIdentifier: "HypertensionControllerID") as! HypertensionController
-				controller.pageForm = shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-			} else {
-				
-				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = self.shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-			}
-			
-			print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
-			self.pageForm.form.status = .valued
-			
-		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
-			
-			//			print("+++++++++++++" + generatedID!)
-			if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
-				DataManager.manager.setPAHValue(pah: true)
-			}
-			let model = DataManager.manager.evaluation!
-			let activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-			
-			//activity_view.frame =  CGRectMake(0.0, 0.0, 40.0,40.0)
-			activity_view.center = self.tableView.center
-			//activity_view.center = self.view.center
-			self.tableView.addSubview(activity_view)
-			//				self.view.addSubview(activity_view)
-			activity_view.bringSubview(toFront: self.tableView)
-			//				activity_view.bringSubview(toFront: self.view)
-			activity_view.startAnimating()
-			
-			let client: RestClient = RestClient.client
-			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
-			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-			client.computeEvaluation(evaluationRequest: evaluation, success: {
-				(response) in print(response)
-				
-				let result = DataManager()
-				result.setOutputEvaluation(response: response)
-				
-				activity_view.stopAnimating()
-				
-				// add pah value false
-				print(String(DataManager.manager.getPAHValue()))
-				DataManager.manager.setPAHValue(pah: false)
-				
-				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = self.shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-				self.pageForm.form.status = .valued
-				
-			}, failure: {
-				error in print(error)
-				var actions = [CVDAction] ()
-				var alertTitle: String?
-				var alertDescription : String?
-				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Network Connection".localized
-				alertDescription = "Check network connection before computing the evaluation.".localized
-				activity_view.stopAnimating()
-				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-				
-			})
-			
-		}
-		
-	}
-	
 	
 	
 	override func setupAppearance() {
@@ -337,6 +183,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		}
 	}
 	
+	
 	override func moveToItem(_ sender: UISegmentedControl) {
 		guard nil != activeModel else { return }
 		
@@ -374,8 +221,180 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 				}
 			}
 		}
+	}
+	
+	
+	override func evaluateResponderChain() {
+		
+		var models = [EvaluationItem]()
+		
+		for (index, item) in pageForm.items.enumerated() {
+			
+			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
+				item.modelIndexPath = IndexPath(row: index, section: 0)
+				models.append(item)
+			}
+		}
+		
+		self.modelChain = models
+		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
+		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
+	}
+	
+	
+	func validatePage() -> Bool {
+		do {
+			try pageForm.validateEvaluationItem()
+			return true
+			
+		} catch let err {
+			
+			var actions = [CVDAction] ()
+			
+			actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+			
+			actions.append(CVDAction(title: "Back".localized, type: CVDActionType.cancel, handler: {
+				self.navigationController?.popViewController(animated: true)
+			}, short: true))
+			
+			let alertTitle: String = "Cannot save this form".localized
+			
+			var alertDescription : String?
+			switch err {
+			case InputError.incorrectInput:
+				alertDescription = "One of the fields contains unsupported characters. Please correct and try again.".localized
+			case InputError.toLong:
+				alertDescription = "Entering in one of the fields is too long. Please shorten it and try again.".localized
+			case InputError.outOfBounds:
+				alertDescription = "Entered numerical value into one of field exceeds the limits. Please set number between limits.".localized
+			case InputError.emptyInput:
+				alertDescription = "Required Fields cannot be empty. Please fill in all fields marked (*).".localized
+				
+			default:
+				()
+			}
+			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: actions)
+			return false
+		}
+	}
+	
+	
+	
+	// MARK: - Actions
+	
+	@IBAction func selectDate(_ sender: UIDatePicker) {
+		
+		let date = sender.date
+		
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MM/yyyy"
+		let strDate = formatter.string(from: date)
+		self.dateModel?.storedValue?.value = strDate
+		
+		if let path = dateModel?.modelIndexPath {
+			let cell = tableView.cellForRow(at: path) as! DateCell
+			cell.textField?.text = strDate
+		}
+	}
+	
+	
+	override func rightButtonAction(_ sender: UIBarButtonItem) {
+		if validatePage() {
+			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
+		}
+	}
+	
+	
+	override func leftButtonAction(_ sender: UIBarButtonItem) {
+		if validatePage() {
+			DataManager.manager.evaluation!.isBioCompleted = true
+			_ = self.navigationController?.popViewController(animated: true)
+		}
+	}
+	
+	
+	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
+		if validatePage() && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
+			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			
+			if generatedID == "bio" {
+				DataManager.manager.setPAHValue(pah: true)
+				let controller = storyboard.instantiateViewController(withIdentifier: "HypertensionControllerID") as! HypertensionController
+				controller.pageForm = shortcutModel!
+				self.navigationController?.pushViewController(controller, animated: true)
+			
+			} else {
+				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+				controller.pageForm = self.shortcutModel!
+				self.navigationController?.pushViewController(controller, animated: true)
+			}
+			
+			print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
+			self.pageForm.form.status = .valued
+			
+		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
+			
+			//			print("+++++++++++++" + generatedID!)
+			if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
+				DataManager.manager.setPAHValue(pah: true)
+			}
+			
+			let model = DataManager.manager.evaluation!
+			
+//			let activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+//			//activity_view.frame =  CGRectMake(0.0, 0.0, 40.0,40.0)
+//			activity_view.center = self.tableView.center
+//			//activity_view.center = self.view.center
+//			self.tableView.addSubview(activity_view)
+//			//				self.view.addSubview(activity_view)
+//			activity_view.bringSubview(toFront: self.tableView)
+//			//				activity_view.bringSubview(toFront: self.view)
+//			activity_view.startAnimating()
+			
+			self.startAnimating()
+			
+			let client: RestClient = RestClient.client
+			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+			
+			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+				
+				let result = DataManager()
+				result.setOutputEvaluation(response: response)
+				
+//				activity_view.stopAnimating()
+				self.stopAnimating()
+				
+				// add pah value false
+				print(String(DataManager.manager.getPAHValue()))
+				DataManager.manager.setPAHValue(pah: false)
+				
+				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+				controller.pageForm = self.shortcutModel!
+				self.navigationController?.pushViewController(controller, animated: true)
+				self.pageForm.form.status = .valued
+				
+			}, failure: { error in print(error)
+				
+				var actions = [CVDAction] ()
+				var alertTitle: String?
+				var alertDescription : String?
+				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+				alertTitle = "Network Connection".localized
+				alertDescription = "Check network connection before computing the evaluation.".localized
+				
+//				activity_view.stopAnimating()
+				self.stopAnimating()
+				
+				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+				
+			})
+			
+		}
 		
 	}
+	
 	/*
 	func hideKeyboard() {
 		activeField?.resignFirstResponder()
@@ -383,6 +402,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		self.activeModel = nil
 		tableView.reloadData()
 	}
+	
 	
 	func createHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
 		
@@ -394,6 +414,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		}
 		return handler
 	}
+	
 	
 	func createPahHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
 		
@@ -410,6 +431,7 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		}
 		return handler
 	}
+	
 	
 	func checkDependancies() {
 		
@@ -445,16 +467,21 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 	}
 	*/
 	
+	
+	//MARK: - EvaluationEditing protocol
+	
 	override func evaluationFieldDidBeginEditing(_ textField: UITextField, model: EvaluationItem) {
 		self.activeField = textField
 		self.activeModel = model
 		self.pageForm.form.status = .valued
 	}
 	
+	
 	override func evaluationValueDidChange(model: EvaluationItem) {
 		self.pageForm.form.status = .valued
 		self.tableView.reloadData()
 	}
+	
 	
 	override func evaluationValueDidEnter(_ textField: UITextField, model: EvaluationItem) {
 		Timer.scheduledTimer(timeInterval: 0.1,
@@ -462,9 +489,11 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		                     selector: #selector(self.checkDependancies),
 		                     userInfo: nil,
 		                     repeats: false)
-		
 	}
-	
+
+	//
+	// will use woast cocoapods
+	//
 	override func evaluationValueDidNotValidate(model: EvaluationItem, message: String, description: String?) {
 		
 		guard !isCancelled else { return }
@@ -475,13 +504,22 @@ class BioController: BaseTableController { //, UITableViewDelegate, UITableViewD
 		controller.descriptionMessage = description
 		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 		self.present(controller, animated: false) { controller.showMessage() }
-	}
-}
+		
+		var style = ToastStyle()
+		style.messageColor = .white
+		style.titleColor = .white
+		style.messageFont = .boldSystemFont(ofSize: 14.0)
+		style.titleFont = .boldSystemFont(ofSize: 17.0)
+		style.backgroundColor = .red
+		self.view.makeToast(description, duration: 3.0, position: .center, title: message, image: nil, style: style) { didTap in
+			
+		}
 
-extension BioController {
+	}
 	
 	
-	// MARK: - Table view data source
+	
+	// MARK: - UITableView DataSource
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -492,6 +530,13 @@ extension BioController {
 		return pageForm.items.count
 	}
 	
+}
+
+
+
+extension BioController {
+	
+	// MARK: - UITableView Delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -504,12 +549,9 @@ extension BioController {
 		
 		// self.textField?.text = self.cellModel.storedValue?.value
 		
-		
 		if cellType == .date {
 			cell.textField?.inputView = self.datePicker
 		}
-		
-		
 		
 		cell.cellModel = itemModel
 		
@@ -542,93 +584,96 @@ extension BioController {
 		
 		/*
 		if (!isShowingList) {
-		// Not a list in this case.
-		// We'll only display the item of the demoData array of which array
-		// index matches the selectedValueList.
-		[[cell textLabel] setText:[demoData objectAtIndex:selectedValueIndex]];
-		
-		// We'll also display the disclosure indicator to prompt user to
-		// tap on that cell.
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			// Not a list in this case.
+			// We'll only display the item of the demoData array of which array
+			// index matches the selectedValueList.
+			[[cell textLabel] setText:[demoData objectAtIndex:selectedValueIndex]];
+			
+			// We'll also display the disclosure indicator to prompt user to
+			// tap on that cell.
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		else{
-		// Listing the array items.
-		[[cell textLabel] setText:[demoData objectAtIndex:[indexPath row]]];
+			// Listing the array items.
+			[[cell textLabel] setText:[demoData objectAtIndex:[indexPath row]]];
+			
+			// We'll display the checkmark next to the already selected value.
+			// That means that we'll apply the checkmark only to the cell
+			// where the [indexPath row] value is equal to selectedValueIndex value.
+			if ([indexPath row] == selectedValueIndex) {
+				cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			}
+			else{
+				cell.accessoryType = UITableViewCellAccessoryNone;
+			}
+		}*/
 		
-		// We'll display the checkmark next to the already selected value.
-		// That means that we'll apply the checkmark only to the cell
-		// where the [indexPath row] value is equal to selectedValueIndex value.
-		if ([indexPath row] == selectedValueIndex) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		}
-		else{
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		}
-		}
-		*/
 		switch itemModel.form.itemType {
 			
-		case .disclosureControl where itemModel.storedValue!.isChecked == false:
-			cell.selectionStyle = .none
+			case .disclosureControl where itemModel.storedValue!.isChecked == false:
+				cell.selectionStyle = .none
 			
-		case .disclosureControlWithCheck where itemModel.storedValue!.isChecked == false:
-			cell.selectionStyle = .none
+			case .disclosureControlWithCheck where itemModel.storedValue!.isChecked == false:
+				cell.selectionStyle = .none
 			
-		case .disclosureRadio where itemModel.storedValue?.radioGroup!.selectedRadioItem != itemModel.identifier:
+			case .disclosureRadio where itemModel.storedValue?.radioGroup!.selectedRadioItem != itemModel.identifier:
+				cell.selectionStyle = .none
 			
-			cell.selectionStyle = .none
+			case .disclosureVieved, .disclosureControl, .disclosureControlWithCheck, .disclosureSimple,  .disclosureRadio, .disclosureWeather:
+				cell.selectionStyle = .gray
 			
-		case .disclosureVieved, .disclosureControl, .disclosureControlWithCheck, .disclosureSimple,  .disclosureRadio, .disclosureWeather:
-			cell.selectionStyle = .gray
+			case .partnerCard:
+				()
 			
-		case .partnerCard:
-			()
-			
-		default:
-			cell.selectionStyle = .none
+			default:
+				cell.selectionStyle = .none
 		}
+		
 		return cell
 	}
 	
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
-		// print("row selected")
 		let itemModel = pageForm.items[indexPath.row]
 		print("row selected type \(itemModel.form.itemType)")
+		
+		//self.textField?.text = self.cellModel.storedValue?.value
+		
 		switch itemModel.form.itemType {
 			
- 		//self.textField?.text = self.cellModel.storedValue?.value
-			
-		case .disclosureSimple, .disclosureVieved, .disclosureWeather,
-		     .disclosureControl where itemModel.storedValue!.isChecked,
-		     .disclosureRadio where itemModel.storedValue?.radioGroup!.selectedRadioItem == itemModel.identifier:
-			
-			if pageForm.identifier == "bio" || validatePage() {
-				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			case .disclosureSimple, .disclosureVieved, .disclosureWeather,
+			     .disclosureControl where itemModel.storedValue!.isChecked,
+			     .disclosureRadio where itemModel.storedValue?.radioGroup!.selectedRadioItem == itemModel.identifier:
 				
-				if itemModel.identifier == identifierBy(literal: Presentation.pah) {
-					let controller = storyboard.instantiateViewController(withIdentifier: "HypertensionControllerID") as! HypertensionController
-					controller.pageForm = itemModel
-					self.navigationController?.pushViewController(controller, animated: true)
-				} else {
-					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-					controller.pageForm = itemModel
-					self.navigationController?.pushViewController(controller, animated: true)
+				if pageForm.identifier == "bio" || validatePage() {
+					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+					
+					if itemModel.identifier == identifierBy(literal: Presentation.pah) {
+						let controller = storyboard.instantiateViewController(withIdentifier: "HypertensionControllerID") as! HypertensionController
+						controller.pageForm = itemModel
+						
+						self.navigationController?.pushViewController(controller, animated: true)
+					
+					} else {
+						let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+						controller.pageForm = itemModel
+						self.navigationController?.pushViewController(controller, animated: true)
+					}
 				}
-			}
-			
-			hideKeyboard()
+				
+				hideKeyboard()
 		
-		case .disclosureSimpleExpandable:
-			cellExpanded = !cellExpanded
-			tableView.beginUpdates()
-			tableView.endUpdates()
+			case .disclosureSimpleExpandable:
+				cellExpanded = !cellExpanded
+				tableView.beginUpdates()
+				tableView.endUpdates()
 			
-		default:
-			()
+			default:
+				()
 		}
 	}
+	
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let itemModel = pageForm.items[indexPath.row]

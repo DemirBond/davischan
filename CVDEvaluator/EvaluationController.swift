@@ -11,6 +11,7 @@ import UIKit
 import SwiftyJSON
 import NVActivityIndicatorView
 
+
 class EvaluationCell: UITableViewCell {
 	
 	@IBOutlet weak var titleLabel: UILabel!
@@ -25,6 +26,7 @@ class EvaluationCell: UITableViewCell {
 		}
 	}
 	
+
 	func setupCell() {
 		
 		self.titleLabel?.textColor = CVDStyle.style.defaultFontColor
@@ -43,12 +45,13 @@ class EvaluationCell: UITableViewCell {
 }
 
 
-class EvaluationController: BaseTableController {
+class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	weak var shortcutModel: EvaluationItem?
 	override var createdID: String! { return "evaluation" }
 	
 	var activityIndicatorView: UIActivityIndicatorView!
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -76,11 +79,13 @@ class EvaluationController: BaseTableController {
 		
 	}
 	
+	
 	override func viewWillDisappear(_ animated : Bool) {
 		super.viewWillDisappear(animated)
 		DataManager.manager.saveCurrentEvaluation()
 	}
 
+	
 	private func lockItems(array: [EvaluationItem]) {
 		for item in array {
 			item.form.status = .locked
@@ -95,6 +100,7 @@ class EvaluationController: BaseTableController {
 			}
 		}
 	}
+	
 	
 	private func checkAndUpdateLocks() {
 		let model = DataManager.manager.evaluation!
@@ -111,15 +117,17 @@ class EvaluationController: BaseTableController {
 			lockItems(array: [model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 		case .riskCompleted:
 			()
-//			lockItems(array: [model.nsr])
-//		case .diagnosticCompleted, .therapieCompleted:
-//			()
+		/*	lockItems(array: [model.nsr])
+		case .diagnosticCompleted, .therapieCompleted:
+			()
+		*/
 		default:
 			()
 		}
 		
 		self.tableView.reloadData()
 	}
+	
 	
 	func backButtonConfirmAlert(){
 		
@@ -131,12 +139,11 @@ class EvaluationController: BaseTableController {
 			self.navigationController?.popViewController(animated: true)
 		}, short: true))
 		
-		
 		actions.append(CVDAction(title: "Stay".localized, type: CVDActionType.cancel, handler: nil, short: true))
-		
 		
 		self.showCVDAlert(title: alertTitle, message: nil, actions: actions)
 	}
+	
 	
 	
 	// MARK: - Override Actions
@@ -145,9 +152,11 @@ class EvaluationController: BaseTableController {
 		backButtonConfirmAlert()
 	}
 	
+	
 	override func rightButtonAction(_ sender: UIBarButtonItem) {
 		_ = self.navigationController?.popViewController(animated: true)
 	}
+	
 	
 	override func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -157,10 +166,174 @@ class EvaluationController: BaseTableController {
 		styleController = controller
 	}
 	
+	
+	override func bottomRightButtonAction(_ sender: UIBarButtonItem) { // Compute Evaluation
+		
+		let model = DataManager.manager.evaluation!
+		
+		let alertTitle = "Cannot open output screen".localized
+		
+		if DataManager.manager.evaluation!.evaluationStatus == .initialized {
+			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
+			
+			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			let alertDescription = "Please fill out the Bio form first".localized
+			let handler1 = {() in
+				if let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as? BioController {
+					controller.pageForm = model.bio
+					self.navigationController?.pushViewController(controller, animated: true)
+				}
+			}
+			
+			let navigateAction = CVDAction(title: "Open ".localized + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
+			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
+			
+		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted  {
+			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
+			
+		}
+		
+		// Removed because of task CVD-220 [IOS] Unable to compute evaluation
+		/*
+		else if DataManager.manager.evaluation!.evaluationStatus == .riskCompleted {
+			let alertDescription = "Please fill out the form \(model.diagnostics.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.diagnostics])
+			
+		} else if DataManager.manager.evaluation!.evaluationStatus == .diagnosticCompleted {
+			let alertDescription = "Please fill out the form \(model.nsr.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.nsr])
+			
+		}*/
+
+		else {
+			
+			self.navigationController?.view.addSubview(whiteView!)
+			
+//			let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.navigationController?.view.bounds.height)!/2 - 50) , width:100, height:100) ) //, type: ..ballSpinFadeLoader , color: , padding: padding)
+//			betterActivityView.type = .ballPulse
+//			betterActivityView.color = UIColor(palette: ColorPalette.purple)!
+//			self.navigationController?.view.addSubview(betterActivityView)
+//			betterActivityView.startAnimating()
+			
+			self.startAnimating(CGSize(width:100, height:100), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.purple), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
+			
+			// convert pah as false if we are not in the HMS section
+			DataManager.manager.setPAHValue(pah: false)
+			
+			let client: RestClient = RestClient.client
+			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+			
+			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+				
+				let result = DataManager()
+				result.setOutputEvaluation(response: response)
+				
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+				controller.pageForm = DataManager.manager.evaluation!.outputInMain
+				
+				self.navigationController?.pushViewController(controller, animated: false)
+				// self.navigationController?.present(controller, animated: true, completion: nil)
+				
+				self.whiteView?.removeFromSuperview()
+				
+//				betterActivityView.stopAnimating()
+				self.stopAnimating()
+				
+				self.tableView.setNeedsLayout()
+				self.tableView.layoutIfNeeded()
+				self.tableView.estimatedRowHeight = 40
+				self.tableView.rowHeight = UITableViewAutomaticDimension
+				self.tableView.sizeToFit()
+				self.tableView.reloadData()
+				
+				// add pah value false
+				DataManager.manager.setPAHValue(pah: false)
+				
+			}, failure: { error in print(error)
+				
+				var actions = [CVDAction] ()
+				var alertTitle: String?
+				var alertDescription : String?
+				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+				alertTitle = "Network Connection".localized
+				alertDescription = "Check network connection before computing the evaluation.".localized
+				
+				self.whiteView?.removeFromSuperview()
+				
+//				betterActivityView.stopAnimating()
+				self.stopAnimating()
+				
+				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+				
+			})
+		}
+		
+	}
+	
+	
 	@IBAction func unwindToEvaluation(segue: UIStoryboardSegue) { /* return to this point after press list icon*/ }
 	
+	
+	func showAlert(title: String, description: String?, models: [EvaluationItem]) {
+		
+		var alertActions = [CVDAction] ()
+		for item in models {
+			let handler1 = createHandler(model: item, navigation: self.navigationController)
+			let navigateAction = CVDAction(title: item.title, type: CVDActionType.done, handler: handler1, short: false)
+			alertActions.append(navigateAction)
+		}
+		let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
+		alertActions.append(cancelAction)
+		
+		self.showCVDAlert(title: title, message: description, actions: alertActions)
+		
+	}
+	
+	
+	private func showLockedScreenAlert(for item: EvaluationItem) {
+		
+		let model = DataManager.manager.evaluation!
+		
+		let alertTitle = "Cannot open form \(item.title)"
+		
+		if DataManager.manager.evaluation!.evaluationStatus == .initialized {
+			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			let alertDescription = "Please fill out the Bio form first.".localized
+			let handler1 = {() in
+				if let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as? BioController {
+					controller.pageForm = model.bio
+					self.navigationController?.pushViewController(controller, animated: true)
+				}
+			}
+			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
+			let navigateAction = CVDAction(title: "Open " + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
+			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
+			
+		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted  {
+			
+			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
+		}
+			
+		else if DataManager.manager.evaluation!.evaluationStatus == .riskCompleted {
+			let alertDescription = "Please fill out the form \(model.diagnostics.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.diagnostics])
+			
+		} else if DataManager.manager.evaluation!.evaluationStatus == .diagnosticCompleted {
+			let alertDescription = "Please fill out the form \(model.nsr.title)"
+			showAlert(title: alertTitle, description: alertDescription, models: [model.nsr])
+		}
+		
+	}
+	
+	
 
-	// MARK: - Table view data source
+	// MARK: - UITableView DataSource
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
@@ -170,6 +343,9 @@ class EvaluationController: BaseTableController {
 		return DataManager.manager.evaluation!.items.count
 	}
 	
+	
+	
+	// MARK: - UITableView Delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -216,6 +392,7 @@ class EvaluationController: BaseTableController {
 		return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 		
 		let view = UIView(frame: CGRect(x: 0, y: 300, width: self.view.bounds.width, height: 300) )
@@ -227,170 +404,6 @@ class EvaluationController: BaseTableController {
 		view.addSubview(button)
 		
 		return view
-		
-	}
-	
-	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
-		
-		let model = DataManager.manager.evaluation!
-		
-		let alertTitle = "Cannot open output screen".localized
-		
-		if DataManager.manager.evaluation!.evaluationStatus == .initialized {
-			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
-			
-			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-			let alertDescription = "Please fill out the Bio form first".localized
-			let handler1 = {() in
-				if let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as? BioController {
-					controller.pageForm = model.bio
-					self.navigationController?.pushViewController(controller, animated: true)
-				}
-			}
-			
-			let navigateAction = CVDAction(title: "Open ".localized + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
-			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
-			
-		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted  {
-			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
-			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
-			
-		} else {
-			
-			// whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-			// whiteView?.backgroundColor = UIColor.white
-			self.navigationController?.view.addSubview(whiteView!)
-			
-			/*
-			let activity_view = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-			activity_view.center = self.view.center
-			self.navigationController?.view.addSubview(activity_view)
-			// activity_view.bringSubview(toFront: self.view)
-			activity_view.startAnimating()
-			*/
-			
-			let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.navigationController?.view.bounds.height)!/2 - 50) , width:100, height:100) ) //, type: ..ballSpinFadeLoader , color: , padding: padding)
-			betterActivityView.type = .ballPulse
-			betterActivityView.color = UIColor(palette: ColorPalette.purple)!
-			self.navigationController?.view.addSubview(betterActivityView)
-			betterActivityView.startAnimating()
-			
-			
-			// convert pah as false if we are not in the HMS section
-			DataManager.manager.setPAHValue(pah: false)
-			
-			let client: RestClient = RestClient.client
-			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
-			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-			client.computeEvaluation(evaluationRequest: evaluation, success: {
-				(response) in print(response)
-				
-				let result = DataManager()
-				result.setOutputEvaluation(response: response)
-				
-				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = DataManager.manager.evaluation!.outputInMain
-				
-				self.navigationController?.pushViewController(controller, animated: false)
-				// self.navigationController?.present(controller, animated: true, completion: nil)
-				
-				self.whiteView?.removeFromSuperview()
-				
-				// activity_view.stopAnimating()
-				betterActivityView.stopAnimating()
-				self.tableView.setNeedsLayout()
-				self.tableView.layoutIfNeeded()
-				self.tableView.estimatedRowHeight = 40
-				self.tableView.rowHeight = UITableViewAutomaticDimension
-				self.tableView.sizeToFit()
-				self.tableView.reloadData()
-				// add pah value false
-				DataManager.manager.setPAHValue(pah: false)
-
-				
-			}, failure: {
-				error in print(error)
-				var actions = [CVDAction] ()
-				var alertTitle: String?
-				var alertDescription : String?
-				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Network Connection".localized
-				alertDescription = "Check network connection before computing the evaluation.".localized
-				self.whiteView?.removeFromSuperview()
-				// activity_view.stopAnimating()
-				betterActivityView.stopAnimating()
-				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-				
-			})
-
-
-		}
-		
-		
-	// Removed because of task CVD-220 [IOS] Unable to compute evaluation
-	//	else if DataManager.manager.evaluation!.evaluationStatus == .riskCompleted {
-	//	let alertDescription = "Please fill out the form \(model.diagnostics.title)"
-	//	showAlert(title: alertTitle, description: alertDescription, models: [model.diagnostics])
-	//
-	//	} else if DataManager.manager.evaluation!.evaluationStatus == .diagnosticCompleted {
-	//	let alertDescription = "Please fill out the form \(model.nsr.title)"
-	//	showAlert(title: alertTitle, description: alertDescription, models: [model.nsr])
-	//	
-	//	}
-		
-		
-	}
-	
-	func showAlert(title: String, description: String?, models: [EvaluationItem]) {
-
-		var alertActions = [CVDAction] ()
-		for item in models {
-			let handler1 = createHandler(model: item, navigation: self.navigationController)
-			let navigateAction = CVDAction(title: item.title, type: CVDActionType.done, handler: handler1, short: false)
-			alertActions.append(navigateAction)
-		}
-		let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
-		alertActions.append(cancelAction)
-		
-		self.showCVDAlert(title: title, message: description, actions: alertActions)
-
-	}
-	
-	private func showLockedScreenAlert(for item: EvaluationItem) {
-		
-		let model = DataManager.manager.evaluation!
-		
-		let alertTitle = "Cannot open form \(item.title)"
-		
-		if DataManager.manager.evaluation!.evaluationStatus == .initialized {
-			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-			let alertDescription = "Please fill out the Bio form first.".localized
-			let handler1 = {() in
-				if let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as? BioController {
-					controller.pageForm = model.bio
-					self.navigationController?.pushViewController(controller, animated: true)
-				}
-			}
-			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
-			let navigateAction = CVDAction(title: "Open " + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
-			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
-			
-		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted  {
-			
-			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
-			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
-		}
-		
-		else if DataManager.manager.evaluation!.evaluationStatus == .riskCompleted {
-			let alertDescription = "Please fill out the form \(model.diagnostics.title)"
-			showAlert(title: alertTitle, description: alertDescription, models: [model.diagnostics])
-			
-		} else if DataManager.manager.evaluation!.evaluationStatus == .diagnosticCompleted {
-			let alertDescription = "Please fill out the form \(model.nsr.title)"
-			showAlert(title: alertTitle, description: alertDescription, models: [model.nsr])
-		}
 		
 	}
 	

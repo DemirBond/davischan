@@ -8,20 +8,78 @@
 
 import UIKit
 import MessageUI
+import NVActivityIndicatorView
 
-class ResetAccountController: BaseController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
+
+class ResetAccountController: BaseController, UITextFieldDelegate, MFMailComposeViewControllerDelegate, NVActivityIndicatorViewable {
 	
-	@IBOutlet weak var submitLabel: UILabel!
 	@IBOutlet weak var nameField: UITextField!
 	
 	override var createdID: String! { return "resetAccount" }
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		submitLabel.text = ""
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResetAccountController.hideKeyboard))
 		self.view.addGestureRecognizer(tapRecognizer)
+	}
+	
+	
+	
+	// MARK: - Overridden Actions
+	
+	override func leftButtonAction(_ sender: UIBarButtonItem) {
+		nameField.resignFirstResponder()
+		self.dismiss(animated: true, completion: nil)
+	}
+	
+	
+	@IBAction func submitAction(_ sender: AnyObject) {
+		hideKeyboard()
+		
+		guard let name = self.nameField.text, !name.isEmpty else {
+			UIAlertController.infoAlert(message: "", title: "The name field is empty", viewcontroller: self, handler: {
+				self.nameField.text = ""
+			})
+			
+			return
+		}
+		
+//		self.startAnimating()
+//		
+//		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
+//			
+//			self.stopAnimating()
+//			
+//			guard error == nil else {
+//				print("Server returned error \(String(describing: error))")
+//				
+//				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot reset account".localized, viewcontroller: self, handler: {
+//					self.nameField.text = ""
+//				})
+//				
+//				return
+//			}
+//			
+//			if data == "success" {
+//				UIAlertController.infoAlert(message: nil, title: "Request Sent".localized, viewcontroller: self, handler: {
+//					self.dismiss(animated: true, completion: nil)
+//				})
+//			}
+//		}
+//
+//		DataManager.manager.reset(with: name, password: pass, completionHandler: completionHandler)
+		
+		UIAlertController.infoAlert(message: nil, title: "Request Sent".localized, viewcontroller: self, handler: {
+			self.dismiss(animated: true, completion: nil)
+		})		
+	}
+	
+	@IBAction func cannotPerformAction(_ sender: AnyObject) {
+		nameField?.resignFirstResponder()
+		
+		sendEmail(recipient: "davischan83@gmail.com", subject: "Cannot reset form")		
 	}
 	
 	
@@ -39,54 +97,37 @@ class ResetAccountController: BaseController, UITextFieldDelegate, MFMailCompose
 	}
 	
 	
+	
+	// MARK: - Keyboard Handle Methods
+	
+	func hideKeyboard() {
+		self.nameField.resignFirstResponder()
+	}
+	
+	
+	
 	// MARK: - MFMailComposeViewController delegate
 	
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 		controller.dismiss(animated: true)
 	}
-
-	// MARK: - Overridden Actions
-	
-	override func leftButtonAction(_ sender: UIBarButtonItem) {
-		nameField.resignFirstResponder()
-		self.dismiss(animated: true, completion: nil)
-	}
 	
 	
-	@IBAction func submitAction(_ sender: AnyObject) {
-		nameField.resignFirstResponder()
-		
-		submitLabel.text = "Request sent".localized
-	}
-	
-	@IBAction func cannotPerformAction(_ sender: AnyObject) {
-		nameField?.resignFirstResponder()
-		
-		sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Cannot reset form")
-		
-	}
 	
 	// MARK: - UITextField delegates
 	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		//self.activeField = nil
+	func textFieldDidBeginEditing(_ textField: UITextField) {
 	}
 	
 	
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-		
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		textField.resignFirstResponder()
 	}
 	
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		nameField.resignFirstResponder()
+		textField.resignFirstResponder()
 		return true
-	}
-	
-	// MARK: - private
-	
-	func hideKeyboard() {
-		self.nameField.resignFirstResponder()
 	}
 	
 }
