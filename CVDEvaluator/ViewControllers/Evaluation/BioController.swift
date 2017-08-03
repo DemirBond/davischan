@@ -9,6 +9,44 @@
 import UIKit
 import NVActivityIndicatorView
 import ToastSwiftFramework
+import SwiftToast
+
+
+struct CustomSwiftToast: SwiftToastProtocol {
+	// Protocoled
+	var duration: Double?
+	var aboveStatusBar: Bool
+	var statusBarStyle: UIStatusBarStyle
+	var isUserInteractionEnabled: Bool
+	var target: SwiftToastDelegate?
+	var style: SwiftToastStyle
+	
+	// Customized
+	var title: String
+	var subtitle: String
+	var backgroundColor: UIColor
+}
+
+class CustomSwiftToastView: UIView, SwiftToastViewProtocol {
+	
+	// Customized
+	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var subtitleLabel: UILabel!
+	
+	// Protocoled
+	func nib() -> SwiftToastViewProtocol? {
+		return Bundle.main.loadNibNamed("CustomSwiftToastView", owner: self, options: nil)?.first as? CustomSwiftToastView
+	}
+	
+	func configure(with toast: SwiftToastProtocol) {
+		if let customToast = toast as? CustomSwiftToast {
+			
+			// put your configure code here. e.g.:
+			// subtitleLabel.text = customToast.subtitle
+			// backgroundColor = customToast.backgroundColor
+		}
+	}
+}
 
 
 class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITableViewDelegate, UITableViewDataSource{
@@ -505,15 +543,15 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 		self.present(controller, animated: false) { controller.showMessage() }
 		
-		var style = ToastStyle()
-		style.messageColor = .white
-		style.titleColor = .white
-		style.messageFont = .boldSystemFont(ofSize: 14.0)
-		style.titleFont = .boldSystemFont(ofSize: 17.0)
-		style.backgroundColor = .red
-		self.view.makeToast(description, duration: 3.0, position: .center, title: message, image: nil, style: style) { didTap in
-			
-		}
+//		var style = ToastStyle()
+//		style.messageColor = .white
+//		style.titleColor = .white
+//		style.messageFont = .boldSystemFont(ofSize: 14.0)
+//		style.titleFont = .boldSystemFont(ofSize: 17.0)
+//		style.backgroundColor = .red
+//		self.view.makeToast(description, duration: 3.0, position: .center, title: message, image: nil, style: style) { didTap in
+//		
+//		}
 
 	}
 	
