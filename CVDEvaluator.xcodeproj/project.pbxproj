@@ -33,8 +33,6 @@
 		43A35E1C1E4CA41B006B9E76 /* Laboratories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A35E1B1E4CA41B006B9E76 /* Laboratories.swift */; };
 		43F081091E7C3884009EE626 /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F081081E7C3884009EE626 /* RateController.swift */; };
 		58E6F39A1E4FE83B00DBDD78 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E6F3991E4FE83B00DBDD78 /* ItemType.swift */; };
-		670AF3961E4F53AF00576848 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670AF3941E4F53AF00576848 /* Fabric.framework */; };
-		670AF3971E4F53AF00576848 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670AF3951E4F53AF00576848 /* Crashlytics.framework */; };
 		7822CA501E4CCBEB00EA0C31 /* BuildAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CA4F1E4CCBEB00EA0C31 /* BuildAppearance.swift */; };
 		7826C2901E603023001007B4 /* StoredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826C28F1E603023001007B4 /* StoredValue.swift */; };
 		7836A61C1E5C5D2400C21254 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836A61B1E5C5D2400C21254 /* MessageController.swift */; };
@@ -97,18 +95,22 @@
 		AA11900F1F1D77840030E32F /* ExpyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11900E1F1D77840030E32F /* ExpyTableView.swift */; };
 		AA32535D1F1065B800519B96 /* TextSizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA32535C1F1065B800519B96 /* TextSizeView.xib */; };
 		AA824E6C1EF21E6A00D75320 /* UIToolBarSubclassExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA824E6B1EF21E6A00D75320 /* UIToolBarSubclassExample.swift */; };
-		AA824E6E1EF258D300D75320 /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */; };
-		AA824E6F1EF2590800D75320 /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B70706101E85E05A009342E1 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B707060F1E85E05A009342E1 /* RestClient.swift */; };
 		B707061A1E85E0D1009342E1 /* EvaluationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70706191E85E0D1009342E1 /* EvaluationRequest.swift */; };
 		B7F74C941ECE99E500B17C09 /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F74C931ECE99E500B17C09 /* StringExtentions.swift */; };
 		B7F74C961ECEB12C00B17C09 /* ReferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F74C951ECEB12C00B17C09 /* ReferencesController.swift */; };
 		B7FF6D8B1EB8F55C00D8EDC6 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FF6D8A1EB8F55C00D8EDC6 /* RegisterRequest.swift */; };
 		B7FF6D8E1EB8FB8600D8EDC6 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FF6D8D1EB8FB8600D8EDC6 /* RegisterResponse.swift */; };
-		D51A51541E9442850084352C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70706111E85E091009342E1 /* Alamofire.framework */; };
-		D51A51551E9442850084352C /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70706111E85E091009342E1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D51A51561E9442850084352C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70706121E85E091009342E1 /* SwiftyJSON.framework */; };
-		D51A51571E9442850084352C /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70706121E85E091009342E1 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC411F3339360040060A /* Crashlytics.framework */; };
+		BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC421F3339360040060A /* Fabric.framework */; };
+		BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC451F3339360040060A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA49CC541F3340830040060A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC401F3339360040060A /* Alamofire.framework */; };
+		BA49CC551F3340830040060A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC401F3339360040060A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA49CC581F3340830040060A /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC461F3339360040060A /* ToastSwiftFramework.framework */; };
+		BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC461F3339360040060A /* ToastSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; };
+		BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA9A1B631F31EEC900EABFAA /* UIAlertControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A1B621F31EEC900EABFAA /* UIAlertControllerExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,9 +137,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AA824E6F1EF2590800D75320 /* NVActivityIndicatorView.framework in Embed Frameworks */,
-				D51A51571E9442850084352C /* SwiftyJSON.framework in Embed Frameworks */,
-				D51A51551E9442850084352C /* Alamofire.framework in Embed Frameworks */,
+				BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */,
+				BA49CC551F3340830040060A /* Alamofire.framework in Embed Frameworks */,
+				BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */,
+				BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +254,15 @@
 		B7F74C951ECEB12C00B17C09 /* ReferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferencesController.swift; sourceTree = "<group>"; };
 		B7FF6D8A1EB8F55C00D8EDC6 /* RegisterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterRequest.swift; path = CVDEvaluator/RegisterRequest.swift; sourceTree = "<group>"; };
 		B7FF6D8D1EB8FB8600D8EDC6 /* RegisterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterResponse.swift; path = CVDEvaluator/RegisterResponse.swift; sourceTree = "<group>"; };
+		BA49CC401F3339360040060A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Frameworks/Alamofire.framework; sourceTree = "<group>"; };
+		BA49CC411F3339360040060A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
+		BA49CC421F3339360040060A /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
+		BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Frameworks/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
+		BA49CC441F3339360040060A /* NVActivityIndicatorViewAppExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorViewAppExtension.framework; path = Frameworks/NVActivityIndicatorViewAppExtension.framework; sourceTree = "<group>"; };
+		BA49CC451F3339360040060A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Frameworks/SwiftyJSON.framework; sourceTree = "<group>"; };
+		BA49CC461F3339360040060A /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Frameworks/ToastSwiftFramework.framework; sourceTree = "<group>"; };
+		BA49CC471F3339360040060A /* YNExpandableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YNExpandableCell.framework; path = Frameworks/YNExpandableCell.framework; sourceTree = "<group>"; };
+		BA9A1B621F31EEC900EABFAA /* UIAlertControllerExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,11 +270,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D51A51561E9442850084352C /* SwiftyJSON.framework in Frameworks */,
-				670AF3971E4F53AF00576848 /* Crashlytics.framework in Frameworks */,
-				D51A51541E9442850084352C /* Alamofire.framework in Frameworks */,
-				670AF3961E4F53AF00576848 /* Fabric.framework in Frameworks */,
-				AA824E6E1EF258D300D75320 /* NVActivityIndicatorView.framework in Frameworks */,
+				BA49CC581F3340830040060A /* ToastSwiftFramework.framework in Frameworks */,
+				BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */,
+				BA49CC541F3340830040060A /* Alamofire.framework in Frameworks */,
+				BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */,
+				BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +323,7 @@
 		588AA15E1E4142F00048BD84 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				BA9A1B621F31EEC900EABFAA /* UIAlertControllerExtention.swift */,
 				787104E81E40E5410049E590 /* HexExtention.swift */,
 				B7F74C931ECE99E500B17C09 /* StringExtentions.swift */,
 			);
@@ -328,6 +341,8 @@
 		787104E51E40C4610049E590 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7879D4A51E6D5D6E00965619 /* General */,
+				78A57C5A1E449AB000B9A09B /* EvaluationSections */,
 				789268E31E6488170018FEF5 /* DataManager.swift */,
 				78A0B23A1E616D9E0069AAE0 /* CVDTopbar.swift */,
 				78A0B2381E616D8F0069AAE0 /* CVDToolbar.swift */,
@@ -337,8 +352,6 @@
 				787EB47B1E4DBCD100121B40 /* EvaluationItem.swift */,
 				78A57C581E4491EF00B9A09B /* Evaluation.swift */,
 				7867AD711E6C3C6000292FAA /* Specialist.swift */,
-				7879D4A51E6D5D6E00965619 /* General */,
-				78A57C5A1E449AB000B9A09B /* EvaluationSections */,
 				788F529B1E4B31AA000208B3 /* ObjectLoader.swift */,
 			);
 			name = Models;
@@ -375,24 +388,16 @@
 			name = Functions;
 			sourceTree = "<group>";
 		};
-		788F52891E4B0F7C000208B3 /* MainControllers */ = {
+		788F52891E4B0F7C000208B3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7874A2501E4A26F00048220E /* SettingsController.swift */,
-				78FF5C3C1E436236009455A3 /* AboutController.swift */,
-				78BF74181E3F71050040EC81 /* HomeController.swift */,
-				788F528C1E4B1059000208B3 /* RootViewController.swift */,
-				788F52941E4B295B000208B3 /* DemoController.swift */,
-				78A57C651E44B92800B9A09B /* EvaluationListController.swift */,
-				7883AB111E7ACD710000F65A /* ProfileController.swift */,
-				7883AB151E7AFFE50000F65A /* PoliciesController.swift */,
-				7883AB171E7AFFF90000F65A /* TermsController.swift */,
-				7883AB191E7B002A0000F65A /* HelpSupportController.swift */,
-				43F081081E7C3884009EE626 /* RateController.swift */,
+				78A3F3981E49DF4B008A634B /* Authorization */,
+				BA49CC3B1F327CB60040060A /* DemoView */,
+				78FF5C391E4361B0009455A3 /* Evaluation */,
+				BA49CC3A1F327C8A0040060A /* Settings */,
 				AA824E6B1EF21E6A00D75320 /* UIToolBarSubclassExample.swift */,
-				78FF5C391E4361B0009455A3 /* EvaluationControllers */,
 			);
-			name = MainControllers;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		788F52961E4B2DAF000208B3 /* Views */ = {
@@ -407,7 +412,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		78A3F3981E49DF4B008A634B /* AuthorizationControllers */ = {
+		78A3F3981E49DF4B008A634B /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
 				78986FA31E488A5200DD5F5D /* LoginController.swift */,
@@ -415,7 +420,7 @@
 				7874A2481E49E8440048220E /* ResetAccountController.swift */,
 				7874A24A1E4A0BCB0048220E /* CodeAutorizationController.swift */,
 			);
-			name = AuthorizationControllers;
+			name = Authorization;
 			sourceTree = "<group>";
 		};
 		78A57C5A1E449AB000B9A09B /* EvaluationSections */ = {
@@ -423,6 +428,7 @@
 			children = (
 				78A57C5F1E449E6100B9A09B /* SymptomsSection */,
 				4321BEA51E488AB4009679FD /* CVProfileSection */,
+				4363A08E1E5DCBFD0016D69A /* HSR */,
 				78A57C5B1E449AE800B9A09B /* BioPersonal.swift */,
 				78A57C5D1E449B4000B9A09B /* Symptoms.swift */,
 				43759CD21E8164C3009F9BB1 /* ReviewOfSystem.swift */,
@@ -433,7 +439,6 @@
 				43A35E1B1E4CA41B006B9E76 /* Laboratories.swift */,
 				433A6E891E52F837008EB8C5 /* Diagnostics.swift */,
 				4363A08C1E5DCBF20016D69A /* HSR.swift */,
-				4363A08E1E5DCBFD0016D69A /* HSR */,
 				433A6E901E52F9A4008EB8C5 /* HeartSpecialistManagement.swift */,
 				432D135F1E66CE25007E600A /* Output.swift */,
 			);
@@ -451,15 +456,11 @@
 		78BF73DB1E3F640F0040EC81 = {
 			isa = PBXGroup;
 			children = (
-				B70706111E85E091009342E1 /* Alamofire.framework */,
-				B70706121E85E091009342E1 /* SwiftyJSON.framework */,
+				BA9A1B5E1F31ED0100EABFAA /* Frameworks */,
 				B707060E1E85E027009342E1 /* Rest */,
 				78BF73E61E3F640F0040EC81 /* CVDEvaluator */,
 				78BF73FB1E3F640F0040EC81 /* CVDEvaluatorTests */,
 				78BF74061E3F640F0040EC81 /* CVDEvaluatorUITests */,
-				670AF3941E4F53AF00576848 /* Fabric.framework */,
-				AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */,
-				670AF3951E4F53AF00576848 /* Crashlytics.framework */,
 				78BF73E51E3F640F0040EC81 /* Products */,
 			);
 			indentWidth = 3;
@@ -487,10 +488,9 @@
 				588AA15E1E4142F00048BD84 /* Extentions */,
 				787EB4761E4DB4B000121B40 /* Literals */,
 				7822CA4E1E4CCBB700EA0C31 /* Protocols */,
-				78A3F3981E49DF4B008A634B /* AuthorizationControllers */,
-				788F52891E4B0F7C000208B3 /* MainControllers */,
-				788F52961E4B2DAF000208B3 /* Views */,
 				787104E51E40C4610049E590 /* Models */,
+				788F52961E4B2DAF000208B3 /* Views */,
+				788F52891E4B0F7C000208B3 /* ViewControllers */,
 				78BF73EB1E3F640F0040EC81 /* Main.storyboard */,
 				7874A24E1E4A20BE0048220E /* Medical.storyboard */,
 				AA32535C1F1065B800519B96 /* TextSizeView.xib */,
@@ -531,12 +531,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		78FF5C391E4361B0009455A3 /* EvaluationControllers */ = {
+		78FF5C391E4361B0009455A3 /* Evaluation */ = {
 			isa = PBXGroup;
 			children = (
+				78BF74181E3F71050040EC81 /* HomeController.swift */,
+				78A57C651E44B92800B9A09B /* EvaluationListController.swift */,
 				78A57C631E44B3B700B9A09B /* EvaluationController.swift */,
-				787EB47D1E4DEE0900121B40 /* GeneratedController.swift */,
 				7841EA671E5B0F5200F57FC6 /* BioController.swift */,
+				787EB47D1E4DEE0900121B40 /* GeneratedController.swift */,
 				7836A61B1E5C5D2400C21254 /* MessageController.swift */,
 				78A680A81E76DEAF007BE425 /* StyleController.swift */,
 				78897E1D1E5D7EAD00768783 /* CVDAlertController.swift */,
@@ -544,7 +546,7 @@
 				783C2FFD1E72E0F10042F29E /* HypertensionController.swift */,
 				B7F74C951ECEB12C00B17C09 /* ReferencesController.swift */,
 			);
-			name = EvaluationControllers;
+			name = Evaluation;
 			sourceTree = "<group>";
 		};
 		B707060E1E85E027009342E1 /* Rest */ = {
@@ -572,6 +574,49 @@
 				B7FF6D8D1EB8FB8600D8EDC6 /* RegisterResponse.swift */,
 			);
 			name = Responses;
+			sourceTree = "<group>";
+		};
+		BA49CC3A1F327C8A0040060A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7874A2501E4A26F00048220E /* SettingsController.swift */,
+				78FF5C3C1E436236009455A3 /* AboutController.swift */,
+				7883AB111E7ACD710000F65A /* ProfileController.swift */,
+				7883AB151E7AFFE50000F65A /* PoliciesController.swift */,
+				7883AB171E7AFFF90000F65A /* TermsController.swift */,
+				7883AB191E7B002A0000F65A /* HelpSupportController.swift */,
+				43F081081E7C3884009EE626 /* RateController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		BA49CC3B1F327CB60040060A /* DemoView */ = {
+			isa = PBXGroup;
+			children = (
+				788F528C1E4B1059000208B3 /* RootViewController.swift */,
+				788F52941E4B295B000208B3 /* DemoController.swift */,
+			);
+			name = DemoView;
+			sourceTree = "<group>";
+		};
+		BA9A1B5E1F31ED0100EABFAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA49CC401F3339360040060A /* Alamofire.framework */,
+				BA49CC411F3339360040060A /* Crashlytics.framework */,
+				BA49CC421F3339360040060A /* Fabric.framework */,
+				BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */,
+				BA49CC441F3339360040060A /* NVActivityIndicatorViewAppExtension.framework */,
+				BA49CC451F3339360040060A /* SwiftyJSON.framework */,
+				BA49CC461F3339360040060A /* ToastSwiftFramework.framework */,
+				BA49CC471F3339360040060A /* YNExpandableCell.framework */,
+				AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */,
+				670AF3951E4F53AF00576848 /* Crashlytics.framework */,
+				670AF3941E4F53AF00576848 /* Fabric.framework */,
+				B70706121E85E091009342E1 /* SwiftyJSON.framework */,
+				B70706111E85E091009342E1 /* Alamofire.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,8 +689,7 @@
 				TargetAttributes = {
 					78BF73E31E3F640F0040EC81 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = EPDF3ATTJ8;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					78BF73F71E3F640F0040EC81 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -723,7 +767,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run b024c492635d69ccfafb7e31f949953e20d40ee3 bede7a2a39f36be4ef577d3e3c788b1010418959d1bd503c8d955c6cad2e396c";
+			shellScript = "./Frameworks/Fabric.framework/run b024c492635d69ccfafb7e31f949953e20d40ee3 bede7a2a39f36be4ef577d3e3c788b1010418959d1bd503c8d955c6cad2e396c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -740,6 +784,7 @@
 				78A680A91E76DEAF007BE425 /* StyleController.swift in Sources */,
 				432D135E1E6591CA007E600A /* HMS.swift in Sources */,
 				43A35E181E4C8571006B9E76 /* MajorCVRisks.swift in Sources */,
+				BA9A1B631F31EEC900EABFAA /* UIAlertControllerExtention.swift in Sources */,
 				4363A08D1E5DCBF20016D69A /* HSR.swift in Sources */,
 				B7FF6D8E1EB8FB8600D8EDC6 /* RegisterResponse.swift in Sources */,
 				58E6F39A1E4FE83B00DBDD78 /* ItemType.swift in Sources */,
@@ -966,21 +1011,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = EPDF3ATTJ8;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Demir Baykal (29F8XS98B7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Demir Baykal (29F8XS98B7)";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = CVDEvaluator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihorkhomyak.test.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihorkhomyak.cvdevaluator;
 				PRODUCT_NAME = "Heart Check";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CVDEvaluatorTest_Dev_Profile;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -989,21 +1036,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = EPDF3ATTJ8;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Demir Baykal (29F8XS98B7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Demir Baykal (29F8XS98B7)";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = CVDEvaluator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ihorkhomyak.test.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihorkhomyak.cvdevaluator;
 				PRODUCT_NAME = "Heart Check";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = CVDEvaluatorTest_Dev_Profile;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
