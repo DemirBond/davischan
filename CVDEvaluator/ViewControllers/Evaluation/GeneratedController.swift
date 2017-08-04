@@ -84,14 +84,16 @@ class GeneratedController: BaseTableController {
 		}
 		
 		let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			#selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
+		                                    #selector(self.bottomRightButtonAction1(_:)),
+		                                    #selector(self.bottomLeftButtonAction(_:)),
+		                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
 
 		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			
 			shortcutModel = DataManager.manager.evaluation!.outputInMain
 			
-			let dictInfo = ["leftBottom": "Aa", "rightBottom" : "Compute".localized]
+			let dictInfo = ["leftBottom":"list", "leftBottom1": "Aa", "rightBottom" : "Compute".localized]
 			
 			// toolbar
 			let toolbar = CVDToolbar()
@@ -107,7 +109,7 @@ class GeneratedController: BaseTableController {
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
 			
-			let dictInfo = ["leftBottom": "Aa", "rightBottom" : shortcutModel!.title + ""]
+			let dictInfo = ["leftBottom":"list", "leftBottom1": "Aa", "rightBottom" : shortcutModel!.title + ""]
 			
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
@@ -224,7 +226,14 @@ class GeneratedController: BaseTableController {
 	}
 
 	
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
+	override func leftButtonAction(_ sender: UIBarButtonItem) {
+		if validatePage() {
+			_ = self.navigationController?.popViewController(animated: true)
+		}
+	}
+	
+	
+	override func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
 			
 			if ( (isHeartSpecilaistManagement  && !(pageForm is HeartSpecialistManagement)) || (pageForm is PAH)  || (pageForm is PAH1) || (pageForm is PAH2) || (pageForm is PAH3)) {
@@ -247,13 +256,6 @@ class GeneratedController: BaseTableController {
 			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
 		}
 		
-	}
-	
-	
-	override func leftButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			_ = self.navigationController?.popViewController(animated: true)
-		}
 	}
 	
 	
