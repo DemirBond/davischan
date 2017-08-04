@@ -25,9 +25,9 @@ class SettingsController: BaseTableController {
 		self.title = pageForm.title
 		self.navigationController?.setToolbarHidden(false, animated: false)
 		
-		let bottomSelectors: [Selector?] = [nil, nil, #selector(self.bottomLeftButtonAction(_:)), nil]
+		let bottomSelectors: [Selector?] = [nil, nil, nil, #selector(self.bottomLeftButtonAction1(_:))]
 
-		let dictInfo = ["leftBottom": "Aa"]
+		let dictInfo = ["leftBottom1": "Aa"]
 		let toolbar = CVDToolbar()
 		toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 		self.toolbarItems = toolbar.barItems
