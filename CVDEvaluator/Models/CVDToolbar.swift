@@ -15,61 +15,77 @@ func setupFixedSpace(width: CGFloat) -> UIBarButtonItem {
 }
 
 class CVDToolbar: UIToolbar {
+	
 	var barItems = [UIBarButtonItem]()
+	
 	
 	override func sizeThatFits(_ size: CGSize) -> CGSize {
 		
 		var newSize: CGSize = super.sizeThatFits(size)
-		newSize.height = 80  // there to set your toolbar height
+		newSize.height = 48  // there to set your toolbar height
 		
 		return newSize
 	}
 	
+	
 	func viewDidLoad() {
 		self.barTintColor = UIColor.white
 	}
+	
 	
 	func setup (dict: Dictionary<String, Any>, target: UIViewController, actions: [Selector?]) {
 		
 		// super.init()
 		
 		var items = [UIBarButtonItem] ()
+		
+		if let _ = dict["rightIconOnlyText"] as? String {
+			let leftBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[2])
+			
+			items.append(leftBarItem)
+		}
+		
 		let item = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 		items.append(item)
 		
 		if let rightBottom = dict["rightBottom"] as? String {
 			
-			let button = UIButton(frame: CGRect(x: 0, y: 0, width: 210, height: 35) )
-			button.setTitle(rightBottom, for: .normal)
-			button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
-			button.layer.cornerRadius = 5
+			let screenSize: CGRect = UIScreen.main.bounds
+			
+			let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenSize.width - 116, height: 48) )
+			button.setTitle(rightBottom + "   >", for: .normal)
+			button.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 19)
+			button.contentHorizontalAlignment = .right
+			button.setTitleColor(UIColor(palette: ColorPalette.lighterPurple), for: UIControlState.normal)
+			//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
+			//button.layer.cornerRadius = 5
 			// button.layer.borderWidth = 1
 			button.addTarget(target, action: actions[0]!, for: .touchUpInside)
 			
 			let rightBarItem = UIBarButtonItem(customView: button)
-			
 			/// let rightBarItem = UIBarButtonItem(title: rightBottom, style: .plain, target: target, action: actions[0])
 			
 			items.append(rightBarItem)
 			
 			if let rightBottom1 = dict["rightBottom1"] as? String {
 				
-				let button1 = UIButton(frame: CGRect(x: 0, y: 0, width: 210, height: 35) )
-				button1.setTitle(rightBottom1, for: .normal)
-				button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
-				button.layer.cornerRadius = 5
+				let button1 = UIButton(frame: CGRect(x: 0, y: 8, width: screenSize.width/2 - 16, height: 48) )
+				button1.setTitle(rightBottom1 + "   >", for: .normal)
+				button1.setTitleColor(UIColor(palette: ColorPalette.lighterPurple), for: UIControlState.normal)
+				//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
+				//button.layer.cornerRadius = 5
 				// button.layer.borderWidth = 1
 				button.addTarget(target, action: actions[1]!, for: .touchUpInside)
 				
 				let rightBarItem1 = UIBarButtonItem(customView: button)
-				
 				// let rightBarItem1 = UIBarButtonItem(title: rightBottom1, style: .plain, target: target, action: actions[1])
+				
 				items.insert(rightBarItem1, at: 2)
 			}
 		}
 		
-		let item1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		items.append(item1)
+		//let item1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+		//items.append(item1)
 		
 		self.isTranslucent = false
 		self.barTintColor = UIColor.white
@@ -111,13 +127,13 @@ class CVDToolbar: UIToolbar {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
 	}
+	
+	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
-		
-		
 	}
+	
 	
 	override func draw(_ rect: CGRect) {
 		self.backgroundColor = UIColor.white

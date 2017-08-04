@@ -35,7 +35,7 @@ class StyleController: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		self.sheetView.frame = CGRect(x: 0.0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: sheetHeight)
+		self.sheetView.frame = CGRect(x: -self.view.frame.size.width, y: self.view.frame.size.height - self.sheetHeight, width: self.view.frame.size.width, height: sheetHeight)
 		
 		showMessage()
 		updateSelection()

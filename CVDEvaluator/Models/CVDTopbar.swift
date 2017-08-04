@@ -40,9 +40,9 @@ class CVDTopbar: NSObject {
 			
 		}
 		
-		if let rightIconNameTextOnly = dict["rightIconOnlyText"] as? String {
-			self.rightTextBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[2])
-		}
+//		if let rightIconNameTextOnly = dict["rightIconOnlyText"] as? String {
+//			self.rightTextBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[2])
+//		}
 		
 		if let leftButtonName = dict["leftButton"] as? String {
 			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[1])

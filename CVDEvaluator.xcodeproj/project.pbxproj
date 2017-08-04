@@ -400,8 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				BA49CD3B1F33FB860040060A /* HomeController.swift */,
-				BA49CD3D1F34044E0040060A /* EvaluationController.swift */,
 				BA49CC7E1F33A0410040060A /* EvaluationListController.swift */,
+				BA49CD3D1F34044E0040060A /* EvaluationController.swift */,
 				BA49CC7B1F33A0410040060A /* BioController.swift */,
 				BA49CC7F1F33A0410040060A /* GeneratedController.swift */,
 				BA49CC821F33A0410040060A /* MessageController.swift */,

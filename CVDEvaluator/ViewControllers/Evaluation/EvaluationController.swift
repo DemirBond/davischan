@@ -82,6 +82,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	override func viewWillDisappear(_ animated : Bool) {
 		super.viewWillDisappear(animated)
+		
 		DataManager.manager.saveCurrentEvaluation()
 	}
 
@@ -150,20 +151,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
 		backButtonConfirmAlert()
-	}
-	
-	
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
-		_ = self.navigationController?.popViewController(animated: true)
-	}
-	
-	
-	override func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
-		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-		let controller = storyboard.instantiateViewController(withIdentifier: "StyleControllerID") as! StyleController
-		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-		self.present(controller, animated: false) { () }
-		styleController = controller
 	}
 	
 	
