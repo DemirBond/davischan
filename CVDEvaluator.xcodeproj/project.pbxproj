@@ -137,7 +137,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		D51A51581E9442850084352C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
@@ -385,13 +385,13 @@
 		BA49CC651F339A230040060A /* About&Help */ = {
 			isa = PBXGroup;
 			children = (
+				BA49CC961F33A0C90040060A /* SettingsController.swift */,
 				BA49CC911F33A0C90040060A /* AboutController.swift */,
-				BA49CC921F33A0C90040060A /* HelpSupportController.swift */,
-				BA49CC931F33A0C90040060A /* PoliciesController.swift */,
 				BA49CC941F33A0C90040060A /* ProfileController.swift */,
 				BA49CC951F33A0C90040060A /* RateController.swift */,
-				BA49CC961F33A0C90040060A /* SettingsController.swift */,
+				BA49CC931F33A0C90040060A /* PoliciesController.swift */,
 				BA49CC971F33A0C90040060A /* TermsController.swift */,
+				BA49CC921F33A0C90040060A /* HelpSupportController.swift */,
 			);
 			path = "About&Help";
 			sourceTree = "<group>";
@@ -653,6 +653,7 @@
 				78BF73E21E3F640F0040EC81 /* Resources */,
 				670AF3931E4F537E00576848 /* Fabric */,
 				D51A51581E9442850084352C /* Embed Frameworks */,
+				BA71B65A1F34DAD1004959EE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -790,6 +791,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Frameworks/Fabric.framework/run b024c492635d69ccfafb7e31f949953e20d40ee3 bede7a2a39f36be4ef577d3e3c788b1010418959d1bd503c8d955c6cad2e396c";
+		};
+		BA71B65A1F34DAD1004959EE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.p\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 

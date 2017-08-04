@@ -571,10 +571,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0Z-Qk-Y8y">
-                                        <rect key="frame" x="60" y="533" width="255" height="40"/>
+                                        <rect key="frame" x="87.5" y="533" width="200" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="N7d-9W-dCA"/>
+                                            <constraint firstAttribute="height" constant="40" id="EX7-bP-spw"/>
+                                            <constraint firstAttribute="width" constant="200" id="yEo-8X-VaO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                         <state key="normal" title="LOGIN">
@@ -585,10 +586,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDO-so-Sfw">
-                                        <rect key="frame" x="60" y="587" width="255" height="40"/>
+                                        <rect key="frame" x="87.5" y="587" width="200" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="QKj-GN-lwB"/>
+                                            <constraint firstAttribute="width" constant="200" id="eZZ-rn-X0Y"/>
+                                            <constraint firstAttribute="height" constant="40" id="gsh-jA-LbN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                         <state key="normal" title="SIGNUP">
@@ -601,16 +603,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="L0Z-Qk-Y8y" secondAttribute="trailing" constant="60" id="0cd-f3-OZc"/>
-                                    <constraint firstAttribute="trailing" secondItem="eDO-so-Sfw" secondAttribute="trailing" constant="60" id="28c-9m-oxS"/>
                                     <constraint firstAttribute="trailing" secondItem="gWw-qu-YGI" secondAttribute="trailing" id="Cci-5e-9gV"/>
-                                    <constraint firstItem="eDO-so-Sfw" firstAttribute="top" secondItem="L0Z-Qk-Y8y" secondAttribute="bottom" constant="14" id="Ltu-55-Xh0"/>
+                                    <constraint firstItem="L0Z-Qk-Y8y" firstAttribute="centerX" secondItem="h1N-Hq-7go" secondAttribute="centerX" id="Cy8-Wf-KAK"/>
                                     <constraint firstAttribute="bottom" secondItem="gWw-qu-YGI" secondAttribute="bottom" id="MP0-do-VeA"/>
-                                    <constraint firstItem="L0Z-Qk-Y8y" firstAttribute="leading" secondItem="h1N-Hq-7go" secondAttribute="leading" constant="60" id="O1t-do-TKx"/>
+                                    <constraint firstAttribute="bottom" secondItem="eDO-so-Sfw" secondAttribute="bottom" constant="40" id="R7Z-Wm-Sll"/>
+                                    <constraint firstItem="eDO-so-Sfw" firstAttribute="centerX" secondItem="h1N-Hq-7go" secondAttribute="centerX" id="Yj8-wc-67n"/>
                                     <constraint firstItem="gWw-qu-YGI" firstAttribute="leading" secondItem="h1N-Hq-7go" secondAttribute="leading" id="j0e-8p-Z2y"/>
+                                    <constraint firstItem="eDO-so-Sfw" firstAttribute="top" secondItem="L0Z-Qk-Y8y" secondAttribute="bottom" constant="14" id="nbr-KT-nYp"/>
                                     <constraint firstItem="gWw-qu-YGI" firstAttribute="top" secondItem="h1N-Hq-7go" secondAttribute="top" id="nzs-Oq-uuY"/>
-                                    <constraint firstItem="eDO-so-Sfw" firstAttribute="leading" secondItem="h1N-Hq-7go" secondAttribute="leading" constant="60" id="qQ3-o3-rw6"/>
-                                    <constraint firstAttribute="bottom" secondItem="eDO-so-Sfw" secondAttribute="bottom" constant="40" id="vSs-Mf-scT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -630,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4c-4Z-KaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2055" y="-466"/>
+            <point key="canvasLocation" x="-2055.1999999999998" y="-466.41679160419795"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="gnn-8J-qFQ">
@@ -1056,7 +1056,7 @@
         <image name="splash" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="u5D-pi-Bju"/>
         <segue reference="MPJ-Ih-lv5"/>
-        <segue reference="hBe-6M-lwA"/>
     </inferredMetricsTieBreakers>
 </document>
