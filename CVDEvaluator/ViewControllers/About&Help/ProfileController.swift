@@ -8,12 +8,15 @@
 
 import UIKit
 
+
 class ProfileController: BaseTableController {
 		
 	override var createdID: String! { return "profile" }
+	
 		
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		self.title = pageForm.title
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
@@ -24,7 +27,9 @@ class ProfileController: BaseTableController {
 	}
 	
 	
+	
 	// MARK: - Actions
+	
 	@IBAction override func doneAction(_ sender: AnyObject) {
 		hideKeyboard()
 		self.submitAction(self)
@@ -101,12 +106,14 @@ class ProfileController: BaseTableController {
 	}
 	
 	
+	
 	//MARK: - EvaluationEditing protocol
 	
 	override func keyboardReturnDidPress(model: EvaluationItem) {
 		hideKeyboard()
 		self.submitAction(self)
 	}
+	
 	
 	
 	// MARK: - Table view data source
@@ -120,6 +127,9 @@ class ProfileController: BaseTableController {
 		return self.pageForm.items.count + 1
 	}
 	
+	
+	
+	// MARK: - Table view delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -151,6 +161,7 @@ class ProfileController: BaseTableController {
 			
 			let itemModel = pageForm.items[indexPath.row]
 			return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
+		
 		} else {
 			return 96.0
 		}

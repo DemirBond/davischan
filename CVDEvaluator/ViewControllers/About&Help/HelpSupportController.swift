@@ -9,8 +9,10 @@
 import UIKit
 import MessageUI
 
+
 class HelpSupportController: BaseTableController, MFMailComposeViewControllerDelegate {
 
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.navigationController?.setToolbarHidden(true, animated: false)
@@ -26,10 +28,12 @@ class HelpSupportController: BaseTableController, MFMailComposeViewControllerDel
 			mail.setSubject(subject)
 			
 			present(mail, animated: true)
+		
 		} else {
 			// show failure alert
 		}
 	}
+	
 	
 	
 	// MARK: - MFMailComposeViewController delegate
@@ -38,16 +42,23 @@ class HelpSupportController: BaseTableController, MFMailComposeViewControllerDel
 		controller.dismiss(animated: true)
 	}
 	
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.pageForm.items.count
-    }
-
+	
+	
+	// MARK: - Table view data source
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return self.pageForm.items.count
+	}
+	
+	
+	
+	// MARK: - Table view delegates
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let itemModel = pageForm.items[indexPath.row]
@@ -67,20 +78,21 @@ class HelpSupportController: BaseTableController, MFMailComposeViewControllerDel
 		
 		let settingsModel = pageForm as! Support
 		let itemModel = settingsModel.items[indexPath.row]
+		
 		switch itemModel.identifier {
 			
-		case settingsModel.medical.identifier :
-			sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Medical support" )
+			case settingsModel.medical.identifier :
+				sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Medical support" )
 			
-		case settingsModel.developer.identifier :
-			sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Technical support" )
+			case settingsModel.developer.identifier :
+				sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Technical support" )
 			
-		default:
-			()
+			default:
+				()
 			
 		}
-		hideKeyboard()
 		
+		hideKeyboard()
 	}
 	
 }

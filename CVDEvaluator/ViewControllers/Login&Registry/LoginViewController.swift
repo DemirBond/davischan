@@ -40,6 +40,9 @@ class LoginViewController: BaseController, UITextFieldDelegate, NVActivityIndica
 			nameField.text = userName
 			passwordField.text = ""
 		}
+		
+		nameField.text = "davischan83@gmail.com"
+		passwordField.text = "rootroot"
 	}
 
 	

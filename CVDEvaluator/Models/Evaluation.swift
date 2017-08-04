@@ -43,6 +43,7 @@ class Evaluation: EvaluationItem {
 		return dict
 	}
 	
+	
 	func completeScreen() {
 		
 		if nsr.isFilled && (nsr.form.status == .viewed || nsr.form.status == .valued) {
@@ -99,6 +100,7 @@ class Evaluation: EvaluationItem {
 	
 	init() {
 		super.init()
+		
 		self.evaluationUUID = UUID().uuidString.lowercased()
 		let date = Date()
 		self.identifier = "evaluation"
@@ -108,8 +110,10 @@ class Evaluation: EvaluationItem {
 		setupEvaluation(evaluationItem: self)
 	}
 	
+	
 	convenience init(with dict: Dictionary<String, Any>) {
 		self.init()
+		
 		if let uuid = dict["uuid"] as? String {
 			self.evaluationUUID = uuid
 		}

@@ -62,7 +62,7 @@ enum ControllerStyle: String {
 			return ["title": "Evaluation", "leftBottom1": "Aa", "rightBottom" : "Compute"]
 			
 		case .bio:
-			return ["rightIconOnlyText": "  "]
+			return ["rightIconOnlyText": "  ", "rightButton": "Save"]
 			
 		case .gender, .outputInMain:
 			return [:]

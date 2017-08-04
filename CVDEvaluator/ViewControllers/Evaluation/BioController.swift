@@ -115,12 +115,14 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		}
 		
 		let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-		                                    #selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
+		                                    #selector(self.bottomRightButtonAction1(_:)),
+		                                    nil,
+		                                    #selector(self.bottomLeftButtonAction1(_:))]
 		
 		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			shortcutModel = DataManager.manager.evaluation!.outputInMain
-			let dictInfo = ["leftBottom": "Aa", "rightBottom" : "Compute".localized]
+			let dictInfo = ["leftBottom1": "Aa", "rightBottom" : "Compute".localized]
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			self.toolbarItems = toolbar.barItems
@@ -129,7 +131,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
-			let dictInfo = ["leftBottom": "Aa", "rightBottom" : shortcutModel!.title + ""]
+			let dictInfo = ["leftBottom1": "Aa", "rightBottom" : shortcutModel!.title + ""]
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			self.toolbarItems = toolbar.barItems
@@ -183,28 +185,27 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }
 			
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:)), #selector(self.bottomLeftButtonAction(_:))]
+			// TopBar
+			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
 			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			
 			if nil != cvdTopbar.title {
 				self.navigationItem.title = cvdTopbar.title
 			}
-			
 			if nil != cvdTopbar.tintColor {
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
-			
 			if nil != cvdTopbar.rightBarItem {
 				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
 			}
-			
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
 			
+			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			                                    #selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
-			
+			                                    #selector(self.bottomRightButtonAction1(_:)),
+			                                    #selector(self.bottomLeftButtonAction(_:)),
+			                                    #selector(self.bottomLeftButtonAction1(_:))]
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
@@ -340,6 +341,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		if validatePage() {
 			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
 		}
+		
 	}
 	
 	
@@ -421,105 +423,10 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		
 	}
 	
-	/*
-	func hideKeyboard() {
-		activeField?.resignFirstResponder()
-		self.activeField = nil
-		self.activeModel = nil
-		tableView.reloadData()
-	}
-	
-	
-	func createHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
-		
-		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-		let handler = {() in
-			let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-			controller.pageForm = model
-			navigation?.pushViewController(controller, animated: true)
-		}
-		return handler
-	}
-	
-	
-	func createPahHandler(model: EvaluationItem, navigation: UINavigationController? ) -> CVDHandler {
-		
-		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-		let handler = {() in
-			let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-			controller.pageForm = model
-			navigation?.pushViewController(controller, animated: true)
-			DataManager.manager.setPAHValue(pah: true)
-			
-			DataManager.manager.resetAllPAHItems()
-			
-			DataManager.manager.equalizeAllItems()
-		}
-		return handler
-	}
-	
-	
-	func checkDependancies() {
-		
-		for depended in pageForm.items {
-			guard let dependsOn = depended.dependancy?.dependsOn else { continue }
-			
-			for item in pageForm.items {
-				if item.identifier == dependsOn {
-					if let path = item.modelIndexPath {
-						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-							let field = cell.textField
-							item.storedValue?.value = field?.text
-						}
-					}
-					
-					if let str = item.storedValue?.value, let storedVal = Double(str),
-						let minValue = depended.dependancy?.dependMinValue,
-						let maxValue = depended.dependancy?.dependMaxValue {
-						depended.form.isEnabled = storedVal >= minValue && storedVal <= maxValue
-					}
-					
-					if let path = depended.modelIndexPath {
-						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-							let field = cell.textField
-							field?.isEnabled = depended.form.isEnabled
-							cell.titleLabel?.textColor = depended.form.isEnabled ? CVDStyle.style.defaultFontColor : UIColor.lightGray
-						}
-					}
-					
-				}
-			}
-		}
-	}
-	*/
 	
 	
 	//MARK: - EvaluationEditing protocol
 	
-	override func evaluationFieldDidBeginEditing(_ textField: UITextField, model: EvaluationItem) {
-		self.activeField = textField
-		self.activeModel = model
-		self.pageForm.form.status = .valued
-	}
-	
-	
-	override func evaluationValueDidChange(model: EvaluationItem) {
-		self.pageForm.form.status = .valued
-		self.tableView.reloadData()
-	}
-	
-	
-	override func evaluationValueDidEnter(_ textField: UITextField, model: EvaluationItem) {
-		Timer.scheduledTimer(timeInterval: 0.1,
-		                     target: self,
-		                     selector: #selector(self.checkDependancies),
-		                     userInfo: nil,
-		                     repeats: false)
-	}
-
-	//
-	// will use woast cocoapods
-	//
 	override func evaluationValueDidNotValidate(model: EvaluationItem, message: String, description: String?) {
 		
 		guard !isCancelled else { return }

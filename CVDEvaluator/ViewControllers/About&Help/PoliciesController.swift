@@ -8,19 +8,25 @@
 
 import UIKit
 
+
 class PoliciesController: BaseController {
 
-	override var createdID: String! { return "policies" }
 	@IBOutlet weak var textView: UITextView!
 
-    override func viewDidLoad() {
+	override var createdID: String! { return "policies" }
+	
+	
+	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		self.title = self.pageForm.title
-    }
-
+	}
+	
+	
 	
 	// MARK: - Actions
+	
 	@IBAction func printAction(_ sender: AnyObject) {
 		let attrs = [NSFontAttributeName: UIFont.systemFont(ofSize: 10), NSForegroundColorAttributeName: UIColor.black] as [String : Any]
 		let str = NSAttributedString(string: textView.text, attributes: attrs)
@@ -29,5 +35,5 @@ class PoliciesController: BaseController {
 		let vc = UIActivityViewController(activityItems: [print], applicationActivities: nil)
 		present(vc, animated: true)
 	}
-
+	
 }

@@ -117,6 +117,7 @@ class EvaluationItem  {
 	var items: [EvaluationItem] { return [] }
 	var storedItems: [EvaluationItem] { return [] }
 	
+	
 	func model(with id: String) -> EvaluationItem? {
 		if self.identifier == id { return self }
 		
@@ -164,6 +165,7 @@ class EvaluationItem  {
 		
 		return dict
 	}
+	
 	
 	func processStatus() {
 		guard (form.status == .viewed || form.status == .valued) && self.items.count > 0 else { return }
@@ -317,79 +319,80 @@ class EvaluationItem  {
 			let storedValue = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
 			
 			switch key {
-			case .id:
-				itemId = storedValue
+				case .id:
+					itemId = storedValue
 				
-			case .title:
-				itemTitle = storedValue
+				case .title:
+					itemTitle = storedValue
 				
-			case .subtitle:
-				itemSubtitle = storedValue
+				case .subtitle:
+					itemSubtitle = storedValue
 				
-			case .type:
-				itemType = ItemType(rawValue: storedValue)!
+				case .type:
+					itemType = ItemType(rawValue: storedValue)!
 				
-			case .height:
-				if let val = Int(storedValue) {
-					height = CGFloat(val)
-				}
+				case .height:
+					if let val = Int(storedValue) {
+						height = CGFloat(val)
+					}
 				
-			case .placeholder:
-				valuePlaceholder = storedValue
+				case .placeholder:
+					valuePlaceholder = storedValue
 				
-			case .group:
-				let start = storedValue.index(storedValue.startIndex, offsetBy: 1)
-				let end = storedValue.index(storedValue.endIndex, offsetBy: -1)
-				let range = start..<end
-				let strList = storedValue.substring(with: range)
-				let strTrimmed = strList.trimmingCharacters(in: .whitespacesAndNewlines)
-				let radioComponents: [String] = strTrimmed.components(separatedBy: ",")
+				case .group:
+					let start = storedValue.index(storedValue.startIndex, offsetBy: 1)
+					let end = storedValue.index(storedValue.endIndex, offsetBy: -1)
+					let range = start..<end
+					let strList = storedValue.substring(with: range)
+					let strTrimmed = strList.trimmingCharacters(in: .whitespacesAndNewlines)
+					let radioComponents: [String] = strTrimmed.components(separatedBy: ",")
 				
-				for item in radioComponents {
-					let radioId = item.trimmingCharacters(in: .whitespacesAndNewlines)
-					radioGroup.addIdentifier(id: radioId)
-				}
+					for item in radioComponents {
+						let radioId = item.trimmingCharacters(in: .whitespacesAndNewlines)
+						radioGroup.addIdentifier(id: radioId)
+					}
 				
-			case .subItems:
-				let itemComponents: [String] = strTrimmed.components(separatedBy: ",")
+				case .subItems:
+					let itemComponents: [String] = strTrimmed.components(separatedBy: ",")
 				
-				for item in itemComponents {
-					let theId = item.trimmingCharacters(in: .whitespacesAndNewlines)
-					//let eval = Ev
-					//subItems.addIdentifier(id: theId)
-				}
+					for item in itemComponents {
+						let theId = item.trimmingCharacters(in: .whitespacesAndNewlines)
+						//let eval = Ev
+						//subItems.addIdentifier(id: theId)
+					}
+				
+				case .min:
+					valueMin = Double(storedValue)
+				
+				case .max:
+					valueMax = Double(storedValue)
+				
+				case .maxLength:
+					valueMaxLength = Int(storedValue)
+				
+				case .value:
+					value = storedValue
+				
+				case .mandatory:
+					mandatory = (storedValue == "1")
+				
+				case.selected:
+					selected = (storedValue == "1")
+				
+				case .text:
+					text = storedValue
+				
+				case .alert:
+					alert = storedValue
+				
+				case .dependsOn:
+					dependsOn = storedValue
 			
-				
-			case .min:
-				valueMin = Double(storedValue)
-				
-			case .max:
-				valueMax = Double(storedValue)
-				
-			case .maxLength:
-				valueMaxLength = Int(storedValue)
-				
-			case .value:
-				value = storedValue
-				
-			case .mandatory:
-				mandatory = (storedValue == "1")
-				
-			case.selected:
-				selected = (storedValue == "1")
-				
-			case .text:
-				text = storedValue
-				
-			case .alert:
-				alert = storedValue
-				
-			case .dependsOn:
-				dependsOn = storedValue
-			case .dependMin:
-				dependMin = Double(storedValue)
-			case .dependMax:
-				dependMax = Double(storedValue)
+				case .dependMin:
+					dependMin = Double(storedValue)
+			
+				case .dependMax:
+					dependMax = Double(storedValue)
 			}
 		}
 		

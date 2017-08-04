@@ -15,23 +15,35 @@ class SettingsController: BaseTableController {
 	
 	static let aboutSegueID = "aboutSegueID"
 	
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+		
 		self.pageForm = Settings(literal: General.settings)
 	}
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		self.title = pageForm.title
+	}
+	
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
 		self.navigationController?.setToolbarHidden(false, animated: false)
 		
 		let bottomSelectors: [Selector?] = [nil, nil, nil, #selector(self.bottomLeftButtonAction1(_:))]
-
+		
 		let dictInfo = ["leftBottom1": "Aa"]
 		let toolbar = CVDToolbar()
 		toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 		self.toolbarItems = toolbar.barItems
+		
 	}
+	
 	
 	func logoutAction() {
 		let alertController = UIAlertController(title: "Are you sure to Log out?".localized, message: nil, preferredStyle: .actionSheet)
@@ -47,20 +59,27 @@ class SettingsController: BaseTableController {
 		alertController.addAction(logoutAction)
 		let defaultAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil )
 		alertController.addAction(defaultAction)
-
 		
 		present(alertController, animated: true, completion: nil)
 
 	}
+	
+	
+	
 	// MARK: - Table view data source
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return pageForm.items.count
 	}
+	
+	
+	
+	// MARK: - Table view delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -83,50 +102,53 @@ class SettingsController: BaseTableController {
 		
 		let settingsModel = pageForm as! Settings
 		let itemModel = settingsModel.items[indexPath.row]
+		
 		switch itemModel.identifier {
 			
-		case settingsModel.about.identifier :
-			let controller = storyboard.instantiateViewController(withIdentifier: "aboutController") as! BaseTableController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.about.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "aboutController") as! BaseTableController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 			
-		case settingsModel.profile.identifier :
-			let controller = storyboard.instantiateViewController(withIdentifier: "ProfileControllerID") as! ProfileController
-			controller.pageForm = Profile(literal: General.doctorProfile)
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.profile.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "ProfileControllerID") as! ProfileController
+				controller.pageForm = Profile(literal: General.doctorProfile)
+				self.navigationController?.pushViewController(controller, animated: true)
 
-		case settingsModel.privacyPolicy.identifier :
-			let controller = storyboard.instantiateViewController(withIdentifier: "PoliciesControllerID") as! PoliciesController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.privacyPolicy.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "PoliciesControllerID") as! PoliciesController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 			
-		case settingsModel.termsOfUse.identifier :
-			let controller = storyboard.instantiateViewController(withIdentifier: "TermsControllerID") as! TermsController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.termsOfUse.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "TermsControllerID") as! TermsController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 			
-		case settingsModel.helpSupport.identifier :
-			let controller = storyboard.instantiateViewController(withIdentifier: "HelpSupportControllerID") as! HelpSupportController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.helpSupport.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "HelpSupportControllerID") as! HelpSupportController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 
-		case settingsModel.logOut.identifier :
-			logoutAction()
+			case settingsModel.logOut.identifier :
+				logoutAction()
 			
-			
-		default:
-			()
+			default:
+				()
 			
 		}
+		
 		hideKeyboard()
 
 	}
+	
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let itemModel = pageForm.items[indexPath.row]
 		return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
 	}
 
+	
 	/*
 	// MARK: - Navigation
 	

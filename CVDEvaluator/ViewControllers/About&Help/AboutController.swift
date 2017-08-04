@@ -17,8 +17,10 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 	
 	override var createdID: String? { return "about" }
 	
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+		
 		self.pageForm = AboutPage(literal: General.aboutPage)
 	}
 
@@ -29,13 +31,14 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 		self.title = pageForm.title
 		self.navigationController?.setToolbarHidden(false, animated: false)
 		
-		let bottomSelectors: [Selector?] = [nil, nil, #selector(self.bottomLeftButtonAction(_:)), nil]
+		let bottomSelectors: [Selector?] = [nil, nil, nil, #selector(self.bottomLeftButtonAction1(_:))]
 		
-		let dictInfo = ["leftBottom": "Aa"]
+		let dictInfo = ["leftBottom1": "Aa"]
 		let toolbar = CVDToolbar()
 		toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 		self.toolbarItems = toolbar.barItems
 	}
+	
 	
 	
 	// MARK: - Table view data source
@@ -44,69 +47,71 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 		return 1
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return pageForm.items.count
 	}
+	
+	
+	
+	// MARK: - Table view delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let color = UIColor.init(hexString: "#E5E5E5")?.cgColor
 		let borderWidth = CGFloat(0.5)
 		
-		
 		switch indexPath.row {
 			
-		case 0:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCellNoArrow") as! GeneratedCell
-			cell.layer.borderWidth = borderWidth
-			cell.layer.borderColor = color
+			case 0:
+				let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCellNoArrow") as! GeneratedCell
+				cell.layer.borderWidth = borderWidth
+				cell.layer.borderColor = color
 			
-			let itemModel = pageForm.items[indexPath.row]
+				let itemModel = pageForm.items[indexPath.row]
 			
-			cell.accessoryBar = nil
-			cell.delegate = self
-			cell.cellModel = itemModel
-			cell.selectionStyle = .none
+				cell.accessoryBar = nil
+				cell.delegate = self
+				cell.cellModel = itemModel
+				cell.selectionStyle = .none
 
-			if cell.cellModel.identifier == "version" {
-				cell.subtitleLabel?.text = appVersion()!
+				if cell.cellModel.identifier == "version" {
+					cell.subtitleLabel?.text = appVersion()!
+				}
+			
+				return cell
+			
+			case 1:
+				let cell = tableView.dequeueReusableCell(withIdentifier: "AboutCell") as! GeneratedCell
+				cell.layer.borderWidth = borderWidth
+				cell.layer.borderColor = color
+			
+				let itemModel = pageForm.items[indexPath.row]
+			
+				cell.accessoryBar = self.accessoryBar
+				cell.delegate = self
+				cell.cellModel = itemModel
+				cell.selectionStyle = .none
+			
+				return cell
+			
+			case 2, 3:
+				let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCell") as! GeneratedCell
+				cell.layer.borderWidth = borderWidth
+				cell.layer.borderColor = color
+			
+				let itemModel = pageForm.items[indexPath.row]
+			
+				cell.accessoryBar = self.accessoryBar
+				cell.delegate = self
+				cell.cellModel = itemModel
+				cell.selectionStyle = .gray
+			
+				return cell
+			
+			default:
+				return UITableViewCell()
 			}
-			
-			return cell
-			
-		case 1:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "AboutCell") as! GeneratedCell
-			cell.layer.borderWidth = borderWidth
-			cell.layer.borderColor = color
-			
-			let itemModel = pageForm.items[indexPath.row]
-			
-			cell.accessoryBar = self.accessoryBar
-			cell.delegate = self
-			cell.cellModel = itemModel
-			cell.selectionStyle = .none
-			
-			return cell
-
-			
-		case 2, 3:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCell") as! GeneratedCell
-			cell.layer.borderWidth = borderWidth
-			cell.layer.borderColor = color
-			
-			let itemModel = pageForm.items[indexPath.row]
-			
-			cell.accessoryBar = self.accessoryBar
-			cell.delegate = self
-			cell.cellModel = itemModel
-			cell.selectionStyle = .gray
-			
-			return cell
-
-			
-		default:
-			return UITableViewCell()
-		}
 	}
 	
 	
@@ -125,18 +130,19 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 		
 		let settingsModel = pageForm as! AboutPage
 		let itemModel = settingsModel.items[indexPath.row]
+	
 		switch itemModel.identifier {
 			
-		case settingsModel.rateApp.identifier:
-			let controller = storyboard.instantiateViewController(withIdentifier: "RateControllerID") as! BaseTableController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
+			case settingsModel.rateApp.identifier:
+				let controller = storyboard.instantiateViewController(withIdentifier: "RateControllerID") as! BaseTableController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 			
-		case settingsModel.writeAReview.identifier:
-			sendEmail(recipient: "cvmedicalsoftware@gmail.com",subject: "App Rating")
+			case settingsModel.writeAReview.identifier:
+				sendEmail(recipient: "cvmedicalsoftware@gmail.com",subject: "App Rating")
 
-		default:
-			()
+			default:
+				()
 		}
 	}
 	
@@ -149,6 +155,7 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 			mail.setSubject(subject)
 			
 			present(mail, animated: true)
+			
 		} else {
 			// show failure alert
 		}

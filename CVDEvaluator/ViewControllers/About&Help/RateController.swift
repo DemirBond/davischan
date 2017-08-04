@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 class RateController: BaseTableController {
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,9 +25,14 @@ class RateController: BaseTableController {
 		return 1
 	}
 	
+	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.pageForm.items.count
 	}
+	
+	
+	
+	// MARK: - Table view delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -40,6 +47,7 @@ class RateController: BaseTableController {
 		
 		return cell
 	}
+	
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 60.0

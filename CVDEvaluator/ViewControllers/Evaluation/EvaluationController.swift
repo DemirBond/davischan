@@ -111,19 +111,22 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 		
 		switch model.evaluationStatus {
-		case .initialized:
-			lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.riskFactors,
-				model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
-		case .bioCompleted:
-			lockItems(array: [model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
-		case .riskCompleted:
-			()
-		/*	lockItems(array: [model.nsr])
-		case .diagnosticCompleted, .therapieCompleted:
-			()
-		*/
-		default:
-			()
+			case .initialized:
+				lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.riskFactors,
+				                  model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
+			
+			case .bioCompleted:
+				lockItems(array: [model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
+			
+			case .riskCompleted:
+				()
+			/*	lockItems(array: [model.nsr])
+			
+			case .diagnosticCompleted, .therapieCompleted:
+				()
+			*/
+			default:
+				()
 		}
 		
 		self.tableView.reloadData()
