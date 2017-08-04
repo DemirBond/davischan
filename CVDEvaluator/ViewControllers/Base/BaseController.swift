@@ -81,28 +81,27 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }
 			
+			// TopBar
 			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
 			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			
 			if nil != cvdTopbar.title {
 				self.navigationItem.title = cvdTopbar.title
 			}
-			
 			if nil != cvdTopbar.tintColor {
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
-			
 			if nil != cvdTopbar.rightBarItem {
 				self.navigationItem.rightBarButtonItem = cvdTopbar.rightBarItem
 			}
-			
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
 			
+			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-				#selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
-			
+			                                    #selector(self.bottomRightButtonAction1(_:)),
+			                                    #selector(self.bottomLeftButtonAction(_:)),
+			                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
@@ -134,28 +133,27 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }
 			
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:)), #selector(self.bottomLeftButtonAction(_:))]
+			// TopBar
+			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
 			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			
 			if nil != cvdTopbar.title {
 				self.navigationItem.title = cvdTopbar.title
 			}
-			
 			if nil != cvdTopbar.tintColor {
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
-			
 			if nil != cvdTopbar.rightBarItem {
 				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
 			}
-			
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
 			
+			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			                                    #selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
-			
+			                                    #selector(self.bottomRightButtonAction1(_:)),
+			                                    #selector(self.bottomLeftButtonAction(_:)),
+			                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
@@ -187,10 +185,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	
 	
-	// MARK: - Actions to override
-	
-	
-	
 	// MARK: - Actions
 	
 	@IBAction func moveToItem(_ sender: UISegmentedControl) {
@@ -203,8 +197,8 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	
 	@IBAction func doneAction(_ sender: AnyObject) {
-		
 	}
+	
 	
 	func rightButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
 	func leftButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}

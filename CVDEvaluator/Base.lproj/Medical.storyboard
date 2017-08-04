@@ -3966,17 +3966,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-qm-OCN">
-                                <rect key="frame" x="0.0" y="64" width="375" height="639"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="619"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeM-Cs-j1E">
-                                <rect key="frame" x="0.0" y="64" width="375" height="639"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="619"/>
                                 <connections>
                                     <outlet property="delegate" destination="YfL-hS-L1j" id="0KK-r4-ANF"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="8Z4-iB-lxd">
-                                <rect key="frame" x="8" y="666" width="359" height="37"/>
+                                <rect key="frame" x="8" y="636" width="359" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.66579003875869858" green="0.51174826478091862" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.80300685261638682" green="0.72555882115393633" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pageControl>
@@ -3999,12 +3999,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZeM-Cs-j1E" secondAttribute="trailing" id="0Nh-TK-RQK"/>
                             <constraint firstItem="8Z4-iB-lxd" firstAttribute="leading" secondItem="3Ub-am-rBe" secondAttribute="leading" constant="8" id="6Ph-05-9U0"/>
-                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="8Z4-iB-lxd" secondAttribute="bottom" constant="-80" id="COQ-en-Bad"/>
-                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="ZeM-Cs-j1E" secondAttribute="bottom" constant="-80" id="N4n-xb-2sF"/>
+                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="8Z4-iB-lxd" secondAttribute="bottom" constant="-50" id="COQ-en-Bad"/>
+                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="ZeM-Cs-j1E" secondAttribute="bottom" constant="-60" id="N4n-xb-2sF"/>
                             <constraint firstItem="0ha-qm-OCN" firstAttribute="leading" secondItem="3Ub-am-rBe" secondAttribute="leading" id="ScA-0c-UBo"/>
                             <constraint firstAttribute="trailing" secondItem="0ha-qm-OCN" secondAttribute="trailing" id="THu-ws-Xen"/>
                             <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="2Ii-4y-MPX" secondAttribute="bottom" constant="20" id="WVv-bl-LLv"/>
-                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="0ha-qm-OCN" secondAttribute="bottom" constant="-80" id="YcE-Re-xMm"/>
+                            <constraint firstItem="VkQ-01-LDs" firstAttribute="top" secondItem="0ha-qm-OCN" secondAttribute="bottom" constant="-60" id="YcE-Re-xMm"/>
                             <constraint firstAttribute="trailing" secondItem="8Z4-iB-lxd" secondAttribute="trailing" constant="8" id="avW-8o-WUS"/>
                             <constraint firstItem="ZeM-Cs-j1E" firstAttribute="height" secondItem="0ha-qm-OCN" secondAttribute="height" id="ceh-kJ-oNb"/>
                             <constraint firstItem="ZeM-Cs-j1E" firstAttribute="top" secondItem="xig-D0-hM8" secondAttribute="bottom" id="ftz-TE-7wE"/>

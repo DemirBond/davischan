@@ -45,6 +45,7 @@ class EvaluationListController: BaseTableController {
 		DataManager.manager.evaluation = nil
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
+		
 		DataManager.manager.fetchEvaluations()
 		self.tableView.reloadData()
 	}

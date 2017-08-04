@@ -88,25 +88,34 @@ class GeneratedController: BaseTableController {
 
 		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
+			
 			shortcutModel = DataManager.manager.evaluation!.outputInMain
+			
 			let dictInfo = ["leftBottom": "Aa", "rightBottom" : "Compute".localized]
+			
 			// toolbar
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			toolbar.barTintColor = .white
 			toolbar.sizeToFit()
+			
 			self.toolbarItems = toolbar.barItems
 			
 		} else if let id = CVDStyle.style.smartLink(from: pageForm.identifier) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
+			
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
+			
 			let dictInfo = ["leftBottom": "Aa", "rightBottom" : shortcutModel!.title + ""]
+			
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			toolbar.barTintColor = .white
 			toolbar.sizeToFit()
+			
 			self.toolbarItems = toolbar.barItems
+		
 		} else {
 			self.navigationController?.setToolbarHidden(true, animated: false)
 
@@ -163,9 +172,6 @@ class GeneratedController: BaseTableController {
 		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
 	}
 	
-	
-	
-	// MARK: - Table view data source
 	
 	func validatePage() -> Bool {
 		do {
@@ -336,6 +342,7 @@ class GeneratedController: BaseTableController {
 	
 
 	// MARK: - Table view data source
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
@@ -345,6 +352,9 @@ class GeneratedController: BaseTableController {
 		return pageForm.items.count
 	}
 	
+	
+	
+	// MARK: - Table view delegates
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
@@ -460,6 +470,7 @@ class GeneratedController: BaseTableController {
 			print("not selected")
 		}
 	}
+	
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let itemModel = pageForm.items[indexPath.row]

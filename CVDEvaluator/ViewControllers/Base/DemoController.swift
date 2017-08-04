@@ -31,6 +31,7 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		self.pageControl.numberOfPages = imageNames.count
 		self.pageControl.currentPage = 0
 		self.contiuneButton.isHidden = false //true
@@ -45,6 +46,13 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 		
 		self.navigationItem.rightBarButtonItem = barButton  //  button
 		
+	}
+	
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		//self.navigationController?.setToolbarHidden(true, animated: false)
 	}
 	
 	

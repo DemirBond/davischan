@@ -357,19 +357,19 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		
 		switch indexPath.row {
-		case 0:
-			let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as! BioController
-			controller.pageForm = itemModel
-			self.navigationController?.pushViewController(controller, animated: true)
-		default:
-			
-			if itemModel.form.status == .locked {
-				showLockedScreenAlert(for: itemModel)
-			} else {
-				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+			case 0:
+				let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as! BioController
 				controller.pageForm = itemModel
 				self.navigationController?.pushViewController(controller, animated: true)
-			}
+		
+			default:
+				if itemModel.form.status == .locked {
+					showLockedScreenAlert(for: itemModel)
+				} else {
+					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+					controller.pageForm = itemModel
+					self.navigationController?.pushViewController(controller, animated: true)
+				}
 		}
 	}
 	

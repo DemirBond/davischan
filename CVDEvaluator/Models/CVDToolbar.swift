@@ -39,10 +39,16 @@ class CVDToolbar: UIToolbar {
 		
 		var items = [UIBarButtonItem] ()
 		
-		if let _ = dict["rightIconOnlyText"] as? String {
-			let leftBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[2])
-			
+		if let _ = dict["leftBottom"] as? String {
+			let leftBarItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: target, action: actions[2])
+			leftBarItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 5)
 			items.append(leftBarItem)
+		}
+		
+		if let _ = dict["leftBottom1"] as? String {
+			let leftTextBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[3])
+			leftTextBarItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
+			items.append(leftTextBarItem)
 		}
 		
 		let item = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -75,12 +81,13 @@ class CVDToolbar: UIToolbar {
 				//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
 				//button.layer.cornerRadius = 5
 				// button.layer.borderWidth = 1
-				button.addTarget(target, action: actions[1]!, for: .touchUpInside)
+				button1.addTarget(target, action: actions[1]!, for: .touchUpInside)
 				
-				let rightBarItem1 = UIBarButtonItem(customView: button)
+				let rightBarItem1 = UIBarButtonItem(customView: button1)
 				// let rightBarItem1 = UIBarButtonItem(title: rightBottom1, style: .plain, target: target, action: actions[1])
 				
-				items.insert(rightBarItem1, at: 2)
+				//items.insert(rightBarItem1: 2)
+				items.append(rightBarItem1)
 			}
 		}
 		

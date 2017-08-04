@@ -78,28 +78,27 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }
 			
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:)), #selector(self.bottomLeftButtonAction(_:))]
+			// TopBar
+			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
 			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			
 			if nil != cvdTopbar.title {
 				self.navigationItem.title = cvdTopbar.title
 			}
-			
 			if nil != cvdTopbar.tintColor {
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
-			
 			if nil != cvdTopbar.rightBarItem {
 				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
 			}
-			
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
 			
+			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-				#selector(self.bottomRightButtonAction1(_:)), #selector(self.bottomLeftButtonAction(_:)), nil]
-			
+			                                    #selector(self.bottomRightButtonAction1(_:)),
+			                                    #selector(self.bottomLeftButtonAction(_:)),
+			                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
@@ -230,15 +229,15 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 	
 	
 	func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
+	}
+	
+	
+	func bottomLeftButtonAction1(_ sender: UIBarButtonItem) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		let controller = storyboard.instantiateViewController(withIdentifier: "StyleControllerID") as! StyleController
 		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 		self.present(controller, animated: false) { () }
 		styleController = controller
-	}
-	
-	
-	func bottomLeftButtonAction1(_ sender: UIBarButtonItem) {
 	}
 	
 	
