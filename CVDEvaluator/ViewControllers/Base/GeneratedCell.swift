@@ -1028,7 +1028,7 @@ class OutputResultsCell: GeneratedCell {
 	override func updateCell() {
 		super.updateCell()
 		self.titleLabel?.font = CVDStyle.style.fonts.last
-		self.subtitleLabel?.font = CVDStyle.style.fonts.first
+		//self.subtitleLabel?.font = CVDStyle.style.fonts.first
 		self.subtitleLabel?.textColor = CVDStyle.style.subtitleColor
 	}
 }
