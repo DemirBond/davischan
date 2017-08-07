@@ -89,7 +89,6 @@
 		BA49CCF91F33A4220040060A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCF71F33A4220040060A /* RootViewController.swift */; };
 		BA49CCFC1F33A43E0040060A /* Medical.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA49CCFA1F33A43E0040060A /* Medical.storyboard */; };
 		BA49CCFF1F33A4510040060A /* Output.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA49CCFD1F33A4510040060A /* Output.storyboard */; };
-		BA49CD011F33A48A0040060A /* OutputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD001F33A48A0040060A /* OutputController.swift */; };
 		BA49CD071F33A54E0040060A /* HexExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD031F33A54E0040060A /* HexExtention.swift */; };
 		BA49CD081F33A54E0040060A /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD041F33A54E0040060A /* StringExtentions.swift */; };
 		BA49CD091F33A54E0040060A /* UIAlertControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD051F33A54E0040060A /* UIAlertControllerExtention.swift */; };
@@ -115,6 +114,8 @@
 		BA49CD381F33D1F90040060A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD371F33D1F90040060A /* LoginViewController.swift */; };
 		BA49CD3C1F33FB860040060A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3B1F33FB860040060A /* HomeController.swift */; };
 		BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3D1F34044E0040060A /* EvaluationController.swift */; };
+		BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */; };
+		BAC5E5C61F3917800093E5A3 /* OutputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C51F3917800093E5A3 /* OutputController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,7 +246,6 @@
 		BA49CCF71F33A4220040060A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		BA49CCFB1F33A43E0040060A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CVDEvaluator/Base.lproj/Medical.storyboard; sourceTree = "<group>"; };
 		BA49CCFE1F33A4510040060A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CVDEvaluator/Base.lproj/Output.storyboard; sourceTree = "<group>"; };
-		BA49CD001F33A48A0040060A /* OutputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputController.swift; sourceTree = "<group>"; };
 		BA49CD031F33A54E0040060A /* HexExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexExtention.swift; sourceTree = "<group>"; };
 		BA49CD041F33A54E0040060A /* StringExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtentions.swift; sourceTree = "<group>"; };
 		BA49CD051F33A54E0040060A /* UIAlertControllerExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtention.swift; sourceTree = "<group>"; };
@@ -271,6 +271,8 @@
 		BA49CD371F33D1F90040060A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BA49CD3B1F33FB860040060A /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BA49CD3D1F34044E0040060A /* EvaluationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationController.swift; sourceTree = "<group>"; };
+		BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletedController.swift; sourceTree = "<group>"; };
+		BAC5E5C51F3917800093E5A3 /* OutputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,7 +379,6 @@
 				BA49CC671F339A230040060A /* Login&Registry */,
 				BA49CC661F339A230040060A /* Evaluation */,
 				BA49CC651F339A230040060A /* About&Help */,
-				BA49CD001F33A48A0040060A /* OutputController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -404,8 +405,10 @@
 				BA49CD3D1F34044E0040060A /* EvaluationController.swift */,
 				BA49CC7B1F33A0410040060A /* BioController.swift */,
 				BA49CC7F1F33A0410040060A /* GeneratedController.swift */,
+				BAC5E5C51F3917800093E5A3 /* OutputController.swift */,
 				BA49CC821F33A0410040060A /* MessageController.swift */,
 				BA49CC7C1F33A0410040060A /* CVDAlertController.swift */,
+				BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */,
 				BA49CC811F33A0410040060A /* HypertensionController.swift */,
 				BA49CC831F33A0410040060A /* ReferencesController.swift */,
 				BA49CC851F33A0410040060A /* StyleController.swift */,
@@ -454,9 +457,9 @@
 			children = (
 				78BF73EB1E3F640F0040EC81 /* Main.storyboard */,
 				BA49CCFA1F33A43E0040060A /* Medical.storyboard */,
+				BA49CCFD1F33A4510040060A /* Output.storyboard */,
 				78BF73EE1E3F640F0040EC81 /* Assets.xcassets */,
 				78BF73F01E3F640F0040EC81 /* LaunchScreen.storyboard */,
-				BA49CCFD1F33A4510040060A /* Output.storyboard */,
 			);
 			name = Storyboards;
 			path = ..;
@@ -834,6 +837,7 @@
 				BA49CD1B1F33A6650040060A /* AuxiliaryFunctions.swift in Sources */,
 				BA49CC891F33A0410040060A /* EvaluationListController.swift in Sources */,
 				BA49CCF51F33A35E0040060A /* StoredValue.swift in Sources */,
+				BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */,
 				BA49CCD81F33A35E0040060A /* CVProfile.swift in Sources */,
 				BA49CD241F33A6B00040060A /* General.swift in Sources */,
 				BA49CCDE1F33A35E0040060A /* ThromboembolicVKA.swift in Sources */,
@@ -883,9 +887,9 @@
 				BA49CD3C1F33FB860040060A /* HomeController.swift in Sources */,
 				BA49CCA31F33A0F40040060A /* BaseTableController.swift in Sources */,
 				BA49CCE81F33A35E0040060A /* MajorCVRisks.swift in Sources */,
+				BAC5E5C61F3917800093E5A3 /* OutputController.swift in Sources */,
 				BA49CC9B1F33A0C90040060A /* ProfileController.swift in Sources */,
 				BA49CC6D1F339AC80040060A /* SplashController.swift in Sources */,
-				BA49CD011F33A48A0040060A /* OutputController.swift in Sources */,
 				BA49CC771F339FDD0040060A /* CodeAutorizationController.swift in Sources */,
 				BA49CCF21F33A35E0040060A /* ObjectLoader.swift in Sources */,
 				BA49CD381F33D1F90040060A /* LoginViewController.swift in Sources */,

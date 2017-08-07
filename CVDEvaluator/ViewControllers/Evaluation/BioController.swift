@@ -12,43 +12,6 @@ import ToastSwiftFramework
 import SwiftToast
 
 
-struct CustomSwiftToast: SwiftToastProtocol {
-	// Protocoled
-	var duration: Double?
-	var aboveStatusBar: Bool
-	var statusBarStyle: UIStatusBarStyle
-	var isUserInteractionEnabled: Bool
-	var target: SwiftToastDelegate?
-	var style: SwiftToastStyle
-	
-	// Customized
-	var title: String
-	var subtitle: String
-	var backgroundColor: UIColor
-}
-
-class CustomSwiftToastView: UIView, SwiftToastViewProtocol {
-	
-	// Customized
-	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var subtitleLabel: UILabel!
-	
-	// Protocoled
-	func nib() -> SwiftToastViewProtocol? {
-		return Bundle.main.loadNibNamed("CustomSwiftToastView", owner: self, options: nil)?.first as? CustomSwiftToastView
-	}
-	
-	func configure(with toast: SwiftToastProtocol) {
-		if let customToast = toast as? CustomSwiftToast {
-			
-			// put your configure code here. e.g.:
-			// subtitleLabel.text = customToast.subtitle
-			// backgroundColor = customToast.backgroundColor
-		}
-	}
-}
-
-
 class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITableViewDelegate, UITableViewDataSource{
 	
 	let unwindToEvaluationSegueID = "unwindToEvaluationSegueID"
@@ -68,6 +31,8 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	let genderList = ["Male", "Female"]
 	
 	var showingDropDown = false
+	
+	var isSaved: Bool = false
 	
 	
 	override func viewDidLoad() {
@@ -163,10 +128,10 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		super.viewWillDisappear(animated)
 		
 		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
-			let isValid = validatePage()
-			if isValid {
-				DataManager.manager.saveCurrentEvaluation()
-			}
+//			let isValid = validatePage(backAction: true)
+//			if isValid {
+//				DataManager.manager.saveCurrentEvaluation()
+//			}
 		}
 	}
 	
@@ -195,23 +160,12 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
 			if nil != cvdTopbar.rightBarItem {
-				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
+				//self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
+				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!]
 			}
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
-			
-			// BottomBar
-			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			                                    #selector(self.bottomRightButtonAction1(_:)),
-			                                    #selector(self.bottomLeftButtonAction(_:)),
-			                                    #selector(self.bottomLeftButtonAction1(_:))]
-			let cvdToolbar = CVDToolbar()
-			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
-			cvdToolbar.barTintColor = .white
-			cvdToolbar.sizeToFit()
-			self.toolbarItems = cvdToolbar.barItems
-			
 		}
 		
 		// get  User Interface Info
@@ -223,67 +177,36 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	}
 	
 	
-	override func moveToItem(_ sender: UISegmentedControl) {
-		guard nil != activeModel else { return }
-		
-		checkDependancies()
-		
-		repeat {
-			if self.presentedViewController != nil {
-				self.dismiss(animated: false, completion: nil)
-			}
-			
-			let index = (modelChain as NSArray).index(of: activeModel!)
-			if sender.selectedSegmentIndex == 0 {
-				if index > 0 {
-					activeModel = modelChain[index - 1]
-				}
-				
-			} else if index < modelChain.count - 1 {
-				activeModel = modelChain[index + 1]
-			}
-			
-		} while nil != activeModel && activeModel!.form.isEnabled == false
-		
-		if let path = activeModel?.modelIndexPath {
-			if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-				activeField = cell.textField
-				activeField?.isEnabled = true
-				activeField?.becomeFirstResponder()
-				
-			} else {
-				self.tableView.scrollToRow(at: path, at: UITableViewScrollPosition.middle, animated: false)
-				if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-					activeField = cell.textField
-					activeField?.isEnabled = true
-					activeField?.becomeFirstResponder()
-				}
-			}
-		}
-	}
-	
-	
-	override func evaluateResponderChain() {
-		
-		var models = [EvaluationItem]()
-		
-		for (index, item) in pageForm.items.enumerated() {
-			
-			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
-				item.modelIndexPath = IndexPath(row: index, section: 0)
-				models.append(item)
-			}
-		}
-		
-		self.modelChain = models
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
-	}
-	
-	
-	func validatePage() -> Bool {
+	func validatePage(backAction: Bool) -> Bool {
 		do {
 			try pageForm.validateEvaluationItem()
+			
+			if isSaved == false && backAction {
+				var actions = [CVDAction] ()
+				
+				actions.append(CVDAction(title: "Save".localized, type: CVDActionType.cancel, handler: {
+					self.isSaved = true
+					DataManager.manager.saveCurrentEvaluation()
+					
+				}, short: true))
+				
+				if backAction {
+					actions.append(CVDAction(title: "Not now".localized, type: CVDActionType.cancel, handler: {
+						self.navigationController?.popViewController(animated: true)
+					}, short: true))
+				}
+				
+				let alertTitle: String = "Save this form?".localized
+				
+				self.showCVDAlert(title: alertTitle, message: nil, actions: actions)
+				
+				return false
+			}
+			else if isSaved == false && backAction == false {
+				self.isSaved = true
+				DataManager.manager.saveCurrentEvaluation()
+			}
+			
 			return true
 			
 		} catch let err {
@@ -292,9 +215,11 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			
 			actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
 			
-			actions.append(CVDAction(title: "Back".localized, type: CVDActionType.cancel, handler: {
-				self.navigationController?.popViewController(animated: true)
-			}, short: true))
+			if backAction {
+				actions.append(CVDAction(title: "Back".localized, type: CVDActionType.cancel, handler: {
+					self.navigationController?.popViewController(animated: true)
+				}, short: true))
+			}
 			
 			let alertTitle: String = "Cannot save this form".localized
 			
@@ -338,15 +263,20 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func rightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
+		if validatePage(backAction: false) {
+			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			
+			let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
+			controller.message = "Saved"
+			controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+			self.present(controller, animated: false)// { controller.showMessage() }
 		}
 		
 	}
 	
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
+		if validatePage(backAction: true) {
 			DataManager.manager.evaluation!.isBioCompleted = true
 			_ = self.navigationController?.popViewController(animated: true)
 		}
@@ -354,7 +284,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
+		if validatePage(backAction: true) && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
 			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 			
 			if generatedID == "bio" {
@@ -369,10 +299,10 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 				self.navigationController?.pushViewController(controller, animated: true)
 			}
 			
-			print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
+			print(validatePage(backAction: true).description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
 			self.pageForm.form.status = .valued
 			
-		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
+		} else if validatePage(backAction: true) && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
 			
 			//			print("+++++++++++++" + generatedID!)
 			if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
@@ -579,7 +509,7 @@ extension BioController {
 			     .disclosureControl where itemModel.storedValue!.isChecked,
 			     .disclosureRadio where itemModel.storedValue?.radioGroup!.selectedRadioItem == itemModel.identifier:
 				
-				if pageForm.identifier == "bio" || validatePage() {
+				if pageForm.identifier == "bio" || validatePage(backAction: true) {
 					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 					
 					if itemModel.identifier == identifierBy(literal: Presentation.pah) {

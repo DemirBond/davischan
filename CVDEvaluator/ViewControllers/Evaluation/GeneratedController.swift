@@ -157,24 +157,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
-	override func evaluateResponderChain() {
-		
-		var models = [EvaluationItem]()
-		
-		for (index, item) in pageForm.items.enumerated() {
-			
-			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
-				item.modelIndexPath = IndexPath(row: index, section: 0)
-				models.append(item)
-			}
-		}
-		
-		self.modelChain = models
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
-	}
-	
-	
 	func validatePage() -> Bool {
 		do {
 			try pageForm.validateEvaluationItem()

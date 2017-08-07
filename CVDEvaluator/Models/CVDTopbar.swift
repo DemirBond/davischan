@@ -31,6 +31,7 @@ class CVDTopbar: NSObject {
 		if let rightButtonName = dict["rightButton"] as? String {
 			self.rightBarItem = UIBarButtonItem(title: rightButtonName, style: .plain, target: target, action: actions[0])
 		}
+		
 		if let leftButtonName = dict["leftButton"] as? String {
 			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[1])
 		}		

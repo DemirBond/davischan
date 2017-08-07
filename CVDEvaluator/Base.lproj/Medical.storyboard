@@ -825,6 +825,66 @@
             </objects>
             <point key="canvasLocation" x="5436" y="627"/>
         </scene>
+        <!--Task Completed Controller-->
+        <scene sceneID="Nil-kW-Emm">
+            <objects>
+                <viewController storyboardIdentifier="TaskCompletedControllerID" id="bDF-3s-6sa" customClass="TaskCompletedController" customModule="Heart_Check" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R8z-iB-QSS"/>
+                        <viewControllerLayoutGuide type="bottom" id="X1Z-zf-YAp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bLz-O1-9ng">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCr-Nk-8sy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check-large" translatesAutoresizingMaskIntoConstraints="NO" id="YKe-QG-rQe">
+                                        <rect key="frame" x="163" y="239" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Gdb-Jm-jUQ"/>
+                                            <constraint firstAttribute="height" constant="50" id="Qfy-0u-Qyy"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-l0-mFU">
+                                        <rect key="frame" x="112" y="308.5" width="150" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="5ct-lc-82o"/>
+                                            <constraint firstAttribute="width" constant="150" id="uNP-EJ-Lwf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" red="0.55379965788398688" green="0.30026679942810452" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xNz-l0-mFU" firstAttribute="centerY" secondItem="XCr-Nk-8sy" secondAttribute="centerY" id="3ak-Gk-v6m"/>
+                                    <constraint firstItem="xNz-l0-mFU" firstAttribute="top" secondItem="YKe-QG-rQe" secondAttribute="bottom" constant="20" id="LQd-AZ-Gsn"/>
+                                    <constraint firstItem="YKe-QG-rQe" firstAttribute="centerX" secondItem="XCr-Nk-8sy" secondAttribute="centerX" id="hGz-MI-Quo"/>
+                                    <constraint firstItem="xNz-l0-mFU" firstAttribute="centerX" secondItem="XCr-Nk-8sy" secondAttribute="centerX" id="rvD-Oz-gYu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XCr-Nk-8sy" firstAttribute="top" secondItem="bLz-O1-9ng" secondAttribute="top" id="Rdy-Ai-Xbc"/>
+                            <constraint firstItem="XCr-Nk-8sy" firstAttribute="leading" secondItem="bLz-O1-9ng" secondAttribute="leading" id="hMQ-qq-iZQ"/>
+                            <constraint firstItem="X1Z-zf-YAp" firstAttribute="top" secondItem="XCr-Nk-8sy" secondAttribute="bottom" id="lSP-nr-Vm8"/>
+                            <constraint firstAttribute="trailing" secondItem="XCr-Nk-8sy" secondAttribute="trailing" id="mrm-Vw-62s"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="completeIcon" destination="YKe-QG-rQe" id="GQi-Fb-n2Z"/>
+                        <outlet property="completeMessage" destination="xNz-l0-mFU" id="ge9-E8-h4b"/>
+                        <outlet property="completeView" destination="XCr-Nk-8sy" id="gPv-iC-ynO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8G-Sb-2Mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5741.6000000000004" y="1401.9490254872564"/>
+        </scene>
         <!--Generated Controller-->
         <scene sceneID="IJg-eL-65E">
             <objects>
@@ -2372,7 +2432,7 @@
                                 <rect key="frame" x="0.0" y="2326" width="375" height="178"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MQF-da-5eQ" id="7KZ-DA-J3M">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inE-Qj-cZo">
@@ -2406,7 +2466,7 @@
                                 <rect key="frame" x="0.0" y="2504" width="375" height="178"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vRc-YY-SlP" id="x2h-YU-7sK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2414,7 +2474,7 @@
                                 <rect key="frame" x="0.0" y="2682" width="375" height="178"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3zU-ii-esW" id="Cai-0W-YIF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -4988,6 +5048,7 @@ These Terms and Conditions are governed by the substantive laws of the State of 
         <image name="HalfIcon" width="24" height="24"/>
         <image name="Icon-60" width="60" height="60"/>
         <image name="backGrayIcon" width="24" height="24"/>
+        <image name="check-large" width="84" height="84"/>
         <image name="checkUp" width="24" height="24"/>
         <image name="chevron" width="24" height="24"/>
         <image name="clipboard" width="150" height="130"/>
