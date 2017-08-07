@@ -198,15 +198,9 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 
 		else {
 			
-			self.navigationController?.view.addSubview(whiteView!)
+			// self.navigationController?.view.addSubview(whiteView!)
 			
-//			let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.navigationController?.view.bounds.height)!/2 - 50) , width:100, height:100) ) //, type: ..ballSpinFadeLoader , color: , padding: padding)
-//			betterActivityView.type = .ballPulse
-//			betterActivityView.color = UIColor(palette: ColorPalette.purple)!
-//			self.navigationController?.view.addSubview(betterActivityView)
-//			betterActivityView.startAnimating()
-			
-			self.startAnimating(CGSize(width:100, height:100), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.purple), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
+			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 			
 			// convert pah as false if we are not in the HMS section
 			DataManager.manager.setPAHValue(pah: false)
@@ -228,9 +222,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				self.navigationController?.pushViewController(controller, animated: false)
 				// self.navigationController?.present(controller, animated: true, completion: nil)
 				
-				self.whiteView?.removeFromSuperview()
+				// self.whiteView?.removeFromSuperview()
 				
-//				betterActivityView.stopAnimating()
 				self.stopAnimating()
 				
 				self.tableView.setNeedsLayout()
@@ -252,9 +245,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				alertTitle = "Network Connection".localized
 				alertDescription = "Check network connection before computing the evaluation.".localized
 				
-				self.whiteView?.removeFromSuperview()
+				// self.whiteView?.removeFromSuperview()
 				
-//				betterActivityView.stopAnimating()
 				self.stopAnimating()
 				
 				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)

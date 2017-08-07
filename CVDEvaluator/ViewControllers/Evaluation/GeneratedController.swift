@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 
 
-class GeneratedController: BaseTableController {
+class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	
 	let unwindToEvaluationSegueID = "unwindToEvaluationSegueID"
 	
@@ -291,14 +291,9 @@ class GeneratedController: BaseTableController {
 			}
 			let model = DataManager.manager.evaluation!
 			
-			self.navigationController?.view.addSubview(whiteView!)
+			// self.navigationController?.view.addSubview(whiteView!)
 			
-			let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.navigationController?.view.bounds.height)!/2 - 50) , width:100, height:100) ) //, type: ..ballSpinFadeLoader , color: , padding: padding)
-			betterActivityView.type = .ballPulse
-			betterActivityView.color = UIColor(palette: ColorPalette.purple)!
-			self.navigationController?.view.addSubview(betterActivityView)
-			betterActivityView.startAnimating()
-			
+			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 			
 			let client: RestClient = RestClient.client
 			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
@@ -310,10 +305,9 @@ class GeneratedController: BaseTableController {
 				let result = DataManager()
 				result.setOutputEvaluation(response: response)
 				
-				self.whiteView?.removeFromSuperview()
+				// self.whiteView?.removeFromSuperview()
 				
-				// activity_view.stopAnimating()
-				betterActivityView.stopAnimating()
+				self.stopAnimating()
 				
 				// add pah value false
 				print(String(DataManager.manager.getPAHValue()))
@@ -331,9 +325,8 @@ class GeneratedController: BaseTableController {
 				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
 				alertTitle = "Network Connection".localized
 				alertDescription = "Check network connection before computing the evaluation.".localized
-				self.whiteView?.removeFromSuperview()
-				// activity_view.stopAnimating()
-				betterActivityView.stopAnimating()
+				// self.whiteView?.removeFromSuperview()
+				self.stopAnimating()
 				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
 				
 			})
