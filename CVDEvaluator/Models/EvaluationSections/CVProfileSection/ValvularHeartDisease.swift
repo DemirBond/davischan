@@ -11,57 +11,57 @@ import Foundation
 class ValvularHeartDisease: EvaluationItem {
 	// TODO: Content is missing or unclear
 	
-	let newonsetAF = EvaluationItem(literal: Presentation.newonsetAF)
-	let aorticStenosis = EvaluationItem(literal: Presentation.aorticStenosis)
-	let secvalvular = EvaluationItem(literal: Presentation.secvalvular)
-	let calcAortValve = EvaluationItem(literal: Presentation.calcAortValve)
-	let reumaticAV = EvaluationItem(literal: Presentation.reumaticAV)
-	let congenStenAortValve = EvaluationItem(literal: Presentation.congenStenAortValve)
-	let calcAortValveArea  = EvaluationItem(literal: Presentation.calcAortValveArea )
-	let aortMeanPressGradient = EvaluationItem(literal: Presentation.aortMeanPressGradient)
-	let aortRootDiameter = EvaluationItem(literal: Presentation.aortRootDiameter)
-	
-	let mitralStenosis = EvaluationItem(literal: Presentation.mitralStenosis)
-	let mVA = EvaluationItem(literal: Presentation.mVA)
-	let pHT = EvaluationItem(literal: Presentation.pHT)
-	let rheumaticMV = EvaluationItem(literal: Presentation.rheumaticMV)
-	let favValveMorph = EvaluationItem(literal: Presentation.favValveMorph )
-	let lAClot = EvaluationItem(literal: Presentation.lAClot)
-	let pulmonicStenosis  = EvaluationItem(literal: Presentation.pulmonicStenosis)
-	let tricuspidStenosis = EvaluationItem(literal: Presentation.tricuspidStenosis)
-	let pulValveVel = EvaluationItem(literal: Presentation.pulValveVel)
-	let aorticRegurgitation = EvaluationItem(literal: Presentation.aorticRegurgitation)
-	let holodiastolicRev = EvaluationItem(literal: Presentation.holodiastolicRev)
-	let venaContractaWidth2 = EvaluationItem(literal: Presentation.venaContractaWidth2)
-	let venaContractaWidth = EvaluationItem(literal: Presentation.venaContractaWidth)
-	let regurVolume = EvaluationItem(literal: Presentation.regurVolume)
-	let regurFrac = EvaluationItem(literal: Presentation.regurFrac)
-	let eRO  = EvaluationItem(literal: Presentation.eRO)
-	let lVESd = EvaluationItem(literal: Presentation.lVESd)
-	let lVEDd = EvaluationItem(literal: Presentation.lVEDd)
-	
-	
-	let aorticRootDiameter = EvaluationItem(literal: Presentation.aorticRootDiameter)
-	let mitralRegurgitation = EvaluationItem(literal: Presentation.mitralRegurgitation)
-	let tricuspidRegurgitation = EvaluationItem(literal: Presentation.tricuspidRegurgitation)
-	let annularDiameter = EvaluationItem(literal: Presentation.annularDiameter)
-	let centralJetArea = EvaluationItem(literal: Presentation.centralJetArea)
-	let hepaticVeinFlowRev = EvaluationItem(literal: Presentation.hepaticVeinFlowRev)
-	let abTVleaflet  = EvaluationItem(literal: Presentation.abTVleaflet)
-	let pulmonicRegurgitation = EvaluationItem(literal: Presentation.pulmonicRegurgitation)
-	let wideRegurJet = EvaluationItem(literal: Presentation.wideRegurJet)
-	let abnpulval = EvaluationItem(literal: Presentation.abnpulval)
-	let valvular_surgery_risk = EvaluationItem(literal: Presentation.valvular_surgery_risk)
-	let vavularRiskLabel = EvaluationItem(literal: Presentation.vavularRiskLabel)
-	let lowrisk = EvaluationItem(literal: Presentation.lowrisk)
-	let intermediaterisk = EvaluationItem(literal: Presentation.intermediaterisk)
-	let highrisk = EvaluationItem(literal: Presentation.highrisk)
-	let prohibitive  = EvaluationItem(literal: Presentation.prohibitive)
-	let other_surgical_risk = EvaluationItem(literal: Presentation.other_surgical_risk)
-	let sep = EvaluationItem(literal: Presentation.separator)
-	let vascular  = EvaluationItem(literal: Presentation.vascular)
-	let lowriskelec = EvaluationItem(literal: Presentation.lowriskelec)
-	let cardiac  = EvaluationItem(literal: Presentation.cardiac)
+//	let newonsetAF = EvaluationItem(literal: Presentation.newonsetAF)
+//	let aorticStenosis = EvaluationItem(literal: Presentation.aorticStenosis)
+//	let secvalvular = EvaluationItem(literal: Presentation.secvalvular)
+//	let calcAortValve = EvaluationItem(literal: Presentation.calcAortValve)
+//	let reumaticAV = EvaluationItem(literal: Presentation.reumaticAV)
+//	let congenStenAortValve = EvaluationItem(literal: Presentation.congenStenAortValve)
+//	let calcAortValveArea  = EvaluationItem(literal: Presentation.calcAortValveArea )
+//	let aortMeanPressGradient = EvaluationItem(literal: Presentation.aortMeanPressGradient)
+//	let aortRootDiameter = EvaluationItem(literal: Presentation.aortRootDiameter)
+//	
+//	let mitralStenosis = EvaluationItem(literal: Presentation.mitralStenosis)
+//	let mVA = EvaluationItem(literal: Presentation.mVA)
+//	let pHT = EvaluationItem(literal: Presentation.pHT)
+//	let rheumaticMV = EvaluationItem(literal: Presentation.rheumaticMV)
+//	let favValveMorph = EvaluationItem(literal: Presentation.favValveMorph )
+//	let lAClot = EvaluationItem(literal: Presentation.lAClot)
+//	let pulmonicStenosis  = EvaluationItem(literal: Presentation.pulmonicStenosis)
+//	let tricuspidStenosis = EvaluationItem(literal: Presentation.tricuspidStenosis)
+//	let pulValveVel = EvaluationItem(literal: Presentation.pulValveVel)
+//	let aorticRegurgitation = EvaluationItem(literal: Presentation.aorticRegurgitation)
+//	let holodiastolicRev = EvaluationItem(literal: Presentation.holodiastolicRev)
+//	let venaContractaWidth2 = EvaluationItem(literal: Presentation.venaContractaWidth2)
+//	let venaContractaWidth = EvaluationItem(literal: Presentation.venaContractaWidth)
+//	let regurVolume = EvaluationItem(literal: Presentation.regurVolume)
+//	let regurFrac = EvaluationItem(literal: Presentation.regurFrac)
+//	let eRO  = EvaluationItem(literal: Presentation.eRO)
+//	let lVESd = EvaluationItem(literal: Presentation.lVESd)
+//	let lVEDd = EvaluationItem(literal: Presentation.lVEDd)
+//	
+//	
+//	let aorticRootDiameter = EvaluationItem(literal: Presentation.aorticRootDiameter)
+//	let mitralRegurgitation = EvaluationItem(literal: Presentation.mitralRegurgitation)
+//	let tricuspidRegurgitation = EvaluationItem(literal: Presentation.tricuspidRegurgitation)
+//	let annularDiameter = EvaluationItem(literal: Presentation.annularDiameter)
+//	let centralJetArea = EvaluationItem(literal: Presentation.centralJetArea)
+//	let hepaticVeinFlowRev = EvaluationItem(literal: Presentation.hepaticVeinFlowRev)
+//	let abTVleaflet  = EvaluationItem(literal: Presentation.abTVleaflet)
+//	let pulmonicRegurgitation = EvaluationItem(literal: Presentation.pulmonicRegurgitation)
+//	let wideRegurJet = EvaluationItem(literal: Presentation.wideRegurJet)
+//	let abnpulval = EvaluationItem(literal: Presentation.abnpulval)
+//	let valvular_surgery_risk = EvaluationItem(literal: Presentation.valvular_surgery_risk)
+//	let vavularRiskLabel = EvaluationItem(literal: Presentation.vavularRiskLabel)
+//	let lowrisk = EvaluationItem(literal: Presentation.lowrisk)
+//	let intermediaterisk = EvaluationItem(literal: Presentation.intermediaterisk)
+//	let highrisk = EvaluationItem(literal: Presentation.highrisk)
+//	let prohibitive  = EvaluationItem(literal: Presentation.prohibitive)
+//	let other_surgical_risk = EvaluationItem(literal: Presentation.other_surgical_risk)
+//	let sep = EvaluationItem(literal: Presentation.separator)
+//	let vascular  = EvaluationItem(literal: Presentation.vascular)
+//	let lowriskelec = EvaluationItem(literal: Presentation.lowriskelec)
+//	let cardiac  = EvaluationItem(literal: Presentation.cardiac)
 	
 	/*
 	static let aorticRootDiameter = "#id:txtAorticRootDiameter | #title:Aortic Root Diameter | #type:#check"
@@ -90,58 +90,58 @@ class ValvularHeartDisease: EvaluationItem {
 	
 */
 	
-	override var items: [EvaluationItem] {
-		return [
-			newonsetAF,
-			aorticStenosis,
-			secvalvular,
-			calcAortValve,
-			reumaticAV,
-			congenStenAortValve,
-			calcAortValveArea,
-			aortMeanPressGradient,
-			aortRootDiameter,
-			mitralStenosis,
-			mVA,
-			pHT,
-			rheumaticMV,
-			favValveMorph,
-			lAClot,
-			pulmonicStenosis,
-			tricuspidStenosis,
-			pulValveVel,
-			aorticRegurgitation,
-			holodiastolicRev,
-			venaContractaWidth2,
-			venaContractaWidth,
-			regurVolume,
-			regurFrac,
-			eRO,
-			lVESd,
-			lVEDd,
-		
-			aorticRootDiameter,
-			mitralRegurgitation,
-			tricuspidRegurgitation,
-			annularDiameter,
-			centralJetArea,
-		   hepaticVeinFlowRev,
-			abTVleaflet,
-			pulmonicRegurgitation,
-			wideRegurJet,
-			abnpulval,
-			valvular_surgery_risk,
-			vavularRiskLabel,
-			lowrisk,
-			intermediaterisk,
-			highrisk,
-			prohibitive,
-			other_surgical_risk,
-			sep,
-			vascular,
-			lowriskelec,
-			cardiac
-		]
-	}
+//	override var items: [EvaluationItem] {
+//		return [
+//			newonsetAF,
+//			aorticStenosis,
+//			secvalvular,
+//			calcAortValve,
+//			reumaticAV,
+//			congenStenAortValve,
+//			calcAortValveArea,
+//			aortMeanPressGradient,
+//			aortRootDiameter,
+//			mitralStenosis,
+//			mVA,
+//			pHT,
+//			rheumaticMV,
+//			favValveMorph,
+//			lAClot,
+//			pulmonicStenosis,
+//			tricuspidStenosis,
+//			pulValveVel,
+//			aorticRegurgitation,
+//			holodiastolicRev,
+//			venaContractaWidth2,
+//			venaContractaWidth,
+//			regurVolume,
+//			regurFrac,
+//			eRO,
+//			lVESd,
+//			lVEDd,
+//		
+//			aorticRootDiameter,
+//			mitralRegurgitation,
+//			tricuspidRegurgitation,
+//			annularDiameter,
+//			centralJetArea,
+//		   hepaticVeinFlowRev,
+//			abTVleaflet,
+//			pulmonicRegurgitation,
+//			wideRegurJet,
+//			abnpulval,
+//			valvular_surgery_risk,
+//			vavularRiskLabel,
+//			lowrisk,
+//			intermediaterisk,
+//			highrisk,
+//			prohibitive,
+//			other_surgical_risk,
+//			sep,
+//			vascular,
+//			lowriskelec,
+//			cardiac
+//		]
+//	}
 	
 }

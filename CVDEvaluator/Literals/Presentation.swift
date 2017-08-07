@@ -587,8 +587,7 @@ struct Presentation {
 	static let thromboembolicVKA = "#id:thromboembolicVKA | #title:Thromboembolic/VKA | #type:#disclosureWeather"
 	static let ventricularTachyarrthymias = "#id:ventricularTachyarrthymias | #title:Ventricular Tachyarrthymias | #type:#disclosureWeather"
 	static let bradyarrthymiaSyncope = "#id:bradyarrthymiaSyncope | #title:Bradyarrthymia/Syncope | #type:#disclosureWeather"
-	static let valvularHeartDisease = "#id:valvularHeartDisease | #title:Valvular Heart Disease | #type:#disclosureWeather"
-              ///| #alert: Refer to Heart Failure Specialist for Management"
+	static let valvularHeartDisease = "#id:valvularHeartDisease | #title:Valvular Heart Disease | #type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
 	static let pulmonaryHypertension = "#id:pulmonaryHypertension | #title:Pulmonary Hypertension | #type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
 	static let vascularDisease = "#id:vascularDiseases | #title:Vascular Disease | #type:#disclosureWeather"
 	
