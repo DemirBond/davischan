@@ -64,8 +64,11 @@ enum ControllerStyle: String {
 		case .bio:
 			return ["rightButton": "Save"]
 			
-		case .gender, .outputInMain:
+		case .gender:
 			return [:]
+			
+		case .outputInMain:
+			return ["rightButton": "Save", /*"leftBottom1": "Aa"*/]
 
 		case .generated, .hypertension:
 			return ["leftBottom":"list", "leftBottom1": "Aa"]

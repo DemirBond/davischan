@@ -233,6 +233,69 @@ class DataManager {
 	}
 	
 	
+	func saveCurrentCompute() {
+		guard evaluation != nil && evaluation!.isBioCompleted  else { return }
+		
+		var isFound = false
+		let uuid = evaluation!.evaluationUUID
+		
+		if patients != nil && patients!.count > 0 {
+			for patient in self.patients! {
+				if patient.identifier == uuid {
+					
+					patient.setValue(String(DataManager.manager.getPAHValue()), forKey: "computeEvaluationRequestPAH")
+					patient.setValue(evaluation!.bio.gender.female.isFilled ? 2:1, forKey: "computeEvaluationRequestGender")
+					patient.setValue(Int((evaluation!.bio.sbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestSBP")
+					patient.setValue(Int((evaluation!.bio.dbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestDBP")
+					patient.setValue(self.getEvaluationItemsAsRequestInputsString(), forKey: "computeEvaluationRequestInputs")
+					
+					patient.setValue(DataManager.manager.evaluation!.outputInMain.diagnosticsResult.subtitle, forKey: "computeEvaluationResultDiagnostics")
+					patient.setValue(DataManager.manager.evaluation!.outputInMain.therapeuticsResult.subtitle, forKey: "computeEvaluationResultTherapeutics")
+					patient.setValue(DataManager.manager.evaluation!.outputInMain.icd10Result.subtitle, forKey: "computeEvaluationResultICD")
+					patient.setValue(DataManager.manager.evaluation!.outputInMain.references.subtitle, forKey: "computeEvaluationResultReferences")
+				
+					saveContext()
+					
+					isFound = true
+					break
+				}
+			}
+		}
+		
+		if !isFound {
+			let entity =  NSEntityDescription.entity(forEntityName: "Patient", in: self.managedObjectContext)
+			let patient = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Patient
+			
+			patient.setValue(evaluation!.bio.name.storedValue?.value, forKey: "patientName")
+			patient.setValue(evaluation!.bio.age.storedValue?.value, forKey: "patientAge")
+			patient.setValue(evaluation!.dateCreated, forKey: "dateCreated")
+			patient.setValue(evaluation!.dateCreated, forKey: "dateModified")
+			patient.setValue(evaluation!.evaluationUUID, forKey: "identifier")
+			patient.setValue(currentDoctor?.loginName ?? "unknown", forKey: "doctorLoginName")
+			
+			patient.setValue(String(DataManager.manager.getPAHValue()), forKey: "computeEvaluationRequestPAH")
+			patient.setValue(evaluation!.bio.gender.female.isFilled ? 2:1, forKey: "computeEvaluationRequestGender")
+			patient.setValue(Int((evaluation!.bio.sbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestSBP")
+			patient.setValue(Int((evaluation!.bio.dbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestDBP")
+			patient.setValue(self.getEvaluationItemsAsRequestInputsString(), forKey: "computeEvaluationRequestInputs")
+			
+			patient.setValue(DataManager.manager.evaluation!.outputInMain.diagnosticsResult.subtitle, forKey: "computeEvaluationResultDiagnostics")
+			patient.setValue(DataManager.manager.evaluation!.outputInMain.therapeuticsResult.subtitle, forKey: "computeEvaluationResultTherapeutics")
+			patient.setValue(DataManager.manager.evaluation!.outputInMain.icd10Result.subtitle, forKey: "computeEvaluationResultICD")
+			patient.setValue(DataManager.manager.evaluation!.outputInMain.references.subtitle, forKey: "computeEvaluationResultReferences")
+
+			do {
+				let data = try JSONSerialization.data(withJSONObject: evaluation!.itemDict, options: .prettyPrinted) as NSData?
+				patient.setValue(data, forKey: "evaluationData")
+				patients?.append(patient)
+				saveContext()
+			} catch let err as NSError {
+				NSLog(err.localizedDescription)
+			}
+		}
+	}
+	
+	
 	func deleteEvaluation(at index: Int) {
 		guard  patients != nil && index >= 0 && index < patients!.count else { return }
 		managedObjectContext.delete(patients!.remove(at: index))
@@ -505,6 +568,60 @@ class DataManager {
 	
 	func getResults()->[String:Bool]{
 		return self.outputs
+	}
+	
+	
+	func isEvaluationChanged() -> Bool {
+		
+		var savedPatients: [Patient] = [Patient]()
+		
+		guard let loginName = currentDoctor?.loginName else { return true}
+		
+		let managedContext = managedObjectContext
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Patient")
+		fetchRequest.predicate = NSPredicate(format: "doctorLoginName == %@", loginName)
+		do {
+			savedPatients = try managedContext.fetch(fetchRequest) as! [Patient]
+			
+		} catch let error as NSError {
+			print("Could not fetch \(error), \(error.userInfo)")
+		}
+		
+		let uuid = evaluation!.evaluationUUID
+		
+		if savedPatients.count > 0 {
+			for patient in savedPatients {
+				if patient.identifier == uuid {
+					
+					guard let cerPAH = patient.value(forKey: "computeEvaluationRequestPAH") as? String, !cerPAH.isEmpty,
+						let cerINPUTS = patient.value(forKey: "computeEvaluationRequestInputs") as? String, !cerINPUTS.isEmpty else {
+							return true
+					}
+					
+					let isPAH = String(DataManager.manager.getPAHValue())
+					let gender = evaluation!.bio.gender.female.isFilled ? 2:1
+					let SBP = Int((evaluation!.bio.sbp.storedValue?.value)!)!
+					let DBP = Int((evaluation!.bio.dbp.storedValue?.value)!)!
+					let inputs = self.getEvaluationItemsAsRequestInputsString()
+					
+					if isPAH == cerPAH &&
+						gender == patient.value(forKey: "computeEvaluationRequestGender") as! Int &&
+						SBP == patient.value(forKey: "computeEvaluationRequestSBP") as! Int &&
+						DBP == patient.value(forKey: "computeEvaluationRequestDBP") as! Int &&
+						inputs == cerINPUTS
+					{
+						DataManager.manager.evaluation!.outputInMain.diagnosticsResult.subtitle = patient.value(forKey: "computeEvaluationResultDiagnostics") as? String
+						DataManager.manager.evaluation!.outputInMain.therapeuticsResult.subtitle = patient.value(forKey: "computeEvaluationResultTherapeutics") as? String
+						DataManager.manager.evaluation!.outputInMain.icd10Result.subtitle = patient.value(forKey: "computeEvaluationResultICD") as? String
+						DataManager.manager.evaluation!.outputInMain.references.subtitle = patient.value(forKey: "computeEvaluationResultReferences") as? String
+						
+						return false
+					}
+				}
+			}
+		}
+		
+		return true
 	}
 	
 	

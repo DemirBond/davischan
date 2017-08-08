@@ -157,6 +157,47 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
+	override func setupAppearance() {
+		
+		//self.clearsSelectionOnViewWillAppear = true
+		self.navigationController?.navigationBar.isTranslucent = true
+		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
+		self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+		self.tableView.tableFooterView = UIView()
+		self.accessoryBar?.tintColor = UIColor(palette: ColorPalette.warmGrey)
+		
+		//self.navigationItem.title
+		
+		let applyStyle = { (style: ControllerStyle) -> Void in
+			guard let appearanceInfo = style.styleInfo() else { return }
+			
+			// TopBar
+			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
+			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
+			if nil != cvdTopbar.title {
+				self.navigationItem.title = cvdTopbar.title
+			}
+			if nil != cvdTopbar.tintColor {
+				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
+			}
+			if nil != cvdTopbar.rightBarItem {
+				//self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
+				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!]
+			}
+			if nil != cvdTopbar.leftBarItem {
+				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
+			}
+		}
+		
+		// get  User Interface Info
+		if let styleID = self.generatedID, let style = ControllerStyle(rawValue: styleID) {
+			applyStyle(style)
+		} else if  let styleID = self.createdID , let style = ControllerStyle(rawValue: styleID) {
+			applyStyle(style)
+		}
+	}
+	
+	
 	func validatePage() -> Bool {
 		do {
 			try pageForm.validateEvaluationItem()
@@ -207,6 +248,22 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		}
 	}
 
+	
+	override func rightButtonAction(_ sender: UIBarButtonItem) { // called only when Outputs Scene
+		if validatePage() {
+			
+			DataManager.manager.saveCurrentCompute()
+			
+			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+			
+			let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
+			controller.message = "Saved"
+			controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+			self.present(controller, animated: false)// { controller.showMessage() }
+		}
+		
+	}
+	
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
@@ -277,42 +334,51 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			
 			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 			
-			let client: RestClient = RestClient.client
-			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
-			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-			client.computeEvaluation(evaluationRequest: evaluation, success: {
-				(response) in print(response)
-				
-				let result = DataManager()
-				result.setOutputEvaluation(response: response)
-				
-				// self.whiteView?.removeFromSuperview()
-				
+			if DataManager.manager.isEvaluationChanged() {
+				let client: RestClient = RestClient.client
+				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+				let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+				client.computeEvaluation(evaluationRequest: evaluation, success: {
+					(response) in print(response)
+					
+					let result = DataManager()
+					result.setOutputEvaluation(response: response)
+					
+					// self.whiteView?.removeFromSuperview()
+					
+					self.stopAnimating()
+					
+					// add pah value false
+					print(String(DataManager.manager.getPAHValue()))
+					DataManager.manager.setPAHValue(pah: false)
+					let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+					controller.pageForm = self.shortcutModel!
+					self.navigationController?.pushViewController(controller, animated: true)
+					self.pageForm.form.status = .valued
+					
+				}, failure: {
+					error in print(error)
+					var actions = [CVDAction] ()
+					var alertTitle: String?
+					var alertDescription : String?
+					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+					alertTitle = "Network Connection".localized
+					alertDescription = "Check network connection before computing the evaluation.".localized
+					// self.whiteView?.removeFromSuperview()
+					self.stopAnimating()
+					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+					
+				})
+			}
+			else {
 				self.stopAnimating()
 				
-				// add pah value false
-				print(String(DataManager.manager.getPAHValue()))
-				DataManager.manager.setPAHValue(pah: false)
 				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 				controller.pageForm = self.shortcutModel!
 				self.navigationController?.pushViewController(controller, animated: true)
 				self.pageForm.form.status = .valued
-				
-			}, failure: {
-				error in print(error)
-				var actions = [CVDAction] ()
-				var alertTitle: String?
-				var alertDescription : String?
-				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Network Connection".localized
-				alertDescription = "Check network connection before computing the evaluation.".localized
-				// self.whiteView?.removeFromSuperview()
-				self.stopAnimating()
-				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-				
-			})
-			
+			}
 		}
 		
 	}

@@ -205,21 +205,61 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			// convert pah as false if we are not in the HMS section
 			DataManager.manager.setPAHValue(pah: false)
 			
-			let client: RestClient = RestClient.client
-			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-			let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
-			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-			
-			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+			if DataManager.manager.isEvaluationChanged() {
+				let client: RestClient = RestClient.client
+				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+				let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
 				
-				let result = DataManager()
-				result.setOutputEvaluation(response: response)
-				
+				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+					
+					let result = DataManager()
+					result.setOutputEvaluation(response: response)
+					
+					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+					controller.pageForm = DataManager.manager.evaluation!.outputInMain
+					
+					self.navigationController?.pushViewController(controller, animated: false)
+					// self.navigationController?.present(controller, animated: true, completion: nil)
+					
+					// self.whiteView?.removeFromSuperview()
+					
+					self.stopAnimating()
+					
+					self.tableView.setNeedsLayout()
+					self.tableView.layoutIfNeeded()
+					self.tableView.estimatedRowHeight = 40
+					self.tableView.rowHeight = UITableViewAutomaticDimension
+					self.tableView.sizeToFit()
+					self.tableView.reloadData()
+					
+					// add pah value false
+					DataManager.manager.setPAHValue(pah: false)
+					
+				}, failure: { error in print(error)
+					
+					var actions = [CVDAction] ()
+					var alertTitle: String?
+					var alertDescription : String?
+					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+					alertTitle = "Network Connection".localized
+					alertDescription = "Check network connection before computing the evaluation.".localized
+					
+					// self.whiteView?.removeFromSuperview()
+					
+					self.stopAnimating()
+					
+					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+					
+				})
+			}
+			else {
 				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 				controller.pageForm = DataManager.manager.evaluation!.outputInMain
 				
-				self.navigationController?.pushViewController(controller, animated: false)
+				self.navigationController?.pushViewController(controller, animated: true)
 				// self.navigationController?.present(controller, animated: true, completion: nil)
 				
 				// self.whiteView?.removeFromSuperview()
@@ -232,26 +272,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				self.tableView.rowHeight = UITableViewAutomaticDimension
 				self.tableView.sizeToFit()
 				self.tableView.reloadData()
-				
-				// add pah value false
-				DataManager.manager.setPAHValue(pah: false)
-				
-			}, failure: { error in print(error)
-				
-				var actions = [CVDAction] ()
-				var alertTitle: String?
-				var alertDescription : String?
-				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Network Connection".localized
-				alertDescription = "Check network connection before computing the evaluation.".localized
-				
-				// self.whiteView?.removeFromSuperview()
-				
-				self.stopAnimating()
-				
-				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-				
-			})
+			}
 		}
 		
 	}
