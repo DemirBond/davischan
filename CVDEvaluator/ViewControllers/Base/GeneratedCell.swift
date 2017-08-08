@@ -1029,6 +1029,7 @@ class OutputResultsCell: GeneratedCell {
 		super.updateCell()
 		self.titleLabel?.font = CVDStyle.style.fonts.last
 		//self.subtitleLabel?.font = CVDStyle.style.fonts.first
+		self.subtitleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
 		self.subtitleLabel?.textColor = CVDStyle.style.subtitleColor
 	}
 }
