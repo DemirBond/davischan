@@ -1027,9 +1027,11 @@ class ReferencesCardCell: GeneratedCell {
 class OutputResultsCell: GeneratedCell {
 	override func updateCell() {
 		super.updateCell()
-		self.titleLabel?.font = CVDStyle.style.fonts.last
+		//self.titleLabel?.font = CVDStyle.style.fonts.last
 		//self.subtitleLabel?.font = CVDStyle.style.fonts.first
-		self.subtitleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
-		self.subtitleLabel?.textColor = CVDStyle.style.subtitleColor
+		//self.subtitleLabel?.textColor = CVDStyle.style.subtitleColor
+		self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 23.0)
+		self.subtitleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 19.0)
+		self.subtitleLabel?.textColor = CVDStyle.style.defaultFontColor
 	}
 }
