@@ -152,48 +152,11 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			let isValid = validatePage()
 			if isValid {
 				DataManager.manager.saveCurrentEvaluation()
+				
+				if generatedID == "outputInMain" {
+					DataManager.manager.saveCurrentCompute()
+				}
 			}
-		}
-	}
-	
-	
-	override func setupAppearance() {
-		
-		//self.clearsSelectionOnViewWillAppear = true
-		self.navigationController?.navigationBar.isTranslucent = true
-		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
-		self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-		self.tableView.tableFooterView = UIView()
-		self.accessoryBar?.tintColor = UIColor(palette: ColorPalette.warmGrey)
-		
-		//self.navigationItem.title
-		
-		let applyStyle = { (style: ControllerStyle) -> Void in
-			guard let appearanceInfo = style.styleInfo() else { return }
-			
-			// TopBar
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
-			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			if nil != cvdTopbar.title {
-				self.navigationItem.title = cvdTopbar.title
-			}
-			if nil != cvdTopbar.tintColor {
-				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
-			}
-			if nil != cvdTopbar.rightBarItem {
-				//self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
-				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!]
-			}
-			if nil != cvdTopbar.leftBarItem {
-				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
-			}
-		}
-		
-		// get  User Interface Info
-		if let styleID = self.generatedID, let style = ControllerStyle(rawValue: styleID) {
-			applyStyle(style)
-		} else if  let styleID = self.createdID , let style = ControllerStyle(rawValue: styleID) {
-			applyStyle(style)
 		}
 	}
 	
@@ -248,22 +211,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		}
 	}
 
-	
-	override func rightButtonAction(_ sender: UIBarButtonItem) { // called only when Outputs Scene
-		if validatePage() {
-			
-			DataManager.manager.saveCurrentCompute()
-			
-			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-			
-			let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
-			controller.message = "Saved"
-			controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-			self.present(controller, animated: false)// { controller.showMessage() }
-		}
-		
-	}
-	
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {

@@ -272,6 +272,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				self.tableView.rowHeight = UITableViewAutomaticDimension
 				self.tableView.sizeToFit()
 				self.tableView.reloadData()
+				
+				DataManager.manager.setPAHValue(pah: false)
 			}
 		}
 		
