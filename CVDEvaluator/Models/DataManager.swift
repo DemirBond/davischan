@@ -382,7 +382,16 @@ class DataManager {
 		do {
 			let results = try managedContext.fetch(fetchRequest)
 			array = results as! [Doctor]
+			
+			if array.count > 1 {
+				for obj in results as! [NSManagedObject] {
+					managedContext.delete(obj)
+				}
+				return nil
+			}
+	
 			return array.count > 0 ? array : nil
+			
 		} catch let error as NSError {
 			print("Could not fetch \(error), \(error.userInfo)")
 			return nil
@@ -399,7 +408,16 @@ class DataManager {
 		do {
 			let results = try managedContext.fetch(fetchRequest)
 			array = results as! [Doctor]
+			
+			if array.count > 1 {
+				for obj in results as! [NSManagedObject] {
+					managedContext.delete(obj)
+				}
+				return nil
+			}
+			
 			return array.count > 0 ? array[0] : nil
+			
 		} catch let error as NSError {
 			print("Could not fetch \(error), \(error.userInfo)")
 			return nil
