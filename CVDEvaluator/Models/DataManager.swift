@@ -117,7 +117,7 @@ class DataManager {
 			RestClient.client.login(username: loginName, password: password,
 				success: { (responseJson) in
 				
-					let doctor = self.fetchDoctor(loginName: loginName, password: password)
+					let doctor = (self.fetchDoctor(loginName: loginName))?[0]
 					if ((doctor) == nil) {
 						
 						let entity =  NSEntityDescription.entity(forEntityName: "Doctor", in: self.managedObjectContext)
@@ -126,15 +126,19 @@ class DataManager {
 						doc.setValue(password, forKey: "password")
 						doc.setValue(loginName, forKey: "doctorName")
 						self.saveContext()
+						
 						self.currentDoctor = doc
 						completionHandler("success", nil)
 						
 					}
-					
-					self.currentDoctor = doctor
-					self.fetchEvaluations()
-					completionHandler("success", nil)
-					completionHandler("success", nil)
+					else {
+						doctor?.setValue(password, forKey: "password")
+						self.saveContext()
+
+						self.currentDoctor = doctor
+						self.fetchEvaluations()
+						completionHandler("success", nil)
+					}
 					
 				},
 				
@@ -149,7 +153,47 @@ class DataManager {
 	}
 	
 	
+	func signIn(with loginName: String, completionHandler: @escaping (String?, NSError?) -> (Void)) {
+
+		let doctors: [Doctor]? = fetchDoctor(loginName: loginName)
+		if doctors != nil {
+			
+			guard let password: String = doctors?[0].value(forKey: "password") as? String, !password.isEmpty else {
+				completionHandler("nopass", nil)
+				return
+			}
+			
+			RestClient.client.login(username: loginName, password: password,
+				success: { (responseJson) in
+					
+					let doctor = (self.fetchDoctor(loginName: loginName))?[0]
+					doctor?.setValue(password, forKey: "password")
+					self.saveContext()
+					
+					self.currentDoctor = doctor
+					self.fetchEvaluations()
+					
+					completionHandler("success", nil)
+												
+				},
+				failure: { _ in}
+			)
+		}
+		else {
+			completionHandler("nopass", nil)
+		}
+	}
+	
+	
 	func signOut() {
+		
+		let name = currentDoctor?.value(forKey: "loginName")
+		let doctors: [Doctor]? = fetchDoctor(loginName: name as! String)
+		if doctors != nil {
+			let currentDoctor: NSManagedObject = doctors![0]
+			currentDoctor.setValue(nil, forKey: "password")
+		}
+		
 		saveContext()
 		
 		patients?.removeAll()
