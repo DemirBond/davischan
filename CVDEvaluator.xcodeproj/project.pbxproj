@@ -23,8 +23,6 @@
 		BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC461F3339360040060A /* ToastSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; };
 		BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BA49CC601F3394E70040060A /* SwiftToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC5C1F3386370040060A /* SwiftToast.framework */; };
-		BA49CC611F3394E70040060A /* SwiftToast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC5C1F3386370040060A /* SwiftToast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA49CC6D1F339AC80040060A /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC6C1F339AC80040060A /* SplashController.swift */; };
 		BA49CC771F339FDD0040060A /* CodeAutorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC731F339FDD0040060A /* CodeAutorizationController.swift */; };
 		BA49CC781F339FDD0040060A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC741F339FDD0040060A /* LoginController.swift */; };
@@ -145,7 +143,6 @@
 				BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */,
 				BA49CC551F3340830040060A /* Alamofire.framework in Embed Frameworks */,
 				BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */,
-				BA49CC611F3394E70040060A /* SwiftToast.framework in Embed Frameworks */,
 				BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -284,7 +281,6 @@
 				BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */,
 				BA49CC541F3340830040060A /* Alamofire.framework in Frameworks */,
 				BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */,
-				BA49CC601F3394E70040060A /* SwiftToast.framework in Frameworks */,
 				BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,6 @@
 import UIKit
 import NVActivityIndicatorView
 import ToastSwiftFramework
-import SwiftToast
 
 
 class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITableViewDelegate, UITableViewDataSource{
