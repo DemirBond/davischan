@@ -115,6 +115,9 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.riskFactors,
 				                  model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 			
+			case .bioViewed:
+				()
+			
 			case .bioCompleted:
 				lockItems(array: [model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 			
@@ -178,7 +181,9 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			let navigateAction = CVDAction(title: "Open ".localized + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
 			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
 			
-		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted  {
+		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted ||
+					DataManager.manager.evaluation!.evaluationStatus == .bioViewed
+			{
 			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
 			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
 			

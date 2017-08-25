@@ -10,6 +10,7 @@ import UIKit
 
 enum EvaluationStatus: Int {
 	case initialized
+	case bioViewed
 	case bioCompleted
 	case riskCompleted
 	case diagnosticCompleted
@@ -25,6 +26,11 @@ class Evaluation: EvaluationItem {
 	var evaluationStatus: EvaluationStatus = EvaluationStatus.initialized {
 		didSet {
 			print("Did change status \(evaluationStatus)")
+		}
+	}
+	var isBioViewed: Bool = false {
+		didSet {
+			completeScreen()
 		}
 	}
 	var isBioCompleted: Bool = false {
@@ -53,6 +59,8 @@ class Evaluation: EvaluationItem {
 		} else if (cvProfile.isFilled && (cvProfile.form.status == .viewed || cvProfile.form.status == .valued)) ||
 			(riskFactors.isFilled && (riskFactors.form.status == .viewed || riskFactors.form.status == .valued)) {
 			evaluationStatus = .riskCompleted
+		} else if isBioViewed {
+			evaluationStatus = .bioViewed
 		} else if isBioCompleted {
 			evaluationStatus = .bioCompleted
 		} else {
@@ -122,7 +130,10 @@ class Evaluation: EvaluationItem {
 		}
 		if let statusValue = dict["evaluationStatus"] as? Int, let status = EvaluationStatus(rawValue: statusValue) {
 			self.evaluationStatus = status
-			if self.evaluationStatus.rawValue > 0  {
+			if self.evaluationStatus.rawValue == 1 {
+				isBioViewed = true
+			}
+			else if self.evaluationStatus.rawValue > 1  {
 				isBioCompleted = true
 			}
 		}

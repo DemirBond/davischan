@@ -154,19 +154,20 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			
 			var alertDescription : String?
 			switch err {
-			case InputError.incorrectInput:
-				alertDescription = "One of the fields contains unsupported characters. Please correct and try again.".localized
-			case InputError.toLong:
-				alertDescription = "Entering in one of the fields is too long. Please shorten it and try again.".localized
-			case InputError.outOfBounds:
-				alertDescription = "Entered numerical value into one of field exceeds the limits. Please set number between limits.".localized
-			case InputError.emptyInput:
-				alertDescription = "Required Fields cannot be empty. Please fill in all fields marked (*).".localized
+				case InputError.incorrectInput:
+					alertDescription = "One of the fields contains unsupported characters. Please correct and try again.".localized
+				case InputError.toLong:
+					alertDescription = "Entering in one of the fields is too long. Please shorten it and try again.".localized
+				case InputError.outOfBounds:
+					alertDescription = "Entered numerical value into one of field exceeds the limits. Please set number between limits.".localized
+				case InputError.emptyInput:
+					alertDescription = "Required Fields cannot be empty. Please fill in all fields marked (*).".localized
 				
-			default:
-				()
+				default:
+					()
 			}
-			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: actions)
+			// self.showCVDAlert(title: alertTitle, message: alertDescription, actions: actions)
+			
 			return false
 		}
 	}
@@ -201,6 +202,10 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		if validatePage() {
 			DataManager.manager.evaluation!.isBioCompleted = true
 			_ = self.navigationController?.popViewController(animated: true)
+		}
+		else {
+			DataManager.manager.evaluation!.isBioViewed = true
+			self.navigationController?.popViewController(animated: true)
 		}
 	}
 	
