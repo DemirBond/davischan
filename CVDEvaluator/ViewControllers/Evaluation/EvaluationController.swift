@@ -166,7 +166,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		
 		let alertTitle = "Cannot open output screen".localized
 		
-		if DataManager.manager.evaluation!.evaluationStatus == .initialized {
+		if DataManager.manager.evaluation!.evaluationStatus == .initialized || DataManager.manager.evaluation!.evaluationStatus == .bioViewed {
 			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
 			
 			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -181,9 +181,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			let navigateAction = CVDAction(title: "Open ".localized + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
 			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
 			
-		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted ||
-					DataManager.manager.evaluation!.evaluationStatus == .bioViewed
-			{
+		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted {
 			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
 			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
 			
