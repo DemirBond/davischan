@@ -375,6 +375,8 @@ extension BioController {
 			cell.subtitleLabel?.textColor = CVDStyle.style.purpleColor
 		}
 		
+//		cell.textField?.textColor = UIColor.darkGray
+		
 		/*
 		if (!isShowingList) {
 			// Not a list in this case.

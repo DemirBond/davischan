@@ -149,7 +149,8 @@ class CVDStyle {
 	let defaultFontSize: CGFloat = 17.0
 	let defaultFontColor = UIColor(palette: ColorPalette.almostBlack)!
 	let subtitleColor = UIColor(palette: ColorPalette.spanishGray)!
-	let leftFieldColor = UIColor(palette: ColorPalette.spanishGray)!
+//	let leftFieldColor = UIColor(palette: ColorPalette.spanishGray)!
+	let leftFieldColor = UIColor(palette: ColorPalette.greyishBrown)!
 	let rightFieldColor = UIColor(palette: ColorPalette.lighterPurple)!
 	let purpleColor = UIColor(palette: ColorPalette.purple)!
 	
