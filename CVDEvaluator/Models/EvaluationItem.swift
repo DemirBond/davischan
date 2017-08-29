@@ -469,7 +469,7 @@ class EvaluationItem  {
 			
 		} else if [.resultOutput].contains(where: { $0 == form.itemType }) {
 			let textWidth = cellWidth - 32.0
-			var sheetHeight: CGFloat = 40
+			var sheetHeight: CGFloat = 20
 			let titleHeight = calculateTextHeight(message:  self.title, forWidth: textWidth, font: ResultCellStyle.textFont)
 			sheetHeight += titleHeight
 			sheetHeight += 8.0

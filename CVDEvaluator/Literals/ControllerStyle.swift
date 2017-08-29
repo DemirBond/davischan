@@ -130,7 +130,7 @@ class ResultCellStyle: TextItemStyle {
 
 
 class ResultSubtitleStyle: TextItemStyle {
-	override class var fontSize: CGFloat { return 14.0 }
+	override class var fontSize: CGFloat { return 19.0 }
 	override class var fontColor: UIColor { return UIColor(palette: ColorPalette.subtitleGray)! }
 }
 

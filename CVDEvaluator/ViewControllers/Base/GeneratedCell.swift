@@ -1030,7 +1030,7 @@ class OutputResultsCell: GeneratedCell {
 		//self.titleLabel?.font = CVDStyle.style.fonts.last
 		//self.subtitleLabel?.font = CVDStyle.style.fonts.first
 		//self.subtitleLabel?.textColor = CVDStyle.style.subtitleColor
-		self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 23.0)
+		self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 24.0)
 		self.subtitleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 19.0)
 		self.subtitleLabel?.textColor = CVDStyle.style.defaultFontColor
 	}
