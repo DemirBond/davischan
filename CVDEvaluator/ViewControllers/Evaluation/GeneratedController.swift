@@ -442,7 +442,9 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		case .disclosureControlExpandable:
 			//let cell = tableView.cellForRow(at: indexPath) as! RightIntegerCellExpandable
 			//cellExpanded = !cellExpanded
+			let cell = tableView.cellForRow(at: indexPath) as! DisclosureControlCellExpandable			
 			itemModel.isExpanded = !itemModel.isExpanded
+			cell.updateDisclosureIcon()
 			tableView.beginUpdates()
 			tableView.endUpdates()
 			

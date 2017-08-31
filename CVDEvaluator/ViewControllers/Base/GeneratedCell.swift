@@ -482,6 +482,13 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 	override func setupCell() {
 		super.setupCell()
 		
+		if cellModel.isExpanded {
+			self.disclosureIcon?.image =  UIImage(named: "upGrayIcon")
+		}
+		else {
+			self.disclosureIcon?.image =  UIImage(named: "downGrayIcon")
+		}
+		
 		let theitems = cellModel.items
 		
 		cellModel.subCellsCount = theitems.count
@@ -516,7 +523,14 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 
 	}
 	
-	
+	func updateDisclosureIcon() {
+		if cellModel.isExpanded {
+			self.disclosureIcon?.image =  UIImage(named: "upGrayIcon")
+		}
+		else {
+			self.disclosureIcon?.image =  UIImage(named: "downGrayIcon")
+		}
+	}
 	
 	
 	func updateCellOne(){
