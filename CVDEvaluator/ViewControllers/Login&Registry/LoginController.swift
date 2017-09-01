@@ -1,90 +1,106 @@
 //
-//  LoginController.swift
+//  LoginViewController.swift
 //  CVDEvaluator
 //
-//  Created by IgorKhomiak on 2/6/17.
+//  Created by Davis Chan on 8/4/17.
 //  Copyright © 2017 IgorKhomiak. All rights reserved.
 //
-//  Updated by EvrimGuler on 4/5/2017
 
 import UIKit
 import NVActivityIndicatorView
 
 
-class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
-	
+class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerDelegate, NVActivityIndicatorViewable {
+
 	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var panelView: UIView!
-	@IBOutlet weak var splashView: UIView!
-	@IBOutlet weak var loginButton: UIButton!
-	@IBOutlet weak var registerButton: UIButton!
-	@IBOutlet weak var resetButton: UIButton!
+	@IBOutlet weak var contentView: UIView!
+	@IBOutlet weak var infoView: UIView!
+	@IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
 	
 	@IBOutlet weak var nameField: UITextField!
 	@IBOutlet weak var passwordField: UITextField!
-	@IBOutlet weak var logoSheet: UIImageView!
 	
-	static let loginSegueID = "loginSegueID"
+	@IBOutlet weak var loginButton: UIButton!
+	@IBOutlet weak var registerButton: UIButton!
+	@IBOutlet weak var forgotPwdButton: UIButton!
+	
+	var activeRect: CGRect = CGRect()
+	
 	static let registerSegueID = "registerSegueID"
 	static let resetSegueID = "resetSegueID"
 	
+	override var createdID: String! { return "login" }
 	
+	static var isFromSignupPage: Bool = false
+	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let (imageUp, imageDown) = resizibleImage(named: "red", highlighted: "red pressed")
-		loginButton.setBackgroundImage(imageUp, for: UIControlState.normal)
-		loginButton.setBackgroundImage(imageDown, for: UIControlState.highlighted)
+		// Do any additional setup after loading the view.
+		self.automaticallyAdjustsScrollViewInsets = false;
 		
-		let (registerUp, registerDown) = resizibleImage(named: "outline", highlighted: "outline")
-		registerButton.setBackgroundImage(registerUp, for: UIControlState.normal)
-		registerButton.setBackgroundImage(registerDown, for: UIControlState.highlighted)
+		loginButton.layer.cornerRadius = 4.0
+		loginButton.layer.borderColor = loginButton.backgroundColor?.cgColor
+		loginButton.layer.borderWidth = 2.0
+		
+		if LoginController.isFromSignupPage {
+			registerButton.isHidden = true
+			LoginController.isFromSignupPage = false
+		}
+		
+		forgotPwdButton.isHidden = true
+		
+		self.view.backgroundColor = UIColor.white
 		
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginController.hideKeyboard))
 		self.view.addGestureRecognizer(tapRecognizer)
 		
-		
-		//TODO this login should be adapted to rest of this class
-		
-		/*let client: RestClient = RestClient.client
-		client.login(username: "test5@gmail.com", password: "test1234", success:{(responseObject) in
-			print(responseObject)
-			client.retrieveSavedEvaluations(success: {(responseObject) in
-				print(responseObject)
-			}, failure: {(error) in
-				print(error)
-			})
-		}, failure: {(error) in
-			print(error)
-		})
-		client.register(registerRequest: RegisterRequest(name: "kemal", username: "kemal92@gmail.com", password: "test1234", confirmPassword: "test1234"), success: { (response) in
-			print(response)
-		}, failure: { (error) in
-			print(error)
-		})*/
+	}
+	
+	
+	override func viewDidLayoutSubviews() {
+		var contentRect: CGRect = scrollView.frame
+		contentRect.size.height = infoView.frame.origin.y + infoView.frame.size.height
+		scrollView.contentSize = contentRect.size
+		contentHeightConstraint.constant = contentRect.size.height
 	}
 	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillBeHidden(_:)),	name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-		
-		if self.view.frame.size.height > 570.0 {
-			logoSheet?.removeFromSuperview()
-		}
-		
 		let defaults = UserDefaults.standard
 		if let userName = defaults.string(forKey: "loginName") {
 			nameField.text = userName
 			passwordField.text = ""
 		}
+		
+		self.registerForKeyboardNotifications()
+	}
+
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		self.unRegisterForKeyboardNotifications()
+	}
+	
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
 	}
 	
 	
 	
 	// MARK: - IBActions
+	
+	override func leftButtonAction(_ sender: UIBarButtonItem) {
+		hideKeyboard()
+		self.dismiss(animated: true, completion: nil)
+	}
+	
 	
 	@IBAction func signInAction(_ sender: AnyObject) {
 		self.hideKeyboard()
@@ -98,17 +114,10 @@ class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicato
 				return
 		}
 		
-		/*let betterActivityView = NVActivityIndicatorView(frame: CGRect(x: (self.view.bounds.width/2 - 50), y:((self.view.bounds.height)/2 - 50) , width:100, height:100) )
-		betterActivityView.type = .ballPulse
-		betterActivityView.color = UIColor(palette: ColorPalette.white)!		
-		self.view.addSubview(betterActivityView)
-		
-		betterActivityView.startAnimating()*/
 		self.startAnimating()
 		
 		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
 			
-			//betterActivityView.stopAnimating()
 			self.stopAnimating()
 			
 			guard error == nil else {
@@ -134,16 +143,9 @@ class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicato
 	}
 	
 	
-	@IBAction func skipLoginPressed(_ sender: Any) {
-		UserDefaults.standard.set("test user", forKey: "loginName")
-		let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-		let destination = medicalStoriboard.instantiateInitialViewController()
-		UIApplication.shared.keyWindow?.rootViewController = destination
-	}
-	
-	
 	@IBAction func registerAction(_ sender: AnyObject) {
 		hideKeyboard()
+		RegistraionController.isFromLoginPage = true
 		self.performSegue(withIdentifier: LoginController.registerSegueID, sender: nil)
 	}
 	
@@ -152,36 +154,59 @@ class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicato
 		hideKeyboard()
 		self.performSegue(withIdentifier: LoginController.resetSegueID, sender: nil)
 	}
-
+	
+	
+	
+	// MARK: - EvaluationEditing protocol
+	
+	override func keyboardReturnDidPress(model: EvaluationItem) {
+		hideKeyboard()
+		self.signInAction(self)
+	}
+	
 	
 	
 	// MARK: - Keyboard Handle Methods
 	
-	func hideKeyboard() {
-		self.nameField.resignFirstResponder()
-		self.passwordField.resignFirstResponder()
+	func registerForKeyboardNotifications() {
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: .UIKeyboardDidShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: .UIKeyboardWillHide, object: nil)
 	}
 	
 	
-	func keyboardWillShow(_ notification: Notification) {
-		guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
-		
-		let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+	func unRegisterForKeyboardNotifications() {
+		NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+	}
+	
+	
+	func keyboardWillBeHidden(aNotification: NSNotification) {
+		let contentInsets: UIEdgeInsets = UIEdgeInsets.zero
 		scrollView.contentInset = contentInsets
 		scrollView.scrollIndicatorInsets = contentInsets
-		var currentRect = self.view.frame
+	}
+	
+	
+	func keyboardWasShown(aNotification: NSNotification) {
+		let info: NSDictionary = aNotification.userInfo! as NSDictionary
+		var kbSize: CGRect = info.object(forKey: UIKeyboardFrameBeginUserInfoKey) as! CGRect
 		
-		currentRect.size.height -= keyboardSize.height
-		if !currentRect.contains(panelView.frame) {
-			scrollView.scrollRectToVisible(panelView.frame, animated: false)
+		kbSize = self.view.convert(kbSize, to: nil)
+		let contentInsets: UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.size.height + 2, right: 0.0)
+		scrollView.contentInset = contentInsets
+		scrollView.scrollIndicatorInsets = contentInsets
+		
+		var aRect: CGRect = self.view.frame
+		aRect.size.height -= kbSize.size.height
+		
+		if activeRect.contains(aRect) {
+			scrollView.scrollRectToVisible(activeRect, animated: true)
 		}
 	}
 	
 	
-	func keyboardWillBeHidden(_ notification: Notification) {
-		let contentInsets = UIEdgeInsets.zero
-		scrollView.contentInset = contentInsets
-		scrollView.scrollIndicatorInsets = contentInsets
+	func hideKeyboard() {
+		self.view.endEditing(true)
 	}
 	
 	
@@ -189,17 +214,19 @@ class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicato
 	// MARK: - UITextField delegates
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
+		self.activeRect = textField.frame
 	}
 	
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
+		self.activeRect = CGRect.zero;
 		textField.resignFirstResponder()
 	}
 	
 	
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {		
-		if textField == self.nameField {
-			self.passwordField.becomeFirstResponder()
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if textField == nameField {
+			passwordField.becomeFirstResponder()
 		}
 		else {
 			textField.resignFirstResponder()
@@ -209,4 +236,15 @@ class LoginController: UIViewController, UITextFieldDelegate, NVActivityIndicato
 		return true
 	}
 	
+	
+	/*
+	// MARK: - Navigation
+	
+	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	// Get the new view controller using segue.destinationViewController.
+	// Pass the selected object to the new view controller.
+	}
+	*/
+
 }

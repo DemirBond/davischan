@@ -14,6 +14,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 	
 	@IBOutlet weak var gotoLogin: UIButton!
 	@IBOutlet weak var gotoSignin: UIButton!
+	
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
