@@ -26,6 +26,7 @@ public enum ColorPalette: String {
 	case cosmicLatte = "#cosmicLatte"
 	case hanPurple = "#hanPurple"
 	case white = "#white"
+	case navbarPurple = "#navbarPurple"
 	
 	func hexString() -> String? {
 		switch self {
@@ -63,6 +64,8 @@ public enum ColorPalette: String {
 			return "#EAE4FC"
 		case .white:
 			return "#FFFFFF"
+		case .navbarPurple:
+			return "#FADDF8"
 		}
 	}
 }

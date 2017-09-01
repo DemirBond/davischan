@@ -67,7 +67,15 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 	func setupAppearance() {
 		
 		self.clearsSelectionOnViewWillAppear = true
+		
 		self.navigationController?.navigationBar.isTranslucent = true
+		self.navigationController?.navigationBar.layer.borderWidth = 0.0
+		self.navigationController?.navigationBar.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+		self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+		self.navigationController?.navigationBar.layer.shadowRadius = 2.0
+		self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+		self.navigationController?.navigationBar.layer.masksToBounds = false
+		
 		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
 		self.tableView.tableFooterView = UIView()

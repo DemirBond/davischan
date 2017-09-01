@@ -111,7 +111,6 @@
 		BA49CD3C1F33FB860040060A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3B1F33FB860040060A /* HomeController.swift */; };
 		BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3D1F34044E0040060A /* EvaluationController.swift */; };
 		BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */; };
-		BAC5E5C61F3917800093E5A3 /* OutputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C51F3917800093E5A3 /* OutputController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,7 +264,6 @@
 		BA49CD3B1F33FB860040060A /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BA49CD3D1F34044E0040060A /* EvaluationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationController.swift; sourceTree = "<group>"; };
 		BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletedController.swift; sourceTree = "<group>"; };
-		BAC5E5C51F3917800093E5A3 /* OutputController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,7 +395,6 @@
 				BA49CD3D1F34044E0040060A /* EvaluationController.swift */,
 				BA49CC7B1F33A0410040060A /* BioController.swift */,
 				BA49CC7F1F33A0410040060A /* GeneratedController.swift */,
-				BAC5E5C51F3917800093E5A3 /* OutputController.swift */,
 				BA49CC821F33A0410040060A /* MessageController.swift */,
 				BA49CC7C1F33A0410040060A /* CVDAlertController.swift */,
 				BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */,
@@ -875,7 +872,6 @@
 				BA49CD3C1F33FB860040060A /* HomeController.swift in Sources */,
 				BA49CCA31F33A0F40040060A /* BaseTableController.swift in Sources */,
 				BA49CCE81F33A35E0040060A /* MajorCVRisks.swift in Sources */,
-				BAC5E5C61F3917800093E5A3 /* OutputController.swift in Sources */,
 				BA49CC9B1F33A0C90040060A /* ProfileController.swift in Sources */,
 				BA49CC6D1F339AC80040060A /* SplashController.swift in Sources */,
 				BA49CC771F339FDD0040060A /* CodeAutorizationController.swift in Sources */,

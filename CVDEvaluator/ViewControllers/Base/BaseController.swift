@@ -73,6 +73,13 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	func setupAppearance() {
 		
 		self.navigationController?.navigationBar.isTranslucent = true
+		self.navigationController?.navigationBar.layer.borderWidth = 0.0
+		self.navigationController?.navigationBar.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+		self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+		self.navigationController?.navigationBar.layer.shadowRadius = 2.0
+		self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+		self.navigationController?.navigationBar.layer.masksToBounds = false
+
 		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target:nil, action:nil)
 		
@@ -114,58 +121,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 			applyStyle(style)
 		}
 		if let styleID = self.generatedID, let style = ControllerStyle(rawValue: styleID) {
-			applyStyle(style)
-		}
-	}
-	
-	
-	func setupAppearanceTable() {
-		
-		//self.clearsSelectionOnViewWillAppear = true
-		self.navigationController?.navigationBar.isTranslucent = true
-		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
-		self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-		
-		self.accessoryBar?.tintColor = UIColor(palette: ColorPalette.warmGrey)
-		
-		//self.navigationItem.title
-		
-		let applyStyle = { (style: ControllerStyle) -> Void in
-			guard let appearanceInfo = style.styleInfo() else { return }
-			
-			// TopBar
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
-			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
-			if nil != cvdTopbar.title {
-				self.navigationItem.title = cvdTopbar.title
-			}
-			if nil != cvdTopbar.tintColor {
-				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
-			}
-			if nil != cvdTopbar.rightBarItem {
-				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
-			}
-			if nil != cvdTopbar.leftBarItem {
-				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
-			}
-			
-			// BottomBar
-			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			                                    #selector(self.bottomRightButtonAction1(_:)),
-			                                    #selector(self.bottomLeftButtonAction(_:)),
-			                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
-			let cvdToolbar = CVDToolbar()
-			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
-			cvdToolbar.barTintColor = .white
-			cvdToolbar.sizeToFit()
-			self.toolbarItems = cvdToolbar.barItems
-			
-		}
-		
-		// get  User Interface Info
-		if let styleID = self.generatedID, let style = ControllerStyle(rawValue: styleID) {
-			applyStyle(style)
-		} else if  let styleID = self.createdID , let style = ControllerStyle(rawValue: styleID) {
 			applyStyle(style)
 		}
 	}
