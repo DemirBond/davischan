@@ -394,8 +394,9 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let itemModel = DataManager.manager.evaluation!.items[indexPath.row]
-		return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
+		//let itemModel = DataManager.manager.evaluation!.items[indexPath.row]
+		//return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
+		return 64.0
 	}
 	
 	
