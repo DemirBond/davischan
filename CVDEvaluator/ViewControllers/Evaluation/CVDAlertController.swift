@@ -8,12 +8,14 @@
 
 import UIKit
 
-let longWidth: CGFloat = 215.0
+let longWidth: CGFloat = 175.0
 let shortWidth: CGFloat = 120.0
 let sheetWidth: CGFloat = 255.0
 let buttonHeight: CGFloat = 44.0
 
+
 struct CVDButton {
+	
 	let action: CVDAction
 	let up: String
 	let pressed: String
@@ -21,10 +23,10 @@ struct CVDButton {
 	var button: UIButton
 	var textColor = UIColor(palette: ColorPalette.white) ?? UIColor.white
 	var highlightedColor = UIColor(palette: ColorPalette.cosmicLatte) ?? UIColor.lightGray
+
 	
-	init(action: CVDAction, up: String,  pressed: String, target: AnyObject?,
-	     fontColor: UIColor? = nil,
-	     pressedColor: UIColor? = nil) {
+	init(action: CVDAction, up: String,  pressed: String, target: AnyObject?, fontColor: UIColor? = nil, pressedColor: UIColor? = nil) {
+		
 		self.action = action
 		self.up = up
 		self.pressed = pressed
@@ -37,10 +39,11 @@ struct CVDButton {
 		if let color = pressedColor {
 			self.highlightedColor = color
 		}
+		
 		let (imageUp, imageDown) = resizibleImage(named: up, highlighted: pressed )
 		self.button.setBackgroundImage(imageUp, for: UIControlState.normal)
-		//self.button.titleLabel?.font
 		self.button.setBackgroundImage(imageDown, for: UIControlState.highlighted)
+		
 		self.button.setTitle(action.title, for: UIControlState.normal)
 		self.button.setTitleColor(textColor, for: UIControlState.normal)
 		self.button.setTitleColor(highlightedColor, for: UIControlState.highlighted)
@@ -67,6 +70,7 @@ class CVDAlertController: UIViewController {
 	
 	fileprivate(set) var alertActions = [CVDAction]()
 	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -88,7 +92,7 @@ class CVDAlertController: UIViewController {
 	
 	
 	func setupAlertSheet() {
-		sheetHeight = 20.0
+		sheetHeight = 30.0
 		
 		let images = ["destruct" : ["up": "red", "pressed" : "red pressed"],
 		              "navigation" :["up": "purple", "pressed" : "purple pressed"],
@@ -140,7 +144,7 @@ class CVDAlertController: UIViewController {
 			cvdButtons.append(cvdButton!)
 		}
 		
-		sheetHeight += 14.0
+		sheetHeight += 40.0
 		
 		let origin = CGPoint(x: (self.view.frame.size.width - sheetWidth)/2.0, y: (self.view.frame.size.height - sheetHeight)/2.0)
 		self.sheetView.frame = CGRect(origin: origin, size: CGSize(width: sheetWidth, height: sheetHeight))

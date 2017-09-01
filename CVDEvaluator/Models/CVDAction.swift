@@ -23,11 +23,13 @@ struct CVDAction {
 	let handler: CVDHandler?
 	let actionType: CVDActionType
 	var isShort: Bool
+	var isBorder: Bool
 	
-	init (title: String, type: CVDActionType, handler: CVDHandler?, short: Bool = true) {
+	init (title: String, type: CVDActionType, handler: CVDHandler?, short: Bool = true, border: Bool = true) {
 		self.title = title
 		self.actionType = type
 		self.handler = handler
 		self.isShort = short
+		self.isBorder = border
 	}
 }

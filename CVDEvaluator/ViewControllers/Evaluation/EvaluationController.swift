@@ -136,22 +136,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
-	func backButtonConfirmAlert(){
-		
-		let alertTitle: String = "Do you want to leave this evaluation?".localized
-		
-		var actions = [CVDAction] ()
-		
-		actions.append(CVDAction(title: "Leave".localized, type: CVDActionType.cancel, handler: {
-			self.navigationController?.popViewController(animated: true)
-		}, short: true))
-		
-		actions.append(CVDAction(title: "Stay".localized, type: CVDActionType.cancel, handler: nil, short: true))
-		
-		self.showCVDAlert(title: alertTitle, message: nil, actions: actions)
-	}
-	
-	
 	
 	// MARK: - Override Actions
 	
@@ -285,6 +269,20 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	@IBAction func unwindToEvaluation(segue: UIStoryboardSegue) { /* return to this point after press list icon*/ }
 	
+	
+	func backButtonConfirmAlert() {
+		
+		var actions = [CVDAction] ()
+		actions.append(CVDAction(title: "Yes, I'm sure".localized, type: CVDActionType.done, handler: {
+			self.navigationController?.popViewController(animated: true)
+		}, short: false, border: false))
+		actions.append(CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false, border: false))
+		
+		self.showCVDAlert(title: "Cancel Evaluation?".localized,
+		                  message: "Are you sure you want to cancel this evaluation?".localized,
+		                  actions: actions)
+	}
+
 	
 	func showAlert(title: String, description: String?, models: [EvaluationItem]) {
 		
