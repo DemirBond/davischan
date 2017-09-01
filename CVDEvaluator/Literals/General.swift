@@ -11,16 +11,6 @@ import UIKit
 struct General {
 	static let minPasswordLength = 3
 	
-	static let registration = "#type:#model| #title: Sign Up| #id: registration"
-	
-	static let separator1 = "#type:#separator| #title: Provide Personal Data | #id: separator"
-	static let separator2 = "#type:#separator| #title: Provide Password | #id: separator"
-	static let mail = 		"#id:mail|        #title:Email|    #type:#mail |  #placeholder:Enter your Email Address | #maxLength: 80 | #mandatory: 1"
-	static let screenName = "#id:screenName | #title:Name |    #type: #textLeft|  #placeholder: Enter yor Name |      #maxLength: 80 | #mandatory: 1"
-	static let password = 	"#id:password|  #title:Password|  #type: #password|  #placeholder: Enter Password |       #maxLength: 80 | #mandatory: 1"
-	static let repeatPass = "#id:repeatPass|  #title:Repeat| #type: #password|  #placeholder: Repeat your Password |  #maxLength: 80 | #mandatory: 1"
-	
-	
 	static let settings = "#type:#model| #title:Settings| #id: settings"
 
 	static let about = 		   "#id:about|    #title:About|    #type:#disclosureSimple"
