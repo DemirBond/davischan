@@ -41,7 +41,7 @@ enum ControllerStyle: String {
 			return ["title": "Verification", "leftButton" : "Cancel"]
 			
 		case .home:
-			return ["title": "Heart Check", "rightButton" : "Settings"]
+			return ["title": "Heart Check", "rightMenuButton" : "Settings"]
 			
 		case .settings:
 			return ["title": "Settings", "rightTextButton": "Aa"]

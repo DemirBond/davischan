@@ -101,15 +101,18 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
 			}
-			if nil != cvdTopbar.rightTextBarItem {
-				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightTextBarItem!)
+			
+			var rightBarItems: [UIBarButtonItem] = []
+			if nil != cvdTopbar.rightMenuBarItem {
+				rightBarItems.append(cvdTopbar.rightMenuBarItem!)
 			}
 			if nil != cvdTopbar.rightListBarItem {
-				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightListBarItem!)
+				rightBarItems.append(cvdTopbar.rightListBarItem!)
 			}
-			if nil != cvdTopbar.rightMenuBarItem {
-				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightMenuBarItem!)
+			if nil != cvdTopbar.rightTextBarItem {
+				rightBarItems.append(cvdTopbar.rightTextBarItem!)
 			}
+			self.navigationItem.rightBarButtonItems = rightBarItems
 			
 			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),

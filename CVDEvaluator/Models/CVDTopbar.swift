@@ -33,22 +33,26 @@ class CVDTopbar: NSObject {
 			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[0])
 		}
 		
-		if let _ = dict["rightTextButton"] as? String {
-			let barItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[1])
-			barItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
-			self.rightTextBarItem = barItem
+		if let rightMenuButton = dict["rightMenuButton"] as? String {
+			let barItem = UIBarButtonItem(title: rightMenuButton, style: .plain, target: target, action: actions[3])			
+			self.rightMenuBarItem = barItem
 		}
 		
 		if let _ = dict["rightListButton"] as? String {
 			let barItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: target, action: actions[2])
-			barItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 5)
+			if self.rightMenuBarItem != nil {
+				barItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0)
+			}
 			self.rightListBarItem = barItem
 		}
 		
-		if let rightMenuButton = dict["rightMenuButton"] as? String {
-			let barItem = UIBarButtonItem(title: rightMenuButton, style: .plain, target: target, action: actions[3])
-			//barItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
-			self.rightMenuBarItem = barItem
+		if let _ = dict["rightTextButton"] as? String {
+			let barItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[1])
+			if self.rightListBarItem != nil {
+				barItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
+			}
+			self.rightTextBarItem = barItem
 		}
+		
 	}
 }
