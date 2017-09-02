@@ -81,7 +81,7 @@ class HypertensionController: GeneratedController {
 		self.tableView.reloadData()
 	}
 
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
 			performSegue(withIdentifier: unwindFromHypertentionSegueID, sender: self.pageForm)
 		}
