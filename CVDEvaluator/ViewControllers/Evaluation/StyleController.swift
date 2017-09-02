@@ -12,11 +12,12 @@ import UIKit
 class StyleController: UIViewController {
 
 	@IBOutlet weak var sheetView: UIView!
+	@IBOutlet weak var backView: UIView!
 	@IBOutlet weak var doneButton: UIBarButtonItem!
 	@IBOutlet weak var toolBar: UIToolbar!
 	@IBOutlet var headers : [FontSetView]!
 	
-	let duration: TimeInterval = 0.45
+	let duration: TimeInterval = 0.2
 	let sheetHeight: CGFloat = 94.0
 
 	
@@ -35,7 +36,9 @@ class StyleController: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		self.sheetView.frame = CGRect(x: -self.view.frame.size.width, y: self.view.frame.size.height - self.sheetHeight, width: self.view.frame.size.width, height: sheetHeight)
+		
+		self.backView.alpha = 0.0
+		self.sheetView.alpha = 0.0
 		
 		showMessage()
 		updateSelection()
@@ -44,16 +47,18 @@ class StyleController: UIViewController {
 	
 	private func showMessage() {
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-			self.sheetView.frame = CGRect(x: 0.0, y: self.view.frame.size.height - self.sheetHeight,
-				width: self.view.frame.size.width, height: self.sheetHeight)
+			self.backView.alpha = 0.55 
 		}, completion: { (animated) in
-			()
+			UIView.animate(withDuration: self.duration/2.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+				self.backView.alpha = 0.48
+				self.sheetView.alpha = 1.0
+			}, completion: nil)
 		})
 	}
 	
 	
 	func removeMessage() {
-		self.dismiss(animated: false, completion: nil)
+		hideMessage()
 	}
 	
 	
@@ -70,7 +75,8 @@ class StyleController: UIViewController {
 	
 	private func hideMessage() {
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-			self.sheetView.frame = CGRect(x: 0.0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.sheetHeight)
+			self.sheetView.alpha = 0.0
+			self.backView.alpha = 0.0
 		}, completion: { (animated) in
 			self.dismiss(animated: false, completion: nil)
 		})
