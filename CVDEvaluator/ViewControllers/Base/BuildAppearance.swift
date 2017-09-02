@@ -18,13 +18,13 @@ protocol BuildAppearance {
 	
 	func setupAppearance()
 	
-	func rightButtonAction(_ sender: UIBarButtonItem)
 	func leftButtonAction(_ sender: UIBarButtonItem)
+	func rightTextButtonAction(_ sender: UIBarButtonItem)
+	func rightListButtonAction(_ sender: UIBarButtonItem)
+	func rightMenuButtonAction(_ sender: UIBarButtonItem)
 	
 	func bottomRightButtonAction(_ sender: UIBarButtonItem)
 	func bottomRightButtonAction1(_ sender: UIBarButtonItem)
-	func bottomLeftButtonAction(_ sender: UIBarButtonItem)
-	func bottomLeftButtonAction1(_ sender: UIBarButtonItem)
 }
 
 protocol FontChanging {

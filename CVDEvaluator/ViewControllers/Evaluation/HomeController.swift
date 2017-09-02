@@ -61,7 +61,7 @@ class HomeController: BaseController {
 	}
 	
 	
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
 		performSegue(withIdentifier: HomeController.settingsSegueID, sender: nil)
 	}
 	

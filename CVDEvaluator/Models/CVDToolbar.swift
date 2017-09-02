@@ -39,21 +39,6 @@ class CVDToolbar: UIToolbar {
 		
 		var items = [UIBarButtonItem] ()
 		
-		if let _ = dict["leftBottom"] as? String {
-			let leftBarItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: target, action: actions[2])
-			leftBarItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 5)
-			items.append(leftBarItem)
-		}
-		
-		if let _ = dict["leftBottom1"] as? String {
-			let leftTextBarItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[3])
-			leftTextBarItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
-			items.append(leftTextBarItem)
-		}
-		
-		let item = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		items.append(item)
-		
 		if let rightBottom = dict["rightBottom"] as? String {
 			
 			let screenSize: CGRect = UIScreen.main.bounds

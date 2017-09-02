@@ -84,16 +84,14 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		}
 		
 		let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-		                                    #selector(self.bottomRightButtonAction1(_:)),
-		                                    #selector(self.bottomLeftButtonAction(_:)),
-		                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
+		                                    #selector(self.bottomRightButtonAction1(_:))]
 
 		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			
 			shortcutModel = DataManager.manager.evaluation!.outputInMain
 			
-			let dictInfo = ["leftBottom":"list", "leftBottom1": "Aa", "rightBottom" : "Compute".localized]
+			let dictInfo = ["rightBottom" : "Compute".localized]
 			
 			// toolbar
 			let toolbar = CVDToolbar()
@@ -109,7 +107,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
 			
-			let dictInfo = ["leftBottom":"list", "leftBottom1": "Aa", "rightBottom" : shortcutModel!.title + ""]
+			let dictInfo = ["rightBottom" : shortcutModel!.title + ""]
 			
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
@@ -219,7 +217,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
-	override func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
+	override func rightListButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
 			
 			if ( (isHeartSpecilaistManagement  && !(pageForm is HeartSpecialistManagement)) || (pageForm is PAH)  || (pageForm is PAH1) || (pageForm is PAH2) || (pageForm is PAH3)) {

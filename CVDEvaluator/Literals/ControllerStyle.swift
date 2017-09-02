@@ -59,7 +59,7 @@ enum ControllerStyle: String {
 			return ["title": " "]
 			
 		case .evaluation:
-			return ["title": "Evaluation", "leftBottom1": "Aa", "rightBottom" : "Compute"]
+			return ["title": "Evaluation", "rightTextButton": "Aa", "rightBottom" : "Compute"]
 			
 		case .bio:
 			return [:]
@@ -71,7 +71,7 @@ enum ControllerStyle: String {
 			return [:]
 
 		case .generated, .hypertension:
-			return ["leftBottom":"list", "leftBottom1": "Aa"]
+			return ["rightTextButton": "Aa", "rightListButton":"list"]
 			
 		}
 		

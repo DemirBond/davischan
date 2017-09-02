@@ -56,9 +56,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			}
 		}
 		
-		setupAppearance()
-		checkDependancies()
-		
 		self.tableView.tableFooterView = UIView()
 		
 		// tableView.register(DisclosureSimpleCellExpandable.self, forCellReuseIdentifier: "DisclosureSimpleCellExpandable")
@@ -79,14 +76,12 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		}
 		
 		let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-		                                    #selector(self.bottomRightButtonAction1(_:)),
-		                                    nil,
-		                                    #selector(self.bottomLeftButtonAction1(_:))]
+		                                    #selector(self.bottomRightButtonAction1(_:))]
 		
 		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			shortcutModel = DataManager.manager.evaluation!.outputInMain
-			let dictInfo = ["leftBottom1": "Aa", "rightBottom" : "Compute".localized]
+			let dictInfo = ["rightBottom" : "Compute".localized]
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			self.toolbarItems = toolbar.barItems
@@ -95,7 +90,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
-			let dictInfo = ["leftBottom1": "Aa", "rightBottom" : shortcutModel!.title + ""]
+			let dictInfo = ["rightBottom" : shortcutModel!.title + ""]
 			let toolbar = CVDToolbar()
 			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
 			self.toolbarItems = toolbar.barItems
@@ -192,12 +187,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	}
 	
 	
-	override func rightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
-		}
-	}
-	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
 			DataManager.manager.evaluation!.isBioCompleted = true
@@ -206,6 +195,13 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		else {
 			DataManager.manager.evaluation!.isBioViewed = true
 			self.navigationController?.popViewController(animated: true)
+		}
+	}
+	
+	
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
+		if validatePage() {
+			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
 		}
 	}
 	

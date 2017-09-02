@@ -11,9 +11,10 @@ import UIKit
 class CVDTopbar: NSObject {
 	
 	var title: String?
-	var rightTextBarItem: UIBarButtonItem?
-	var rightBarItem: UIBarButtonItem?
 	var leftBarItem: UIBarButtonItem?
+	var rightTextBarItem: UIBarButtonItem?
+	var rightListBarItem: UIBarButtonItem?
+	var rightMenuBarItem: UIBarButtonItem?
 	var tintColor: UIColor?
 	var style: TextItemStyle?
 	
@@ -28,12 +29,26 @@ class CVDTopbar: NSObject {
 			self.tintColor = color
 		}
 		
-		if let rightButtonName = dict["rightButton"] as? String {
-			self.rightBarItem = UIBarButtonItem(title: rightButtonName, style: .plain, target: target, action: actions[0])
+		if let leftButtonName = dict["leftButton"] as? String {
+			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[0])
 		}
 		
-		if let leftButtonName = dict["leftButton"] as? String {
-			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[1])
-		}		
+		if let _ = dict["rightTextButton"] as? String {
+			let barItem = UIBarButtonItem(image: UIImage(named: "text-size"), style: .plain, target: target, action: actions[1])
+			barItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
+			self.rightTextBarItem = barItem
+		}
+		
+		if let _ = dict["rightListButton"] as? String {
+			let barItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: target, action: actions[2])
+			barItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 5)
+			self.rightListBarItem = barItem
+		}
+		
+		if let rightMenuButton = dict["rightMenuButton"] as? String {
+			let barItem = UIBarButtonItem(title: rightMenuButton, style: .plain, target: target, action: actions[3])
+			//barItem.imageInsets = UIEdgeInsetsMake(0, -5, 0, -30)
+			self.rightMenuBarItem = barItem
+		}
 	}
 }

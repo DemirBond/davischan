@@ -87,7 +87,10 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 			guard let appearanceInfo = style.styleInfo() else { return }
 			
 			// TopBar
-			let topSelectors: [Selector?] = [#selector(self.rightButtonAction(_:)), #selector(self.leftButtonAction(_:))]
+			let topSelectors: [Selector?] = [#selector(self.leftButtonAction(_:)),
+			                                 #selector(self.rightTextButtonAction(_:)),
+			                                 #selector(self.rightListButtonAction(_:)),
+			                                 #selector(self.rightMenuButtonAction(_:))]
 			let cvdTopbar = CVDTopbar(dict: appearanceInfo, target: self, actions: topSelectors)
 			if nil != cvdTopbar.title {
 				self.navigationItem.title = cvdTopbar.title
@@ -95,18 +98,22 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 			if nil != cvdTopbar.tintColor {
 				self.navigationController?.navigationBar.tintColor = cvdTopbar.tintColor
 			}
-			if nil != cvdTopbar.rightBarItem {
-				self.navigationItem.rightBarButtonItems = [cvdTopbar.rightBarItem!, cvdTopbar.rightTextBarItem!]
-			}
 			if nil != cvdTopbar.leftBarItem {
 				self.navigationItem.leftBarButtonItem = cvdTopbar.leftBarItem
+			}
+			if nil != cvdTopbar.rightTextBarItem {
+				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightTextBarItem!)
+			}
+			if nil != cvdTopbar.rightListBarItem {
+				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightListBarItem!)
+			}
+			if nil != cvdTopbar.rightMenuBarItem {
+				self.navigationItem.rightBarButtonItems?.append(cvdTopbar.rightMenuBarItem!)
 			}
 			
 			// BottomBar
 			let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
-			                                    #selector(self.bottomRightButtonAction1(_:)),
-			                                    #selector(self.bottomLeftButtonAction(_:)),
-			                                    #selector(self.bottomLeftButtonAction1(_:)), nil]
+			                                    #selector(self.bottomRightButtonAction1(_:))]
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
@@ -220,33 +227,19 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 	}
 	
 	
-	func rightButtonAction(_ sender: UIBarButtonItem) {
-	}
-	
-	
-	func leftButtonAction(_ sender: UIBarButtonItem) {
-	}
-	
-	
-	func bottomRightButtonAction(_ sender: UIBarButtonItem) {
-	}
-	
-	
-	func bottomRightButtonAction1(_ sender: UIBarButtonItem) {
-	}
-	
-	
-	func bottomLeftButtonAction(_ sender: UIBarButtonItem) {
-	}
-	
-	
-	func bottomLeftButtonAction1(_ sender: UIBarButtonItem) {
+	func leftButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
+	func rightTextButtonAction(_ sender: UIBarButtonItem) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		let controller = storyboard.instantiateViewController(withIdentifier: "StyleControllerID") as! StyleController
 		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 		self.present(controller, animated: false) { () }
 		styleController = controller
 	}
+	func rightListButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
+	func rightMenuButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
+	
+	func bottomRightButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
+	func bottomRightButtonAction1(_ sender: UIBarButtonItem) { /* tooverride */}
 	
 	
 	func hideKeyboard() {
