@@ -35,13 +35,6 @@ class SettingsController: BaseTableController {
 
 		self.navigationController?.setToolbarHidden(false, animated: false)
 		
-		let bottomSelectors: [Selector?] = [nil, nil, nil, #selector(self.bottomLeftButtonAction1(_:))]
-		
-		let dictInfo = ["leftBottom1": "Aa"]
-		let toolbar = CVDToolbar()
-		toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
-		self.toolbarItems = toolbar.barItems
-		
 	}
 	
 	
