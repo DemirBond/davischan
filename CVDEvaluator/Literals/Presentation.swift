@@ -124,23 +124,28 @@ struct Presentation {
 	static let shock = "#id:chkss | #title:Shock | #type:#disclosureControl"
 	
 	// Evaluation -> Symptoms -> Dyspnea: https://zpl.io/Z1jN2eH
+	static let pleaseSelectOneLabel = "#id:pleaseSelectOneLabel|    #title:Please select one|    #type:#label "
+	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Chronic HF with Known Etiology|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
+	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:New Onset/Suspected HF|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
+	
 	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient|    #type:#check|"
 	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room|    #type:#check"
 	
-	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated/Hospitalized|    #type:#disclosureControlExpandable"
-	
+	// Evaluation -> Symptoms -> Dyspnea -> Decompensated / Hospitalized
+	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureControlExpandable"
 	static let day1 = "#id:chkD1|    #title:Day 1|    #type:#check"
 	static let day2 = "#id:chkD2|    #title:Day 2|    #type:#check"
 	static let day3 = "#id:chkD3|    #title:Day 3|    #type:#check"
 	
-	static let pleaseSelectOneLabel = "#id:pleaseSelectOneLabel|    #title:Please select one|    #type:#label "
-	
-	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Chronic HF with Known Etiology|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
-	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:New Onset/Suspected HF|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
-	
+	// Evaluation -> Symptoms -> Dyspnea -> Dyspnea on Exertion https://zpl.io/xTF0A
 	static let dyspneaOnExertionNotAtRest = "#id:chkDOE|    #title:Dyspnea on Exertion|    #type:#disclosureControlExpandable"
+	static let strenousExertion = "#id:chkclass1|    #title:Strenous Exertion|    #type:#check"
+	static let moreThanDailyRoutine = "#id:chkclass2|    #title:More than Daily Routine|    #type:#check"
+	static let dailyRoutineMinimalActivities = "#id:chkclass3|    #title:Daily Routine / Minimal Activities |  #type:#check"
+	
 	static let dyspneaAtRestOrphopnea = "#id:chkdysp|    #title:Dyspnea at Rest|    #type:#check"
 	static let weightGain = "#id:chkWeight|    #title:Weight Gain|    #type:#check"
+	
 	static let hfDiagnosisDurationPerWeek = "#id:txtdur|    #title:HF Diagnosis Duration/Week| #type:#integerRight|   #min:0|  #max:999|  #placeholder: "
 	
 	static let previousHFHospitalization = "#id:chkfoutput|    #title:Previous HF Hospitalization|    #type:#check"
@@ -148,12 +153,6 @@ struct Presentation {
 	static let lvef = "#id:txtCHF | #title:LVEF | #type:#integerRight|   #min:10|  #max:80|  #placeholder: "
 	
 	static let nyhaClass = "#id:nyhaClass|#title:Heart Failure Stage |#type:#disclosureSimple"
-	
-	// Evaluation -> Symptoms -> Dyspnea -> Dyspnea on Exertion https://zpl.io/xTF0A
-	
-	static let strenousExertion = "#id:chkclass1|    #title:Strenous Exertion|    #type:#check"
-	static let moreThanDailyRoutine = "#id:chkclass2|    #title:More than Daily Routine|    #type:#check"
-	static let dailyRoutineMinimalActivities = "#id:chkclass3|    #title:Daily Routine/Minimal Activities |  #type:#check"
 	
 	// Evaluation -> Symptoms -> Dyspnea -> NYHA Class https://zpl.io/Z1p4tKO
 	static let atHighRiskOfHF = "#id:chkA|    #title:At High Risk for HF, but without Structural Heart Disease or Symptoms of HF NYHA/CCVS Class 0|    #type:#check"
@@ -188,13 +187,11 @@ struct Presentation {
 	static let blntrop2 = "#id:chktrop2 | #title:Troponin X ≥ 3 Above Normal | #type:#check"
 	static let blntrop3 = "#id:chktrop3 | #title:Troponin X 1-3 Above Normal | #type:#check"
 	
-	
 	//	Evaluation -> Symptoms -> Chest Pain -> Typical Angina  https://zpl.io/ZwjYrj
 	static let escalatingInFrequency = "#id:chkescTA| #title:Escalating in Frequency, Duration or Severity | #type:#check"
 	
 	//	Evaluation -> Symptoms -> Chest Pain -> Probale Angina https://zpl.io/ZwjYrj
 	static let probableEscalatingInFrequency = "#id:chkescTA| #title:Escalating in Frequency, Duration or Severity | #type:#check"
-	
 	
 	//	Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New https://zpl.io/25x7ix
 	static let sideSemithorax = "#id:chkpleur | #title:Side/Hemithorax | #type:#disclosureControl"
@@ -209,6 +206,7 @@ struct Presentation {
 	static let blnCPSoreness = "#id: chkCPSoreness|    #title: Soreness|    #type:#check"
 	static let blnTearing = "#id: chktearing|    #title: Heaviness|    #type:#check"
 	
+	// Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New -> Aggravated By
 	static let aggravatedByLabel = "#id: aggravatedByLabel|    #title: Aggravated By|    #type:#label"
 	static let blnCPLying = "#id: chkCPLying|    #title: Lying|    #type:#check"
 	static let blnCPBreathing = "#id: chkCPBreathing|    #title: Breathing|    #type:#check"
@@ -216,6 +214,7 @@ struct Presentation {
 	static let blnCPExertion = "#id: chkCPExertion|    #title: Exertion|    #type:#check"
 	static let blnCPPalpation = "#id: chkCPPalpation|    #title: Palpation|    #type:#check"
 	
+	// Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New -> Relieved By
 	static let relievedByLabel = "#id: relievedByLabel|    #title: Relieved By|    #type:#label"
 	static let blnCPNTG = "#id: chkCPNTG|    #title: NTG|    #type:#check"
 	static let blnCPRest = "#id: chkCPRest|    #title: Rest|    #type:#check"
@@ -223,11 +222,13 @@ struct Presentation {
 	static let blnCPlyingside = "#id: chkCPlyingside|    #title: Lying On-Side|    #type:#check"
 	static let blnCPAnalgesics = "#id: chkCPAnalgesics|    #title: Analgesics|    #type:#check"
 	
+	// Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New -> Radiation
 	static let radiationLabel = "#id: radiationLabel|    #title: Radiation|    #type:#label"
 	static let blnCPJaw = "#id: chkCPJaw|    #title: Jaw|    #type:#check"
 	static let blnCPBack = "#id: chkCPBack|    #title: Back|    #type:#check"
 	static let blnCPArm = "#id: chkCPArm|    #title: Arm|    #type:#check"
 	
+	// Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New -> Associated With
 	static let associatedWithLabel = "#id: associatedWithLabel|    #title: Associated With|    #type:#label"
 	static let blnCPDyspnea = "#id: chkCPDyspnea|    #title: Dyspnea|    #type:#check"
 	static let blnCPNausea = "#id: chkCPNausea|    #title: Nausea|    #type:#check"
@@ -235,7 +236,7 @@ struct Presentation {
 	static let blnCPFaint = "#id: chkCPFaint|    #title: Faintness|    #type:#check"
 	static let blnCPPalpitations = "id: chkCPPalpitations | #title: Palpitations| #type: #check"
 	
-	// Evaluation -> Symptoms -> Lasting
+	// Evaluation -> Symptoms -> Chest Pain -> Undetermined CP, New -> Lasting
 	static let lastingLabel = "#id: lastingLabel|    #title: Lasting|    #type:#label"
 	static let blnCPseconds = "#id: chkCPseconds|    #title: Seconds|    #type:#check"
 	static let blnCPminutes = "#id: chkCPminutes|    #title: Minutes|    #type:#check"
@@ -271,17 +272,14 @@ struct Presentation {
 	static let prolongedFatigue = "#id:chkSynfatigue | #title:Prolonged Fatigue | #type:#check"
 	static let traumaticInjury = "#id:chkTraumaticInj | #title:Traumatic Injury | #type:#check"
 	
-	
-	// Physical Exam -> Edema
+	// Evaluation -> Symptoms -> Edema
 	static let pittingEdema = "#id:chkpitting | #title:Pitting  | #type:#check"
 	static let nonpittingEdema = "#id:chknonpitting | #title:Nonpitting  | #type:#check"
 	static let localizedEdema = "#id:chklocaledema | #title:Localize  | #type:#check"
 	static let diffuseEdema = "#id:chkdiffusedema | #title:Diffuse  | #type:#check"
 	
-	
 	//	Evaluation -> Symptoms -> Weakness
 	static let malaiseFatigue = "#id:malaiseFatigue | #title:Malaise/Fatigue | #type:#check"
-	
 	
 	// Evaluation -> Symptoms  -> Palpitations ->Frequency
 	static let frequencyPalpitationsLabel = "#id: frequencyLabel| #title:Frequency | #type:#label"
@@ -315,13 +313,11 @@ struct Presentation {
 	static let polyuriaSyncopePalpitations = "#id:chkpalpolyuria | #title:Polyuria| #type:#check"
 	static let pulsationsSyncopePalpitations = "#id:chkpalneck | #title:Pulsations in neck | #type:#check"
 	
-	
 	// Evaluation -> Symptoms -> Palpitations -> Ekg
 	static let ekgPalpitationsLabel = "#id: ekgPalpitations | #title:EKG During Symptoms | #type:#label"
 	static let nsrEkgPalpitations = "#id:chkpalNSR | #title:NSR | #type:#check"
 	static let regularEkgPalpitations = "#id:chkpalregRR | #title:Other rhtym,regular RR | #type:#check"
 	static let irregularEkgPalpitations = "#id:chkpalirregRR | #title:Other rhtym,irregular RR | #type:#check"
-	
 	
 	// Evaluation -> Symptoms -> Palpitations -> Onset, trigger
 	static let onsetPalpitationsLabel = "#id: onsetPalpitations | #title:Onset, Trigger | #type:#label"
@@ -330,28 +326,63 @@ struct Presentation {
 	static let exertionOnsetPalpitations = "#id:chkpalexertion | #title:Exertional | #type:#check"
 	static let postexertionOnsetPalpitations = "#id:chkpalpostexertion | #title:Post exertion| #type:#check"
 	
-	
-	
-	
-	//	Evaluation -> Symptoms -> Abdominal Pain
-	
-	// Physical Exam -> Symptoms ->Abdominal Pain -> Quality
+	// Evaluation -> Symptoms ->Abdominal Pain -> Quality
 	static let qualityAbdominalPainLabel = "#type:#label | #title: Quality | #id: qualityAbdominalPain"
 	static let sharpQualityAbdominalPain = "#id:chkAbsharp | #title:Sharp | #type:#check"
 	static let colickyQualityAbdominalPain = "#id:chkAbcolic | #title:Colicky | #type:#check"
 	static let achingQualityAbdominalPain = "#id:chkAbaching | #title:Aching or spasm | #type:#check"
-	// Physical Exam -> Symptoms ->Abdominal Pain -> Location
+	
+	// Evaluation -> Symptoms ->Abdominal Pain -> Location
 	static let locationAbdominalPainLabel = "#type:#label | #title: Location | #id: locationAbdominalPain"
 	static let theperiumbilicalLocationAbdominalPain = "#id:chkperiumbilical | #title:Periumbilical | #type:#check"
 	static let epigastricLocationAbdominalPain = "#id:chkepigastric | #title:Epigastric | #type:#check"
 	static let suprapubicLocationAbdominalPain = "#id:chksuprapubic | #title:Suprapubic | #type:#check"
 	static let refferedAbdominalPain = "#id:chkAbspasm | #title:Referred shoulder pain | #type:#check"
-	// Physical Exam -> Symptoms ->Abdominal Pain -> Associated Findings
+	
+	// Evaluation -> Symptoms ->Abdominal Pain -> Associated Findings
 	static let associatedFindingsAbdominalPainLabel = "#type:#label | #title: Associated Findings | #id: associatedFindingsAbdominalPainL"
+	static let abdominalFindings = "#id:chkdistention | #title:Abdominal distention | #type:#check"
+	static let reboundFindings = "#id:chkrebound | #title:Rebound tenderness | #type:#check"
+	static let pulsatileFindings = "#id:chkpulsatile | #title:Pulsatile mass | #type:#check"
+	static let bowelFindings = "#id:chkbowelsounds | #title:Abnormal bowel sounds | #type:#check"
+	static let psoasFindings = "#id:chkpsaos | #title:Psoas sign | #type:#check"
+	static let mcburneyFindings = "#id:chkMcburney | #title:McBurney | #type:#check"
+	static let rovsingsignFindings = "#id:chkRovsing | #title:Rovsing sign | #type:#check"
+	static let murphysignFindings = "#id:chkMurphy | #title:Murphy sign | #type:#check"
+	static let obturatorFindings = "#id:chkobturator | #title:Obturator sign  | #type:#check"
+	static let carnettsignFindings = "#id:chkcarnett | #title:Carnett sign | #type:#check"
+	static let costovertebralFindings = "#id:chkcostovertebral | #title:Costovertebral tenderness | #type:#check"
+	static let skinfindingsFindings = "#id:chkskin | #title:Skin findings | #type:#disclosureControl"
 	
-	// Physical Exam -> Symptoms ->Abdominal Pain -> Associated Symptoms
+	// Evaluation -> Symptoms ->Abdominal Pain -> Associated Findings -> Skin findings
+	static let wallSkinFindings = "#id:chkechymosis | #title:Abdominal wall echymosis | #type:#check"
+	static let herpesSkinFindings = "#id:chkherpes | #title:Herpes | #type:#check"
+	static let rashSkinFindings = "#id:chkhenoch | #title:Rash | #type:#check"
+	static let celulitisSkinFindings = "#id:chkcelulitis | #title:Celulitis | #type:#check"
+	static let jaundiceSkinFindings = "#id:chkicterus | #title:Jaundice | #type:#check"
+	static let caoutmedusaSkinFindings = "#id:chkcaput | #title:Caput medusa | #type:#check"
+	
+	// Evaluation -> Symptoms ->Abdominal Pain -> Associated Symptoms
 	static let associatedSymptomsAbdominalPainLabel = "#type:#label | #title: Associated Findings | #id: associatedSymptomsAbdominalPain"
+	static let vomitingSymptoms = "#id:chkvomiting | #title:Vomiting | #type:#disclosureControlExpandable"
+	static let anorexiaSymptoms = "#id:chkanorexia | #title:Anorexia | #type:#check"
+	static let bowelHabitSymptoms = "#id:chkbowel | #title:Change in bowel habit | #type:#check"
+	static let operativeSymptoms = "#id:chkpostoperative | #title:Post operative | #type:#check"
+	static let familyhistorySymptoms = "#id:chkfamilyhistoryAA | #title:Family history of AAA | #type:#check"
+	static let hematuriaSymptoms = "#id:chkhematuria | #title:Hematuria | #type:#check"
+	static let urinarySymptoms = "#id:chkurinary | #title:Change in urinary habit | #type:#check"
+	static let obgynSymptoms = "#id:chkobgyn | #title:Ob&gyn history | #type:#check"
 	
+	// Evaluation -> Symptoms ->Abdominal Pain -> Associated Symptoms -> Vomit
+	static let vomitingVomitSymptoms = "#id:chkvomitfirst | #title:Vomiting precedes abdominal pain | #type:#check"
+	static let abdominalVomitSymptoms = "#id:chkpainfirst | #title:Abdominal pain precedes vomiting | #type:#check"
+	
+	// Evaluation -> Section Shock
+	static let hypovolemiaSectionShock = "#id:chkhypovolemia | #title:Hypovolemia | #type:#check"
+	static let infectiousSectionShock = "#id:chkinfectious | #title:Infectious | #type:#check"
+	static let spinalcordSectionShock = "#id:chkspinalcord | #title:Spinal cord | #type:#check"
+	static let allergenSectionShock = "#id:chkallergen | #title:Allergen exposure | #type:#check"
+	static let pharmacologicSectionShock = "#id:chkpharmacologic | #title:Pharmacological | #type:#check"
 	
 	
 	// Review of System
@@ -487,48 +518,6 @@ struct Presentation {
 	static let shoulderAbdominalPain = "#id:chkAbspasm | #title:Referred shoulder pain | #type:#check"
 	
 	
-	// Physical Exam -> Associated findings
-	static let abdominalFindings = "#id:chkdistention | #title:Abdominal distention | #type:#check"
-	static let reboundFindings = "#id:chkrebound | #title:Rebound tenderness | #type:#check"
-	static let pulsatileFindings = "#id:chkpulsatile | #title:Pulsatile mass | #type:#check"
-	static let bowelFindings = "#id:chkbowelsounds | #title:Abnormal bowel sounds | #type:#check"
-	static let psoasFindings = "#id:chkpsaos | #title:Psoas sign | #type:#check"
-	static let mcburneyFindings = "#id:chkMcburney | #title:McBurney | #type:#check"
-	static let rovsingsignFindings = "#id:chkRovsing | #title:Rovsing sign | #type:#check"
-	static let murphysignFindings = "#id:chkMurphy | #title:Murphy sign | #type:#check"
-	static let obturatorFindings = "#id:chkobturator | #title:Obturator sign  | #type:#check"
-	static let carnettsignFindings = "#id:chkcarnett | #title:Carnett sign | #type:#check"
-	static let costovertebralFindings = "#id:chkcostovertebral | #title:Costovertebral tenderness | #type:#check"
-	static let skinfindingsFindings = "#id:chkskin | #title:Skin findings | #type:#disclosureControl"
-	
- 
-	// Physical Exam -> Associated symptons
-	static let vomitingSymptoms = "#id:chkvomiting | #title:Vomiting | #type:#disclosureControlExpandable"
-	static let anorexiaSymptoms = "#id:chkanorexia | #title:Anorexia | #type:#check"
-	static let bowelHabitSymptoms = "#id:chkbowel | #title:Change in bowel habit | #type:#check"
-	static let operativeSymptoms = "#id:chkpostoperative | #title:Post operative | #type:#check"
-	static let familyhistorySymptoms = "#id:chkfamilyhistoryAA | #title:Family history of AAA | #type:#check"
-	static let hematuriaSymptoms = "#id:chkhematuria | #title:Hematuria | #type:#check"
-	static let urinarySymptoms = "#id:chkurinary | #title:Change in urinary habit | #type:#check"
-	static let obgynSymptoms = "#id:chkobgyn | #title:Ob&gyn history | #type:#check"
-
-	
-	
-	// Physical Exam ->Associated findings -> Skin findings
-	
-	static let wallSkinFindings = "#id:chkechymosis | #title:Abdominal wall echymosis | #type:#check"
-	static let herpesSkinFindings = "#id:chkherpes | #title:Herpes | #type:#check"
-	static let rashSkinFindings = "#id:chkhenoch | #title:Rash | #type:#check"
-	static let celulitisSkinFindings = "#id:chkcelulitis | #title:Celulitis | #type:#check"
-	static let jaundiceSkinFindings = "#id:chkicterus | #title:Jaundice | #type:#check"
-	static let caoutmedusaSkinFindings = "#id:chkcaput | #title:Caput medusa | #type:#check"
-	
-	
-	
-	// Physical Exam -> Associated symptons -> Vomit
-	
-	static let vomitingVomitSymptoms = "#id:chkvomitfirst | #title:Vomiting precedes abdominal pain | #type:#check"
-	static let abdominalVomitSymptoms = "#id:chkpainfirst | #title:Abdominal pain precedes vomiting | #type:#check"
 	
 	
 	// Physical Exam -> Section Palpitations
@@ -540,14 +529,6 @@ struct Presentation {
 	static let ekgPalpitations = "#id:chkEKGPalpPlaceholder | #title:EKG findings during palpitations | #type:#disclosureControl"
 	static let onsetPalpitations = "#id:chkOnset | #title:Onset, trigger | #type:#disclosureControl"
 	
-	
-	// Physical Exam -> Section Shock
-	
-	static let hypovolemiaSectionShock = "#id:chkhypovolemia | #title:Hypovolemia | #type:#check"
-	static let infectiousSectionShock = "#id:chkinfectious | #title:Infectious | #type:#check"
-	static let spinalcordSectionShock = "#id:chkspinalcord | #title:Spinal cord | #type:#check"
-	static let allergenSectionShock = "#id:chkallergen | #title:Allergen exposure | #type:#check"
-	static let pharmacologicSectionShock = "#id:chkpharmacologic | #title:Pharmacological | #type:#check"
 	
 	// Physical Exam -> Sectioncyanosis
 	
