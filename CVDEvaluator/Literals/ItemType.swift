@@ -82,7 +82,7 @@ enum ItemType: String {
 			return 50.0
 			
 		case .disclosureVieved, .disclosureControl, .disclosureRadio, .disclosureSimple, .disclosureSimpleExpandable,.disclosureWeather:
-			return 50.0
+			return 55.0
 			
 		case .textLeft, .integerLeft, .decimalLeft, .mail, .password:
 			return 60.0

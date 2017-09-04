@@ -470,7 +470,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				return 150
 			}
 			else {
-				return 50
+				return 55
 			}
 		}
 		
@@ -487,7 +487,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				}
 			}
 			else {
-				return 50
+				return 55
 			}
 			
 		}
@@ -497,7 +497,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 					return 230
 				}
 				else {
-					return 60
+					return 55
 				}
 			
 		}
