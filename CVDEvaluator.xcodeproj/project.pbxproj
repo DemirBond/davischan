@@ -74,7 +74,6 @@
 		BA49CCEB1F33A35E0040060A /* ReviewOfSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC41F33A35E0040060A /* ReviewOfSystem.swift */; };
 		BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC51F33A35E0040060A /* SurgicalRisk.swift */; };
 		BA49CCED1F33A35E0040060A /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC61F33A35E0040060A /* Symptoms.swift */; };
-		BA49CCEE1F33A35E0040060A /* Syncope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC81F33A35E0040060A /* Syncope.swift */; };
 		BA49CCEF1F33A35E0040060A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCA1F33A35E0040060A /* Profile.swift */; };
 		BA49CCF11F33A35E0040060A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCC1F33A35E0040060A /* Settings.swift */; };
 		BA49CCF21F33A35E0040060A /* ObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCD1F33A35E0040060A /* ObjectLoader.swift */; };
@@ -227,7 +226,6 @@
 		BA49CCC41F33A35E0040060A /* ReviewOfSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewOfSystem.swift; sourceTree = "<group>"; };
 		BA49CCC51F33A35E0040060A /* SurgicalRisk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgicalRisk.swift; sourceTree = "<group>"; };
 		BA49CCC61F33A35E0040060A /* Symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
-		BA49CCC81F33A35E0040060A /* Syncope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syncope.swift; sourceTree = "<group>"; };
 		BA49CCCA1F33A35E0040060A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		BA49CCCC1F33A35E0040060A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		BA49CCCD1F33A35E0040060A /* ObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectLoader.swift; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 		BA49CCAD1F33A35E0040060A /* EvaluationSections */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CCC71F33A35E0040060A /* SymptomsSection */,
 				BA49CCB01F33A35E0040060A /* CVProfileSection */,
 				BA49CCBC1F33A35E0040060A /* HSR */,
 				BA49CCAE1F33A35E0040060A /* BioPersonal.swift */,
@@ -517,14 +514,6 @@
 				BA49CCBE1F33A35E0040060A /* POMeds.swift */,
 			);
 			path = HSR;
-			sourceTree = "<group>";
-		};
-		BA49CCC71F33A35E0040060A /* SymptomsSection */ = {
-			isa = PBXGroup;
-			children = (
-				BA49CCC81F33A35E0040060A /* Syncope.swift */,
-			);
-			path = SymptomsSection;
 			sourceTree = "<group>";
 		};
 		BA49CCC91F33A35E0040060A /* General */ = {
@@ -860,7 +849,6 @@
 				BA49CC7A1F339FDD0040060A /* ResetAccountController.swift in Sources */,
 				BA49CCDF1F33A35E0040060A /* ValvularHeartDisease.swift in Sources */,
 				BA49CCD51F33A35E0040060A /* Evaluation.swift in Sources */,
-				BA49CCEE1F33A35E0040060A /* Syncope.swift in Sources */,
 				BA49CCE01F33A35E0040060A /* VascularDisease.swift in Sources */,
 				BA49CD321F33A6FE0040060A /* RegisterResponse.swift in Sources */,
 				BA49CD231F33A6B00040060A /* ControllerStyle.swift in Sources */,

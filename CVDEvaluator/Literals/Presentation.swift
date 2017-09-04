@@ -755,10 +755,8 @@ struct Presentation {
 	static let blnhormone = "#id:chkhormone | #title:Ongoing Hormonal Treatment | #type:#check"
 	static let blninfection = "#id:chkinfection | #title:Acute Infection and/or Rheumatologic Disorder | #type:#check"
 	
-	
-	
 	// CurrentPast CV Profile -> Thromboembolic/VKA -> Thromboembolic Prevention -> Acute CVA https://zpl.io/2nDyiB (Android)
-	static let nihss = "#id:nihss | #title:txtNIHSS | #type:#integerRight | #min:0 | #max:42 | #placeholder: "
+	static let nihss = "#id:nihss | #title:NIHSS | #type:#integerRight | #min:0 | #max:42 | #placeholder: "
 	static let unilateralWeakness = "#id:chkunilateral_Weakness | #title:Unilateral Weakness | #type:#check"
 	static let speechDisturbance = "#id:chkspeech_disturbance | #title:Speech Disturbance | #type:#check"
 	static let durationOfSymptoms = "#id:ssdur | #title:Duration of Symptoms | #type:#integerRight | #min:0 | #max:24 | #placeholder: "
