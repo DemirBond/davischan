@@ -42,7 +42,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			                                                        style: .plain, target: self, action: #selector(self.leftButtonAction(_:)))
 		}
 		
-		self.title = pageForm.title
+//		self.title = pageForm.title
 		
 		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.00, 0)
 		
