@@ -13,6 +13,9 @@ class ReviewOfSystem: EvaluationItem {
 	let thyrotoxicosisInROS = EvaluationItem(literal: Presentation.thyrotoxicosisInROS)
 	let palpitationsInROS = EvaluationItem(literal: Presentation.palpitationsInROS)
 	let osaSymptomsInROS = EvaluationItem(literal: Presentation.osaSymptomsInROS)
+	let sinusSymptomsInROS = EvaluationItem(literal: Presentation.sinusSymptomsInROS)
+	let coughSymptomsInROS = EvaluationItem(literal: Presentation.coughSymptomsInROS)
+	let sputumSymptomsInROS = EvaluationItem(literal: Presentation.sputumSymptomsInROS)
 	let previousDVTPEInROS = EvaluationItem(literal: Presentation.previousDVTPEInROS)
 	let activePepticUlcerDiseaseInROS = EvaluationItem(literal: Presentation.activePepticUlcerDiseaseInROS)
 	let liverDiseaseInROS = EvaluationItem(literal: Presentation.liverDiseaseInROS)
@@ -34,6 +37,9 @@ class ReviewOfSystem: EvaluationItem {
 			thyrotoxicosisInROS,
 			hypothyroidismInROS,
 			osaSymptomsInROS,
+			sinusSymptomsInROS,
+			coughSymptomsInROS,
+			sputumSymptomsInROS,
 			blnhemoptysis,
 			previousDVTPEInROS,
 			pnd,
@@ -44,8 +50,8 @@ class ReviewOfSystem: EvaluationItem {
 			bleedInThePast3MonthsInROS,
 			tiaInROS,
 			claudicationInROS,
-			blnunilateral,
 			ulcerInROS,
+			blnunilateral,
 			previousDVT,
 			rheumInROS
 		]
