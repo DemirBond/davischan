@@ -388,20 +388,22 @@ struct Presentation {
 	// Review of System
 	static let weightChangeInROS = "#id:chkweightchange | #title:Weight Gain | #type:#check"
 	static let thyrotoxicosisInROS = "#id:chkThyro | #title:Thyrotoxicosis | #type:#check"
-	static let palpitationsInROS = "#id:chkpalpitations | #title:Palpitations | #type:#check"
-	static let osaSymptomsInROS = "#id:chkOSA | #title:OSA Symptoms | #type:#check"
-	static let previousDVTPEInROS = "#id:chkPVTE | #title:Previous pulmonary embolism | #type:#check"
-	static let activePepticUlcerDiseaseInROS = "#id:chkPUD | #title:Active Peptic Ulcer Disease | #type:#check"
-	static let liverDiseaseInROS = "#id:chkliver | #title:Liver Disease | #type:#check"
-	static let tiaInROS = "#id:chkTIA| #title:TIA | #type:#check"
-	static let bleedInThePast3MonthsInROS = "#id:chkbleed | #title:Bleed in the Past 3 Months | #type:#check"
 	static let hypothyroidismInROS = "#id:chkHypoThyro | #title:Hypothyroidism | #type:#check"
-	static let claudicationInROS = "#id:chkclaudication| #title:Claudication | #type:#check"
-	static let ulcerInROS = "#id:chkulcer | #title:Lower Extremity Ulceration | #type:#check"
-	static let rheumInROS = "#id:chkrheum | #title:Rheumatic Disease | #type:#check"
+	static let osaSymptomsInROS = "#id:chkOSA | #title:OSA Symptoms | #type:#check"
+	static let blnhemoptysis = "#id:chkhemoptysis | #title:Hemoptysis | #type:#check"
+	static let previousDVTPEInROS = "#id:chkPVTE | #title:Previous pulmonary embolism | #type:#check"
 	static let pndInROS = "id:chkPND| #title: Paroxysmal nocturnal dyspnea| #type:#check"
 	static let orthopneaInROS = "id:chkorthopnea| #title: Orthopnea| #type:#check"
+	static let palpitationsInROS = "#id:chkpalpitations | #title:Palpitations | #type:#check"
+	static let activePepticUlcerDiseaseInROS = "#id:chkPUD | #title:Active Peptic Ulcer Disease | #type:#check"
+	static let liverDiseaseInROS = "#id:chkliver | #title:Liver Disease | #type:#check"
+	static let bleedInThePast3MonthsInROS = "#id:chkbleed | #title:Bleed in the Past 3 Months | #type:#check"
+	static let tiaInROS = "#id:chkTIA| #title:TIA | #type:#check"
+	static let claudicationInROS = "#id:chkclaudication| #title:Claudication | #type:#check"
+	static let blnunilateral = "#id:chkunilateral | #title:Unilateral Lower Limb Pain | #type:#check"
+	static let ulcerInROS = "#id:chkulcer | #title:Lower Extremity Ulceration | #type:#check"
 	static let previousDVTEInROS = "id:chkDVTE| #title: Previous DVT| #type:#check"
+	static let rheumInROS = "#id:chkrheum | #title:Rheumatic Disease | #type:#check"
 	
 	
 	// Physical Exam https://zpl.io/29sOGH
@@ -743,8 +745,6 @@ struct Presentation {
 	static let blnacute = "#id:chkacute | #title:Medical Illness | #type:#disclosureControl"
 	
 	// CurrentPast CV Profile -> Thromboembolic/VKA -> Thromboembolic Prevention -> DVT/PE Diagnosis/Prevention -> Medical Illness
-	static let blnhemoptysis = "#id:chkhemoptysis | #title:Hemoptysis | #type:#check"
-	static let blnunilateral = "#id:chkunilateral | #title:Unilateral Lower Limb Pain | #type:#check"
 	static let blnswelling = "#id:chkswelling | #title:Painful Deep Venous Palpation and Edema | #type:#check"
 	static let blnactivecancer = "#id:chkactivecancer | #title:Active Cancer | #type:#check"
 	static let blnPVTE = "#id:chkPVTE | #title:Previous VTE | #type:#check"
