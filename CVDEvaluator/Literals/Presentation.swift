@@ -89,14 +89,14 @@ struct Presentation {
 	
 	
 	// Evaluation -> Bio: https://zpl.io/27Yx0I
-	static let name = 		"#id:name|      #title:Name|      #type:#textLeft |  #placeholder:  | #maxLength: 50 | #mandatory: 1"
-	static let age = 			"#id:age |      #title:Age|       #type:#integerLeft|   #min:20|  #max:100| #placeholder:  | #mandatory: 1"
+	static let name = 		"#id:name|      #title:Name|      #type:#textLeft |  #placeholder: Patient Name  | #maxLength: 50 | #mandatory: 1"
+	static let age = 			"#id:age |      #title:Age|       #type:#integerLeft|   #min:20|  #max:100| #placeholder: Patient Age | #mandatory: 1"
 	//static let gender = 		"#id:gender|    #title:Gender*|    #type:#disclosureSimple | #height: 60"
 	static let gender = 		"#id:gender|    #title:Gender*|    #type:#disclosureSimpleExpandable | #height: 60"
 	
 	static let height = 		"#id:txtheight|    #title:Height|    #type:#integerLeft|   #min:100|  #max:220| #placeholder: "
 	static let weight = 		"#id:weight|    #title:Weight|    #type:#integerLeft|   #min:40|  #max:400| #placeholder: Weight/Kg"
-	static let heartRate = 	"#id:HR| #title:Heart Rate| #type:#integerLeft| #min:30|  #max:300| #placeholder: "
+	static let heartRate = 	"#id:HR| #title:Heart Rate| #type:#integerLeft| #min:30|  #max:300| #placeholder: Heart Rate"
 	static let bioSBP = 		"#id:sbp|       #title:SBP|  #type:#decimalLeft| #min:60|  #max:300| #placeholder: SBP mmHg | #mandatory: 1"
 	static let bioDBP = 		"#id:dbp|       #title:DBP|  #type:#decimalLeft| #min:30|  #max:160| #placeholder: DBP mmHg | #mandatory: 1"
 	static let bioOrthostaticSBP = 		"#id:orthostaticSBP|       #title:Orthostatic SBP|  #type:#decimalLeft| #min:0|  #max:240| #placeholder: DBP mmHg"
@@ -104,7 +104,7 @@ struct Presentation {
 	static let bioWaistCirc = "#id:txtwaist | #title:Waist Circ. |  #type:#decimalLeft| #min:20|  #max:60| #placeholder: DBP mmHg "
 	static let bioAA = "#id:chkAAsianCode  |  #title:AA |    #type:#check"
 	static let bioPregnancy = "#id:chkpreg |    #title:Pregnancy |    #type:#check"
-	static let bioO2sat = "#id:txtO2sat | #title:O2sat% |  #type:#decimalLeft| #min:50|  #max:100| #placeholder:  "
+	static let bioO2sat = "#id:txtO2sat | #title:O2sat% |  #type:#decimalLeft| #min:50|  #max:100| #placeholder: O2sat% "
 	
 	
 	

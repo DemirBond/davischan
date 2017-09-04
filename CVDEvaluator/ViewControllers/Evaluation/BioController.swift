@@ -355,6 +355,7 @@ extension BioController {
 		
 		if cellType ==  .textLeft || cellType ==  .integerLeft || cellType ==  .decimalLeft  {
 			cell.textField?.textColor = CVDStyle.style.purpleColor
+			cell.textField?.borderStyle = UITextBorderStyle.none
 		}
 		
 		if cellType ==  .disclosureSimple{
@@ -474,7 +475,7 @@ extension BioController {
 				return 150
 			}
 			else {
-				return 50
+				return 60
 			}
 		}
 		

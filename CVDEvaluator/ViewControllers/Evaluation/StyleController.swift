@@ -47,7 +47,7 @@ class StyleController: UIViewController {
 	
 	private func showMessage() {
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-			self.backView.alpha = 0.55 
+			self.backView.alpha = 0.55
 		}, completion: { (animated) in
 			UIView.animate(withDuration: self.duration/2.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
 				self.backView.alpha = 0.48

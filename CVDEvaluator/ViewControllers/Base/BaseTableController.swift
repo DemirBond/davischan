@@ -42,6 +42,9 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 		
 		whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 		whiteView?.backgroundColor = UIColor.white
+		
+		self.tableView.bounces = false
+		self.tableView.showsVerticalScrollIndicator = false
 	 	
 	}
 	
