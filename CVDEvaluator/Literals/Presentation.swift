@@ -76,6 +76,7 @@ struct Presentation {
 	static let physicalExam = "#id:currentPastCVProfile| #title:Physical Exam| #type:#disclosureVieved"
 	static let cvProfile = 	"#id:cvProfile| #title:Cardiovascular| #type:#disclosureVieved"
 	static let pulmonary = 	"#id:pulmonary| #title:Pulmonary| #type:#disclosureVieved"
+	static let renal = 	"#id:renal | #title:Renal | #type:#disclosureVieved"
 	static let riskFactors = 	"#id:riskFactors| #title:Major CV Risk Factors| #type:#disclosureVieved"
 	static let surgicalRisk = 	"#id:surgicalRisk| #title:Noncardiac Surgical Risk| #type:#disclosureVieved"
 	static let laboratories = "#id:laboratories| #title:Laboratories| #type:#disclosureVieved"
@@ -848,6 +849,18 @@ struct Presentation {
 	static let acute = "#id:chkexacerbation| #title:Acute Exacerbation | #type:#check"
 	static let copdex = "#id:chkCOPDex| #title:More than 1 COPD Exacerbation/year | #type:#check"
 	static let copdhos = "#id:chkCOPDhos| #title:One or more hospital admission/year | #type:#check"
+	
+	
+	//
+	// MARK: - Renal
+	//
+	static let acuteRF = "#id:acuteRF | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
+	static let chronicKD = "#id:chkchronicKD | #title: Chronic kidney disease | #type:#disclosureControl"
+
+	// Renal -> Acute Renal Failure / Worsening Renal Function
+	static let crinic = "#id:txtcrinc| #title:Increase in SCrx baseline | #type:#decimalRight | #min:1.0 | #max:10.0 | #placeholder: "
+	static let cr48h = "#id:txtcr48h| #title: Increase in SCr by mg/dl in 48hr | #type:#decimalRight | #min:0.1 | #max:112.0 | #placeholder: "
+	static let urinvolume = "#id:txturinvolume| #title:Urine Volume ml/kg/h | #type:#decimalRight | #min:0.0 | #max:200.0 | #placeholder: "
 	
 	
 	//

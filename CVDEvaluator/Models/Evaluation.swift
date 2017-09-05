@@ -75,6 +75,7 @@ class Evaluation: EvaluationItem {
 	let physicalExam = PhysicalExam(literal: Presentation.physicalExam)
 	let cvProfile = CVProfile(literal: Presentation.cvProfile)
 	let pulmonary = Pulmonary(literal: Presentation.pulmonary)
+	let renal = Renal(literal: Presentation.renal)
 	let riskFactors = MajorCVRisks(literal: Presentation.riskFactors)
 	let surgicalRisk = SurgicalRisk(literal: Presentation.surgicalRisk)
 	let laboratories = Laboratories(literal: Presentation.laboratories)
@@ -91,6 +92,7 @@ class Evaluation: EvaluationItem {
 			physicalExam,
 			cvProfile,
 			pulmonary,
+			renal,
 			riskFactors,
 			surgicalRisk,
 			laboratories,

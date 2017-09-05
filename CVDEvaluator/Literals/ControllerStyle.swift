@@ -172,8 +172,8 @@ class CVDStyle {
 	let murmurLink = CVDLink(screens:["s1Tricuspid"], link: "murmur")
 	
 	let pulmonaryRenalLink = CVDLink(screens: ["cvProfile"], link: "pulmonary")
-	
-	let riskFactorsLink = CVDLink(screens: ["pulmonary", "thromboembolicVKA", "ventricularTachyarrthymias", "bradyarrthymiaSyncope"], link: "riskFactors")
+	let renalLink = CVDLink(screens: ["pulmonary"], link: "renal")
+	let riskFactorsLink = CVDLink(screens: ["renal", "thromboembolicVKA", "ventricularTachyarrthymias", "bradyarrthymiaSyncope"], link: "riskFactors")
 	let heartFailureLink = CVDLink(screens: ["coronaryHeartDisease"], link: "heartFailure")
 	let atrialFibrillationLink = CVDLink(screens: ["heartFailure"], link: "atrialFibrillation")
 	let thromboembolicLink = CVDLink(screens: ["atrialFibrillation"], link: "thromboembolicVKA")
@@ -194,7 +194,7 @@ class CVDStyle {
 	
 	var links: [CVDLink] {
 		return [reviewOfSystemLink, physicalExamLink, cvProfileLink, s2AorticLink, p2PulmonicLink, s1TricuspidLink, murmurLink,
-		        pulmonaryRenalLink,
+		        pulmonaryRenalLink, renalLink,
 		        riskFactorsLink, heartFailureLink, atrialFibrillationLink, thromboembolicLink, pulmonaryLink, surgicalRiskLink,
 		        laboratoriesLink, diagnosticsLink, nsrLink, heartSpecialistLink,
 		        pahLink,

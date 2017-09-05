@@ -107,12 +107,12 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		let model = DataManager.manager.evaluation!
 		model.completeScreen()
 		
-		unlockItems(array: [model.symptoms, model.physicalExam, model.reviewOfSystem, model.cvProfile, model.riskFactors,
+		unlockItems(array: [model.symptoms, model.physicalExam, model.reviewOfSystem, model.cvProfile, model.pulmonary, model.renal, model.riskFactors,
 			model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 		
 		switch model.evaluationStatus {
 			case .initialized:
-				lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.riskFactors,
+				lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.pulmonary, model.renal, model.riskFactors,
 				                  model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
 			
 			case .bioViewed:
