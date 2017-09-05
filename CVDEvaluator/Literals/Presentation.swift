@@ -95,14 +95,13 @@ struct Presentation {
 	//static let gender = 		"#id:gender|    #title:Gender*|    #type:#disclosureSimple | #height: 60"
 	static let gender = 		"#id:gender|    #title:Gender*|    #type:#disclosureSimpleExpandable | #height: 60"
 	static let bmi = 		"#id:txtBMI|    #title:BMI|    #type:#integerLeft|   #min:10.0|  #max:50.0| #placeholder: BMI Value"
-	static let height = 		"#id:txtheight|    #title:Height|    #type:#integerLeft|   #min:100|  #max:220| #placeholder: Height/cm"
 	static let weight = 		"#id:weight|    #title:Weight|    #type:#integerLeft|   #min:40|  #max:400| #placeholder: Weight/kg"
 	static let heartRate = 	"#id:HR| #title:Heart Rate| #type:#integerLeft| #min:30|  #max:300| #placeholder: Heart Rate"
 	static let bioSBP = 		"#id:sbp|       #title:SBP|  #type:#decimalLeft| #min:60|  #max:300| #placeholder: SBP mmHg | #mandatory: 1"
 	static let bioDBP = 		"#id:dbp|       #title:DBP|  #type:#decimalLeft| #min:30|  #max:160| #placeholder: DBP mmHg | #mandatory: 1"
-	static let bioOrthostaticSBP = 		"#id:orthostaticSBP|       #title:Orthostatic SBP|  #type:#decimalLeft| #min:0|  #max:240| #placeholder: DBP mmHg"
+	static let bioOrthostaticSBP = 		"#id:OrthostaticSBP|       #title:Orthostatic SBP|  #type:#decimalLeft| #min:0|  #max:240| #placeholder: DBP mmHg"
 	static let bioOrthostaticSymptoms = "#id:chkSymptomatic|    #title:Orthostatic Symptoms | #type:#check"
-	static let bioWaistCirc = "#id:txtwaist | #title:Waist Circ. |  #type:#decimalLeft| #min:20|  #max:60| #placeholder: DBP mmHg "
+	static let bioWaistCirc = "#id:waist | #title:Waist Circ. |  #type:#decimalLeft| #min:20|  #max:60| #placeholder: DBP mmHg "
 	static let bioAA = "#id:chkAsianCode  |  #title:AA |    #type:#check"
 	static let bioPregnancy = "#id:chkpreg |    #title:Pregnancy |    #type:#check"
 	static let bioO2sat = "#id:txtO2sat | #title:O2sat% |  #type:#decimalLeft| #min:50|  #max:100| #placeholder: O2sat% "
@@ -129,8 +128,9 @@ struct Presentation {
 	
 	// Symptoms -> Dyspnea: https://zpl.io/Z1jN2eH
 	static let pleaseSelectOneLabel = "#id:pleaseSelectOneLabel|    #title:Please select one|    #type:#label "
-	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Chronic HF with Known Etiology|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
-	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:New Onset/Suspected HF|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF) | #selected: 1"
+	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Chronic HF with Known Etiology|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
+	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:New Onset/Suspected HF|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
+	static let chronicLungDisease = "#id:chklung|    #title:Chronic Lung Disease|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	
 	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient|    #type:#check|"
 	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room|    #type:#check"
@@ -150,12 +150,6 @@ struct Presentation {
 	static let dyspneaAtRestOrphopnea = "#id:chkdysp|    #title:Dyspnea at Rest|    #type:#check"
 	static let weightGain = "#id:chkWeight|    #title:Weight Gain|    #type:#check"
 	
-	static let hfDiagnosisDurationPerWeek = "#id:txtdur|    #title:HF Diagnosis Duration/Week| #type:#integerRight|   #min:0|  #max:999|  #placeholder: "
-	
-	static let previousHFHospitalization = "#id:chkfoutput|    #title:Previous HF Hospitalization|    #type:#check"
-	static let spicd = "#id:chkICD |    #title:S/P ICD|    #type:#check"
-	static let lvef = "#id:txtCHF | #title:LVEF | #type:#integerRight|   #min:10|  #max:80|  #placeholder: "
-	
 	// Symptoms -> Dyspnea -> NYHA Class https://zpl.io/Z1p4tKO
 	static let NYHACCSVClass1 = "#id:chkNYHA1 | #title:NYHA/CCSV Class1 | #type:#check"
 	static let NYHACCSVClass2 = "#id:chkNYHA2 | #title:NYHA/CCSV Class2 | #type:#check"
@@ -168,7 +162,6 @@ struct Presentation {
 	static let probablyAnginaNewInChestPain = "#id:chkPA | #title:Probable Angina | #type:#disclosureControlExpandable"
 	static let undeterminedCPNewInChestPain = "#id:chkNCP | #title:Undetermined Chest Pain | #type:#disclosureControl"
 	static let unableToExerciseInChestPain = "#id:chkunable | #title:Unable To Exercise | #type:#check"
-	static let lastingLabelInChestPaint = "#id: chkLastingLabel|    #title: Lasting|    #type:#disclosureControl"
 	
 	// Symptoms -> Chest Pain -> Emergency Room https://zpl.io/ZwjY5c
 	static let more2TypicalOrProbableAngina = "#id:chkangina | #title:≥ 2 Typical or Probable Angina | #type:#check"
@@ -242,7 +235,7 @@ struct Presentation {
 	static let suddenNoiseOrEmotion = "#id:chkSynOther | #title:Sudden noise or emotion | #type:#check"
 	static let neckMovementManipulation = "#id:chkSynneck | #title:Neck movement, Manipulation | #type:#check"
 	static let exertional = "#id:chkSynProSitting | #title:Exertional | #type:#check"
-	static let sporadic = "id:chkSynSporadic| #title: Sporadic| #type:#check"
+	static let sporadic = "id:chkSynsporadic| #title: Sporadic| #type:#check"
 	
 	static let prodromalSymptoms = "#id:prodromalSymptoms | #title:Prodromal Symptoms | #type:#label"
 	static let nausea = "#id:chkSynNausea | #title:Nausea | #type:#check"
@@ -263,7 +256,7 @@ struct Presentation {
 	static let paralysis = "#id:chkSynPara | #title:Paralysis | #type:#check"
 	static let chestPainInPostictalSymptoms = "#id:chkSynPosCP | #title:Chest Pain | #type:#check"
 	static let prolongedFatigue = "#id:chkSynfatigue | #title:Prolonged Fatigue | #type:#check"
-	static let traumaticInjury = "#id:chkTraumaticInj | #title:Traumatic Injury | #type:#check"
+	static let traumaticInjury = "#id:chkSyntrauma | #title:Traumatic Injury | #type:#check"
 	
 	// Symptoms -> Edema
 	static let pittingEdema = "#id:chkpitting | #title:Pitting  | #type:#check"
@@ -303,13 +296,13 @@ struct Presentation {
 	
 	// Symptoms -> Palpitations -> Duration
 	static let durationPalpitationsLabel = "#id: durationPalpitations | #title:Symptom Duration | #type:#label"
-	static let secondsDurationPalpitations = "#id:txtpalseconds | #title:Seconds | #type:#check"
-	static let minutesDurationPalpitations = "#id:txtpalminutes | #title:Minutes | #type:#check"
-	static let hoursDurationPalpitations = "#id:txtpalhours | #title:Hours | #type:#check"
+	static let secondsDurationPalpitations = "#id:txtpalseconds | #title:Seconds | #type:#integerLeft|   #min:0|  #max:60| #placeholder: "
+	static let minutesDurationPalpitations = "#id:txtpalminutes | #title:Minutes | #type:#integerLeft|   #min:0|  #max:60| #placeholder: "
+	static let hoursDurationPalpitations = "#id:txtpalhours | #title:Hours | #type:#integerLeft|   #min:0|  #max:300| #placeholder: "
 	
 	// Symptoms -> Palpitations ->  Syncope
 	static let syncopePalpitationsLabel = "#id: syncopePalpitations | #title:Syncope | #type:#label"
-	static let palSyncopePalpitations = "#id:chkpalday | #title:Syncope | #type:#check"
+	static let palSyncopePalpitations = "#id:chkpalsyncope | #title:Syncope | #type:#check"
 	static let anginaSyncopePalpitations = "#id:chkpalangina | #title:Angina or dyspnea | #type:#check"
 	static let polyuriaSyncopePalpitations = "#id:chkpalpolyuria | #title:Polyuria| #type:#check"
 	static let pulsationsSyncopePalpitations = "#id:chkpalneck | #title:Pulsations in neck | #type:#check"
@@ -563,7 +556,7 @@ struct Presentation {
 	
 	//	CurrentPast CV Profile -> Heart Failure https://zpl.io/Z1oLKLR
 	static let hfDiagnosisDurationPerWeekInHF = "#id:txtdur |    #title:HF Diagnosis Duration/Week| #type:#integerRight|   #min:0|  #max:999|  #placeholder: "
-	static let previousHFHospitalizationInHF = "#id:txtfoutput |    #title:Previous HF Hospitalization|    #type:#check"
+	static let previousHFHospitalizationInHF = "#id:chkfoutput |    #title:Previous HF Hospitalization|    #type:#check"
 	static let spicdInHF = "#id:chkICD |    #title:Status Post ICD|    #type:#check"
 	static let cRTI = "#id:chkICD |    #title:Status Post CRTI|    #type:#check"
 	static let lvefInHF = "#id:txtCHF | #title:LVEF | #type:#integerRight | #min:10 | #max:80 | #placeholder: "

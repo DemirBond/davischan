@@ -64,6 +64,7 @@ class Dyspnea: EvaluationItem {
 	let pleaseSelectOneLabel = EvaluationItem(literal: Presentation.pleaseSelectOneLabel)
 	let chronicHFWithKnownEtiology = EvaluationItem(literal: Presentation.chronicHFWithKnownEtiology)
 	let newOnsetSuspectedHF = EvaluationItem(literal: Presentation.newOnsetSuspectedHF)
+	let chronicLungDisease = EvaluationItem(literal: Presentation.chronicLungDisease)
 	
 	let separator1 = EvaluationItem(literal: Presentation.separator)
 	
@@ -81,11 +82,6 @@ class Dyspnea: EvaluationItem {
 	let nyhaaClass4  = EvaluationItem(literal: Presentation.NYHACCSVClass4)
 	
 	let weightGain = EvaluationItem(literal: Presentation.weightGain)
-	// MARK - Need to clarify placeholder's string
-	let hfDiagnosisDurationPerWeek = EvaluationItem(literal: Presentation.hfDiagnosisDurationPerWeek)
-	let previousHFHospitalization = EvaluationItem(literal: Presentation.previousHFHospitalization)
-	let spicd = EvaluationItem(literal: Presentation.spicd)
-	let lvef = EvaluationItem(literal: Presentation.lvef)
 	
 	// TODO - Separator
 	let separator = EvaluationItem(literal: Presentation.separator)
@@ -95,6 +91,7 @@ class Dyspnea: EvaluationItem {
 			pleaseSelectOneLabel,
 			chronicHFWithKnownEtiology,
 			newOnsetSuspectedHF,
+			chronicLungDisease,
 			
 			separator1,
 			

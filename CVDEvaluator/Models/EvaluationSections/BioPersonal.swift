@@ -29,7 +29,6 @@ class BioPersonal: EvaluationItem {
 	let bmi = EvaluationItem(literal: Presentation.bmi)
 
 	let weight = EvaluationItem(literal: Presentation.weight)
-	let height = EvaluationItem(literal: Presentation.height)
 	let heartRate = EvaluationItem(literal: Presentation.heartRate)
 	let sbp = EvaluationItem(literal: Presentation.bioSBP)
 	let dbp = EvaluationItem(literal: Presentation.bioDBP)
@@ -47,7 +46,6 @@ class BioPersonal: EvaluationItem {
 			age,
 			gender,
 			bmi,
-			//height,
 			weight,
 			heartRate,
 			sbp,
@@ -68,7 +66,6 @@ class BioPersonal: EvaluationItem {
 		self.gender.male.storedValue!.radioGroup?.selectedRadioItem = model.gender.male.storedValue!.radioGroup?.selectedRadioItem
 		self.bmi.storedValue?.value = model.bmi.storedValue?.value
 		self.weight.storedValue?.value = model.weight.storedValue?.value
-		self.height.storedValue?.value = model.height.storedValue?.value
 		self.heartRate.storedValue?.value = model.heartRate.storedValue?.value
 		self.sbp.storedValue?.value = model.sbp.storedValue?.value
 		self.dbp.storedValue?.value = model.dbp.storedValue?.value
