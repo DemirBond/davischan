@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+// MARK: - SurgicalRisk
+
 class SurgicalRisk: EvaluationItem {
 	
 	let emergencySurgery = EvaluationItem(literal: Presentation.emergencySurgery)
@@ -28,6 +31,5 @@ class SurgicalRisk: EvaluationItem {
 			mets,
 			dukeActivityScoreIndex
 		]
-	}
-	
+	}	
 }

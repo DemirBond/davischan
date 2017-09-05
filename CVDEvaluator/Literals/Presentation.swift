@@ -874,22 +874,21 @@ struct Presentation {
 	static let chestBackPainDyspnea = "#id:chkCP | #title:Chest Back Pain/Dyspnea | #type:#check"
 	
 	
-	
-	// Surgical Risk https://zpl.io/1iVHSg
+	//
+	// MARK: - Surgical Risk https://zpl.io/1iVHSg
+	//
 	static let emergencySurgery = "#id:chkemergency | #title:Emergency Surgery | #type:#check"
 	static let intermediateRisk = "#id:chkelective | #title:Intermediate Risk | #type:#check"
 	static let highRisk = "#id:chkvascular | #title:High Risk | #type:#check"
-	// MARK: Get the full string
 	static let familyLowRiskSurgery = "#id:chklowriskelec | #title:Family Low Risk Surgey (Cataract, Plastic) | #type:#check"
 	static let unableToExercise = "#id:chkunab | #title:Unable to Exercise | #type:#check"
-	// MARK: Need to clarify placeholder's string
-	// MARK: 0-21, range
 	static let mets = "#id:txtMETS | #title:METS | #type:#integerRight | #min:0 | #max:21 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// Calculated variable
 	static let dukeActivityScoreIndex = "#id:txtDASI | #title:Duke Activity Score Index | #type:#integerRight | #min:0 | #max:99 | #placeholder: "
 	
-	// Laboratories https://zpl.io/2kxbQs
+	
+	//
+	// MARK: - Laboratories https://zpl.io/2kxbQs
+	//
 	static let chemBasicLabel = "#id:chemBasicLabel | #title:Chem Basic | #type:#label"
 	// MARK: Need to clarify placeholder's string
 	// MARK: 99-170, range (Integer)
