@@ -81,8 +81,6 @@ struct Presentation {
 	static let diagnostics = "#id:diagnostics| #title:Diagnostics| #type:#disclosureVieved"
 	static let hsr = "#id:nsr| #title:Current Therapies| #type:#disclosureVieved"
 	
-	static let poMeds = "#id:poMeds| #title:PO Meds| #type:#disclosureWeather"
-	static let inHospital = "#id:inHospital| #title:In Hospital/IV Therapies| #type:#disclosureWeather"
 	static let heartSpecialistManagement = "#id:heartSpecialistManagement| #title:Heart Specialist Management | #type:#disclosureVieved"
 	static let outputInMain = "#id:outputInMain| #title:Results | #type:#disclosureVieved"
 	
@@ -1035,17 +1033,23 @@ struct Presentation {
 	static let infiltrate = "#id:chkinfiltrate | #title:Infiltrate(s) | #type:#check"
 	static let consolidation = "#id:chkconsolidation | #title:Consolidation | #type:#check"
 	
-
-	// PO Meds https://zpl.io/Z1JXQFi
+	
+	//
+	// MARK: - Current Therapies (hsr)
+	//
+	static let poMeds = "#id:poMeds| #title:PO Meds| #type:#disclosureWeather"
+	static let inHospital = "#id:inHospital| #title:In Hospital/IV Therapies| #type:#disclosureWeather"
+	
+	// HSR -> PO Meds https://zpl.io/Z1JXQFi
 	static let bBlocker = "#id:chkcar | #title:B Blocker | #type:#disclosureControl"
-	static let acelARB = "#id:chkace | #title:Acel/ARB | #type:#disclosureControlExpandable"
+	static let acelARB = "#id:chkace | #title:Acel/ARB | #type:#disclosureControl"
 	static let poDiuretic = "#id:chkdiuretic | #title:PO Diuretic | #type:#disclosureControl"
 	static let ccbOtherVasolidators = "#id:chkCCB | #title:CCB, Other Vasolidators | #type:#check"
 	static let currentVKATherapy = "#id:chkVKA| #title:Current VKA Therapy | #type:#check"
 	static let directThrombinInhibitors = "#id:chkCAC  | #title:Direct Thrombin Inhibitors | #type:#check"
 	static let factorXaInhibitors = "#id:chkFactorX  | #title:Factor Xa Inhibitors | #type:#check"
 	
-	// PO Meds -> B Blocker https://zpl.io/Z1Fk3YB
+	// HSR -> PO Meds -> B Blocker https://zpl.io/Z1Fk3YB
 	static let carvedilol3125bid = "#id:chkBisoprolol25 | #title:Carvedilol 3.125 bid | #type:#check"
 	static let carvedilol625bid = "#id:chkCarvedilol625bid | #title:Carvedilol 6.25 bid | #type:#check"
 	static let carvedilol125bid = "#id:chkCarvedilol125bid | #title:Carvedilol 12.5 bid | #type:#check"
@@ -1056,14 +1060,15 @@ struct Presentation {
 	static let metoproloIER150qd = "#id:chkMetoproloIER150qd | #title:MetoproloIER 150 qd | #type:#check"
 	static let metoproloIER200qd = "#id:chkMetoproloIER200qd | #title:MetoproloIER 200 qd | #type:#check"
 	
+	// HSR -> PO Meds -> Acel/ARB
+	static let lisinopril5 = "#id:chklisinopril5 | #title:Lisinopril <10mg qd | #type:#check"
+	static let lisinopril10 = "#id:chklisinopril10| #title:Lisinopril 10-20mg qd | #type:#check"
+	static let lisinopril20 = "#id:chklisinopril20 | #title:Lisinopril 20mg qd | #type:#check"
+	static let losartan25 = "#id:chklosartan25 | #title:Lorsatan 25mg qd | #type:#check"
+	static let losartan50 = "#id:chklosartan50 | #title:Lorsatan 50mg qd | #type:#check"
+	static let losartan100 = "#id:chklosartan100 | #title:Lorsatan 100mg qd | #type:#check"
 	
-	// PO Meds -> Acel/ARB
-	static let lisinopril5 = "#id:chklisinopril5 | #title:Lisinopril<10mg qd | #type:#check"
-	static let chklisinopril10 = "#id:chklisinopril10| #title:Lisinopril10-20mg qd | #type:#check"
-	static let chklisinopril20 = "#id:chklisinopril20 | #title:Lisinopril20mg qd | #type:#check"
-	
-	
-	// PO Meds -> PO Diuretic https://zpl.io/1FSlBB
+	// HSR -> PO Meds -> PO Diuretic https://zpl.io/1FSlBB
 	static let furosemide40 = "#id:chkfurosemide40 | #title:Furosemide 40 | #type:#check"
 	static let furosemide80 = "#id:chkfurosemide80 | #title:Furosemide 80 | #type:#check"
 	static let furosemide80Plus = "#id:chkfurosemide81 | #title:Furosemide 80+ | #type:#check"
@@ -1077,7 +1082,7 @@ struct Presentation {
 	static let indapamide = "#id:chkindapamide | #title:Indapamide | #type:#check"
 	static let chlorthalidoneMetolazone = "#id:chkchlorthalidone | #title:Chlorthalidone, Metolazone |#type:#check"
 	
-	// In Hospital/IV Therapies https://zpl.io/1QwAhq
+	// HSR -> In Hospital/IV Therapies https://zpl.io/1QwAhq
 	static let ivAntiarrythmic = "#id:chkIVAA | #title:IV Antiarrythmic | #type:#disclosureControl"
 	static let urgentCV = "#id:chkurgcv | #title:Urgent CV | #type:#check"
 	static let defibrillationACLS = "#id:chkdefib | #title:Defibrillation/ACLS | #type:#check"
@@ -1085,45 +1090,40 @@ struct Presentation {
 	static let ivVasoactive = "#id:chkIVVA | #title:IV Vasoactive | #type:#disclosureControl"
 	static let ivDiuretic = "#id:chkIVDI | #title:IV Diuretic | #type:#disclosureControl"
 	static let mechanicalVentiallationOrNIPPV = "#id:chkNIPPV | #title:Mechanical Ventiallation or NIPPV | #type:#disclosureControl"
-	// 23-100, range
 	static let o2Supplement = "#id:txtOsupp | #title:O₂ Supplement % / | #type:#check | #type:#integerRight | #min:23 | #max:100 | #placeholder:  "
 	static let ivVasopressors = "#id:chkVAD | #title:IV Vasopressors | #type:#check"
 	static let ultrafiltration = "#id:chkult | #title:Ultrafiltration | #type:#check"
-	static let iabp = "#id:iabp | #title:chkIABP | #type:#check"
+	static let iabp = "#id:iabp | #title:IABP | #type:#check"
 	static let temporaryPM = "#id:chkTPM | #title:Temporary PM | #type:#check"
 	
-	// In Hospital -> IV Antiarrythmic https://zpl.io/2f248Q
+	// HSR -> In Hospital -> IV Antiarrythmic https://zpl.io/2f248Q
 	static let continuousInAntiarrythmic = "#id:txtAAcon | #title:Continuous | #type:#check"
 	static let bolusInAntiarrythmic = "#id:txtAAbolus | #title:Bolus | #type:#check"
 	static let titrationInAntiarrythmic = "#id:txtAAtitr | #title:Titration | #type:#check"
-	// 1-12, range
 	static let monitoringFrequencyQhrInAntiarrythmic = "#id:txtAAmonitor | #title:Monitoring Frequency Q hr | #type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	static let transitionToPOAntiarrythmicInAntiarrythmic = "#id:chkPOAA | #title:Transition to PO Antiarrythmic | #type:#check"
 	
-	// In Hospital -> IV Antihypertensive https://zpl.io/DhPB6
+	// HSR -> In Hospital -> IV Antihypertensive https://zpl.io/DhPB6
 	static let blnIVHTcon = "#id:chkHTcon | #title:Continuous | #type:#check"
 	static let blnIVHTbolus = "#id:chkHTbolus | #title:Bolus | #type:#check"
 	static let blnIVHTtitr = "#id:chkHTtitr | #title:Titration | #type:#check"
-	// 1-12, range
 	static let txtHTmonitor = "#id:txtHTmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	
-	// In Hospital -> IV Vasoactive https://zpl.io/Ll2Pm
+	// HSR -> In Hospital -> IV Vasoactive https://zpl.io/Ll2Pm
 	static let blnIVVAcon = "#id:chkVAcon | #title:Continuous | #type:#check"
 	static let blnIVVAbolus = "#id:chkVAbolus | #title:Bolus | #type:#check"
 	static let blnIVVAtitr = "#id:chkVAtitr | #title:Titration | #type:#check"
-	// 1-12, range
 	static let txtVAmonitor = "#id:txtVAmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	static let blnIVNPSz = "#id:chkIVNPS | #title:IV NPS | #type:#check"
 	static let blnIVNTG = "#id:chkIVNTG | #title:IV NTG | #type:#check"
 	static let blnmilrinone = "#id:chkmilrinone | #title:IV Milrinone | #type:#check"
 	
-	// In Hospital -> IV Diuretic https://zpl.io/Z5hShw
+	// HSR -> In Hospital -> IV Diuretic https://zpl.io/Z5hShw
 	static let blncon = "#id:chkcon | #title:Continuous | #type:#check"
 	static let blnPODI = "#id:chkPODI | #title:Intermittent | #type:#check"
-	// 1-12, range
 	static let txtmonitor = "#id:txtmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	
-	// In Hospital -> Mechanical Ventillation or NIPPV https://zpl.io/2kgsB0
+	// HSR -> In Hospital -> Mechanical Ventillation or NIPPV https://zpl.io/2kgsB0
 	static let txtRI = "#id:txtRI | #title:Respiratory Interventions Q Hr |#type:#integerRight | #min:1 | #max:6 | #placeholder: "
 	
 	// Heart Specialist Management

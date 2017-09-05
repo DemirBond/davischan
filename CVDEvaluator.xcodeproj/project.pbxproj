@@ -55,8 +55,6 @@
 		BA49CCD81F33A35E0040060A /* CVProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCAF1F33A35E0040060A /* CVProfile.swift */; };
 		BA49CCE21F33A35E0040060A /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBA1F33A35E0040060A /* Diagnostics.swift */; };
 		BA49CCE31F33A35E0040060A /* HeartSpecialistManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBB1F33A35E0040060A /* HeartSpecialistManagement.swift */; };
-		BA49CCE41F33A35E0040060A /* InHospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBD1F33A35E0040060A /* InHospital.swift */; };
-		BA49CCE51F33A35E0040060A /* POMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBE1F33A35E0040060A /* POMeds.swift */; };
 		BA49CCE61F33A35E0040060A /* HSR.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBF1F33A35E0040060A /* HSR.swift */; };
 		BA49CCE71F33A35E0040060A /* Laboratories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC01F33A35E0040060A /* Laboratories.swift */; };
 		BA49CCE81F33A35E0040060A /* MajorCVRisks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC11F33A35E0040060A /* MajorCVRisks.swift */; };
@@ -198,8 +196,6 @@
 		BA49CCAF1F33A35E0040060A /* CVProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVProfile.swift; sourceTree = "<group>"; };
 		BA49CCBA1F33A35E0040060A /* Diagnostics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		BA49CCBB1F33A35E0040060A /* HeartSpecialistManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartSpecialistManagement.swift; sourceTree = "<group>"; };
-		BA49CCBD1F33A35E0040060A /* InHospital.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHospital.swift; sourceTree = "<group>"; };
-		BA49CCBE1F33A35E0040060A /* POMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POMeds.swift; sourceTree = "<group>"; };
 		BA49CCBF1F33A35E0040060A /* HSR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSR.swift; sourceTree = "<group>"; };
 		BA49CCC01F33A35E0040060A /* Laboratories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Laboratories.swift; sourceTree = "<group>"; };
 		BA49CCC11F33A35E0040060A /* MajorCVRisks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorCVRisks.swift; sourceTree = "<group>"; };
@@ -455,7 +451,6 @@
 		BA49CCAD1F33A35E0040060A /* EvaluationSections */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CCBC1F33A35E0040060A /* HSR */,
 				BA49CCAE1F33A35E0040060A /* BioPersonal.swift */,
 				BA49CCC61F33A35E0040060A /* Symptoms.swift */,
 				BA49CCC41F33A35E0040060A /* ReviewOfSystem.swift */,
@@ -470,15 +465,6 @@
 				BA49CCC21F33A35E0040060A /* Output.swift */,
 			);
 			path = EvaluationSections;
-			sourceTree = "<group>";
-		};
-		BA49CCBC1F33A35E0040060A /* HSR */ = {
-			isa = PBXGroup;
-			children = (
-				BA49CCBD1F33A35E0040060A /* InHospital.swift */,
-				BA49CCBE1F33A35E0040060A /* POMeds.swift */,
-			);
-			path = HSR;
 			sourceTree = "<group>";
 		};
 		BA49CCC91F33A35E0040060A /* General */ = {
@@ -783,9 +769,7 @@
 				BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */,
 				BA49CC8D1F33A0410040060A /* MessageController.swift in Sources */,
 				BA49CCF31F33A35E0040060A /* RadioGroup.swift in Sources */,
-				BA49CCE51F33A35E0040060A /* POMeds.swift in Sources */,
 				BA49CD331F33A6FE0040060A /* RestClient.swift in Sources */,
-				BA49CCE41F33A35E0040060A /* InHospital.swift in Sources */,
 				BA49CD191F33A6440040060A /* GeneratedCell.swift in Sources */,
 				BA49CC9E1F33A0C90040060A /* TermsController.swift in Sources */,
 				BA49CCE91F33A35E0040060A /* Output.swift in Sources */,
