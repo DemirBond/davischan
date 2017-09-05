@@ -22,7 +22,7 @@ class CVDToolbar: UIToolbar {
 	override func sizeThatFits(_ size: CGSize) -> CGSize {
 		
 		var newSize: CGSize = super.sizeThatFits(size)
-		newSize.height = 48  // there to set your toolbar height
+		newSize.height = 60  // there to set your toolbar height
 		
 		return newSize
 	}
@@ -43,25 +43,31 @@ class CVDToolbar: UIToolbar {
 			
 			let screenSize: CGRect = UIScreen.main.bounds
 			
-			let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenSize.width - 116, height: 48) )
-			button.setTitle(rightBottom + "   >", for: .normal)
+			let button = UIButton(frame: CGRect(x: 24, y: 6, width: screenSize.width - 80, height: 48) )
+			button.setTitle(rightBottom, for: .normal)
 			button.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 19)
-			button.contentHorizontalAlignment = .right
 			button.setTitleColor(UIColor(palette: ColorPalette.lighterPurple), for: UIControlState.normal)
 			//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
 			//button.layer.cornerRadius = 5
 			// button.layer.borderWidth = 1
 			button.addTarget(target, action: actions[0]!, for: .touchUpInside)
 			
-			let rightBarItem = UIBarButtonItem(customView: button)
+			let disclosureImageView = UIImageView(frame: CGRect(x: screenSize.width - 50, y: 18, width: 24, height: 24) )
+			disclosureImageView.image = UIImage(named: "chevron")
+			
+			let bottomView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width - 32, height: 60))
+			bottomView.addSubview(button)
+			bottomView.addSubview(disclosureImageView)
+			
+			let rightBarItem = UIBarButtonItem(customView: bottomView)
 			/// let rightBarItem = UIBarButtonItem(title: rightBottom, style: .plain, target: target, action: actions[0])
 			
 			items.append(rightBarItem)
 			
-			if let rightBottom1 = dict["rightBottom1"] as? String {
+			/*if let rightBottom1 = dict["rightBottom1"] as? String {
 				
 				let button1 = UIButton(frame: CGRect(x: 0, y: 8, width: screenSize.width/2 - 16, height: 48) )
-				button1.setTitle(rightBottom1 + "   >", for: .normal)
+				button1.setTitle(rightBottom1, for: .normal)
 				button1.setTitleColor(UIColor(palette: ColorPalette.lighterPurple), for: UIControlState.normal)
 				//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
 				//button.layer.cornerRadius = 5
@@ -73,7 +79,7 @@ class CVDToolbar: UIToolbar {
 				
 				//items.insert(rightBarItem1: 2)
 				items.append(rightBarItem1)
-			}
+			}*/
 		}
 		
 		//let item1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -84,38 +90,7 @@ class CVDToolbar: UIToolbar {
 		self.barItems = items
 		
 	}
-	
-	
-	func setup  (dict: Dictionary<String, Any>, target: UIViewController, action: Selector?) {
-		
-		// super.init()
-		
-		var items = [UIBarButtonItem] ()
-		let item = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		items.append(item)
-		
-		if let rightBottom = dict["rightBottom"] as? String {
-			
-			let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 25) )
-			button.setTitle(rightBottom, for: .normal)
-			// button.
-			
-			let rightBarItem = UIBarButtonItem(customView: button)
-			
-			// let rightBarItem = UIBarButtonItem(title: rightBottom, style: .plain, target: target, action: action)
-			
-			items.append(rightBarItem)
-			
-		}
-		
-		let item1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		items.append(item1)
-		
-		self.isTranslucent = false
-		self.barTintColor = UIColor.white
-		self.barItems = items
-	}
-	
+
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
