@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+// MARK: - MajorCVRisks
+
 class MajorCVRisks: EvaluationItem {
 
 	let diabetes = Diabetes(literal: Presentation.diabetes)
@@ -17,11 +20,21 @@ class MajorCVRisks: EvaluationItem {
 	let ckd = EvaluationItem(literal: Presentation.ckd)
 	
 	override var items: [EvaluationItem] {
-		return [diabetes, systemicArterialHypertension, tobaccoUse, familyHistory, ckd]
+		return [
+			diabetes,
+			systemicArterialHypertension,
+			tobaccoUse,
+			familyHistory,
+			//ckd
+		]
 	}
 }
 
+
+// MARK: - MajorCVRisks -> Diabetes
+
 class Diabetes: EvaluationItem {
+	
 	let typeIIDM = TypeIIDM(literal: Presentation.typeIIDM)
 	let typeIDM = TypeIDM(literal: Presentation.typeIDM)
 	let gestationalDM = EvaluationItem(literal: Presentation.gestationalDM)
@@ -29,60 +42,19 @@ class Diabetes: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
-			typeIDM,
 			typeIIDM,
+			typeIDM,
 			gestationalDM,
 			retinopathy
 		]
 	}
-
 }
 
-class TypeIDM: EvaluationItem{
-	let DMNP = EvaluationItem(literal: Presentation.DMNP)
-	 let DMCKD = EvaluationItem(literal: Presentation.DMCKD)
-	 let DMother = EvaluationItem(literal: Presentation.DMother)
-	 let DMarthro = EvaluationItem(literal: Presentation.DMarthro)
-	 let DMoral = EvaluationItem(literal: Presentation.DMoral)
-	 let DMskin = EvaluationItem(literal: Presentation.DMskin)
-	 let DMhypo = EvaluationItem(literal: Presentation.DMhypo)
-	 let DMhypocoma = EvaluationItem(literal: Presentation.DMhypocoma)
-	 let DMhyper = EvaluationItem(literal: Presentation.DMhyper)
-	 let DMmono = EvaluationItem(literal: Presentation.DMmono)
-	 let DMpoly = EvaluationItem(literal: Presentation.DMpoly)
-	 let DMautonom = EvaluationItem(literal: Presentation.DMautonom)
-	 let DMangio = EvaluationItem(literal: Presentation.DMangio)
-	 let DMothercirc = EvaluationItem(literal: Presentation.DMothercirc)
-	 let DMgangrene = EvaluationItem(literal: Presentation.DMgangrene)
-	 let DMothercomp = EvaluationItem(literal: Presentation.DMothercomp)
-	 let DMunspec = EvaluationItem(literal: Presentation.DMunspec)
-	 let DMwithout = EvaluationItem(literal: Presentation.DMwithout)
-	
-	override var items: [EvaluationItem]{
-		return [
-			DMNP,
-			DMCKD,
-			DMother,
-			DMarthro,
-			DMoral,
-			DMskin,
-			DMhypo,
-			DMhypocoma,
-			DMhyper,
-			DMmono,
-			DMpoly,
-			DMautonom,
-			DMangio,
-			DMothercirc,
-			DMgangrene,
-			DMothercomp,
-			DMunspec,
-			DMwithout
-		]
-	}
-}
+
+// MARK: - MajorCVRisks -> Diabetes -> Type II DM
 
 class TypeIIDM: EvaluationItem{
+	
 	let DMNP = EvaluationItem(literal: Presentation.DMNP)
 	let DMCKD = EvaluationItem(literal: Presentation.DMCKD)
 	let DMother = EvaluationItem(literal: Presentation.DMother)
@@ -107,18 +79,18 @@ class TypeIIDM: EvaluationItem{
 			DMNP,
 			DMCKD,
 			DMother,
-			DMarthro,
-			DMoral,
-			DMskin,
-			DMhypo,
-			DMhypocoma,
-			DMhyper,
 			DMmono,
 			DMpoly,
 			DMautonom,
 			DMangio,
 			DMothercirc,
 			DMgangrene,
+			DMarthro,
+			DMskin,
+			DMoral,
+			DMhypo,
+			DMhypocoma,
+			DMhyper,
 			DMothercomp,
 			DMunspec,
 			DMwithout
@@ -126,6 +98,56 @@ class TypeIIDM: EvaluationItem{
 	}
 }
 
+
+// MARK: - MajorCVRisks -> Diabetes -> Type I DM
+
+class TypeIDM: EvaluationItem{
+	
+	let DMNP = EvaluationItem(literal: Presentation.DMNP)
+	let DMCKD = EvaluationItem(literal: Presentation.DMCKD)
+	let DMother = EvaluationItem(literal: Presentation.DMother)
+	let DMarthro = EvaluationItem(literal: Presentation.DMarthro)
+	let DMoral = EvaluationItem(literal: Presentation.DMoral)
+	let DMskin = EvaluationItem(literal: Presentation.DMskin)
+	let DMhypo = EvaluationItem(literal: Presentation.DMhypo)
+	let DMhypocoma = EvaluationItem(literal: Presentation.DMhypocoma)
+	let DMhyper = EvaluationItem(literal: Presentation.DMhyper)
+	let DMmono = EvaluationItem(literal: Presentation.DMmono)
+	let DMpoly = EvaluationItem(literal: Presentation.DMpoly)
+	let DMautonom = EvaluationItem(literal: Presentation.DMautonom)
+	let DMangio = EvaluationItem(literal: Presentation.DMangio)
+	let DMothercirc = EvaluationItem(literal: Presentation.DMothercirc)
+	let DMgangrene = EvaluationItem(literal: Presentation.DMgangrene)
+	let DMothercomp = EvaluationItem(literal: Presentation.DMothercomp)
+	let DMunspec = EvaluationItem(literal: Presentation.DMunspec)
+	let DMwithout = EvaluationItem(literal: Presentation.DMwithout)
+	
+	override var items: [EvaluationItem]{
+		return [
+			DMNP,
+			DMCKD,
+			DMother,
+			DMmono,
+			DMpoly,
+			DMautonom,
+			DMangio,
+			DMothercirc,
+			DMgangrene,
+			DMarthro,
+			DMskin,
+			DMoral,
+			DMhypo,
+			DMhypocoma,
+			DMhyper,
+			DMothercomp,
+			DMunspec,
+			DMwithout
+		]
+	}
+}
+
+
+// MARK: - MajorCVRisks -> Systemic Arterial Hypertension
 
 class SystemicArterialHypertension: EvaluationItem {
 
@@ -143,7 +165,6 @@ class SystemicArterialHypertension: EvaluationItem {
 	let headachedBlurredVisionOrAMS = EvaluationItem(literal: Presentation.headachedBlurredVisionAMS)
 	let epistaxis = EvaluationItem(literal: Presentation.epistaxis)
 	let chestBackPainDyspnea = EvaluationItem(literal: Presentation.chestBackPainDyspnea)
-	
 	
 	override var items: [EvaluationItem] {
 		return [

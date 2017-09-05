@@ -829,27 +829,27 @@ struct Presentation {
 	static let familyHistory = "#id:chkFamily | #title:Family History | #type:#check"
 	static let ckd = "#id:chkckd | #title:CKD | #type:#check"
 	
-	
 	// Major CV Risk Factors -> Diabetes https://zpl.io/2lz31S
 	static let typeIIDM = "#id:chkDM | #title:Type II DM | #type:#disclosureControl"
 	static let typeIDM = "#id:chkDM1 | #title:Type I DM | #type:#disclosureControl"
 	static let gestationalDM = "#id:chkgestational | #title:Gestational DM | #type:#check"
 	static let retinopathy = "#id:chkRetinopathy | #title:Retinopathy | #type:#check"
+	
 	static let DMNP = "#id:chkDMNP | #title:Nephropathy | #type:#check"
 	static let DMCKD = "#id:chkDMCKD| #title:CKD | #type:#check"
-	static let DMother = "#id:chkDMother | #title:DMother | #type:#check"
-	static let DMarthro = "#id:chkDMarthro | #title:Arthropathy | #type:#check"
-	static let DMoral = "#id:chkDMoral| #title:Oral | #type:#check"
-	static let DMskin = "#id:chkDMskin | #title:Skin| #type:#check"
-	static let DMhypo = "#id:chkDMhypo | #title:Hypogycemia wo coma | #type:#check"
-	static let DMhypocoma = "#id:chkDMhypocoma| #title:Hypoglycemia w coma | #type:#check"
-	static let DMhyper = "#id:chkDMhyper | #title:Hyperglycemia | #type:#check"
+	static let DMother = "#id:chkDMother | #title:Other Kidney comp | #type:#check"
 	static let DMmono = "#id:chkDMmono | #title:Mononeuropathy| #type:#check"
 	static let DMpoly = "#id:chkDMpoly| #title:Polyneuropathy | #type:#check"
-	static let DMautonom = "#id:chkDMautonom | #title:Autonom neuro| #type:#check"
-	static let DMangio = "#id:chkDMangio | #title:Angiopathy | #type:#check"
-	static let DMothercirc = "#id:chkDMothercirc| #title:Other circulatory | #type:#check"
-	static let DMgangrene = "#id:chkDMgangrene | #title:Gangrene | #type:#check"
+	static let DMautonom = "#id:chkDMautonom | #title:Autonom neuropathy| #type:#check"
+	static let DMangio = "#id:chkDMangio | #title:Peripheral Angiopathy | #type:#check"
+	static let DMothercirc = "#id:chkDMothercirc| #title:Other circulatory comp| #type:#check"
+	static let DMgangrene = "#id:chkDMgangrene | #title:Angiopathy with Gangrene | #type:#check"
+	static let DMarthro = "#id:chkDMarthro | #title:Arthropathy | #type:#check"
+	static let DMskin = "#id:chkDMskin | #title:Skin comp| #type:#check"
+	static let DMoral = "#id:chkDMoral| #title:Oral comp| #type:#check"
+	static let DMhypo = "#id:chkDMhypo | #title:Hypogycemia| #type:#check"
+	static let DMhypocoma = "#id:chkDMhypocoma| #title:Hypoglycemia with coma | #type:#check"
+	static let DMhyper = "#id:chkDMhyper | #title:Hyperglycemia | #type:#check"
 	static let DMothercomp = "#id:chkDMothercomp | #title:Other comp| #type:#check"
 	static let DMunspec = "#id:chkDMunspec| #title:Unspecified comp | #type:#check"
 	static let DMwithout = "#id:chkDMwithout | #title:Without comp| #type:#check"
@@ -872,6 +872,8 @@ struct Presentation {
 	static let headachedBlurredVisionAMS = "#id:chkhead | #title:Headached, Blurred Vision or AMS | #type:#check"
 	static let epistaxis = "#id:chkepis | #title:Epistaxis | #type:#check"
 	static let chestBackPainDyspnea = "#id:chkCP | #title:Chest Back Pain/Dyspnea | #type:#check"
+	
+	
 	
 	// Surgical Risk https://zpl.io/1iVHSg
 	static let emergencySurgery = "#id:chkemergency | #title:Emergency Surgery | #type:#check"
