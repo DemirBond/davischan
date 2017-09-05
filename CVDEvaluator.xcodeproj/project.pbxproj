@@ -53,15 +53,6 @@
 		BA49CCD61F33A35E0040060A /* EvaluationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCAC1F33A35E0040060A /* EvaluationItem.swift */; };
 		BA49CCD71F33A35E0040060A /* BioPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCAE1F33A35E0040060A /* BioPersonal.swift */; };
 		BA49CCD81F33A35E0040060A /* CVProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCAF1F33A35E0040060A /* CVProfile.swift */; };
-		BA49CCD91F33A35E0040060A /* AtrialFibrilation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB11F33A35E0040060A /* AtrialFibrilation.swift */; };
-		BA49CCDA1F33A35E0040060A /* BradyarrthymiaSyncope.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB21F33A35E0040060A /* BradyarrthymiaSyncope.swift */; };
-		BA49CCDB1F33A35E0040060A /* CoronaryHeartDisease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB31F33A35E0040060A /* CoronaryHeartDisease.swift */; };
-		BA49CCDC1F33A35E0040060A /* HeartFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB41F33A35E0040060A /* HeartFailure.swift */; };
-		BA49CCDD1F33A35E0040060A /* PulmonaryHypertension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB51F33A35E0040060A /* PulmonaryHypertension.swift */; };
-		BA49CCDE1F33A35E0040060A /* ThromboembolicVKA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB61F33A35E0040060A /* ThromboembolicVKA.swift */; };
-		BA49CCDF1F33A35E0040060A /* ValvularHeartDisease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB71F33A35E0040060A /* ValvularHeartDisease.swift */; };
-		BA49CCE01F33A35E0040060A /* VascularDisease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB81F33A35E0040060A /* VascularDisease.swift */; };
-		BA49CCE11F33A35E0040060A /* VentricularTachyarrthymias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCB91F33A35E0040060A /* VentricularTachyarrthymias.swift */; };
 		BA49CCE21F33A35E0040060A /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBA1F33A35E0040060A /* Diagnostics.swift */; };
 		BA49CCE31F33A35E0040060A /* HeartSpecialistManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBB1F33A35E0040060A /* HeartSpecialistManagement.swift */; };
 		BA49CCE41F33A35E0040060A /* InHospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCBD1F33A35E0040060A /* InHospital.swift */; };
@@ -205,15 +196,6 @@
 		BA49CCAC1F33A35E0040060A /* EvaluationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationItem.swift; sourceTree = "<group>"; };
 		BA49CCAE1F33A35E0040060A /* BioPersonal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BioPersonal.swift; sourceTree = "<group>"; };
 		BA49CCAF1F33A35E0040060A /* CVProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVProfile.swift; sourceTree = "<group>"; };
-		BA49CCB11F33A35E0040060A /* AtrialFibrilation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtrialFibrilation.swift; sourceTree = "<group>"; };
-		BA49CCB21F33A35E0040060A /* BradyarrthymiaSyncope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BradyarrthymiaSyncope.swift; sourceTree = "<group>"; };
-		BA49CCB31F33A35E0040060A /* CoronaryHeartDisease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoronaryHeartDisease.swift; sourceTree = "<group>"; };
-		BA49CCB41F33A35E0040060A /* HeartFailure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartFailure.swift; sourceTree = "<group>"; };
-		BA49CCB51F33A35E0040060A /* PulmonaryHypertension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulmonaryHypertension.swift; sourceTree = "<group>"; };
-		BA49CCB61F33A35E0040060A /* ThromboembolicVKA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThromboembolicVKA.swift; sourceTree = "<group>"; };
-		BA49CCB71F33A35E0040060A /* ValvularHeartDisease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValvularHeartDisease.swift; sourceTree = "<group>"; };
-		BA49CCB81F33A35E0040060A /* VascularDisease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VascularDisease.swift; sourceTree = "<group>"; };
-		BA49CCB91F33A35E0040060A /* VentricularTachyarrthymias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VentricularTachyarrthymias.swift; sourceTree = "<group>"; };
 		BA49CCBA1F33A35E0040060A /* Diagnostics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		BA49CCBB1F33A35E0040060A /* HeartSpecialistManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartSpecialistManagement.swift; sourceTree = "<group>"; };
 		BA49CCBD1F33A35E0040060A /* InHospital.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHospital.swift; sourceTree = "<group>"; };
@@ -473,7 +455,6 @@
 		BA49CCAD1F33A35E0040060A /* EvaluationSections */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CCB01F33A35E0040060A /* CVProfileSection */,
 				BA49CCBC1F33A35E0040060A /* HSR */,
 				BA49CCAE1F33A35E0040060A /* BioPersonal.swift */,
 				BA49CCC61F33A35E0040060A /* Symptoms.swift */,
@@ -489,22 +470,6 @@
 				BA49CCC21F33A35E0040060A /* Output.swift */,
 			);
 			path = EvaluationSections;
-			sourceTree = "<group>";
-		};
-		BA49CCB01F33A35E0040060A /* CVProfileSection */ = {
-			isa = PBXGroup;
-			children = (
-				BA49CCB41F33A35E0040060A /* HeartFailure.swift */,
-				BA49CCB31F33A35E0040060A /* CoronaryHeartDisease.swift */,
-				BA49CCB11F33A35E0040060A /* AtrialFibrilation.swift */,
-				BA49CCB61F33A35E0040060A /* ThromboembolicVKA.swift */,
-				BA49CCB91F33A35E0040060A /* VentricularTachyarrthymias.swift */,
-				BA49CCB21F33A35E0040060A /* BradyarrthymiaSyncope.swift */,
-				BA49CCB71F33A35E0040060A /* ValvularHeartDisease.swift */,
-				BA49CCB51F33A35E0040060A /* PulmonaryHypertension.swift */,
-				BA49CCB81F33A35E0040060A /* VascularDisease.swift */,
-			);
-			path = CVProfileSection;
 			sourceTree = "<group>";
 		};
 		BA49CCBC1F33A35E0040060A /* HSR */ = {
@@ -799,7 +764,6 @@
 				BA49CCD11F33A35E0040060A /* CVDAction.swift in Sources */,
 				BA49CD251F33A6B00040060A /* HMS.swift in Sources */,
 				BA49CC9A1F33A0C90040060A /* PoliciesController.swift in Sources */,
-				BA49CCDA1F33A35E0040060A /* BradyarrthymiaSyncope.swift in Sources */,
 				BA49CD141F33A62D0040060A /* DemoView.swift in Sources */,
 				BA49CC861F33A0410040060A /* BioController.swift in Sources */,
 				BA49CC791F339FDD0040060A /* RegistraionController.swift in Sources */,
@@ -815,7 +779,6 @@
 				BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */,
 				BA49CCD81F33A35E0040060A /* CVProfile.swift in Sources */,
 				BA49CD241F33A6B00040060A /* General.swift in Sources */,
-				BA49CCDE1F33A35E0040060A /* ThromboembolicVKA.swift in Sources */,
 				BA49CC991F33A0C90040060A /* HelpSupportController.swift in Sources */,
 				BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */,
 				BA49CC8D1F33A0410040060A /* MessageController.swift in Sources */,
@@ -823,7 +786,6 @@
 				BA49CCE51F33A35E0040060A /* POMeds.swift in Sources */,
 				BA49CD331F33A6FE0040060A /* RestClient.swift in Sources */,
 				BA49CCE41F33A35E0040060A /* InHospital.swift in Sources */,
-				BA49CCD91F33A35E0040060A /* AtrialFibrilation.swift in Sources */,
 				BA49CD191F33A6440040060A /* GeneratedCell.swift in Sources */,
 				BA49CC9E1F33A0C90040060A /* TermsController.swift in Sources */,
 				BA49CCE91F33A35E0040060A /* Output.swift in Sources */,
@@ -833,7 +795,6 @@
 				BA49CD0C1F33A5CD0040060A /* BuildAppearance.swift in Sources */,
 				BA49CCF11F33A35E0040060A /* Settings.swift in Sources */,
 				BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */,
-				BA49CCE11F33A35E0040060A /* VentricularTachyarrthymias.swift in Sources */,
 				BA49CD071F33A54E0040060A /* HexExtention.swift in Sources */,
 				BA49CC871F33A0410040060A /* CVDAlertController.swift in Sources */,
 				BA49CD0A1F33A54E0040060A /* UIToolBarSubclassExample.swift in Sources */,
@@ -847,9 +808,7 @@
 				BA49CCF91F33A4220040060A /* RootViewController.swift in Sources */,
 				BA49CC9C1F33A0C90040060A /* RateController.swift in Sources */,
 				BA49CC7A1F339FDD0040060A /* ResetAccountController.swift in Sources */,
-				BA49CCDF1F33A35E0040060A /* ValvularHeartDisease.swift in Sources */,
 				BA49CCD51F33A35E0040060A /* Evaluation.swift in Sources */,
-				BA49CCE01F33A35E0040060A /* VascularDisease.swift in Sources */,
 				BA49CD321F33A6FE0040060A /* RegisterResponse.swift in Sources */,
 				BA49CD231F33A6B00040060A /* ControllerStyle.swift in Sources */,
 				BA49CCE71F33A35E0040060A /* Laboratories.swift in Sources */,
@@ -869,10 +828,7 @@
 				BA49CD281F33A6B00040060A /* Presentation.swift in Sources */,
 				BA49CD161F33A62D0040060A /* FontSetView.swift in Sources */,
 				BA49CCD71F33A35E0040060A /* BioPersonal.swift in Sources */,
-				BA49CCDC1F33A35E0040060A /* HeartFailure.swift in Sources */,
-				BA49CCDB1F33A35E0040060A /* CoronaryHeartDisease.swift in Sources */,
 				BA49CC8E1F33A0410040060A /* ReferencesController.swift in Sources */,
-				BA49CCDD1F33A35E0040060A /* PulmonaryHypertension.swift in Sources */,
 				BA49CC9D1F33A0C90040060A /* SettingsController.swift in Sources */,
 				BA49CCA21F33A0F40040060A /* BaseController.swift in Sources */,
 				BA49CC981F33A0C90040060A /* AboutController.swift in Sources */,

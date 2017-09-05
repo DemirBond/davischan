@@ -148,54 +148,6 @@ class DyspneaOnExertionNotAtRest: EvaluationItem {
 }
 
 
-// MARK: - Symptoms -> Dyspnea -> NYHA/CCSV Class
-
-class NYHAClass: EvaluationItem {
-	
-	let atHighRiskOfHF = EvaluationItem(literal: Presentation.atHighRiskOfHF)
-	let structuralHeartDeseaseNoSymptoms = EvaluationItem(literal: Presentation.structuralHeartDeseaseNoSymptoms)
-	let structuralHeartDeseaseSymptoms = EvaluationItem(literal: Presentation.structuralHeartDeseaseSymptoms)
-	
-	let refactoryHFInterventions = RefactoryHFInterventions(literal: Presentation.refactoryHFInterventions)
-
-	let NYHACCSVClass1 = EvaluationItem(literal: Presentation.NYHACCSVClass1)
-	let NYHACCSVClass2 = EvaluationItem(literal: Presentation.NYHACCSVClass2)
-	let NYHACCSVClass3 = EvaluationItem(literal: Presentation.NYHACCSVClass3)
-	let NYHACCSVClass4 = EvaluationItem(literal: Presentation.NYHACCSVClass4)
-	
-	override var items: [EvaluationItem] {
-		return [
-			atHighRiskOfHF,
-			structuralHeartDeseaseNoSymptoms,
-			structuralHeartDeseaseSymptoms,
-			refactoryHFInterventions //,
-			//NYHACCSVClass1,
-			//NYHACCSVClass2,
-			//NYHACCSVClass3,
-			//NYHACCSVClass4
-		]
-	}
-}
-
-
-// MARK: - Symptoms -> Dyspnea
-
-class RefactoryHFInterventions: EvaluationItem {
-	
-	let calculateHFSS = EvaluationItem(literal: Presentation.calculateHFSS)
-	let noSignificantComorbidities = EvaluationItem(literal: Presentation.noSignificantComorbidities)
-	let vo2maxkg = EvaluationItem(literal: Presentation.vo2maxkg)
-	
-	override var items: [EvaluationItem] {
-		return [
-			calculateHFSS,
-			noSignificantComorbidities,
-			vo2maxkg
-		]
-	}
-}
-
-
 // MARK: - Symptoms -> ChestPain
 
 class ChestPain: EvaluationItem {
