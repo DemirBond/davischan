@@ -930,55 +930,50 @@ struct Presentation {
 	static let ovalcellbodies = "#id:chkoval | #title:Oval Cell Bodies | #type:#check"
 
 	
-	// Diagnostics https://zpl.io/ZcDQES
+	//
+	// MARK: - Diagnostics https://zpl.io/ZcDQES
+	//
 	static let ekg = "#id:chkEKG | #title:EKG | #type:#disclosureControl"
 	static let stressTesting = "#id:chkDTS | #title:Stress Testing | #type:#disclosureControl"
 	static let echocardiography = "#id:chkecho | #title:Echocardiography | #type:#disclosureControl"
 	static let chestXRay = "#id:chestXRay | #title:Chest X-Ray | #type:#disclosureControl"
 	static let rhc = "#id:rhc | #title:RHC | #type:#disclosureControl | #alert: Refer to Heart Failure Specialist for Management"
-	// 0-100 range, percent
 	static let coronaryCalciumScore = "#id:coronaryCalciumScore | #title:Coronary Calcium Score |#type:#integerRight | #min:0 | #max:100 | #placeholder: "
-	// 0-100 range, unit
 	static let total = "#id:total | #title:Total |#type:#integerRight | #min:0 | #max:10000 | #placeholder: "
 	
 	// Diagnostics -> EKG
 	static let nsrInEKG = "#id:chkNSR| #title: Normal sinus rhtym| #type:#check"
-	static let PSVTInEKG = "#id:chkPSVT| #title: SVT| #type:#check"
-	static let urineNaMeqlInEKG = "#id:urineNaMeqlInEKG | #title:Urine Na meq/l |#type:#integerRight | #min:1 | #max:200 | #placeholder: "
-	static let serumOsmolalityInEKG = "#id:serumOsmolalityInEKG | #title:Serum Osmolality |#type:#integerRight | #min:200 | #max:400 | #placeholder: "
+	static let svt = "#id:chkSVT| #title:SVT | #type:#check"
+	static let atrialFibrillationInEKG = "#id:chkatrialfib | #title:Atrial Fibrillation | #type:#check"
+	static let atrialFlutter = "#id:chkflutter | #title:Atrial Flutter | #type:#disclosureControlExpandable"
+	static let prDuration  = "#id:prDuration | #title:PR Duration |#type:#integerRight | #min:0 | #max:10000 | #placeholder: "
+	static let qrsDuration = "#id:prDuration | #title:QRS Duration |#type:#integerRight | #min:0 | #max:10000 | #placeholder: "
+	static let nonspecificSTAbnormality = "#id:chknonspesific | #title:Nonspecific ST Abnormality | #type:#check"
 	static let stDeviation05mm = "#id:chkST| #title:ST Deviation ≥ 0.5mm | #type:#check"
-	static let stressTestingInEKG = "#id:stressTestingInEKG | #title:Stress Testing | #type:#check"
 	static let tWaveInversion1mm = "#id:chkTWI | #title:T Wave Inversion > 1mm | #type:#check"
+	static let lvh = "#id:chkLVH| #title:LVH | #type:#check"
 	static let lowVoltageQRS = "#id:chklowv | #title:Low Voltage QRS | #type:#check"
 	static let abnormalQWaves = "#id:chkabnormq| #title:Abnormal Q Waves | #type:#check"
 	static let lbbb = "#id:chkLBBB | #title:LBBB | #type:#check"
-	
-	static let lvh = "#id:chkLVH| #title:LVH | #type:#check"
+	static let bifascicular = "#id:chkbifascicular | #title:Bifascicular | #type:#check"
+	static let lahb = "#id:chkLAHB | #title:LAHB | #type:#check"
+	static let lphb = "#id:chkLPHB | #title:LPHB | #type:#check"
+	static let wpw = "#id:chkWPW | #title:WPW | #type:#check"
+	static let vpace = "#id:chkVPace | #title:Ventricular Pacing | #type:#check"
+	static let rbbb = "#id:chkRBBB | #title:RBBB | #type:#check"
+	static let intraventicularBlock = "#id:chkIVCD| #title:Intraventicular Block | #type:#check"
 	static let atrialPrematureDepolarization = "#id:chkAPCs | #title:Atrial Premature Depolarization | #type:#check"
 	static let junctionalPrematureDepolarization = "#id:chkJPCs | #title:Junctional Premature Depolarization | #type:#check"
 	static let frequentVentricularPacingOrEctopy = "#id:chkFreqVentPac | #title:Frequent Ventricular Pacing or Ectopy | #type:#check"
 	static let infrequentVentricularPacingOrEctopy = "#id:chkinfreqvent  | #title:Infrequent Ventricular Pacing or Ectopy | #type:#check"
-	static let wpw = "#id:chkWPW | #title:WPW | #type:#check"
-	static let svt = "#id:chkSVT| #title:SVT | #type:#check"
-	static let rbbb = "#id:chkRBBB | #title:RBBB | #type:#check"
-	static let intraventicularBlock = "#id:chkIVCD| #title:Intraventicular Block | #type:#check"
-	static let atrialFibrillationInEKG = "#id:chkatrialfib | #title:Atrial Fibrillation | #type:#check"
-	static let atrialFlutter = "#id:chkflutter | #title:Atrial Flutter | #type:#disclosureControlExpandable"
-	
-	//n-----<<<---->>>----- new need the ids
-	static let prDuration  = "#id:prDuration | #title:PR Duration |#type:#integerRight | #min:0 | #max:10000 | #placeholder: "
-	static let qrsDuration = "#id:prDuration | #title:QRS Duration |#type:#integerRight | #min:0 | #max:10000 | #placeholder: "
-	
-	static let nonspecificSTAbnormality = "#id:chknonspesific | #title:Nonspecific ST Abnormality | #type:#check"
-	
 	static let firstDegreeAVBlock = "#id:chkfirstdegree | #title:1st Degree AV Block | #type:#check"
 	static let secondDegreeAVBlock = "#id:chkseconddegree | #title:2nd Degree AV Block | #type:#disclosureControlExpandable"
 	static let thirdDegreeAVBlock = "#id:chkthirdegree | #title:3rd Degree AV Block | #type:#check"
 	
-	// Diagnostics -> EKG -> LBBB https://zpl.io/Z2eRL98
-	static let bifascicular = "#id:chkbifascicular | #title:Bifascicular | #type:#check"
-	static let lahb = "#id:chkLAHB | #title:LAHB | #type:#check"
-	static let lphb = "#id:chkLPHB | #title:LPHB | #type:#check"
+	static let PSVTInEKG = "#id:chkPSVT| #title: SVT| #type:#check"
+	static let urineNaMeqlInEKG = "#id:urineNaMeqlInEKG | #title:Urine Na meq/l |#type:#integerRight | #min:1 | #max:200 | #placeholder: "
+	static let serumOsmolalityInEKG = "#id:serumOsmolalityInEKG | #title:Serum Osmolality |#type:#integerRight | #min:200 | #max:400 | #placeholder: "
+	static let stressTestingInEKG = "#id:stressTestingInEKG | #title:Stress Testing | #type:#check"
 	
 	// Diagnostics -> EKG -> Atrial Flutter https://zpl.io/Zcjvv8
 	static let typicalAF = "#id:chktypicalAF | #title:Typical AF | #type:#check"
@@ -988,33 +983,22 @@ struct Presentation {
 	static let type1 = "#id:chktype1 | #title:Type 1 | #type:#check"
 	static let type2 = "#id:chktype2 | #title:Type 2 | #type:#check"
 	
-	
 	// Diagnostics -> Stress Testing https://zpl.io/Z21VSc7
-	// Integer, regex unknown
 	static let dukeTreadmillScore = "#id:txtTTS | #title:Duke Treadmill Score |#type:#integerRight | #min:0 | #max:9999 | #placeholder: "
-	// Integer, 0-99, range
 	static let serumStressSummedScore = "#id:txtStressSummedScore | #title:Serum Stress Summed Score |#type:#integerRight | #min:0 | #max:99 | #placeholder: "
-	// Integer, 0-200, range
-	static let dseIschemicThreshold = "#id:txtDSE | #title:DSE Ischemic Threshold, %MPHR at the Onset of Ischemia |#type:#integerRight | #min:0 | #max:200 | #placeholder: "
-	// Integer, 0-24, range
-	static let dseOrStressMRI = "#id:txtWMA | #title:DSE or Stress MRI, Number of Segments with new WMA |#type:#integerRight | #min:0 | #max:24 | #placeholder: "
-	// Integer, 0-99, range
 	static let stressDifferenceScore = "#id:txtreversible | #title:Stress Difference Score |#type:#integerRight | #min:0 | #max:99 | #placeholder: "
-	// Integer, 0-100, range
 	static let percentIschemicMyocardiumonMPS = "#id:txtMPS | #title:% Ischemic Myocardium on MPS |#type:#integerRight | #min:0 | #max:100 | #placeholder: "
-	// Integer, 1-21, range
+	static let tidOrSignificantDysfunction = "#id:chkTID | #title:TID or Significant Stress-Induced LV Dysfunction | #type:#check"
 	static let exTimeMin = "#id:txtExTimeMin | #title:Ex Time (min) |#type:#integerRight | #min:1 | #max:21 | #placeholder: "
-	// Integer, 0-8
 	static let maxSTMm = "#id:txtMaxST | #title:Max ST (mm) |#type:#integerRight | #min:0 | #max:8 | #placeholder: "
-	// Integer, 0-2
-	// MARK: cell type unclear.
 	static let anginaIndex = "#id:rbAnginaIndex | #title:Angina Index |#type:#disclosureControl | #min:0 | #max:2 | #placeholder: "
 	static let stElevation = "#id:chkSTelevation | #title:ST Elevation | #type:#check"
 	static let abnormalBPResponse = "#id:chkabnormalBP | #title:Abnormal BP Response | #type:#check"
 	static let ventricularTachycardia = "#id:chkExVT | #title:Ventricular Tachycardia | #type:#check"
 	static let prolongSTDepression = "#id:chkprolongedST | #title:Prolonged ST Depression | #type:#check"
-	static let tidOrSignificantDysfunction = "#id:chkTID | #title:TID or Significant Stress-Induced LV Dysfunction | #type:#check"
 	static let fixedPerfusionDefects = "#id:chkfixed  | #title:Fixed Perfusion Defects or Akinetic/Dyskinetic WMA on DSE | #type:#disclosureControlExpandable"
+	static let dseIschemicThreshold = "#id:txtDSE | #title:DSE Ischemic Threshold, %MPHR at the Onset of Ischemia |#type:#integerRight | #min:0 | #max:200 | #placeholder: "
+	static let dseOrStressMRI = "#id:txtWMA | #title:DSE or Stress MRI, Number of Segments with new WMA |#type:#integerRight | #min:0 | #max:24 | #placeholder: "
 	static let artifactualUninterpretableImages = "#id:chkuninterpret | #title:Artifactual/Uninterpretable Images | #type:#check"
 	
 	// Diagnostics -> Stress Testing -> Angina Index
@@ -1037,12 +1021,8 @@ struct Presentation {
 	static let enlargedRA = "#id:chkEnlargedRA | #title:Enlarged RA | #type:#check"
 	static let enlargedRV = "#id:chkEnlargedRV | #title:Enlarged RV | #type:#check"
 	static let midsystolicNotch = "#id:chkmidsystolicn | #title:Midsystolic Notch | #type:#check"
-	
-	// 1-30, range
 	static let lvLaterealAnnulusEE = "#id:txtMP | #title:LV Latereal Annulus E/E' |#type:#integerRight | #min:1 | #max:30 | #placeholder: "
-	// 10-80, range
 	static let lvefInEchocardiography = "#id:txtEF | #title:LVEF |#type:#integerRight | #min:10 | #max:80 | #placeholder: "
-	// 1-6, range
 	static let trjVelocityMsec = "#id:txtTRJ | #title:TRJ Velocity m/sec |#type:#integerRight | #min:1 | #max:6 | #placeholder: "
 	
 	// Diagnostics -> Chest X-Ray https://zpl.io/Z2uefQH
@@ -1052,7 +1032,10 @@ struct Presentation {
 	static let enlargedCardiacSolhouette = "#id:chkenlarcar | #title:Enlarged Cardiac Silhouette | #type:#check"
 	static let widenedMediasteneum = "#id:chkWidened | #title:Widened Mediasteneum | #type:#check"
 	static let pneumothorax = "#id:chkpneumothorax | #title:Pneumothorax | #type:#check"
+	static let infiltrate = "#id:chkinfiltrate | #title:Infiltrate(s) | #type:#check"
+	static let consolidation = "#id:chkconsolidation | #title:Consolidation | #type:#check"
 	
+
 	// PO Meds https://zpl.io/Z1JXQFi
 	static let bBlocker = "#id:chkcar | #title:B Blocker | #type:#disclosureControl"
 	static let acelARB = "#id:chkace | #title:Acel/ARB | #type:#disclosureControlExpandable"
