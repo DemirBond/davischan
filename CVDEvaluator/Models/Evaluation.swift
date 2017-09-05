@@ -71,11 +71,10 @@ class Evaluation: EvaluationItem {
 
 	let bio = BioPersonal(literal: Presentation.bio)
 	let symptoms = Symptoms(literal: Presentation.symptoms)
-	
 	let reviewOfSystem = ReviewOfSystem(literal: Presentation.reviewOfSystem)
-	
 	let physicalExam = PhysicalExam(literal: Presentation.physicalExam)
 	let cvProfile = CVProfile(literal: Presentation.cvProfile)
+	let pulmonary = Pulmonary(literal: Presentation.pulmonary)
 	let riskFactors = MajorCVRisks(literal: Presentation.riskFactors)
 	let surgicalRisk = SurgicalRisk(literal: Presentation.surgicalRisk)
 	let laboratories = Laboratories(literal: Presentation.laboratories)
@@ -91,6 +90,7 @@ class Evaluation: EvaluationItem {
 			reviewOfSystem,
 			physicalExam,
 			cvProfile,
+			pulmonary,
 			riskFactors,
 			surgicalRisk,
 			laboratories,

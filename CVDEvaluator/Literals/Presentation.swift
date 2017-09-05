@@ -75,6 +75,7 @@ struct Presentation {
 	static let reviewOfSystem = 	"#id:reviewOfSystem|  #title:Review of Systems|  #type:#disclosureVieved"
 	static let physicalExam = "#id:currentPastCVProfile| #title:Physical Exam| #type:#disclosureVieved"
 	static let cvProfile = 	"#id:cvProfile| #title:Cardiovascular| #type:#disclosureVieved"
+	static let pulmonary = 	"#id:pulmonary| #title:Pulmonary| #type:#disclosureVieved"
 	static let riskFactors = 	"#id:riskFactors| #title:Major CV Risk Factors| #type:#disclosureVieved"
 	static let surgicalRisk = 	"#id:surgicalRisk| #title:Noncardiac Surgical Risk| #type:#disclosureVieved"
 	static let laboratories = "#id:laboratories| #title:Laboratories| #type:#disclosureVieved"
@@ -816,6 +817,37 @@ struct Presentation {
 	static let aaDiameteMore5cm = "#id:chkAAdiameter| #title:AA Diameter > 5cm | #type:#check"
 	static let thoracic = "#id:chkchkthoracic| #title:Thoracic aortic aneurysm | #type:#check"
 	static let thoracoabdominal = "#id:chkthoracoabdominal| #title:Thoracoabdominal aortic aneurysm | #type:#check"
+	
+	
+	//
+	// MARK: - Pulmonary
+	//
+	static let fev1_lt = "#id:txtFEV1| #title:FEV1 lt/min | #type:#decimalRight | #min:0.5 | #max:8.0 | #placeholder: "
+	static let fev1_percent = "#id:txtFEVP| #title:% FEV1 | #type:#decimalRight | #min:25.0 | #max:120.0 | #placeholder: "
+	static let fvc = "#id:txtFVC| #title:% FVC | #type:#decimalRight | #min:0.0 | #max:120.0 | #placeholder: "
+	static let dlco = "#id:txtDLCO| #title:% DLCO | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: "
+	static let po2 = "#id:txtPO2| #title:PO2 mmhg | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: "
+	static let nsevere = "#id:chknsevere| #title:NSevere chronic hypercapnia | #type:#check"
+	static let asthmadisease = "#id:chkasthma| #title:Asthma / Reactive airway disease | #type:#disclosureControl"
+	static let acuteExacerbation = "#id:chkckd| #title:Acute exacerbation | #type:#disclosureControl"
+	static let interstitialLungDisease = "#id:chkILD| #title:Interstitial lung disease | #type:#check"
+	
+	// Pulmonary -> Asthma / Reactive airway disease:
+	static let symptomsWeek = "#id:txtasymptoms| #title:Symptoms / week | #type:#decimalRight | #min:0.0 | #max:112.0 | #placeholder: "
+	static let nocturnal = "#id:txtnocturnal| #title:Nocturnal awakening / week | #type:#decimalRight | #min:0.0 | #max:112.0 | #placeholder: "
+	static let sabaUse = "#id:txtSABA| #title:SABA use / week | #type:#decimalRight | #min:0.0 | #max:112.0 | #placeholder: "
+	
+	// Pulmonary -> Asthma / Reactive airway disease -> Interference with activity:
+	static let interference = "#id:chkinterference| #title: Interference with activity | #type:#disclosureControl"
+	static let noneInterference = "#id:chknone| #title:None | #type:#check"
+	static let minor = "#id:chkminor| #title:Minor | #type:#check"
+	static let some = "#id:chksome| #title:Some | #type:#check"
+	static let significant = "#id:chksignificant| #title:Significant | #type:#check"
+	
+	// Pulmonary -> Acute exacerbation:
+	static let acute = "#id:chkexacerbation| #title:Acute Exacerbation | #type:#check"
+	static let copdex = "#id:chkCOPDex| #title:More than 1 COPD Exacerbation/year | #type:#check"
+	static let copdhos = "#id:chkCOPDhos| #title:One or more hospital admission/year | #type:#check"
 	
 	
 	//

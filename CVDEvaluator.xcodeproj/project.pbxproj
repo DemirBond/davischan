@@ -14,6 +14,7 @@
 		78BF73F21E3F640F0040EC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BF73F01E3F640F0040EC81 /* LaunchScreen.storyboard */; };
 		78BF73FD1E3F640F0040EC81 /* CVDEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF73FC1E3F640F0040EC81 /* CVDEvaluatorTests.swift */; };
 		78BF74081E3F640F0040EC81 /* CVDEvaluatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF74071E3F640F0040EC81 /* CVDEvaluatorUITests.swift */; };
+		BA395C401F5EED95000C5A33 /* Pulmonary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */; };
 		BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC411F3339360040060A /* Crashlytics.framework */; };
 		BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC421F3339360040060A /* Fabric.framework */; };
 		BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC451F3339360040060A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -155,6 +156,7 @@
 		AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		B70706111E85E091009342E1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
 		B70706121E85E091009342E1 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
+		BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulmonary.swift; sourceTree = "<group>"; };
 		BA49CC401F3339360040060A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Frameworks/Alamofire.framework; sourceTree = "<group>"; };
 		BA49CC411F3339360040060A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		BA49CC421F3339360040060A /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				BA49CCC41F33A35E0040060A /* ReviewOfSystem.swift */,
 				BA49CCC31F33A35E0040060A /* PhysicalExam.swift */,
 				BA49CCAF1F33A35E0040060A /* CVProfile.swift */,
+				BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */,
 				BA49CCC11F33A35E0040060A /* MajorCVRisks.swift */,
 				BA49CCC51F33A35E0040060A /* SurgicalRisk.swift */,
 				BA49CCC01F33A35E0040060A /* Laboratories.swift */,
@@ -784,6 +787,7 @@
 				BA49CD0A1F33A54E0040060A /* UIToolBarSubclassExample.swift in Sources */,
 				BA49CCD21F33A35E0040060A /* CVDToolbar.swift in Sources */,
 				BA49CCD61F33A35E0040060A /* EvaluationItem.swift in Sources */,
+				BA395C401F5EED95000C5A33 /* Pulmonary.swift in Sources */,
 				BA49CC8F1F33A0410040060A /* SpecialistController.swift in Sources */,
 				BA49CD301F33A6FE0040060A /* EvaluationRequest.swift in Sources */,
 				BA49CD091F33A54E0040060A /* UIAlertControllerExtention.swift in Sources */,
