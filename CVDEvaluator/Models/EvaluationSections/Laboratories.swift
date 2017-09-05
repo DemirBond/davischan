@@ -8,16 +8,13 @@
 
 import Foundation
 
+
+// MARK: - Laboratories
+
 class Laboratories: EvaluationItem {
 	
 	let chemBasicLabel = EvaluationItem(literal: Presentation.chemBasicLabel)
 	let nameqlValue = EvaluationItem(literal: Presentation.nameqlValue)
-	
-	let urineNaMeql = EvaluationItem(literal: Presentation.urineNaMeql)
-	let serumOsmolality = EvaluationItem(literal: Presentation.serumOsmolality)
-	let urineOsmolality = EvaluationItem(literal: Presentation.urineOsmolality)
-
-	
 	let kmeql = EvaluationItem(literal: Presentation.kmeql)
 	let creatinineMgDl = EvaluationItem(literal: Presentation.creatinineMgDl)
 	let bunMgDl = EvaluationItem(literal: Presentation.bunMgDl)
@@ -43,22 +40,19 @@ class Laboratories: EvaluationItem {
 	let ntProBNPPgMl = EvaluationItem(literal: Presentation.ntProBNPPgMl)
 	let bnpPgMl = EvaluationItem(literal: Presentation.bnpPgMl)
 	let albuminuriaMgGmOrMg24hr = EvaluationItem(literal: Presentation.albuminuriaMgGmOrMg24hr)
-	
-	// MARK: Fill up the rest of it and fill up items array
+	let abnormalurinsediment = AbnormalUrinSediment(literal: Presentation.abnormalurinsediment)
 	
 	override var items: [EvaluationItem] {
 		return [
 			chemBasicLabel,
 			nameqlValue,
-			//urineNaMeql,
-			//serumOsmolality,
-			//urineOsmolality,
 			kmeql,
 			creatinineMgDl,
 			bunMgDl,
 			fastingPlasmaGlucose,
 			gfrMlMin173M2,
 			worseningRenalFx,
+			
 			lipidProfileLabel,
 			alreadyOnStatin,
 			statinIntolerance,
@@ -70,24 +64,54 @@ class Laboratories: EvaluationItem {
 			ldlp,
 			lpaMgdl,
 			ascvdRisk,
+			
 			othersLabel,
 			hba1c,
 			crpMgl,
 			ntProBNPPgMl,
 			bnpPgMl,
-			albuminuriaMgGmOrMg24hr
+			albuminuriaMgGmOrMg24hr,
+			abnormalurinsediment
 		]
 	}
-	
 }
+
+
+// MARK: - Laboratories -> Nameql
 
 class Nameql: EvaluationItem {
 	
+	let urineNaMeql = EvaluationItem(literal: Presentation.urineNaMeql)
+	let serumOsmolality = EvaluationItem(literal: Presentation.serumOsmolality)
+	let urineOsmolality = EvaluationItem(literal: Presentation.urineOsmolality)
+	
 	override var items: [EvaluationItem] {
 		return [
-//			urineNaMeql,
-//			serumOsmolality,
-//			urineOsmolality
+			urineNaMeql,
+			serumOsmolality,
+			urineOsmolality
+		]
+	}
+}
+
+
+// MARK: - Laboratories -> Abnormal Urin Sediment
+
+class AbnormalUrinSediment: EvaluationItem {
+	
+	let isolatedrbc = EvaluationItem(literal: Presentation.isolatedrbc)
+	let rbccast = EvaluationItem(literal: Presentation.rbccast)
+	let wbccast = EvaluationItem(literal: Presentation.wbccast)
+	let granularcast = EvaluationItem(literal: Presentation.granularcast)
+	let ovalcellbodies = EvaluationItem(literal: Presentation.ovalcellbodies)
+	
+	override var items: [EvaluationItem] {
+		return [
+			isolatedrbc,
+			rbccast,
+			wbccast,
+			granularcast,
+			ovalcellbodies
 		]
 	}
 }

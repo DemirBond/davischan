@@ -890,50 +890,27 @@ struct Presentation {
 	// MARK: - Laboratories https://zpl.io/2kxbQs
 	//
 	static let chemBasicLabel = "#id:chemBasicLabel | #title:Chem Basic | #type:#label"
-	// MARK: Need to clarify placeholder's string
-	// MARK: 99-170, range (Integer)
-	// MARK: Need to join two cells once the cell prototype is done
 	static let nameqlValue = "#id:txtNameq | #title:Na meq/l |#type:#integerRightExpandable | #min:99 | #max:170 | #placeholder: "
+	static let urineNaMeql = "#id:txturineNa | #title:Urine Na meq/l |#type:#integerRight | #min:1 | #max:200 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
+	static let serumOsmolality = "#id:txtsosm | #title:Serum Osmolality |#type:#integerRight | #min:200 | #max:400 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
+	static let urineOsmolality = "#id:txtuosm | #title:Urine Osmolality |#type:#integerRight | #min:200 | #max:1000 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
 	static let nameql = "#id:txtNa | #title:Na meq/l | #type:#disclosureControl"
-	// MARK: Need to clarify placeholder's string
-	// MARK: 2-9, range Double(?)
 	static let kmeql = "#id:txtHomo | #title:K meq/l |#type:#decimalRight | #min:2.0 | #max:9.0 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 0.4-20, range Double
 	static let creatinineMgDl = "#id:txtcreatinine | #title:Creatinine mg/dl |#type:#decimalRight | #min:0.4 | #max:20.0 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 6-200, range (Integer)
 	static let bunMgDl = "#id:txtBUN | #title:BUN mg/dl |#type:#integerRight | #min:6 | #max:200 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 35-1000
 	static let fastingPlasmaGlucose = "#id:txtGlucose | #title:Fasting Plasma Glucose |#type:#integerRight | #min:35 | #max:1000 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 5-120, (Integer), Set default to 120 if no value
 	static let gfrMlMin173M2 = "#id:txtGFR | #title:GFR ml/min/1.73 M2 |#type:#integerRight | #min:5 | #max:120 | #placeholder: "
 	static let worseningRenalFx = "#id:chkWG | #title:Worsening Renal Fx | #type:#check"
 	
 	static let lipidProfileLabel = "#id:lipidProfileLabel | #title:Lipid Profile | #type:#label"
 	static let alreadyOnStatin = "#id:chklready | #title:Already on Statin | #type:#check"
 	static let statinIntolerance = "#id:chkstatint | #title:Statin Intolerance | #type:#check"
-	
 	static let cholesterol = "#id:txtCholesterol | #title:Cholesterol |#type:#integerRight | #min:40 | #max:500 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 25-25000, (Integer).
 	static let trg = "#id:txtTRG | #title:TRG |#type:#integerRight | #min:25 | #max:25000 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 0-500, (Integer).
 	static let ldlc = "#id:txtLDL | #title:LDL-C |#type:#integerRight | #min:0 | #max:500 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 1-200, (Integer).
 	static let hdlc = "#id:txtHDL | #title:HDL-C |#type:#integerRight | #min:1 | #max:200 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 0-400, (Integer).
 	static let apoB = "#id:txtApoB | #title:Apo B |#type:#integerRight | #min:0 | #max:400 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 100-5000, (Integer).
 	static let ldlp = "#id:txtLDLP | #title:LDL-P |#type:#integerRight | #min:100 | #max:5000 | #placeholder: "
-	// MARK: Need to clarify placeholder's string
-	// MARK: 1-500, (Integer).
 	static let lpaMgdl = "#id:txtLPA | #title:LPa mg/dl |#type:#integerRight | #min:1 | #max:500 | #placeholder: "
 	static let ascvdRisk = "#id:txtASCVD | #title:ASCVD Risk |#type:#decimalRight | #min:0.1 | #max:30 | #placeholder: "
 	
@@ -942,12 +919,16 @@ struct Presentation {
 	static let crpMgl = "#id:txtCRP | #title:CRP mg/l |#type:#decimalRight | #min:0.1 | #max:30.0 | #placeholder: "
 	static let ntProBNPPgMl = "#id:txtproBNP | #title:NT-proBNP pg/ml |#type:#integerRight | #min:50 | #max:100000 | #placeholder: "
 	static let bnpPgMl = "#id:txtBNP | #title:BNP pg/ml |#type:#integerRight | #min:10 | #max:100000 | #placeholder: "
-	// Comment: Defaulted in the presence of diabetes
 	static let albuminuriaMgGmOrMg24hr = "#id:txtMICRO | #title:Albuminuria Mg.Gm or Mg/24hr |#type:#integerRight | #min:1 | #max:10000 | #placeholder: "
 	
-	static let urineNaMeql = "#id:txturineNa | #title:Urine Na meq/l |#type:#integerRight | #min:1 | #max:200 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
-	static let serumOsmolality = "#id:txtsosm | #title:Serum Osmolality |#type:#integerRight | #min:200 | #max:400 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
-	static let urineOsmolality = "#id:txtuosm | #title:Urine Osmolality |#type:#integerRight | #min:200 | #max:1000 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
+	// Laboratories -> Abnormal urine sediment
+	static let abnormalurinsediment = "#id:chksediment | #title:Abnormal urine sediment | #type:#disclosureControl"
+	static let isolatedrbc = "#id:chkRBC | #title:Isolated RBC | #type:#check"
+	static let rbccast = "#id:chkRBCcast | #title: RBC Cast| #type:#check"
+	static let wbccast = "#id:chkWBCcast | #title: WBC Cast | #type:#check"
+	static let granularcast = "#id:chkgranular | #title:Granular Cast | #type:#check"
+	static let ovalcellbodies = "#id:chkoval | #title:Oval Cell Bodies | #type:#check"
+
 	
 	// Diagnostics https://zpl.io/ZcDQES
 	static let ekg = "#id:chkEKG | #title:EKG | #type:#disclosureControl"
