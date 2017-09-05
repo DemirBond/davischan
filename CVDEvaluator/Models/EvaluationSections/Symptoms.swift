@@ -9,6 +9,35 @@
 import UIKit
 
 
+// MARK: - Symptoms
+
+class Symptoms: EvaluationItem {
+	
+	var dyspnea = Dyspnea(literal: Presentation.dyspnea)
+	var chestPain = ChestPain(literal: Presentation.chestPain)
+	var syncope = Syncope(literal: Presentation.syncope)
+	
+	let edema = EdemaInSymptoms(literal: Presentation.edemaInSymptoms )
+	let weakness  = Weakness(literal: Presentation.weakness )
+	let palpitations = Palpitations(literal: Presentation.palpitationsInSymptoms)
+	let abdominalPain  = AbdominalPain(literal: Presentation.abdominalPain )
+	let shock = ShockInSymptoms(literal: Presentation.shock )
+	
+	override var items: [EvaluationItem] {
+		return [
+			dyspnea,
+			chestPain,
+			syncope,
+			edema,
+			weakness,
+			palpitations,
+			abdominalPain,
+			shock
+		]
+	}
+}
+
+
 // MARK: - Symptoms -> Dyspnea
 
 class Dyspnea: EvaluationItem {
@@ -248,6 +277,7 @@ class UndeterminedCPInChestPain: EvaluationItem {
 	let sideSemithorax = SideSemithorax(literal: Presentation.sideSemithorax)
 	let intercostalCP = IntercostalCP(literal: Presentation.intercostalCP)
 	let сentralPrecordialCP = CentralPrecordialCP(literal: Presentation.сentralPrecordialCP)
+	
 	override var items: [EvaluationItem] {
 		return [
 			sideSemithorax,
@@ -553,7 +583,7 @@ class Syncope: EvaluationItem {
 	
 	let syncopeDurationDuringSyncope = EvaluationItem(literal: Presentation.syncopeDurationDuringSyncope)
 	let durationMinutesSeconds = EvaluationItem(literal: Presentation.durationMinutesSeconds)
-	let cyanosis = EvaluationItem(literal: Presentation.cyanosisInPhysicalExam)
+	let cyanosis = EvaluationItem(literal: Presentation.cyanosis)
 	let pallorDiaphoresis = EvaluationItem(literal: Presentation.pallorDiaphoresis)
 	let unusualPosture = EvaluationItem(literal: Presentation.unusualPosture)
 	
@@ -598,6 +628,28 @@ class Syncope: EvaluationItem {
 			chestPainInPostictalSymptoms,
 			prolongedFatigue,
 			traumaticInjury
+		]
+	}
+}
+
+
+// MARK: - Symptoms -> Edema
+
+class EdemaInSymptoms: EvaluationItem {
+	
+	let localizedEdema = EvaluationItem(literal: Presentation.localizedEdema)
+	let diffuseEdema = EvaluationItem(literal: Presentation.diffuseEdema)
+	let separator1 = EvaluationItem(literal: Presentation.separator)
+	let pittingEdema = EvaluationItem(literal: Presentation.pittingEdema)
+	let nonpittingEdema = EvaluationItem(literal: Presentation.nonpittingEdema)
+	
+	override var items: [EvaluationItem] {
+		return [
+			pittingEdema,
+			nonpittingEdema,
+			separator1,
+			localizedEdema,
+			diffuseEdema
 		]
 	}
 }
@@ -711,79 +763,140 @@ class Palpitations: EvaluationItem  {
 			postexertionOnsetPalpitations
 		]
 	}
+}
+/*class Palpitations: EvaluationItem {
 	
-	/*
-	class DurationPalpitations: EvaluationItem {
-	
-	let secondsDurationPalpitations = EvaluationItem(literal: Presentation.secondsDurationPalpitations)
-	let minutesDurationPalpitations = EvaluationItem(literal: Presentation.minutesDurationPalpitations)
-	let hoursDurationPalpitations = EvaluationItem(literal: Presentation.hoursDurationPalpitations)
+	let frequencyPalpitations = FrequencyPalpitations(literal: Presentation.frequencyPalpitations)
+	let typePalpitations = TypePalpitations(literal: Presentation.typePalpitations)
+	let durationPalpitations = DurationPalpitations(literal: Presentation.durationPalpitations)
+	let syncopePalpitations = SyncopePalpitations(literal: Presentation.syncopePalpitations)
+	let ekgPalpitations = EKGPalpitations(literal: Presentation.ekgPalpitations)
+	let onsetPalpitations = OnsetPalpitations(literal: Presentation.onsetPalpitations)
 	
 	override var items: [EvaluationItem] {
-	return [
-	secondsDurationPalpitations,
-	minutesDurationPalpitations,
-	hoursDurationPalpitations
-	]
+		return [
+			frequencyPalpitations,
+			typePalpitations,
+			durationPalpitations,
+			syncopePalpitations,
+			ekgPalpitations,
+			onsetPalpitations
+		]
 	}
 	
+	class FrequencyPalpitations: EvaluationItem {
+		
+		let dailyFreqPalpitations = EvaluationItem(literal: Presentation.dailyFreqPalpitations)
+		let weeklyFreqPalpitations = EvaluationItem(literal: Presentation.weeklyFreqPalpitations)
+		let monthlyFreqPalpitations = EvaluationItem(literal: Presentation.monthlyFreqPalpitations)
+		let yearlyFreqPalpitations = EvaluationItem(literal: Presentation.yearlyFreqPalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				dailyFreqPalpitations,
+				weeklyFreqPalpitations,
+				monthlyFreqPalpitations,
+				yearlyFreqPalpitations
+			]
+		}
+	}
+	
+	class TypePalpitations: EvaluationItem {
+		
+		let extrasystolicTypePalpitations = EvaluationItem(literal: Presentation.extrasystolicTypePalpitations)
+		let tachycardicTypePalpitations = TachycardicPalpitations(literal: Presentation.tachycardicTypePalpitations)
+		let anxietyTypePalpitations = EvaluationItem(literal: Presentation.anxietyTypePalpitations)
+		let pulsationTypePalpitations = EvaluationItem(literal: Presentation.pulsationTypePalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				extrasystolicTypePalpitations,
+				tachycardicTypePalpitations,
+				anxietyTypePalpitations,
+				pulsationTypePalpitations
+			]
+		}
+		
+		class TachycardicPalpitations: EvaluationItem {
+			
+			let abruptTachycardicTypePalpitations = EvaluationItem(literal: Presentation.abruptTachycardicTypePalpitations)
+			let gradualTachycardicTypePalpitations = EvaluationItem(literal: Presentation.gradualTachycardicTypePalpitations)
+			let noresponseTachycardicTypePalpitations = EvaluationItem(literal: Presentation.noresponseTachycardicTypePalpitations)
+			
+			override var items: [EvaluationItem] {
+				return [
+					abruptTachycardicTypePalpitations,
+					gradualTachycardicTypePalpitations,
+					noresponseTachycardicTypePalpitations
+				]
+			}
+		}
+	}
+	
+	class DurationPalpitations: EvaluationItem {
+		
+		let secondsDurationPalpitations = EvaluationItem(literal: Presentation.secondsDurationPalpitations)
+		let minutesDurationPalpitations = EvaluationItem(literal: Presentation.minutesDurationPalpitations)
+		let hoursDurationPalpitations = EvaluationItem(literal: Presentation.hoursDurationPalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				secondsDurationPalpitations,
+				minutesDurationPalpitations,
+				hoursDurationPalpitations
+			]
+		}
 	}
 	
 	class SyncopePalpitations: EvaluationItem {
-	
-	let palSyncopePalpitations = EvaluationItem(literal: Presentation.palSyncopePalpitations)
-	let anginaSyncopePalpitations = EvaluationItem(literal: Presentation.anginaSyncopePalpitations)
-	let pulsationsSyncopePalpitations = EvaluationItem(literal: Presentation.pulsationsSyncopePalpitations)
-	let polyuriaSyncopePalpitations = EvaluationItem(literal: Presentation.polyuriaSyncopePalpitations)
-	
-	
-	override var items: [EvaluationItem] {
-	return [
-	palSyncopePalpitations,
-	anginaSyncopePalpitations,
-	pulsationsSyncopePalpitations,
-	polyuriaSyncopePalpitations
-	]
-	
-	}
-	
+		
+		let palSyncopePalpitations = EvaluationItem(literal: Presentation.palSyncopePalpitations)
+		let anginaSyncopePalpitations = EvaluationItem(literal: Presentation.anginaSyncopePalpitations)
+		let pulsationsSyncopePalpitations = EvaluationItem(literal: Presentation.pulsationsSyncopePalpitations)
+		let polyuriaSyncopePalpitations = EvaluationItem(literal: Presentation.polyuriaSyncopePalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				palSyncopePalpitations,
+				anginaSyncopePalpitations,
+				pulsationsSyncopePalpitations,
+				polyuriaSyncopePalpitations
+			]
+		}
 	}
 	
 	class EKGPalpitations: EvaluationItem {
-	
-	let nsrEkgPalpitations = EvaluationItem(literal: Presentation.nsrEkgPalpitations)
-	let regularEkgPalpitations = EvaluationItem(literal: Presentation.regularEkgPalpitations)
-	let irregularEkgPalpitations = EvaluationItem(literal: Presentation.irregularEkgPalpitations)
-	
-	override var items: [EvaluationItem] {
-	return [
-	nsrEkgPalpitations,
-	regularEkgPalpitations,
-	irregularEkgPalpitations
-	]
-	}
-	
+		
+		let nsrEkgPalpitations = EvaluationItem(literal: Presentation.nsrEkgPalpitations)
+		let regularEkgPalpitations = EvaluationItem(literal: Presentation.regularEkgPalpitations)
+		let irregularEkgPalpitations = EvaluationItem(literal: Presentation.irregularEkgPalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				nsrEkgPalpitations,
+				regularEkgPalpitations,
+				irregularEkgPalpitations
+			]
+		}
 	}
 	
 	class OnsetPalpitations: EvaluationItem {
-	
-	let suddenOnsetPalpitations = EvaluationItem(literal: Presentation.suddenOnsetPalpitations)
-	let positionOnsetPalpitations = EvaluationItem(literal: Presentation.positionOnsetPalpitations)
-	let exertionOnsetPalpitations = EvaluationItem(literal: Presentation.exertionOnsetPalpitations)
-	let postexertionOnsetPalpitations = EvaluationItem(literal: Presentation.postexertionOnsetPalpitations)
-	
-	
-	override var items: [EvaluationItem] {
-	return [
-	suddenOnsetPalpitations,
-	positionOnsetPalpitations,
-	exertionOnsetPalpitations,
-	postexertionOnsetPalpitations
-	]
+		
+		let suddenOnsetPalpitations = EvaluationItem(literal: Presentation.suddenOnsetPalpitations)
+		let positionOnsetPalpitations = EvaluationItem(literal: Presentation.positionOnsetPalpitations)
+		let exertionOnsetPalpitations = EvaluationItem(literal: Presentation.exertionOnsetPalpitations)
+		let postexertionOnsetPalpitations = EvaluationItem(literal: Presentation.postexertionOnsetPalpitations)
+		
+		override var items: [EvaluationItem] {
+			return [
+				suddenOnsetPalpitations,
+				positionOnsetPalpitations,
+				exertionOnsetPalpitations,
+				postexertionOnsetPalpitations
+			]
+		}
 	}
-	}
-	*/
-}
+}*/
 
 
 // MARK: - Symptoms -> Abdominal Pain
@@ -869,39 +982,6 @@ class AbdominalPain: EvaluationItem {
 		]
 	}
 	
-	/*
-	let abdominalFindings = EvaluationItem(literal: Presentation.abdominalFindings)
-	let reboundFindings = EvaluationItem(literal: Presentation.reboundFindings)
-	let pulsatileFindings = EvaluationItem(literal: Presentation.pulsatileFindings)
-	let bowelFindings = EvaluationItem(literal: Presentation.bowelFindings)
-	let psoasFindings = EvaluationItem(literal: Presentation.psoasFindings)
-	let mcburneyFindings = EvaluationItem(literal: Presentation.mcburneyFindings)
-	let rovsingsignFindings = EvaluationItem(literal: Presentation.rovsingsignFindings)
-	let murphysignFindings = EvaluationItem(literal: Presentation.murphysignFindings)
-	let obturatorFindings = EvaluationItem(literal: Presentation.obturatorFindings)
-	let carnettsignFindings = EvaluationItem(literal: Presentation.carnettsignFindings)
-	let costovertebralFindings = EvaluationItem(literal: Presentation.costovertebralFindings)
-	let skinfindingsFindings = SkinAbdominalPain(literal: Presentation.skinfindingsFindings)
-	//let skinfindingsFindings = EvaluationItem(literal: Presentation.skinfindingsFindings)
-	
-	override var items: [EvaluationItem] {
-		return [
-			abdominalFindings,
-			reboundFindings,
-			pulsatileFindings,
-			bowelFindings,
-			psoasFindings,
-			mcburneyFindings,
-			rovsingsignFindings,
-			murphysignFindings,
-			obturatorFindings,
-			carnettsignFindings,
-			costovertebralFindings,
-			skinfindingsFindings
-		]
-	}
-	*/
-	
 	class SkinAbdominalPain: EvaluationItem {
 		
 		let wallSkinFindings = EvaluationItem(literal: Presentation.wallSkinFindings)
@@ -938,30 +1018,23 @@ class AbdominalPain: EvaluationItem {
 }
 
 
-// MARK: - Symptoms
+// MARK: - Symptoms -> Shock
 
-class Symptoms: EvaluationItem {
+class ShockInSymptoms: EvaluationItem {
 	
-	var dyspnea = Dyspnea(literal: Presentation.dyspnea)
-	var chestPain = ChestPain(literal: Presentation.chestPain)
-	var syncope = Syncope(literal: Presentation.syncope)
-	
-	let edema = EdemaInPhysicalExam(literal: Presentation.edemaInSymptoms )
-	let weakness  = Weakness(literal: Presentation.weakness )
-	let palpitations = Palpitations(literal: Presentation.palpitationsInSymptoms)
-	let abdominalPain  = AbdominalPain(literal: Presentation.abdominalPain )
-	let shock = ShockInPhysicalExam(literal: Presentation.shock )
+	let hypovolemiaSectionShock = EvaluationItem(literal: Presentation.hypovolemiaSectionShock)
+	let infectiousSectionShock = EvaluationItem(literal: Presentation.infectiousSectionShock)
+	let spinalcordSectionShock = EvaluationItem(literal: Presentation.spinalcordSectionShock)
+	let allergenSectionShock = EvaluationItem(literal: Presentation.allergenSectionShock)
+	let pharmacologicSectionShock = EvaluationItem(literal: Presentation.pharmacologicSectionShock)
 	
 	override var items: [EvaluationItem] {
 		return [
-			dyspnea,
-			chestPain,
-			syncope,
-			edema,
-			weakness,
-			palpitations,
-			abdominalPain,
-			shock
+			hypovolemiaSectionShock,
+			infectiousSectionShock,
+			spinalcordSectionShock,
+			allergenSectionShock,
+			pharmacologicSectionShock
 		]
 	}
 }

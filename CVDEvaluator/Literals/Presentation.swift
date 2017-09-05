@@ -261,7 +261,7 @@ struct Presentation {
 	static let syncopeDurationDuringSyncope = "#id:txtSynMin | #title:Syncope Duration/During Syncope | #type:#label | #height:65"
 	// MARK: minutes seconds custom cell
 	static let durationMinutesSeconds = "#id:txtSynSec | #title: Duration | #type:#minutesSeconds | #min:0|  #max:1000|"
-	//static let cyanosis = "#id:chkSynNone | #title:Cyanosis | #type:#check"
+	static let cyanosis = "#id:chkSynNone | #title:Cyanosis | #type:#check"
 	static let pallorDiaphoresis = "#id:chkSynpallor | #title:Pallor, Diaphoresis | #type:#check"
 	static let unusualPosture = "#id:chkSynposture | #title:Unusual Posture | #type:#check"
 	
@@ -281,14 +281,22 @@ struct Presentation {
 	//	Evaluation -> Symptoms -> Weakness
 	static let malaiseFatigue = "#id:malaiseFatigue | #title:Malaise/Fatigue | #type:#check"
 	
-	// Evaluation -> Symptoms  -> Palpitations ->Frequency
+	// Evaluation -> Symptoms  -> Palpitations
+//	static let frequencyPalpitations = "#id:chkFrequencyPalp  | #title:Frequency | #type:#disclosureControl"
+//	static let typePalpitations = "#id:chkType | #title:Type | #type:#disclosureControl"
+//	static let durationPalpitations = "#id:chkDuration  | #title:Duration | #type:#disclosureControl"
+//	static let syncopePalpitations = "#id:chkSyncope | #title:Caput Syncope | #type:#disclosureControl"
+//	static let ekgPalpitations = "#id:chkEKGPalpPlaceholder | #title:EKG findings during palpitations | #type:#disclosureControl"
+//	static let onsetPalpitations = "#id:chkOnset | #title:Onset, trigger | #type:#disclosureControl"
+	
+	// Evaluation -> Symptoms  -> Palpitations -> Frequency
 	static let frequencyPalpitationsLabel = "#id: frequencyLabel| #title:Frequency | #type:#label"
 	static let dailyFreqPalpitations = "#id:chkpalday | #title:Daily | #type:#check"
 	static let weeklyFreqPalpitations = "#id:chkpalweek | #title:Weekly | #type:#check"
 	static let monthlyFreqPalpitations = "#id:chkpalmonth | #title:Monthly | #type:#check"
 	static let yearlyFreqPalpitations = "#id:chkpalyear | #title:Yearly| #type:#check"
 	
-	// Evaluation -> Symptoms -> Palpitations ->Type
+	// Evaluation -> Symptoms -> Palpitations -> Type
 	static let typePalpitationsLabel = "#id: typePalpitations | #title:Type | #type:#label"
 	static let extrasystolicTypePalpitations = "#id:chkextrasys | #title:Extrasystolic | #type:#check"
 	static let tachycardicTypePalpitations = "#id:chktachycardic | #title:Tachycardic | #type:#disclosureControlExpandable"
@@ -334,9 +342,9 @@ struct Presentation {
 	
 	// Evaluation -> Symptoms ->Abdominal Pain -> Location
 	static let locationAbdominalPainLabel = "#type:#label | #title: Location | #id: locationAbdominalPain"
-	static let theperiumbilicalLocationAbdominalPain = "#id:chkperiumbilical | #title:Periumbilical | #type:#check"
-	static let epigastricLocationAbdominalPain = "#id:chkepigastric | #title:Epigastric | #type:#check"
-	static let suprapubicLocationAbdominalPain = "#id:chksuprapubic | #title:Suprapubic | #type:#check"
+	static let epigastricFindAbdominalPain = "#id:chkepigastric | #title:Epigastric | #type:#check"
+	static let periumbilicalLocationAbdominalPain = "#id:chkperiumbilical | #title:Periumbilical | #type:#check"
+	static let suprapubicEdemaLocationAbdominalPain = "#id:chksuprapubic | #title:Supra pubic | #type:#check"
 	static let refferedAbdominalPain = "#id:chkAbspasm | #title:Referred shoulder pain | #type:#check"
 	
 	// Evaluation -> Symptoms ->Abdominal Pain -> Associated Findings
@@ -390,9 +398,9 @@ struct Presentation {
 	static let thyrotoxicosisInROS = "#id:chkThyro | #title:Thyrotoxicosis | #type:#check"
 	static let hypothyroidismInROS = "#id:chkHypoThyro | #title:Hypothyroidism | #type:#check"
 	static let osaSymptomsInROS = "#id:chkOSA | #title:OSA Symptoms | #type:#check"
-	static let sinusSymptomsInROS = "#id:chkSINUS | #title:Sinusitis | #type:#check"
-	static let coughSymptomsInROS = "#id:chkCOUGH | #title:Cough | #type:#check"
-	static let sputumSymptomsInROS = "#id:chkSPUTUM | #title:Sputum | #type:#check"
+	static let sinusSymptomsInROS = "#id:chksinus | #title:Sinusitis | #type:#check"
+	static let coughSymptomsInROS = "#id:chkcough | #title:Cough | #type:#check"
+	static let sputumSymptomsInROS = "#id:chksputum | #title:Sputum | #type:#check"
 	static let blnhemoptysis = "#id:chkhemoptysis | #title:Hemoptysis | #type:#check"
 	static let previousDVTPEInROS = "#id:chkPVTE | #title:Previous pulmonary embolism | #type:#check"
 	static let pndInROS = "id:chkPND| #title: Paroxysmal nocturnal dyspnea| #type:#check"
@@ -410,136 +418,85 @@ struct Presentation {
 	
 	
 	// Physical Exam https://zpl.io/29sOGH
-	static let hepatojulularRefluxInPhysicalExam = "#id:chkHJR | #title:Hepatojulular Reflux | #type:#check"
+	static let neckveins = "#id:chkhepato | #title:Neck veins not assesable | #type:#check"
 	static let jugularVenousDistentionInPhysicalExam = "#id:chkJVD | #title:Jugular Venous Distention | #type:#check"
+	static let bruitInPhysicalExam = "id:chkbruit| #title:Carotid bruit| #type:#check"
 	static let displacedPMIInPhysicalExam = "#id:chkPMI | #title:Displaced PMI | #type:#check"
 	static let leftSidedS3S4Gallop = "#id:chkS3 | #title:Left Sided S3 Gallop | #type:#check"
 	static let leftSidedS4Gallop = "#id:chkS4 | #title:Left Sided S4 Gallop | #type:#check"
 	static let frictionRubInPhysicalExam = "#id:chkrub | #title:Friction Rub| #type:#check"
 	static let distantInPhysicalExam = "#id:chkdistant | #title:Distant Heart Sounds| #type:#check"
-	static let heartMurmurInPhysicalExam = "#id:chkheartMurmur | #title:Heart Murmur | #type:#disclosureControl"
+	
 	static let newRalesInPhysicalExam = "#id:chkMR | #title:New Rales | #type:#check"
 	static let pulmonaryEdemaInPhysicalExam = "#id:chkPEd | #title:Pulmonary Edema | #type:#check"
-	
-	static let rhonchiInPhysicalExam = "#id:chkrhonchi | #title:Dry rales, rhonchi | #type:#check"
-	static let thoraxInPhysicalExam = "#id:chkthorax | #title:Increased thorax AP diameter  | #type:#check"
-	static let percussionInPhysicalExam = "#id:chkpercussion| #title:Abnormal resonance to percussion | #type:#check"
-	
-	
 	static let diminishedBreathSoundsInPhysicalExam = "#id:chkbreath | #title:Diminished Breath Sounds | #type:#check"
+	static let rhonchiInPhysicalExam = "#id:chkrhonchi | #title:Dry rales, rhonchi | #type:#check"
+	static let percussionInPhysicalExam = "#id:chkpercussion| #title:Abnormal resonance to percussion | #type:#check"
+	static let thoraxInPhysicalExam = "#id:chkthorax | #title:Increased thorax AP diameter  | #type:#check"
 	static let abdominalTendernessInPhysicalExam = "#id:chkabdominal | #title:Abdominal Tenderness | #type:#check"
+	static let hepatojulularRefluxInPhysicalExam = "#id:chkHJR | #title:Hepatojulular Reflux | #type:#check"
+	static let ascitesInPhysicalExam = "#id:chkascites | #title:Ascites | #type:#check"
 	static let anyCNSSymptomsInPhysicalExam = "#id:chkAMS | #title:Any CNS Symptoms | #type:#check"
+	
 	static let coldClammyExtremitiesInPhysicalExam = "#id:chkshock | #title:Cold Clammy Extremities | #type:#check"
+	static let clubbingInPhysicalExam = "#id:chkskinwarm | #title:Clubbing | #type:#check"
 	static let edemaInPhysicalExam = "#id:chkedema | #title:Edema | #type:#check"
 	static let differenceinSBPInPhysicalExam = "#id:txtDiffInSBP | #title:Difference in SBP | #type:#integerRight | #min:0 | #max:50 | #placeholder: "
-	static let neckveins = "#id:chkhepato | #title:Neck veins not assesable | #type:#check"
-	static let ascitesInPhysicalExam = "#id:chkascites | #title:Ascites | #type:#check"
-	static let bruitInPhysicalExam = "id:chkbruit| #title:Carotid bruit| #type:#check"
-	
-	// new stuff?
-	static let weaknessInPhysicalExam = "id:chkmalaise | #title:Fatigue /Malaise/ Weakness | #type:#check"
-	static let abdominalPainInPhysicalExam = "#id:chkplaceholderone | #title:Abdominal Pain | #type:#disclosureControl"
-	static let associatedFindingsInPhysicalExam = "#id:chkplaceholdertwo | #title:Associated Findings | #type:#disclosureControl"
-	static let associatedSymptomsInPhysicalExam = "#id:chkplaceholdethree | #title:Associated Symptoms | #type:#disclosureControl"
-	
-	static let palpitationsInPhysicalExam = "#id:chkp| #title:Section Palpitations| #type:#disclosureControl"
-	static let shockInPhysicalExam = "#id:chkss | #title:Section Shock | #type:#disclosureControl"
-	static let cyanosisInPhysicalExam = "#id:chkCyanosis | #title:Cyanosis | #type:#check"
-	
 	
 	// Physical Exam -> Heart Murmur https://zpl.io/SNRzD
-	
-	static let murmur = "#id:murmur | #title:Murmur | #type:#disclosureSimple"
-	
+	static let heartMurmurInPhysicalExam = "#id:chkheartMurmur | #title:Heart Murmur | #type:#disclosureControl"
 	static let abnormalAuscultationLabel = "#id:abnormalAuscultationLabel | #title:Focus on the most abnormal auscultation foci | #type:#label | #height: 70"
-	static let s1Mitral = "#id:chkS1Mitral | #title:S1 Mitral | #type:#disclosureControl"
-	static let s2Aortic = "#id:chkS2Aortic | #title:S2 Aortic | #type:#disclosureControl"
-	static let p2Pulmonic = "#id:chkP2Pulmonic | #title:P2 Pulmonic | #type:#disclosureControl"
-	static let s1Tricuspid = "#id:chkS1Tricuspid | #title:S1 Tricuspid | #type:#disclosureControl"
-	
-	static let systolicMurmur = "#id:chkSystolicMurmur | #title:Systolic Murmur | #type:#disclosureControlExpandable"
-	static let diastolicMurmur = "#id:chkDiastolicMurmur | #title:Diastolic Murmur | #type:#disclosureControlExpandable"
-	static let mitralOpeningSnap = "#id:mitralOpeningSnap | #title:Mitral Opening Snap | #type:#check"
 	
 	// Physical Exam -> Heart Murmur -> S1 Mitral https://zpl.io/1Fzz76
+	static let s1Mitral = "#id:chkS1Mitral | #title:S1 Mitral | #type:#disclosureControl"
 	static let blnS1MitralLoud = "#id:chkS1MitralLoud | #title:Loud | #type:#radio | #group: (blnS1MitralLoud, blnS1MitralNormal, blnS1MitralSoft)"
 	static let blnS1MitralNormal = "#id:chkS1MitralNormal | #title:Normal | #type:#radio| #group: (blnS1MitralLoud, blnS1MitralNormal, blnS1MitralSoft)"
 	static let blnS1MitralSoft = "#id:chkS1MitralSoft | #title:Soft | #type:#radio| #group: (blnS1MitralLoud, blnS1MitralNormal, blnS1MitralSoft)"
 	
 	// Physical Exam -> Heart Murmur -> S2 Aortic https://zpl.io/2uy66u
+	static let s2Aortic = "#id:chkS2Aortic | #title:S2 Aortic | #type:#disclosureControl"
 	static let blnS2AorticLoud = "#id:chkS2MitralLoud | #title:Loud | #type:#radio | #group: (blnS2AorticLoud, blnS2AorticNormal, blnS2AorticSoft)"
 	static let blnS2AorticNormal = "#id:chkS2MitralNormal | #title:Normal | #type:#radio| #group: (blnS2AorticLoud, blnS2AorticNormal, blnS2AorticSoft)"
 	static let blnS2AorticSoft = "#id:chkS2MitralSoft | #title:Soft | #type:#radio| #group: (blnS2AorticLoud, blnS2AorticNormal, blnS2AorticSoft)"
 	
 	// Physical Exam -> Heart Murmur -> P2 Pulmonic https://zpl.io/2vXwsT
+	static let p2Pulmonic = "#id:chkP2Pulmonic | #title:P2 Pulmonic | #type:#disclosureControl"
 	static let blnP2PulmonicLoud = "#id:chkP2PulmonicLoud | #title:Loud | #type:#radio | #group: (blnP2PulmonicLoud, blnP2PulmonicNormal, blnP2PulmonicSoft)"
 	static let blnP2PulmonicNormal = "#id:chkP2PulmonicNormal | #title:Normal | #type:#radio| #group: (blnP2PulmonicLoud, blnP2PulmonicNormal, blnP2PulmonicSoft)"
 	static let blnP2PulmonicSoft = "#id:chkP2PulmonicSoft | #title:Soft | #type:#radio| #group: (blnP2PulmonicLoud, blnP2PulmonicNormal, blnP2PulmonicSoft)"
 	
 	// Physical Exam -> Heart Murmur -> S1 Tricuspid
+	static let s1Tricuspid = "#id:chkS1Tricuspid | #title:S1 Tricuspid | #type:#disclosureControl"
 	static let blnP2TricuspidLoud = "#id:chkS1TricuspidLoud | #title:Loud | #type:#radio | #group: (blnP2TricuspidLoud, blnP2TricuspidNormal, blnP2TricuspidSoft)"
 	static let blnP2TricuspidNormal = "#id:chkT1TricuspidNormal | #title:Normal | #type:#radio| #group: (blnP2TricuspidLoud, blnP2TricuspidNormal, blnP2TricuspidSoft)"
 	static let blnP2TricuspidSoft = "#id:chkT1TricuspidSoft | #title:Soft | #type:#radio| #group: (blnP2TricuspidLoud, blnP2TricuspidNormal, blnP2TricuspidSoft)"
 	
-	
-	// Physical Exam -> Heart Murmur -> Systolic Murmur https://zpl.io/Z12Jxq3
+	// Physical Exam -> Heart Murmur -> Murmur -> Systolic Murmur https://zpl.io/Z12Jxq3
+	static let murmur = "#id:murmur | #title:Murmur | #type:#disclosureSimple"
+	static let systolicMurmur = "#id:chkSystolicMurmur | #title:Systolic Murmur | #type:#disclosureControl"
 	static let blnCresDecres = "#id:chkCresDecres | #title:Crescendo-Decrescendo | #type:#disclosureControlExpandable"
-	static let blnPlateuShaped = "#id:chkPlateuShaped | #title:Plateau Shaped | #type:#disclosureControlExpandable"
-	static let blnsquat = "#id:chksquat | #title:Softer with Squat | #type:#check"
-	static let blnejectionsound = "#id:chkejectionsound | #title:Ejection sound | #type:#check"
-	static let blnsystolicclick = "#id:chksystolicclick | #title:Systolic click | #type:#check"
-	
-	// Physical Exam -> Heart Murmur -> Systolic Murmur -> Crescendo Decrescendo https://zpl.io/Z5eqOE
 	static let blnEarlyMidSysPeak = "#id:chkEarlyMidPeak | #title:Early-Mid Systolic Peaking | #type:#check"
 	static let blnLateSysPeak = "#id:chkLatePeak | #title:Late Systolic Peaking | #type:#check"
 	
-	// Physical Exam -> Heart Murmur -> Systolic Murmur -> Plateu Shaped https://zpl.io/1ACSlS
+	static let blnPlateuShaped = "#id:chkPlateuShaped | #title:Plateau Shaped | #type:#disclosureControlExpandable"
 	static let blnHalosystolic = "#id:chkHalosystolic | #title:Halosystolic | #type:#check"
 	static let blnPansystolic = "#id:chkPansystolic | #title:Pansystolic | #type:#check"
 	static let blnMidsystolic = "#id:chkMidsystolic | #title:Midsystolic | #type:#check"
 	
-	// Physical Exam -> Heart Murmur -> Diastolic Murmur https://zpl.io/Z1WW9hI
+	static let blnsquat = "#id:chksquat | #title:Softer with Squat | #type:#check"
+	static let blnejectionsound = "#id:chkejectionsound | #title:Ejection sound | #type:#check"
+	static let blnsystolicclick = "#id:chksystolicclick | #title:Systolic click | #type:#check"
+	
+	// Physical Exam -> Heart Murmur -> Murmur -> Diastolic Murmur https://zpl.io/Z1WW9hI
+	static let diastolicMurmur = "#id:chkDiastolicMurmur | #title:Diastolic Murmur | #type:#disclosureControlExpandable"
 	static let blnDescrescendo = "#id:chkDescrescendo | #title:Decrescendo | #type:#check"
 	static let blnRumble = "#id:chkRumble | #title:Rumble | #type:#check"
+	static let mitralOpeningSnap = "#id:mitralOpeningSnap | #title:Mitral Opening Snap | #type:#check"
 	
-	// ?? should be here i think
-	
-	// Physical Exam -> Abdominal Pain
-	static let typeAbdominalPain = "#id:chkAbsharptop | #title:Type | #type:#disclosureControl"
-	static let locationAbdominalPain = "#id:chklocalizedtop| #title:Location | #type:#disclosureControl"
-	
-	// Physical Exam -> Abdominal Pain -> Type
-	static let sharpTypeAbdominalPain = "#id:chkAbsharp | #title:Sharp | #type:#check"
-	static let colickyTypeAbdominalPain = "#id:chkAbcolic | #title:Colicky | #type:#check"
-	static let achingTypeAbdominalPain = "#id:chkAbaching | #title:Aching or spasm | #type:#check"
-
-	
-	// Physical Exam -> Abdominal Pain -> Location
-	static let locLocationAbdominalPain = "#id:chklocalized | #title:Localized pain | #type:#check"
-	static let diffuseLocationAbdominalPain = "#id:chkdiffuse | #title:Diffuse pain | #type:#check"
-	static let epigastricFindAbdominalPain = "#id:chkepigastric | #title:Epigastric | #type:#check"
-	static let periumbilicalLocationAbdominalPain = "#id:chkperiumbilical | #title:Periumbilical | #type:#check"
-	static let suprapubicEdemaLocationAbdominalPain = "#id:chksuprapubic | #title:Supra pubic | #type:#check"
-	static let shoulderAbdominalPain = "#id:chkAbspasm | #title:Referred shoulder pain | #type:#check"
-	
-	
-	
-	
-	// Physical Exam -> Section Palpitations
-	
-	static let frequencyPalpitations = "#id:chkFrequencyPalp  | #title:Frequency | #type:#disclosureControl"
-	static let typePalpitations = "#id:chkType | #title:Type | #type:#disclosureControl"
-	static let durationPalpitations = "#id:chkDuration  | #title:Duration | #type:#disclosureControl"
-	static let syncopePalpitations = "#id:chkSyncope | #title:Caput Syncope | #type:#disclosureControl"
-	static let ekgPalpitations = "#id:chkEKGPalpPlaceholder | #title:EKG findings during palpitations | #type:#disclosureControl"
-	static let onsetPalpitations = "#id:chkOnset | #title:Onset, trigger | #type:#disclosureControl"
-	
-	
-	// Physical Exam -> Sectioncyanosis
-	
+	// Physical Exam -> Sectioncyanosis	
+	static let cyanosisInPhysicalExam = "#id:chkCyanosis | #title:Cyanosis | #type:#disclosureControl"
 	static let centralSectioncyanosis = "#id:chkcentral | #title:Central Cyanosis | #type:#check"
-	static let peripheralSectioncyanosis = "#id:chkperipheral | #title:Peripheral Cyanosis | #type:#check"
-	
+	static let peripheralSectioncyanosis = "#id:chkperipheral | #title:Peripheral Cyanosis | #type:#check"	
 	
 	
 	// CurrentPast CV Profile https://zpl.io/Z1WoemX

@@ -9,6 +9,7 @@
 import UIKit
 
 class ReviewOfSystem: EvaluationItem {
+	
 	let weightChangeInROS = EvaluationItem(literal: Presentation.weightChangeInROS)
 	let thyrotoxicosisInROS = EvaluationItem(literal: Presentation.thyrotoxicosisInROS)
 	let palpitationsInROS = EvaluationItem(literal: Presentation.palpitationsInROS)
