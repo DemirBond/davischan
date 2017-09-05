@@ -8,7 +8,11 @@
 
 import Foundation
 
+
+// MARK: - Heart Specialist Management
+
 class HeartSpecialistManagement: EvaluationItem {
+	
 	let bioPAHMain = BioPAHMain(literal: Presentation.bioPAHMain)
 	let pah = PAH(literal: Presentation.pah)
 	let valvularInHSM = Valvular(literal: Presentation.valvularInHSM)
@@ -28,10 +32,13 @@ class HeartSpecialistManagement: EvaluationItem {
 			rhcInHSM
 		]
 	}
-
 }
 
+
+// MARK: - HMS -> Bio PAH Main
+
 class BioPAHMain: EvaluationItem {
+	
 	let separator = EvaluationItem(literal: Presentation.separator)
 	
 	let name = EvaluationItem(literal: HMS.name)
@@ -69,12 +76,15 @@ class BioPAHMain: EvaluationItem {
 			
 			txt6MWT,
 			TxtVO2
-			
 		]
 	}
 }
 
+
+// MARK: - HMS -> Bio PAH Main -> Gender
+
 class GenderInHMS: EvaluationItem {
+	
 	let male = EvaluationItem(literal: Presentation.maleInHMS)
 	let female = EvaluationItem(literal: Presentation.femaleInHMS)
 	
@@ -83,7 +93,11 @@ class GenderInHMS: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> PAH
+
 class PAH: EvaluationItem {
+	
 	let pah1 = PAH1(literal: Presentation.pah1)
 	let pah2 = PAH2(literal: Presentation.pah2)
 	let pah3 = PAH3(literal: Presentation.pah3)
@@ -97,7 +111,11 @@ class PAH: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> PAH -> PAH1
+
 class PAH1: EvaluationItem {
+	
 	let txtSVR = EvaluationItem(literal: HMS.txtSVR)
 	let blnCongenita = Congenital(literal: HMS.blnCongenita)
 	let blnSclero = EvaluationItem(literal: HMS.blnSclero)
@@ -111,6 +129,7 @@ class PAH1: EvaluationItem {
 	let blnFamilial = EvaluationItem(literal: HMS.blnFamilial)
 	let blnCTEP = EvaluationItem(literal: HMS.blnCTEP)
 	let blnDrugs = EvaluationItem(literal: HMS.blnDrugs)
+	
 	override var items: [EvaluationItem] {
 		return [
 			txtSVR,
@@ -130,7 +149,11 @@ class PAH1: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> PAH -> PAH1 -> Congential
+
 class Congenital: EvaluationItem {
+	
 	let blnASD = EvaluationItem(literal: HMS.blnASD)
 	let blnVSD = EvaluationItem(literal: HMS.blnVSD)
 	let blnPCS = EvaluationItem(literal: HMS.blnPCS)
@@ -145,6 +168,9 @@ class Congenital: EvaluationItem {
 		]
 	}
 }
+
+
+// MARK: - HMS -> PAH -> PAH1 -> Respiratory Disease
 
 class RespiratoryDisease: EvaluationItem {
 	let txtAHI = EvaluationItem(literal: HMS.txtAHI)
@@ -162,7 +188,11 @@ class RespiratoryDisease: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> PAH -> PAH2
+
 class PAH2: EvaluationItem {
+	
 	let dlco = EvaluationItem(literal: HMS.dlco)
 	let fev1LT = EvaluationItem(literal: HMS.fev1LT)
 	let fev1Percent = EvaluationItem(literal: HMS.fev1Percent)
@@ -178,7 +208,11 @@ class PAH2: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> PAH -> PAH3
+
 class PAH3: EvaluationItem {
+	
 	let txtTRJ = EvaluationItem(literal: HMS.txtTRJ)
 	let txtERVSP = EvaluationItem(literal: HMS.txtERVSP)
 	let blnAD = EvaluationItem(literal: HMS.blnAD)
@@ -214,7 +248,6 @@ class PAH3: EvaluationItem {
 			blnPericardial
 		]
 	}
-
 }
 
 class CHD: EvaluationItem {
@@ -239,7 +272,11 @@ class AF: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular
+
 class Valvular: EvaluationItem {
+	
 	let valvularInValvular = ValvularInValvular(literal: HMS.valvularInValvular)
 	let valvularSurgeryRiskInValvular = ValvularSurgeryRiskInValvular(literal: HMS.valvularSurgeryRiskInValvular)
 	let otherSurgicalRiskInValvular = OtherSurgicalRiskInValvular(literal: HMS.otherSurgicalRiskInValvular)
@@ -253,21 +290,24 @@ class Valvular: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular
+
 class ValvularInValvular: EvaluationItem {
+	
 	let lvef = EvaluationItem(literal: HMS.lvef)
 	let newOnsetAtrialFibrillation = EvaluationItem(literal: HMS.newOnsetAtrialFibrillation)
 	let pregnancyInValvular = EvaluationItem(literal: HMS.pregnancyInValvular)
 	let aorticStenosis = AorticStenosis(literal: HMS.aorticStenosis)
 	let mitralStenosis = MitralStenosis(literal: HMS.mitralStenosis)
-	// MARK: Two
+	
 	let tricuspidStenosis = MitralStenosis(literal: HMS.tricuspidStenosis)
 	let pulmonicStenosis = PulmonicStenosis(literal: HMS.pulmonicStenosis)
 	let aorticRegurgitation = AorticRegurgitation(literal: HMS.aorticRegurgitation)
-	// MARK: Two
+	
 	let primaryMitralRegurgitation = PrimaryMitralRegurgitation(literal: HMS.primaryMitralRegurgitation)
 	let tricuspidRegurgitation = TricuspidRegurgitation(literal: HMS.tricuspidRegurgitation)
 	let pulmonicRegurgitation = PulmonicRegurgitation(literal: HMS.pulmonicRegurgitation)
-	
 	
 	override var items: [EvaluationItem] {
 		return [
@@ -286,7 +326,10 @@ class ValvularInValvular: EvaluationItem {
 }
 
 
+// MARK: - HMS -> Valvular -> Valvular -> Aortic Stenosis
+
 class AorticStenosis: EvaluationItem {
+	
 	let calcAorticValve = EvaluationItem(literal: HMS.calcAorticValve)
 	let congenitallyStenoticAorticValve = EvaluationItem(literal: HMS.congenitallyStenoticAorticValve)
 	let rheumaticAV = EvaluationItem(literal: HMS.rheumaticAV)
@@ -312,7 +355,11 @@ class AorticStenosis: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Mitral Stenosis
+
 class MitralStenosis: EvaluationItem {
+	
 	let mva = EvaluationItem(literal: HMS.mva)
 	let phtmsec = EvaluationItem(literal: HMS.phtmsec)
 	let rheumaticMVTV = EvaluationItem(literal: HMS.rheumaticMVTV)
@@ -331,6 +378,7 @@ class MitralStenosis: EvaluationItem {
 }
 
 class TricuspidStenosis: EvaluationItem {
+
 	let mvacm = EvaluationItem(literal: HMS.mvacm)
 	let centralJetArea = EvaluationItem(literal: HMS.centralJetArea)
 	let venaContractaWidthInTricuspid = EvaluationItem(literal: HMS.venaContractaWidthInTricuspid)
@@ -348,7 +396,11 @@ class TricuspidStenosis: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Pulmonic Stenosis
+
 class PulmonicStenosis: EvaluationItem {
+	
 	let pulmonicValveVelocity = EvaluationItem(literal: HMS.pulmonicValveVelocity)
 	
 	override var items: [EvaluationItem] {
@@ -356,7 +408,11 @@ class PulmonicStenosis: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Aortic Regurgitation
+
 class AorticRegurgitation: EvaluationItem {
+	
 	let holodiastolicFlowReversal = EvaluationItem(literal: HMS.holodiastolicFlowReversal)
 	let venaContractaWidth = EvaluationItem(literal: HMS.venaContractaWidth)
 	let regurgitantVolumeMlBeat = EvaluationItem(literal: HMS.regurgitantVolumeMlBeat)
@@ -380,7 +436,11 @@ class AorticRegurgitation: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Primary Mitral Regurgitation
+
 class PrimaryMitralRegurgitation: EvaluationItem {
+	
 	let holodiastolicFlowReversal = EvaluationItem(literal: HMS.holodiastolicFlowReversal)
 	let venaContractaWidth = EvaluationItem(literal: HMS.venaContractaWidth)
 	let regurgitantVolumeMlBeat = EvaluationItem(literal: HMS.regurgitantVolumeMlBeat)
@@ -400,10 +460,13 @@ class PrimaryMitralRegurgitation: EvaluationItem {
 			lvesdmm
 		]
 	}
-
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Tricuspid Regurgitation
+
 class TricuspidRegurgitation: EvaluationItem {
+	
 	let txtAnnularDiameter = EvaluationItem(literal: HMS.txtAnnularDiameter)
 	let txtCentralJetArea = EvaluationItem(literal: HMS.txtCentralJetArea)
 	let txtVenaContractaWidth = EvaluationItem(literal: HMS.txtVenaContractaWidth)
@@ -421,6 +484,9 @@ class TricuspidRegurgitation: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular -> Pulmonic Regurgitation
+
 class PulmonicRegurgitation: EvaluationItem {
 	let favorableValveMorphologyInPulmonic = EvaluationItem(literal: HMS.favorableValveMorphologyInPulmonic)
 	let abnormalPulmonicValveLeaflets = EvaluationItem(literal: HMS.abnormalPulmonicValveLeaflets)
@@ -433,7 +499,11 @@ class PulmonicRegurgitation: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Valvular Surgery Risk
+
 class ValvularSurgeryRiskInValvular: EvaluationItem {
+	
 	let stsPromLabel = EvaluationItem(literal: HMS.stsPromLabel)
 	let lowInVRS = EvaluationItem(literal: HMS.lowInVRS)
 	let intermediateInVRS = EvaluationItem(literal: HMS.intermediateInVRS)
@@ -451,7 +521,11 @@ class ValvularSurgeryRiskInValvular: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Valvular -> Other Surgical Risk
+
 class OtherSurgicalRiskInValvular: EvaluationItem {
+	
 	let supraInguinalVascularSurgery = EvaluationItem(literal: HMS.supraInguinalVascularSurgery)
 	let lowRiskCataractPlastic = EvaluationItem(literal: HMS.lowRiskCataractPlastic)
 	let intermediateRiskInOSR = EvaluationItem(literal: HMS.intermediateRiskInOSR)
@@ -467,7 +541,11 @@ class OtherSurgicalRiskInValvular: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> Advanced LHF
+
 class AdvancedLHF: EvaluationItem {
+	
 	let blnHF = HeartFailureInHMS(literal: HMS.blnHF)
 	let blnnewHF = EvaluationItem(literal: HMS.blnnewHF)
 	let ddOnsetMonthYear = EvaluationItem(literal: HMS.ddOnsetMonthYear)
@@ -483,8 +561,10 @@ class AdvancedLHF: EvaluationItem {
 			//	ddOnsetYear
 		]
 	}
-
 }
+
+
+// MARK: - HMS -> Advanced LHF -> Heart Failure
 
 class HeartFailureInHMS: EvaluationItem {
 	
@@ -508,6 +588,7 @@ class HeartFailureInHMS: EvaluationItem {
 	let therapeutics = Therapeutics(literal: HMS.therapeutics)
 	
 	class Clinics: EvaluationItem {
+		
 		let txtCHF = EvaluationItem(literal: HMS.txtCHF)
 		let txtO2sat = EvaluationItem(literal: HMS.txtO2sat)
 		let txtproBNP = EvaluationItem(literal: HMS.txtproBNP)
@@ -546,6 +627,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class Etiology: EvaluationItem {
+		
 		let blnNonischemicCMP = EvaluationItem(literal: HMS.blnNonischemicCMP)
 		let blnischemicCMP = HOCMinHMS(literal: HMS.blnischemicCMP)
 		let blnischemic = EvaluationItem(literal: HMS.blnischemic)
@@ -567,10 +649,10 @@ class HeartFailureInHMS: EvaluationItem {
 				blnMI
 			]
 		}
-
 	}
 	
 	class HOCMinHMS: EvaluationItem {
+		
 		let blnLVHGreater30 = EvaluationItem(literal: HMS.blnLVHGreater30)
 		let blnAbnormBP = EvaluationItem(literal: HMS.blnAbnormBP)
 		let blnFHSD = EvaluationItem(literal: HMS.blnFHSD)
@@ -585,6 +667,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class StageClass: EvaluationItem {
+		
 		let blnA = EvaluationItem(literal: HMS.blnA)
 		let blnB = EvaluationItem(literal: HMS.blnB)
 		let blnC = EvaluationItem(literal: HMS.blnC)
@@ -609,6 +692,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class RefactoryHFinHSM: EvaluationItem {
+		
 		let calculateHFSSLabel = EvaluationItem(literal: HMS.calculateHFSSLabel)
 		let blncom = EvaluationItem(literal: HMS.blncom)
 		let blnfrequent = EvaluationItem(literal: HMS.blnfrequent)
@@ -623,6 +707,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class Arrthymias: EvaluationItem {
+		
 		let blnAVNodeDisease = EvaluationItem(literal: HMS.blnAVNodeDisease)
 		let blnSinusNodeDysfunction = EvaluationItem(literal: HMS.blnSinusNodeDysfunction)
 		let blnED = EvaluationItem(literal: HMS.blnED)
@@ -639,6 +724,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class HomeTherapeutics: EvaluationItem {
+		
 		let blncar = BBlockerinHMS(literal: HMS.blncar)
 		let blnace = EvaluationItem(literal: HMS.blnace)
 		let blndiuretic = PODiureticInHMS(literal: HMS.blndiuretic)
@@ -653,6 +739,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class BBlockerinHMS: EvaluationItem {
+		
 		let blnBisoprolol25 = EvaluationItem(literal: HMS.blnBisoprolol25)
 		let blnCarvedilol625 = EvaluationItem(literal: HMS.blnCarvedilol625)
 		let blnCarvedilol125 = EvaluationItem(literal: HMS.blnCarvedilol125)
@@ -679,6 +766,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class PODiureticInHMS: EvaluationItem {
+		
 		let blnfurosemide40 = EvaluationItem(literal: HMS.blnfurosemide40)
 		let blnfurosemide80 = EvaluationItem(literal: HMS.blnfurosemide80)
 		let blnfurosemide81 = EvaluationItem(literal: HMS.blnfurosemide81)
@@ -702,10 +790,10 @@ class HeartFailureInHMS: EvaluationItem {
 				blntorsemide50
 			]
 		}
-
 	}
 	
 	class Therapeutics: EvaluationItem {
+		
 		let blnIVAA = IVAA(literal: HMS.blnIVAA)
 		let blnurgcv = EvaluationItem(literal: HMS.blnurgcv)
 		let blndefib = EvaluationItem(literal: HMS.blndefib)
@@ -746,6 +834,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class IVAA: EvaluationItem {
+		
 		let blnAAcon = EvaluationItem(literal: HMS.blnAAcon)
 		let blnAAbolus = EvaluationItem(literal: HMS.blnAAbolus)
 		let blnAAtitr = EvaluationItem(literal: HMS.blnAAtitr)
@@ -764,6 +853,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class IVHT: EvaluationItem {
+		
 		let blnHTcon = EvaluationItem(literal: HMS.blnHTcon)
 		let blnHTbolus = EvaluationItem(literal: HMS.blnHTbolus)
 		let blnHTtitr = EvaluationItem(literal: HMS.blnHTtitr)
@@ -771,15 +861,16 @@ class HeartFailureInHMS: EvaluationItem {
 		
 		override var items: [EvaluationItem] {
 			return [
-			blnHTcon,
-			blnHTbolus,
-			blnHTtitr,
-			TxtHTmonitor
-				]
+				blnHTcon,
+				blnHTbolus,
+				blnHTtitr,
+				TxtHTmonitor
+			]
 		}
 	}
 	
 	class IVVA: EvaluationItem {
+		
 		let blnVAcon = EvaluationItem(literal: HMS.blnVAcon)
 		let blnVAbolus = EvaluationItem(literal: HMS.blnVAbolus)
 		let blnVAtitr = EvaluationItem(literal: HMS.blnVAtitr)
@@ -802,6 +893,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class IVDI: EvaluationItem {
+		
 		let blncon = EvaluationItem(literal: HMS.blncon)
 		let blnPODI = EvaluationItem(literal: HMS.blnPODI)
 		let Txtmonitor = EvaluationItem(literal: HMS.Txtmonitor)
@@ -816,6 +908,7 @@ class HeartFailureInHMS: EvaluationItem {
 	}
 	
 	class NIPPV: EvaluationItem {
+		
 		let txtRI = EvaluationItem(literal: HMS.txtRI)
 		
 		override var items: [EvaluationItem] {
@@ -826,28 +919,32 @@ class HeartFailureInHMS: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
-				txtdur,
-				blnD1,
-				blnD2,
-				blnD3,
-				//blnD4,
-				//blnD5,
-				//blnD6,
-				blnHFPLVF,
-				blnfoutpt,
-				blnLVEF,
-				blnCRTI,
-				clinics,
-				etiology,
-				stageClass,
-				arrthymias,
-				homeTherapeutics,
-				therapeutics
+			txtdur,
+			blnD1,
+			blnD2,
+			blnD3,
+			//blnD4,
+			//blnD5,
+			//blnD6,
+			blnHFPLVF,
+			blnfoutpt,
+			blnLVEF,
+			blnCRTI,
+			clinics,
+			etiology,
+			stageClass,
+			arrthymias,
+			homeTherapeutics,
+			therapeutics
 		]
 	}
 }
 
+
+// MARK: - HMS -> EchocardiographyInHSM
+
 class EchocardiographyInHSM: EvaluationItem {
+	
 	let blnLVeccenticity = EvaluationItem(literal: HMS.blnLVeccenticity)
 	let blnMPI = EvaluationItem(literal: HMS.blnMPI)
 	let blnEnlargedLA = EvaluationItem(literal: HMS.blnEnlargedLA)
@@ -867,7 +964,11 @@ class EchocardiographyInHSM: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> LaboratoryEKG
+
 class LaboratoryEKG: EvaluationItem {
+	
 	let txtGFR = EvaluationItem(literal: HMS.txtGFR)
 	let txtcreatinine = EvaluationItem(literal: HMS.txtcreatinine)
 	let txtNa = EvaluationItem(literal: HMS.txtNa)
@@ -899,7 +1000,11 @@ class LaboratoryEKG: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> LaboratoryEKG -> Laboratory EKG
+
 class LaboratoryEKGEKG: EvaluationItem {
+	
 	let txtQRS = EvaluationItem(literal: HMS.txtQRS)
 	let blnLBBB = EvaluationItem(literal: HMS.blnLBBB)
 	let blnLVH = EvaluationItem(literal: HMS.blnLVH)
@@ -913,7 +1018,11 @@ class LaboratoryEKGEKG: EvaluationItem {
 	}
 }
 
+
+// MARK: - HMS -> RHC
+
 class RHCInHSM: EvaluationItem {
+	
 	let txtMPAP = EvaluationItem(literal: HMS.txtMPAP)
 	let txtPVR = EvaluationItem(literal: HMS.txtPVR)
 	let txtLVEDP = EvaluationItem(literal: HMS.txtLVEDP)

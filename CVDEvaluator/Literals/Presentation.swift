@@ -1126,8 +1126,9 @@ struct Presentation {
 	// HSR -> In Hospital -> Mechanical Ventillation or NIPPV https://zpl.io/2kgsB0
 	static let txtRI = "#id:txtRI | #title:Respiratory Interventions Q Hr |#type:#integerRight | #min:1 | #max:6 | #placeholder: "
 	
-	// Heart Specialist Management
-	
+	//
+	// MARK: - Heart Specialist Management
+	//
 	static let bioPAHMain = "#id:bioPAHMain | #title:Bio/PAH Main | #type:#disclosureWeather"
 	static let pah = "#id:pah | #title:PAH | #type:#disclosureWeather"
 	static let valvularInHSM = "#id:valvularInHSM | #title:Valvular | #type:#disclosureWeather"
@@ -1139,13 +1140,5 @@ struct Presentation {
 	static let pah1 = "#id:pah1 | #title:Page 1 | #type:#segment"
 	static let pah2 = "#id:pah2 | #title:Page 2 | #type:#segment"
 	static let pah3 = "#id:pah3 | #title:Page 3 | #type:#segment"
-	
-	
-	
-	
-	
-	
-	// = "#id:x | #title:y | #type:#check | #min:0 | #max:150 | #placeholder:z"
-	
-	// = "#id:x | #title:y | #type:#disclosureSimple"
+
 }
