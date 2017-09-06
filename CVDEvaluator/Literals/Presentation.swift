@@ -858,7 +858,6 @@ struct Presentation {
 	static let systemicArterialHypertension = "#id:chkSAH | #title:Systemic Arterial Hypertension | #type:#disclosureControl" // WithCheck"
 	static let tobaccoUse = "#id:chkSmoke | #title:Tobacco Use | #type:#check"
 	static let familyHistory = "#id:chkFamily | #title:Family History | #type:#check"
-	static let ckd = "#id:chkckd | #title:CKD | #type:#check"
 	
 	// Major CV Risk Factors -> Diabetes https://zpl.io/2lz31S
 	static let typeIIDM = "#id:chkDM | #title:Type II DM | #type:#disclosureControl"
