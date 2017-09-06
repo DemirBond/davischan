@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
+import Alamofire
 
 
-class HomeController: BaseController {
+class HomeController: BaseController, NVActivityIndicatorViewable {
 	
 	@IBOutlet weak var newEvaluationView: UIView!
 	@IBOutlet weak var savedEvaluationsView: UIView!
@@ -33,6 +35,8 @@ class HomeController: BaseController {
 		savedEvaluationsView.layer.borderWidth = 1.0
 		savedEvaluationsView.layer.borderColor = UIColor.lightGray.cgColor
 		savedEvaluationsView.clipsToBounds = true
+		
+		savedEvaluationsView.isHidden = true
 
 	}
 	
@@ -42,13 +46,41 @@ class HomeController: BaseController {
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
-		DataManager.manager.fetchEvaluations()
-		
-		if DataManager.manager.hasSavedEvaluations() {
-			savedEvaluationsView.isHidden = false
+		if NetworkReachabilityManager()!.isReachable {
+			
+			self.startAnimating()
+			
+			DataManager.manager.fetchEvaluationsFromRestAPI { (success, error) -> (Void) in
+				
+				self.stopAnimating()
+				
+				if success != nil {
+					
+					DataManager.manager.fetchEvaluations()
+				
+					if DataManager.manager.hasSavedEvaluations() {
+						self.savedEvaluationsView.isHidden = false
+					}
+					else {
+						self.savedEvaluationsView.isHidden = true
+					}
+					
+				}
+				else {
+					print("Could not fetch \(String(describing: error))")
+				}
+			}
 		}
 		else {
-			savedEvaluationsView.isHidden = true
+			
+			DataManager.manager.fetchEvaluations()
+			
+			if DataManager.manager.hasSavedEvaluations() {
+				self.savedEvaluationsView.isHidden = false
+			}
+			else {
+				self.savedEvaluationsView.isHidden = true
+			}
 		}
 	}
 	

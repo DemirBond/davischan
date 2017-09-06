@@ -148,12 +148,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
 			let isValid = validatePage()
-			if isValid {
+			if isValid && generatedID != "outputInMain" {
 				DataManager.manager.saveCurrentEvaluation()
-				
-				if generatedID == "outputInMain" {
-					DataManager.manager.saveCurrentCompute()
-				}
 			}
 		}
 	}
@@ -239,7 +235,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			
 			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
 		}
-		
 	}
 	
 	
@@ -275,43 +270,62 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			}
 			let model = DataManager.manager.evaluation!
 			
-			// self.navigationController?.view.addSubview(whiteView!)
-			
 			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 			
 			if DataManager.manager.isEvaluationChanged() {
+				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+				/*let evaluation = EvaluationRequest(isSave: false,
+				                                   age: Int((model.bio.age.storedValue?.value)!)!,
+				                                   isPAH:String(DataManager.manager.getPAHValue()),
+				                                   name: "None",
+				                                   gender: model.bio.gender.female.isFilled ? 2:1,
+				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+				                                   inputs: inputs)*/
+				let evaluation = EvaluationRequest(isSave: true,
+				                                   age: Int((model.bio.age.storedValue?.value)!)!,
+				                                   isPAH:String(DataManager.manager.getPAHValue()),
+				                                   name: (model.bio.name.storedValue?.value)!,
+				                                   gender: model.bio.gender.female.isFilled ? 2:1,
+				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+				                                   inputs: inputs)
 				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-				client.computeEvaluation(evaluationRequest: evaluation, success: {
-					(response) in print(response)
-					
+				
+				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+
 					let result = DataManager()
 					result.setOutputEvaluation(response: response)
-					
-					// self.whiteView?.removeFromSuperview()
-					
-					self.stopAnimating()
-					
+
 					// add pah value false
 					print(String(DataManager.manager.getPAHValue()))
 					DataManager.manager.setPAHValue(pah: false)
+					
+					// save current evaluation and compute
+					DataManager.manager.saveCurrentEvaluation()
+					DataManager.manager.saveCurrentCompute()
+
+					self.stopAnimating()
+
 					let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 					controller.pageForm = self.shortcutModel!
 					self.navigationController?.pushViewController(controller, animated: true)
+					
 					self.pageForm.form.status = .valued
 					
-				}, failure: {
-					error in print(error)
+				}, failure: { error in print(error)
+					
 					var actions = [CVDAction] ()
 					var alertTitle: String?
 					var alertDescription : String?
 					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
 					alertTitle = "Network Connection".localized
 					alertDescription = "Check network connection before computing the evaluation.".localized
-					// self.whiteView?.removeFromSuperview()
+					
 					self.stopAnimating()
+					
 					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
 					
 				})
@@ -322,10 +336,10 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 				controller.pageForm = self.shortcutModel!
 				self.navigationController?.pushViewController(controller, animated: true)
+				
 				self.pageForm.form.status = .valued
 			}
 		}
-		
 	}
 	
 

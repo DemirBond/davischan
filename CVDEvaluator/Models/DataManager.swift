@@ -487,35 +487,78 @@ class DataManager {
 	}
 	
 	
-	func fetchEvaluationsFromRestAPI() {
-		patients?.removeAll()
-		patients = nil
-		patients = [Patient]()
+	func fetchEvaluationsFromRestAPI(completionHandler: @escaping (String?, NSError?) -> (Void)) {
+		
+		guard let loginName = currentDoctor?.loginName else { return }
+		
+		var savedPatients: [Patient]?
+		
+		let managedContext = managedObjectContext
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Patient")
+		fetchRequest.predicate = NSPredicate(format: "doctorLoginName == %@", loginName)
+		do {
+			savedPatients = try managedContext.fetch(fetchRequest) as? [Patient]
+			
+		} catch let error as NSError {
+			print("Could not fetch \(error), \(error.userInfo)")
+		}
+		
+		var deleteIndex: [String:Bool] = [String:Bool]()
+		for savedPatient: Patient in savedPatients! {
+			deleteIndex[savedPatient.identifier!] = true
+		}
 		
 		RestClient.client.retrieveSavedEvaluations(success: {
 			(evaluatListJson) in
 			
 			for (_, patientJson):(String,JSON) in evaluatListJson["evals"] {
-				let entity =  NSEntityDescription.entity(forEntityName: "Patient", in: self.managedObjectContext)
-				let patient = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Patient
+		
+				var isExist: Bool = false
 				
-				patient.setValue(patientJson["Name"], forKey: "patientName")
-				patient.setValue(patientJson["createdate"], forKey: "dateCreated")
-				patient.setValue(patientJson["createdate"], forKey: "dateModified")
-				patient.setValue(patientJson["ID"], forKey: "identifier")
-				patient.setValue(self.currentDoctor?.loginName ?? "unknown", forKey: "doctorLoginName")
+				if savedPatients != nil && savedPatients?.count != 0 {
+					for savedPatient: Patient in savedPatients! {
+						if patientJson["ID"].stringValue == savedPatient.identifier {
+					
+							isExist = true
+							deleteIndex[savedPatient.identifier!] = false
+							
+							if patientJson["createdate"].stringValue != savedPatient.dateModified {
+								savedPatient.evaluationData = nil
+							}
+						}
+					}
+				}
 				
-				self.patients?.append(patient)
-
+				if !isExist {
+					let entity =  NSEntityDescription.entity(forEntityName: "Patient", in: self.managedObjectContext)
+					let patient = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Patient
+					
+					patient.setValue(patientJson["Name"].stringValue, forKey: "patientName")
+					patient.setValue(patientJson["createdate"].stringValue, forKey: "dateCreated")
+					patient.setValue(patientJson["createdate"].stringValue, forKey: "dateModified")
+					patient.setValue(patientJson["ID"].stringValue, forKey: "identifier")
+					patient.setValue(self.currentDoctor?.loginName ?? "unknown", forKey: "doctorLoginName")
+				}
 			}
+			
+			for savedPatient: Patient in savedPatients! {
+				if deleteIndex[savedPatient.identifier!] == true {
+					self.managedObjectContext.delete(savedPatient)
+				}
+			}
+			
+			self.saveContext()
+			
+			completionHandler("success", nil)
 			
 		}, failure:  { (error) in
 			print("Could not fetch \(error)")
+			completionHandler(nil, error as NSError)
 		})
 		
 	}
 	
-	
+
 	func fetchEvaluationByIDFromRestAPI(id: Int, completionHandler: @escaping (String?, NSError?) -> (Void)) {
 		
 		RestClient.client.retrieveEvaluationByID(id: id, success: { (responseJson) in
@@ -553,12 +596,42 @@ class DataManager {
 			for (id, value) in parameters {
 				evaluation.applyToEvaluationItems(id: id, value: value)
 			}
+			
+			// save evaluation
+			if self.patients != nil && self.patients!.count > 0 {
+				for patient in self.patients! {
+					if Int(patient.identifier!) == id {
+						
+						evaluation.identifier = patient.identifier!
+						
+						var dict = evaluation.itemDict
+						dict["evaluationStatus"] = EvaluationStatus.evaluated.rawValue
+						
+						patient.setValue(evaluation.bio.age.storedValue?.value, forKey: "patientAge")
+						
+						do {
+							let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted) as NSData?
+							patient.setValue(data, forKey: "evaluationData")
+							
+							self.saveContext()
+							
+						} catch let err as NSError {
+							//print err
+							NSLog(err.localizedDescription)
+						}
+						
+						break
+					}
+				}
+			}
+			
 			self.evaluation = evaluation
+			self.evaluation?.evaluationStatus = .evaluated
 			completionHandler("success", nil)
 			
 		}, failure: { (error) in
-			completionHandler(nil, error as NSError)
 			print("Could not fetch \(error)")
+			completionHandler(nil, error as NSError)
 		})
 	}
 	

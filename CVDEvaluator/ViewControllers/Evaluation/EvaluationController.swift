@@ -82,8 +82,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	override func viewWillDisappear(_ animated : Bool) {
 		super.viewWillDisappear(animated)
-		
-		DataManager.manager.saveCurrentEvaluation()
 	}
 
 	
@@ -105,7 +103,10 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	private func checkAndUpdateLocks() {
 		let model = DataManager.manager.evaluation!
-		model.completeScreen()
+		
+		if model.evaluationStatus != .evaluated {
+			model.completeScreen()
+		}
 		
 		unlockItems(array: [model.symptoms, model.physicalExam, model.reviewOfSystem, model.cvProfile, model.pulmonary, model.renal, model.riskFactors,
 			model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
@@ -151,6 +152,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		let alertTitle = "Cannot open output screen".localized
 		
 		if DataManager.manager.evaluation!.evaluationStatus == .initialized || DataManager.manager.evaluation!.evaluationStatus == .bioViewed {
+			
 			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
 			
 			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -166,6 +168,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
 			
 		} else if DataManager.manager.evaluation!.evaluationStatus == .bioCompleted {
+			
 			let alertDescription = "Please fill out the form \(model.cvProfile.title) or \(model.riskFactors.title)"
 			showAlert(title: alertTitle, description: alertDescription, models: [model.cvProfile, model.riskFactors])
 			
@@ -185,34 +188,34 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 
 		else {
 			
-			// self.navigationController?.view.addSubview(whiteView!)
-			
 			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 			
 			// convert pah as false if we are not in the HMS section
 			DataManager.manager.setPAHValue(pah: false)
 			
 			if DataManager.manager.isEvaluationChanged() {
+				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				let evaluation = EvaluationRequest(isSave: false, age: Int((model.bio.age.storedValue?.value)!)!, isPAH:String(DataManager.manager.getPAHValue()), name: "None", gender: model.bio.gender.female.isFilled ? 2:1, SBP: Int((model.bio.sbp.storedValue?.value)!)!, DBP: Int((model.bio.dbp.storedValue?.value)!)!, inputs: inputs)
+				/*let evaluation = EvaluationRequest(isSave: false,
+				                                   age: Int((model.bio.age.storedValue?.value)!)!,
+				                                   isPAH: String(DataManager.manager.getPAHValue()),
+				                                   name: "None",
+				                                   gender: model.bio.gender.female.isFilled ? 2:1,
+				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+				                                   inputs: inputs)*/
+				let evaluation = EvaluationRequest(isSave: true,
+				                                   age: Int((model.bio.age.storedValue?.value)!)!,
+				                                   isPAH: String(DataManager.manager.getPAHValue()),
+				                                   name: (model.bio.name.storedValue?.value)!,
+				                                   gender: model.bio.gender.female.isFilled ? 2:1,
+				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+				                                   inputs: inputs)
 				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
 				
 				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
-					
-					let result = DataManager()
-					result.setOutputEvaluation(response: response)
-					
-					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-					controller.pageForm = DataManager.manager.evaluation!.outputInMain
-					
-					self.navigationController?.pushViewController(controller, animated: false)
-					// self.navigationController?.present(controller, animated: true, completion: nil)
-					
-					// self.whiteView?.removeFromSuperview()
-					
-					self.stopAnimating()
 					
 					self.tableView.setNeedsLayout()
 					self.tableView.layoutIfNeeded()
@@ -221,8 +224,23 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 					self.tableView.sizeToFit()
 					self.tableView.reloadData()
 					
+					let result = DataManager()
+					result.setOutputEvaluation(response: response)
+					
 					// add pah value false
 					DataManager.manager.setPAHValue(pah: false)
+					
+					// save current evaluation and compute
+					DataManager.manager.saveCurrentEvaluation()
+					DataManager.manager.saveCurrentCompute()
+
+					self.stopAnimating()
+					
+					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+					controller.pageForm = DataManager.manager.evaluation!.outputInMain
+					self.navigationController?.pushViewController(controller, animated: false)
+					// self.navigationController?.present(controller, animated: true, completion: nil)
 					
 				}, failure: { error in print(error)
 					
@@ -233,8 +251,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 					alertTitle = "Network Connection".localized
 					alertDescription = "Check network connection before computing the evaluation.".localized
 					
-					// self.whiteView?.removeFromSuperview()
-					
 					self.stopAnimating()
 					
 					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
@@ -242,16 +258,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				})
 			}
 			else {
-				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = DataManager.manager.evaluation!.outputInMain
-				
-				self.navigationController?.pushViewController(controller, animated: true)
-				// self.navigationController?.present(controller, animated: true, completion: nil)
-				
-				// self.whiteView?.removeFromSuperview()
-				
-				self.stopAnimating()
 				
 				self.tableView.setNeedsLayout()
 				self.tableView.layoutIfNeeded()
@@ -259,11 +265,18 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				self.tableView.rowHeight = UITableViewAutomaticDimension
 				self.tableView.sizeToFit()
 				self.tableView.reloadData()
-				
+
 				DataManager.manager.setPAHValue(pah: false)
+				
+				self.stopAnimating()
+				
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+				controller.pageForm = DataManager.manager.evaluation!.outputInMain
+				self.navigationController?.pushViewController(controller, animated: true)
+				// self.navigationController?.present(controller, animated: true, completion: nil)
 			}
 		}
-		
 	}
 	
 	
@@ -296,7 +309,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		alertActions.append(cancelAction)
 		
 		self.showCVDAlert(title: title, message: description, actions: alertActions)
-		
 	}
 	
 	
@@ -333,7 +345,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			let alertDescription = "Please fill out the form \(model.nsr.title)"
 			showAlert(title: alertTitle, description: alertDescription, models: [model.nsr])
 		}
-		
 	}
 	
 	

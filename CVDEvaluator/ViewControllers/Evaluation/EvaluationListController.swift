@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import CoreData
+import NVActivityIndicatorView
 
 
 class EvaluationListCell: UITableViewCell {
@@ -25,7 +26,7 @@ class SavedListCell: EvaluationListCell {
 }
 
 
-class EvaluationListController: BaseTableController {
+class EvaluationListController: BaseTableController, NVActivityIndicatorViewable {
 	
 	static let fromListEvaluationSegueID = "fromListEvaluationSegueID"
 	
@@ -46,8 +47,8 @@ class EvaluationListController: BaseTableController {
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
-		DataManager.manager.fetchEvaluations()
-		self.tableView.reloadData()
+		//DataManager.manager.fetchEvaluations()
+		//self.tableView.reloadData()
 	}
 	
 	
@@ -117,11 +118,30 @@ class EvaluationListController: BaseTableController {
 			
 		} else {
 			let patient = DataManager.manager.patients![indexPath.row - 1]
-			if let evaluationID = patient.identifier, let _ = DataManager.manager.extractEvaluation(by: evaluationID) {
-				performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
 			
-			} else {
-				print("Error - identifier is empty")
+			if let evaluationID = patient.identifier, let _ = patient.evaluationData {
+				if let _ = DataManager.manager.extractEvaluation(by: evaluationID) {
+					performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
+					
+				} else {
+					print("Error - identifier is empty")
+				}
+			}
+			else {
+				
+				self.startAnimating()
+				
+				DataManager.manager.fetchEvaluationByIDFromRestAPI(id: Int(patient.identifier!)!, completionHandler: { (success, error) -> (Void) in
+					
+					self.stopAnimating()
+					
+					if success != nil {
+						self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)						
+					}
+					else {
+						print("Could not fetch \(String(describing: error))")
+					}
+				})
 			}
 		}
 	}
