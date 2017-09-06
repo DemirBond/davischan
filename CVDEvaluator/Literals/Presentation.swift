@@ -912,8 +912,8 @@ struct Presentation {
 	static let highRisk = "#id:chkvascular | #title:High Risk | #type:#check"
 	static let familyLowRiskSurgery = "#id:chklowriskelec | #title:Family Low Risk Surgey (Cataract, Plastic) | #type:#check"
 	static let unableToExercise = "#id:chkunab | #title:Unable to Exercise | #type:#check"
-	static let mets = "#id:txtMETS | #title:METS | #type:#integerRight | #min:0 | #max:21 | #placeholder: "
-	static let dukeActivityScoreIndex = "#id:txtDASI | #title:Duke Activity Score Index | #type:#integerRight | #min:0 | #max:99 | #placeholder: "
+	static let mets = "#id:TxtMETS | #title:METS | #type:#integerRight | #min:0 | #max:21 | #placeholder: "
+	static let dukeActivityScoreIndex = "#id:TxtDASI | #title:Duke Activity Score Index | #type:#integerRight | #min:0 | #max:99 | #placeholder: "
 	
 	
 	//
