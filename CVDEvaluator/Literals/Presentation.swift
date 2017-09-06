@@ -1081,14 +1081,14 @@ struct Presentation {
 	
 	// HSR -> PO Meds -> B Blocker https://zpl.io/Z1Fk3YB
 	static let carvedilol3125bid = "#id:chkBisoprolol25 | #title:Carvedilol 3.125 bid | #type:#check"
-	static let carvedilol625bid = "#id:chkCarvedilol625bid | #title:Carvedilol 6.25 bid | #type:#check"
-	static let carvedilol125bid = "#id:chkCarvedilol125bid | #title:Carvedilol 12.5 bid | #type:#check"
-	static let carvedilol25bid = "#id:chkCarvedilol25bid | #title:Carvedilol 25 bid | #type:#check"
+	static let carvedilol625bid = "#id:chkCarvedilol625 | #title:Carvedilol 6.25 bid | #type:#check"
+	static let carvedilol125bid = "#id:chkCarvedilol125 | #title:Carvedilol 12.5 bid | #type:#check"
+	static let carvedilol25bid = "#id:chkCarvedilol25 | #title:Carvedilol 25 bid | #type:#check"
 	static let metoproloIER25qd = "#id:chkBisoprolol5 | #title:MetoproloIER 25 qd | #type:#check"
-	static let metoproloIER50qd = "#id:chkMetoproloIER50qd | #title:MetoproloIER 50 qd | #type:#check"
-	static let metoproloIER100qd = "#id:chkMetoproloIER100qd | #title:MetoproloIER 100 qd | #type:#check"
-	static let metoproloIER150qd = "#id:chkMetoproloIER150qd | #title:MetoproloIER 150 qd | #type:#check"
-	static let metoproloIER200qd = "#id:chkMetoproloIER200qd | #title:MetoproloIER 200 qd | #type:#check"
+	static let metoproloIER50qd = "#id:chkMetoprololER50 | #title:MetoproloIER 50 qd | #type:#check"
+	static let metoproloIER100qd = "#id:chkMetoprololER100 | #title:MetoproloIER 100 qd | #type:#check"
+	static let metoproloIER150qd = "#id:chkMetoproloIER150 | #title:MetoproloIER 150 qd | #type:#check"
+	static let metoproloIER200qd = "#id:chkMetoprololER200 | #title:MetoproloIER 200 qd | #type:#check"
 	
 	// HSR -> PO Meds -> Acel/ARB
 	static let lisinopril5 = "#id:chklisinopril5 | #title:Lisinopril <10mg qd | #type:#check"
@@ -1123,14 +1123,14 @@ struct Presentation {
 	static let o2Supplement = "#id:txtOsupp | #title:O₂ Supplement % / | #type:#check | #type:#integerRight | #min:23 | #max:100 | #placeholder:  "
 	static let ivVasopressors = "#id:chkVAD | #title:IV Vasopressors | #type:#check"
 	static let ultrafiltration = "#id:chkult | #title:Ultrafiltration | #type:#check"
-	static let iabp = "#id:iabp | #title:IABP | #type:#check"
+	static let iabp = "#id:chkIABP | #title:IABP | #type:#check"
 	static let temporaryPM = "#id:chkTPM | #title:Temporary PM | #type:#check"
 	
 	// HSR -> In Hospital -> IV Antiarrythmic https://zpl.io/2f248Q
-	static let continuousInAntiarrythmic = "#id:txtAAcon | #title:Continuous | #type:#check"
-	static let bolusInAntiarrythmic = "#id:txtAAbolus | #title:Bolus | #type:#check"
-	static let titrationInAntiarrythmic = "#id:txtAAtitr | #title:Titration | #type:#check"
-	static let monitoringFrequencyQhrInAntiarrythmic = "#id:txtAAmonitor | #title:Monitoring Frequency Q hr | #type:#integerRight | #min:1 | #max:12 | #placeholder: "
+	static let continuousInAntiarrythmic = "#id:chkAAcon | #title:Continuous | #type:#check"
+	static let bolusInAntiarrythmic = "#id:chkAAbolus | #title:Bolus | #type:#check"
+	static let titrationInAntiarrythmic = "#id:chkAAtitr | #title:Titration | #type:#check"
+	static let monitoringFrequencyQhrInAntiarrythmic = "#id:TxtAAmonitor | #title:Monitoring Frequency Q hr | #type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	static let transitionToPOAntiarrythmicInAntiarrythmic = "#id:chkPOAA | #title:Transition to PO Antiarrythmic | #type:#check"
 	
 	// HSR -> In Hospital -> IV Antihypertensive https://zpl.io/DhPB6
@@ -1143,7 +1143,7 @@ struct Presentation {
 	static let blnIVVAcon = "#id:chkVAcon | #title:Continuous | #type:#check"
 	static let blnIVVAbolus = "#id:chkVAbolus | #title:Bolus | #type:#check"
 	static let blnIVVAtitr = "#id:chkVAtitr | #title:Titration | #type:#check"
-	static let txtVAmonitor = "#id:txtVAmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
+	static let txtVAmonitor = "#id:TxtVAmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	static let blnIVNPSz = "#id:chkIVNPS | #title:IV NPS | #type:#check"
 	static let blnIVNTG = "#id:chkIVNTG | #title:IV NTG | #type:#check"
 	static let blnmilrinone = "#id:chkmilrinone | #title:IV Milrinone | #type:#check"
@@ -1151,7 +1151,7 @@ struct Presentation {
 	// HSR -> In Hospital -> IV Diuretic https://zpl.io/Z5hShw
 	static let blncon = "#id:chkcon | #title:Continuous | #type:#check"
 	static let blnPODI = "#id:chkPODI | #title:Intermittent | #type:#check"
-	static let txtmonitor = "#id:txtmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
+	static let txtmonitor = "#id:Txtmonitor | #title:Monitoring Frequency Q hr  |#type:#integerRight | #min:1 | #max:12 | #placeholder: "
 	
 	// HSR -> In Hospital -> Mechanical Ventillation or NIPPV https://zpl.io/2kgsB0
 	static let txtRI = "#id:txtRI | #title:Respiratory Interventions Q Hr |#type:#integerRight | #min:1 | #max:6 | #placeholder: "
