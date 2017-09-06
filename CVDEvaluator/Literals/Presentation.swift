@@ -120,7 +120,7 @@ struct Presentation {
 	static let dyspnea = "#id: chkDyspnea | #title: Dyspnea | #type: #disclosureControl"
 	static let chestPain = "#id: chkCP | #title: Chest Pain | #type: #disclosureControl"
 	static let syncope = "#id: chkTestSyncope | #title: Syncope/Presyncope | #type: #disclosureControl"
-	static let edemaInSymptoms = "#id:chkedema | #title:Edema | #type:#disclosureControl"
+	static let edemaInSymptoms = "#id:secedema | #title:Edema | #type:#disclosureControl"
 	static let weakness = "id:chkmalaise | #title:Weakness | #type:#disclosureControlExpandable"
 	static let palpitationsInSymptoms = "#id:chkp| #title:Palpitations| #type:#disclosureControl"
 	static let abdominalPain = "#id:chkplaceholderone | #title:Abdominal Pain | #type:#disclosureControl"
@@ -181,7 +181,7 @@ struct Presentation {
 	
 	//	Symptoms -> Chest Pain -> Undetermined CP, New https://zpl.io/25x7ix
 	static let sideSemithorax = "#id:chkpleur | #title:Side/Hemithorax | #type:#disclosureControl"
-	static let intercostalCP = "#id:chkbreath | #title:Intercostal CP | #type:#disclosureControl"
+	static let intercostalCP = "#id:chkCPbreath | #title:Intercostal CP | #type:#disclosureControl"
 	static let сentralPrecordialCP = "#id:chkPrecordial| #title:Central/Precordial CP | #type:#disclosureControl"
 	
 	// Symptoms -> Chest Pain -> Undetermined CP, New -> Details
@@ -434,7 +434,7 @@ struct Presentation {
 	static let differenceinSBPInPhysicalExam = "#id:txtDiffInSBP | #title:Difference in SBP | #type:#integerRight | #min:0 | #max:50 | #placeholder: "
 	
 	// Physical Exam -> Heart Murmur https://zpl.io/SNRzD
-	static let heartMurmurInPhysicalExam = "#id:chkheartMurmur | #title:Heart Murmur | #type:#disclosureControl"
+	static let heartMurmurInPhysicalExam = "#id:chkHeartMurmur | #title:Heart Murmur | #type:#disclosureControl"
 	static let abnormalAuscultationLabel = "#id:abnormalAuscultationLabel | #title:Focus on the most abnormal auscultation foci | #type:#label | #height: 70"
 	
 	// Physical Exam -> Heart Murmur -> S1 Mitral https://zpl.io/1Fzz76
@@ -481,7 +481,7 @@ struct Presentation {
 	static let diastolicMurmur = "#id:chkDiastolicMurmur | #title:Diastolic Murmur | #type:#disclosureControlExpandable"
 	static let blnDescrescendo = "#id:chkDescrescendo | #title:Decrescendo | #type:#check"
 	static let blnRumble = "#id:chkRumble | #title:Rumble | #type:#check"
-	static let mitralOpeningSnap = "#id:mitralOpeningSnap | #title:Mitral Opening Snap | #type:#check"
+	static let mitralOpeningSnap = "#id:chkMitralOpeningSnap | #title:Mitral Opening Snap | #type:#check"
 	
 	// Physical Exam -> Sectioncyanosis	
 	static let cyanosisInPhysicalExam = "#id:chkCyanosis | #title:Cyanosis | #type:#disclosureControl"
