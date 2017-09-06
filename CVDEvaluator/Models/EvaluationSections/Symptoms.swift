@@ -74,12 +74,12 @@ class Dyspnea: EvaluationItem {
 	
 	let dyspneaOnExertionNotAtRest = DyspneaOnExertionNotAtRest(literal: Presentation.dyspneaOnExertionNotAtRest)
 	
-	let nyhaaClass1  = EvaluationItem(literal: Presentation.NYHACCSVClass1)
-	let nyhaaClass2  = EvaluationItem(literal: Presentation.NYHACCSVClass2)
-	let nyhaaClass3  = EvaluationItem(literal: Presentation.NYHACCSVClass3)
+	let nyhaaClass1  = EvaluationItem(literal: Presentation.nyhaccvsClass1)
+	let nyhaaClass2  = EvaluationItem(literal: Presentation.nyhaccvsClass2)
+	let nyhaaClass3  = EvaluationItem(literal: Presentation.nyhaccvsClass3)
 	let dyspneaAtRestOrphopnea = NYHAClass(literal: Presentation.dyspneaAtRestOrphopnea)
 	// let dyspneaAtRestOrphopnea = EvaluationItem(literal: Presentation.dyspneaAtRestOrphopnea)
-	let nyhaaClass4  = EvaluationItem(literal: Presentation.NYHACCSVClass4)
+	let nyhaaClass4  = EvaluationItem(literal: Presentation.nyhaccvsClass4)
 	
 	let weightGain = EvaluationItem(literal: Presentation.weightGain)
 	

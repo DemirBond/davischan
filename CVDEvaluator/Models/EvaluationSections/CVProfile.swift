@@ -77,7 +77,7 @@ class AcuteCoronarySyndrome: EvaluationItem {
 	
 	let moreAnginaIn24Hours = EvaluationItem(literal: Presentation.moreAnginaIn24Hours)
 	let anginaMore20min = EvaluationItem(literal: Presentation.anginaMore20min)
-	let asaUseInPast1Week = EvaluationItem(literal: Presentation.asaUseInPast1Week)
+	let asaUseInPast1Week = EvaluationItem(literal: Presentation.ASAUseInPast1Week)
 	let postiveTropIorT = EvaluationItem(literal: Presentation.postiveTropIorT)
 	let moreTwoAntanginal = EvaluationItem(literal: Presentation.moreTwoAntanginal)
 	let stemi = STEMI(literal: Presentation.stemi)
@@ -103,12 +103,14 @@ class AcuteCoronarySyndrome: EvaluationItem {
 
 class STEMI: EvaluationItem {
 	
+	let durationhoursSTEMI = EvaluationItem(literal: Presentation.durationhoursSTEMI)
 	let anteriorSTEMI = EvaluationItem(literal: Presentation.anteriorSTEMI)
 	let inferiorSTEMI = EvaluationItem(literal: Presentation.inferiorSTEMI)
 	let otherSTEMI = EvaluationItem(literal: Presentation.otherSTEMI)
 	
 	override var items: [EvaluationItem] {
 		return [
+			durationhoursSTEMI,
 			anteriorSTEMI,
 			inferiorSTEMI,
 			otherSTEMI
@@ -257,10 +259,10 @@ class NYHAClass: EvaluationItem {
 	
 	let refactoryHFInterventions = RefactoryHFInterventions(literal: Presentation.refactoryHFInterventions)
 	
-	let NYHACCSVClass1 = EvaluationItem(literal: Presentation.NYHACCSVClass1)
-	let NYHACCSVClass2 = EvaluationItem(literal: Presentation.NYHACCSVClass2)
-	let NYHACCSVClass3 = EvaluationItem(literal: Presentation.NYHACCSVClass3)
-	let NYHACCSVClass4 = EvaluationItem(literal: Presentation.NYHACCSVClass4)
+	let NYHACCSVClass1 = EvaluationItem(literal: Presentation.nyhaccvsClass1)
+	let NYHACCSVClass2 = EvaluationItem(literal: Presentation.nyhaccvsClass2)
+	let NYHACCSVClass3 = EvaluationItem(literal: Presentation.nyhaccvsClass3)
+	let NYHACCSVClass4 = EvaluationItem(literal: Presentation.nyhaccvsClass4)
 	
 	override var items: [EvaluationItem] {
 		return [
@@ -627,7 +629,6 @@ class ValvularHeartDiseaseInThrombVKA: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
-			blnsysemb,
 			blncage,
 			blnmech,
 			blnMdav,

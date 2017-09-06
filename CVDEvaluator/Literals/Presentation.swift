@@ -150,12 +150,6 @@ struct Presentation {
 	static let dyspneaAtRestOrphopnea = "#id:chkdysp|    #title:Dyspnea at Rest|    #type:#check"
 	static let weightGain = "#id:chkWeight|    #title:Weight Gain|    #type:#check"
 	
-	// Symptoms -> Dyspnea -> NYHA Class https://zpl.io/Z1p4tKO
-	static let NYHACCSVClass1 = "#id:chkNYHA1 | #title:NYHA/CCSV Class1 | #type:#check"
-	static let NYHACCSVClass2 = "#id:chkNYHA2 | #title:NYHA/CCSV Class2 | #type:#check"
-	static let NYHACCSVClass3 = "#id:chkNYHA3 | #title:NYHA/CCSV Class3 | #type:#check"
-	static let NYHACCSVClass4 = "#id:chkNYHA4 | #title:NYHA/CCSV Class4 | #type:#check"
-	
 	// Symptoms -> Chest Pain https://zpl.io/xUvxt
 	static let emergencyRoomInChestPain = "#id:chkER | #title:Emergency Room | #type:#disclosureControl"
 	static let typicalAnginaNewInChestPain = "#id:chkTA | #title:Typical Angina  | #type:#disclosureControlExpandable"
@@ -512,25 +506,25 @@ struct Presentation {
 	static let lcx = "#id:chkLCX | #title:LCX | #type:#check"
 	static let icd10 = "#id:chkICD-10 | #title:ICD-10 | #type:#disclosureControl"
 	static let vesselmore50 = "#id:txtNumVessel | #title:# Vessel > 50% | #type:#integerRight | #min:1 | #max:3 | #placeholder: "
-	static let lvefInCHD = "#id:txtHF | #title:LVEF | #type:#integerRight | #min:10 | #max:80 | #placeholder: "
+	static let lvefInCHD = "#id:TxtHF | #title:LVEF | #type:#integerRight | #min:10 | #max:80 | #placeholder: "
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> Acute Coronary Syndrome https://zpl.io/1i9sVD
 	static let moreAnginaIn24Hours = "#id:chkang24 | #title:≥ 2 Angina/24hr | #type:#check"
 	static let anginaMore20min = "#id:chkAn20 | #title:Angina > 20min | #type:#check"
-	static let asaUseInPast1Week = "#id:asaUseInPast1Week | #title:ASA Use in Past 1 Week | #type:#check"
-	static let postiveTropIorT = "#id:lm | #title:Postive Trop I or T | #type:#check"
+	static let postiveTropIorT = "#id:chkpositivetrop | #title:Postive Trop I or T | #type:#check"
 	static let moreTwoAntanginal = "#id:chkAnAn | #title:≥ 2 Antanginal | #type:#check"
-	static let stemi = "#id:chkSTEMI | #title:STEMI | #type:#disclosureControlExpandable"
+	static let stemi = "#id:chkSTEMI | #title:STEMI | #type:#disclosureControl"
 	static let refractoryAngina = "#id:chkrefractory | #title:Refractory Angina | #type:#check"
 	static let changingTropI = "#id:chkchangetrop | #title:Changing Trop I | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> Acute Coronary Syndrome -> STEMI https://zpl.io/Z1Kb0YP
+	static let durationhoursSTEMI = "#id:TxtSTEMIdur | #title:Duration/Hours | #type:#integerRight | #min:0 | #max:48 | #placeholder: "
 	static let anteriorSTEMI = "#id:chkanterior | #title:Anterior | #type:#check"
 	static let inferiorSTEMI = "#id:chkinferior | #title:Inferior | #type:#check"
 	static let otherSTEMI = "#id:chkother | #title:Other | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> PCI/CABG https://zpl.io/MV6Br
-	static let lastProcedureYearsAgo = "#id:txtprocedure | #title:Last Procedure (years ago) | #type:#integerRight | #min:0|  #max:50|  #placeholder: "
+	static let lastProcedureYearsAgo = "#id:Txtprocedure | #title:Last Procedure (years ago) | #type:#integerRight | #min:0|  #max:50|  #placeholder: "
 	static let bms = "#id:chkBMS| #title:BMS | #type:#check"
 	static let des = "#id:chkDES | #title:DES | #type:#check"
 	static let cabg = "#id:chkCABG | #title:CABG | #type:#disclosureControlExpandable"
@@ -541,10 +535,10 @@ struct Presentation {
 	static let nonAuto = "#id:chknonauto | #title:Non Auto | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> Stable Ang https://zpl.io/1nIjn5 (Android)
-	static let nyhaccvsClass1 = "#id:nyhaccvsClass1 | #title: NYHA/CCVS Class 1 | #type:#check"
-	static let nyhaccvsClass2 = "#id:nyhaccvsClass2 | #title: NYHA/CCVS Class 2 | #type:#check"
-	static let nyhaccvsClass3 = "#id:nyhaccvsClass3 | #title: NYHA/CCVS Class 3 | #type:#check"
-	static let nyhaccvsClass4 = "#id:nyhaccvsClass4 | #title: NYHA/CCVS Class 4 | #type:#check"
+	static let nyhaccvsClass1 = "#id:chkNYHA1 | #title: NYHA/CCVS Class 1 | #type:#check"
+	static let nyhaccvsClass2 = "#id:chkNYHA2 | #title: NYHA/CCVS Class 2 | #type:#check"
+	static let nyhaccvsClass3 = "#id:chkNYHA3 | #title: NYHA/CCVS Class 3 | #type:#check"
+	static let nyhaccvsClass4 = "#id:chkNYHA4 | #title: NYHA/CCVS Class 4 | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> ICD-10 https://zpl.io/Z25IASS (Android)
 	static let chronicTotalOcclusion = "#id:chkCTO | #title:Chronic Total Occlusion | #type:#check"
@@ -556,9 +550,9 @@ struct Presentation {
 	
 	//	CurrentPast CV Profile -> Heart Failure https://zpl.io/Z1oLKLR
 	static let hfDiagnosisDurationPerWeekInHF = "#id:txtdur |    #title:HF Diagnosis Duration/Week| #type:#integerRight|   #min:0|  #max:999|  #placeholder: "
-	static let previousHFHospitalizationInHF = "#id:chkfoutput |    #title:Previous HF Hospitalization|    #type:#check"
+	static let previousHFHospitalizationInHF = "#id:chkfoutpt |    #title:Previous HF Hospitalization|    #type:#check"
 	static let spicdInHF = "#id:chkICD |    #title:Status Post ICD|    #type:#check"
-	static let cRTI = "#id:chkICD |    #title:Status Post CRTI|    #type:#check"
+	static let cRTI = "#id:chkCRTI |    #title:Status Post CRTI|    #type:#check"
 	static let lvefInHF = "#id:txtCHF | #title:LVEF | #type:#integerRight | #min:10 | #max:80 | #placeholder: "
 	static let nyhaClass = "#id:nyhaClass|#title:Heart Failure Stage |#type:#disclosureSimple"
 	static let idiopathicDCMNonischemic = "#id:chkNonischemicCMP | #title:Idiopathic/DCM/Nonischemic | #type:#check"
@@ -579,7 +573,7 @@ struct Presentation {
 	//	CurrentPast CV Profile -> Heart Failure -> Heart Failure Stage -> Refactory HF Requiring Specialized Interventions https://zpl.io/Z1LXV1U
 	static let calculateHFSS = "#id:CalculateHFSS | #title:Calculate HFSS, enter NAmeq, VO₂ max, Heart Rate, and ECG QRS Duration | #type:#label"
 	static let noSignificantComorbidities = "#id:chkcom | #title:No Significant Comorbidities |#type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
-	static let vo2maxkg = "#id:vo2maxkg | #title:VO₂ max kg/ | #type:#decimalRight | #min:6 | #max:40 | #placeholder: "
+	static let vo2maxkg = "#id:TxtVO2 | #title:VO₂ max kg/ | #type:#decimalRight | #min:6 | #max:40 | #placeholder: "
 	
 	//	CurrentPast CV Profile -> Heart Failure -> Post MI>45 Days https://zpl.io/ZcwnUr
 	static let postMIMore45Days = "#id:chkMI | #title:Post MI > 45 Days | #type:#disclosureControlExpandable"
@@ -587,7 +581,7 @@ struct Presentation {
 	
 	//	CurrentPast CV Profile -> Heart Failure -> HOCM https://zpl.io/2oywbi
 	static let lvh30mm = "#id:chkLVHGreater30| #title:LVH ≥ 30mm | #type:#check"
-	static let abnormalBPResponsetoExercise = "#id:chkabnormalBP | #title:Abnormal BP Response to Exercise | #type:#check"
+	static let abnormalBPResponsetoExercise = "#id:chkAbnormBP | #title:Abnormal BP Response to Exercise | #type:#check"
 	static let familyHistoryOfSuddenDeath = "#id:chkFamHistSuddenDeath | #title:Family History of Sudden Death | #type:#check"
 	static let restDynamicPeakLVOT = "#id:chkLVOT | #title:Rest/Dynamic Peak LVOT Gradient > 50mmHg | #type:#check"
 	
@@ -606,7 +600,7 @@ struct Presentation {
 	static let symptomatic = "#id:chkVHD | #title:Symptomatic | #type:#disclosureControlExpandable"
 	static let durationDays = "#id:Txtafd | #title:Duration (Days) | #type:#integerRight | #min:0|  #max:999|  #placeholder: "
 	
-	static let previousTIACVA = "#id:chkprevious | #title:Previous TIA/CVA | #type:#check"
+	static let previousTIACVA = "#id:chkPrevious | #title:Previous TIA/CVA | #type:#check"
 	static let thyrotoxicosis = "#id:thyrotoxicosis | #title:Thyrotoxicosis | #type:#check"
 	
 	//	CurrentPast CV Profile -> Atrial Fibrillation -> Rhythm Control  https://zpl.io/42VGk
@@ -639,11 +633,11 @@ struct Presentation {
 	static let deepVenousThrombosis = "#id:chkDeepVenousThrombosis | #title:Deep Venous Thrombosis | #type:#check"
 	static let pulmonaryEmbolism = "#id:chkPE | #title:Pulmonary Embolism | #type:#check"
 	static let dvtpeDiagnosisPrevention = "#id:chkDVTprevention | #title:DVT/PE Diagnosis/Prevention | #type:#disclosureControl"
-	static let acuteCVA = "#id:acuteCVA | #title:Acute CVA | #type:#disclosureControl"
+	static let acuteCVA = "#id:chkacutecva | #title:Acute CVA | #type:#disclosureControl"
 	
 	// CurrentPast CV Profile -> Thromboembolic/VKA -> Thromboembolic Prevention -> Bleeding Risk https://zpl.io/ZwpYcp
-	static let activeGastroduodenalUlcer = "#id:activeGastroduodenalUlcer | #title:Active Gastroduodenal Ulcer | #type:#check"
-	static let bleedIn3MoBeforeAdmission = "#id:bleedIn3MoBeforeAdmission | #title:Bleed in 3 mo before admission | #type:#check"
+	static let activeGastroduodenalUlcer = "#id:chkPUD | #title:Active Gastroduodenal Ulcer | #type:#check"
+	static let bleedIn3MoBeforeAdmission = "#id:chkbleed | #title:Bleed in 3 mo before admission | #type:#check"
 	static let plateletCountLess50x190L = "#id:chkplt | #title:Platelet Count < 50 x 190/L | #type:#check"
 	static let icuOrCCUAdmission = "#id:chkICU | #title:ICU or CCU Admission | #type:#check"
 	static let centralVenousCatheter = "#id:chkCVC | #title:Central Venous Catheter | #type:#check"
@@ -678,8 +672,8 @@ struct Presentation {
 	static let blninfection = "#id:chkinfection | #title:Acute Infection and/or Rheumatologic Disorder | #type:#check"
 	
 	// CurrentPast CV Profile -> Thromboembolic/VKA -> Thromboembolic Prevention -> Acute CVA https://zpl.io/2nDyiB (Android)
-	static let nihss = "#id:nihss | #title:NIHSS | #type:#integerRight | #min:0 | #max:42 | #placeholder: "
-	static let unilateralWeakness = "#id:chkunilateral_Weakness | #title:Unilateral Weakness | #type:#check"
+	static let nihss = "#id:txtNIHSS | #title:NIHSS | #type:#integerRight | #min:0 | #max:42 | #placeholder: "
+	static let unilateralWeakness = "#id:chkunilateral_weakness | #title:Unilateral Weakness | #type:#check"
 	static let speechDisturbance = "#id:chkspeech_disturbance | #title:Speech Disturbance | #type:#check"
 	static let durationOfSymptoms = "#id:ssdur | #title:Duration of Symptoms | #type:#integerRight | #min:0 | #max:24 | #placeholder: "
 	static let preHospitalCare = "#id:chkpreh | #title:Pre Hospital Care | #type:#check"
@@ -730,7 +724,7 @@ struct Presentation {
 	static let pots = "#id:chkPosturalOrthostatisTac | #title:POTS (Enter Standing Heart Rate) | #type:#check"
 	static let autonomicFailureSyndrome = "#id:chkAutonomicFailureSyndrome | #title:Autonomic Failure Syndrome | #type:#check"
 	static let historyOfCardiacArrest = "#id:chkHistCardArrest | #title:History of Cardiac Arrest | #type:#check"
-	static let brugadaSyndrome = "#id:chkBrugadaSyndrome | #title:Brugada Syndrome | #type:#check"
+	static let brugadaSyndrome = "#id:chkBrugada | #title:Brugada Syndrome | #type:#check"
 	static let longQT = "#id:chkLongQT | #title:LongQT | #type:#check"
 	static let sarcoidosisGiantCellChagas = "#id:chksarc | #title:Sarcoidosis / Giant Cell / Chagas | #type:#check"
 	
@@ -809,8 +803,8 @@ struct Presentation {
 	static let peripheralArteryBypassGraft = "#id:chkBKbypass | #title:Peripheral Artery Bypass Graft | #type:#check"
 	
 	// CurrentPast CV Profile -> Vascular Disease -> Abdomial Aoritc Aneurysm https://zpl.io/Z2mwqrj
-	static let aaDiameteMore5cm = "#id:chkAAdiameter| #title:AA Diameter > 5cm | #type:#check"
-	static let thoracic = "#id:chkchkthoracic| #title:Thoracic aortic aneurysm | #type:#check"
+	static let aaDiameteMore5cm = "#id:chkAADiameter| #title:AA Diameter > 5cm | #type:#check"
+	static let thoracic = "#id:chkthoracic| #title:Thoracic aortic aneurysm | #type:#check"
 	static let thoracoabdominal = "#id:chkthoracoabdominal| #title:Thoracoabdominal aortic aneurysm | #type:#check"
 	
 	
