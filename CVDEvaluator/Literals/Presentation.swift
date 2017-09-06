@@ -920,11 +920,10 @@ struct Presentation {
 	// MARK: - Laboratories https://zpl.io/2kxbQs
 	//
 	static let chemBasicLabel = "#id:chemBasicLabel | #title:Chem Basic | #type:#label"
-	static let nameqlValue = "#id:txtNameq | #title:Na meq/l |#type:#integerRightExpandable | #min:99 | #max:170 | #placeholder: "
+	static let nameqlValue = "#id:txtNameq | #title:Na meq/l |#type:#integerRight | #min:99 | #max:170 | #placeholder: "
 	static let urineNaMeql = "#id:txturineNa | #title:Urine Na meq/l |#type:#integerRight | #min:1 | #max:200 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
 	static let serumOsmolality = "#id:txtsosm | #title:Serum Osmolality |#type:#integerRight | #min:200 | #max:400 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
 	static let urineOsmolality = "#id:txtuosm | #title:Urine Osmolality |#type:#integerRight | #min:200 | #max:1000 | #placeholder:  | #dependsOn: nameqlValue| #dependMin: 99| #dependMax: 130"
-	static let nameql = "#id:txtNa | #title:Na meq/l | #type:#disclosureControl"
 	static let kmeql = "#id:txtHomo | #title:K meq/l |#type:#decimalRight | #min:2.0 | #max:9.0 | #placeholder: "
 	static let creatinineMgDl = "#id:txtcreatinine | #title:Creatinine mg/dl |#type:#decimalRight | #min:0.4 | #max:20.0 | #placeholder: "
 	static let bunMgDl = "#id:txtBUN | #title:BUN mg/dl |#type:#integerRight | #min:6 | #max:200 | #placeholder: "
@@ -933,7 +932,7 @@ struct Presentation {
 	static let worseningRenalFx = "#id:chkWG | #title:Worsening Renal Fx | #type:#check"
 	
 	static let lipidProfileLabel = "#id:lipidProfileLabel | #title:Lipid Profile | #type:#label"
-	static let alreadyOnStatin = "#id:chklready | #title:Already on Statin | #type:#check"
+	static let alreadyOnStatin = "#id:chkalready | #title:Already on Statin | #type:#check"
 	static let statinIntolerance = "#id:chkstatint | #title:Statin Intolerance | #type:#check"
 	static let cholesterol = "#id:txtCholesterol | #title:Cholesterol |#type:#integerRight | #min:40 | #max:500 | #placeholder: "
 	static let trg = "#id:txtTRG | #title:TRG |#type:#integerRight | #min:25 | #max:25000 | #placeholder: "
