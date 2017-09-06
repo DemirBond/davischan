@@ -818,7 +818,7 @@ struct Presentation {
 	static let po2 = "#id:txtPO2| #title:PO2 mmhg | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: "
 	static let nsevere = "#id:chknsevere| #title:NSevere chronic hypercapnia | #type:#check"
 	static let asthmadisease = "#id:chkasthma| #title:Asthma / Reactive airway disease | #type:#disclosureControl"
-	static let acuteExacerbation = "#id:chkCKD| #title:Acute exacerbation | #type:#disclosureControl"
+	static let acuteExacerbation = "#id:chkexacerbation| #title:Acute exacerbation | #type:#disclosureControl"
 	static let interstitialLungDisease = "#id:chkILD| #title:Interstitial lung disease | #type:#check"
 	
 	// Pulmonary -> Asthma / Reactive airway disease:
@@ -842,13 +842,13 @@ struct Presentation {
 	//
 	// MARK: - Renal
 	//
-	static let acuteRF = "#id:acuteRF | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
-	static let chronicKD = "#id:chkchronicKD | #title: Chronic kidney disease | #type:#disclosureControl"
+	static let acuteRF = "#id:chkWG | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
+	static let chronicKD = "#id:chkCKD | #title: Chronic kidney disease | #type:#disclosureControl"
 
 	// Renal -> Acute Renal Failure / Worsening Renal Function
 	static let crinic = "#id:txtcrinc| #title:Increase in SCrx baseline | #type:#decimalRight | #min:1.0 | #max:10.0 | #placeholder: "
-	static let cr48h = "#id:txtcr48h| #title: Increase in SCr by mg/dl in 48hr | #type:#decimalRight | #min:0.1 | #max:112.0 | #placeholder: "
-	static let urinvolume = "#id:txturinvolume| #title:Urine Volume ml/kg/h | #type:#decimalRight | #min:0.0 | #max:200.0 | #placeholder: "
+	static let cr48h = "#id:txtcr| #title: Increase in SCr by mg/dl in 48hr | #type:#decimalRight | #min:0.1 | #max:112.0 | #placeholder: "
+	static let urinvolume = "#id:txturine| #title:Urine Volume ml/kg/h | #type:#decimalRight | #min:0.0 | #max:200.0 | #placeholder: "
 	
 	
 	//
