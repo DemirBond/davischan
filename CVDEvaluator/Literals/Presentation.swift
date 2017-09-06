@@ -492,7 +492,7 @@ struct Presentation {
 	static let thromboembolicVKA = "#id:thromboembolicVKA | #title:Thromboembolic/VKA | #type:#disclosureWeather"
 	static let ventricularTachyarrthymias = "#id:ventricularTachyarrthymias | #title:Ventricular Tachyarrthymias | #type:#disclosureWeather"
 	static let bradyarrthymiaSyncope = "#id:bradyarrthymiaSyncope | #title:Bradyarrthymia/Syncope | #type:#disclosureWeather"
-	static let valvularHeartDisease = "#id:valvularHeartDisease | #title:Valvular Heart Disease | #type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
+	static let valvularHeartDisease = "#id:chkvalvular | #title:Valvular Heart Disease | #type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
 	static let pulmonaryHypertension = "#id:pulmonaryHypertension | #title:Pulmonary Hypertension | #type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
 	static let vascularDisease = "#id:vascularDiseases | #title:Vascular Disease | #type:#disclosureWeather"
 	
@@ -813,12 +813,12 @@ struct Presentation {
 	//
 	static let fev1_lt = "#id:txtFEV1| #title:FEV1 lt/min | #type:#decimalRight | #min:0.5 | #max:8.0 | #placeholder: "
 	static let fev1_percent = "#id:txtFEVP| #title:% FEV1 | #type:#decimalRight | #min:25.0 | #max:120.0 | #placeholder: "
-	static let fvc = "#id:txtFVC| #title:% FVC | #type:#decimalRight | #min:0.0 | #max:120.0 | #placeholder: "
+	static let fvc = "#id:txtFVCP| #title:% FVC | #type:#decimalRight | #min:0.0 | #max:120.0 | #placeholder: "
 	static let dlco = "#id:txtDLCO| #title:% DLCO | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: "
 	static let po2 = "#id:txtPO2| #title:PO2 mmhg | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: "
 	static let nsevere = "#id:chknsevere| #title:NSevere chronic hypercapnia | #type:#check"
 	static let asthmadisease = "#id:chkasthma| #title:Asthma / Reactive airway disease | #type:#disclosureControl"
-	static let acuteExacerbation = "#id:chkckd| #title:Acute exacerbation | #type:#disclosureControl"
+	static let acuteExacerbation = "#id:chkCKD| #title:Acute exacerbation | #type:#disclosureControl"
 	static let interstitialLungDisease = "#id:chkILD| #title:Interstitial lung disease | #type:#check"
 	
 	// Pulmonary -> Asthma / Reactive airway disease:
