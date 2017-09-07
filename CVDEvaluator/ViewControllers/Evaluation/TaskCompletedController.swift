@@ -10,6 +10,7 @@ import UIKit
 
 class TaskCompletedController: UIViewController, CAAnimationDelegate {
 	
+	@IBOutlet weak var backView: UIView!
 	@IBOutlet weak var completeView: UIView!
 	@IBOutlet weak var completeIcon: UIImageView!
 	@IBOutlet weak var completeMessage: UILabel!
@@ -17,8 +18,9 @@ class TaskCompletedController: UIViewController, CAAnimationDelegate {
 	var message: String?
 	var icon: UIImage?
 	
-	let duration: TimeInterval = 0.45
-	private var sheetHeight: CGFloat = 0.0
+	let duration: TimeInterval = 0.2
+	private let sheetWidth: CGFloat = 200.0
+	private var sheetHeight: CGFloat = 200.0
 	
 	
 	override func viewDidLoad() {
@@ -30,17 +32,46 @@ class TaskCompletedController: UIViewController, CAAnimationDelegate {
 			self.completeMessage.text = message
 		}
 		
-		self.completeView.backgroundColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.0)
+		self.completeView.alpha = 0.0
+	}
+	
+	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		
+		self.view.addSubview(self.completeView)
+		
+		let origin = CGPoint(x: (self.view.frame.size.width - self.sheetWidth)/2.0, y: (self.view.frame.size.height - self.sheetHeight)/2.0)
+		self.completeView.frame = CGRect(origin: origin, size: CGSize(width: self.sheetWidth, height: self.sheetHeight))
+		self.completeView.layer.cornerRadius = 6.0
 		self.completeView.clipsToBounds = true
+	}
+	
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		
-		let animation: CATransition = CATransition()
-		animation.delegate = self
-		animation.type = kCATransitionFade
-		animation.duration = 0.7
-		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+		self.showMessage()
+	}
+	
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
+	
+	func showMessage() {
+		self.completeView.alpha = 0.0
 		
-		self.completeView.layer.add(animation, forKey: "FadeAnimation")
-		self.completeView.backgroundColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 1.0)
+		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+			self.backView.alpha = 0.7
+		}, completion: { (animated) in
+			UIView.animate(withDuration: self.duration/2.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+				self.backView.alpha = 0.48
+				self.completeView.alpha = 1.0
+			}, completion: nil)
+		})
 		
 		Timer.scheduledTimer(timeInterval: 3.0,
 		                     target: self,
@@ -49,19 +80,16 @@ class TaskCompletedController: UIViewController, CAAnimationDelegate {
 		                     repeats: false)
 	}
 	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-	
 	
 	func hideMessage() {
-
-		self.completeView.backgroundColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.0)
-		
-		self.dismiss(animated: false, completion: nil)
-		
+		UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+			self.backView.alpha = 0.0
+			self.completeView.alpha = 0.0
+		}, completion: { (animated) in
+			self.dismiss(animated: false, completion: nil)
+		})
 	}
+
 	
 	
 	/*
