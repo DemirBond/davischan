@@ -33,7 +33,7 @@ class CVDTopbar: NSObject {
 			self.leftBarItem = UIBarButtonItem(title: leftButtonName, style: .plain, target: target, action: actions[0])
 		}
 		
-		if let rightMenuButton = dict["rightMenuButton"] as? String {
+		if let _ = dict["rightMenuButton"] as? String {
 			let barItem = UIBarButtonItem(image: UIImage(named: "more-vertical"), style: .plain, target: target, action: actions[3])
 			barItem.imageInsets = UIEdgeInsetsMake(0, -30, 0, -5)
 			self.rightMenuBarItem = barItem

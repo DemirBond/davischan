@@ -145,6 +145,68 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
+		
+		var actions = [MenuAction] ()
+		
+		// Save evaluation
+		actions.append(MenuAction(title: "Save".localized, handler: {
+			
+			let model = DataManager.manager.evaluation!
+			let client: RestClient = RestClient.client
+			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+			let evaluation = EvaluationRequest(isSave: true,
+			                                   age: Int((model.bio.age.storedValue?.value)!)!,
+			                                   isPAH: String(DataManager.manager.getPAHValue()),
+			                                   name: (model.bio.name.storedValue?.value)!,
+			                                   gender: model.bio.gender.female.isFilled ? 2:1,
+			                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+			                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+			                                   inputs: inputs)
+			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+			
+			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
+			
+			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+				
+				let result = DataManager()
+				result.setOutputEvaluation(response: response)
+				
+				// add pah value false
+				DataManager.manager.setPAHValue(pah: false)
+				
+				// save current evaluation and compute
+				DataManager.manager.saveCurrentEvaluation()
+				DataManager.manager.saveCurrentCompute()
+				
+				self.stopAnimating()
+				
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
+				controller.message = "Saved"
+				controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+				self.present(controller, animated: false)// { controller.showMessage() }
+				
+			}, failure: { error in print(error)
+				
+				var actions = [CVDAction] ()
+				var alertTitle: String?
+				var alertDescription : String?
+				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+				alertTitle = "Network Connection".localized
+				alertDescription = "Check network connection before computing the evaluation.".localized
+				
+				self.stopAnimating()
+				
+				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+				
+			})
+		}))
+		
+		self.showDropMenu(actions: actions)
+	}
+	
+	
 	override func bottomRightButtonAction(_ sender: UIBarButtonItem) { // Compute Evaluation
 		
 		let model = DataManager.manager.evaluation!
@@ -197,18 +259,10 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				/*let evaluation = EvaluationRequest(isSave: false,
+				let evaluation = EvaluationRequest(isSave: false,
 				                                   age: Int((model.bio.age.storedValue?.value)!)!,
 				                                   isPAH: String(DataManager.manager.getPAHValue()),
 				                                   name: "None",
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
-				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
-				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
-				                                   inputs: inputs)*/
-				let evaluation = EvaluationRequest(isSave: true,
-				                                   age: Int((model.bio.age.storedValue?.value)!)!,
-				                                   isPAH: String(DataManager.manager.getPAHValue()),
-				                                   name: (model.bio.name.storedValue?.value)!,
 				                                   gender: model.bio.gender.female.isFilled ? 2:1,
 				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
 				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
@@ -291,8 +345,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		}, short: false, border: false))
 		actions.append(CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false, border: false))
 		
-		self.showCVDAlert(title: "Cancel Evaluation?".localized,
-		                  message: "Are you sure you want to cancel this evaluation?".localized,
+		self.showCVDAlert(title: "Leave Evaluation?".localized,
+		                  message: "Are you sure you want to leave this evaluation?".localized,
 		                  actions: actions)
 	}
 
