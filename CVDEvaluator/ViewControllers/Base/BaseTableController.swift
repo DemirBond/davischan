@@ -150,6 +150,17 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 	}
 	
 	
+	func showDropMenu(actions: [MenuAction]) {
+		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+		
+		let controller = storyboard.instantiateViewController(withIdentifier: "SideMenuControllerID") as! SideMenuController
+		controller.addActions(actions)
+		
+		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+		self.present(controller, animated: false)
+	}
+	
+	
 	
 	// MARK: - Actions
 	

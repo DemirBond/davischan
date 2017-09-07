@@ -94,7 +94,11 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	
 	
 	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
-		performSegue(withIdentifier: HomeController.settingsSegueID, sender: nil)
+		var actions = [MenuAction] ()
+		actions.append(MenuAction(title: "Settings".localized, handler: {
+			self.performSegue(withIdentifier: HomeController.settingsSegueID, sender: nil)
+		}))
+		self.showDropMenu(actions: actions)
 	}
 	
 	

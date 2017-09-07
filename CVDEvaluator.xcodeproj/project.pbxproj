@@ -100,6 +100,8 @@
 		BA49CD381F33D1F90040060A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD371F33D1F90040060A /* LoginController.swift */; };
 		BA49CD3C1F33FB860040060A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3B1F33FB860040060A /* HomeController.swift */; };
 		BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3D1F34044E0040060A /* EvaluationController.swift */; };
+		BA6518911F61EB0500743EC9 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6518901F61EB0500743EC9 /* SideMenuController.swift */; };
+		BA6518951F61F14F00743EC9 /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6518941F61F14F00743EC9 /* MenuAction.swift */; };
 		BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +245,8 @@
 		BA49CD371F33D1F90040060A /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		BA49CD3B1F33FB860040060A /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BA49CD3D1F34044E0040060A /* EvaluationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationController.swift; sourceTree = "<group>"; };
+		BA6518901F61EB0500743EC9 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		BA6518941F61F14F00743EC9 /* MenuAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
 		BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletedController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -375,6 +379,7 @@
 				BA49CD3D1F34044E0040060A /* EvaluationController.swift */,
 				BA49CC7B1F33A0410040060A /* BioController.swift */,
 				BA49CC7F1F33A0410040060A /* GeneratedController.swift */,
+				BA6518901F61EB0500743EC9 /* SideMenuController.swift */,
 				BA49CC851F33A0410040060A /* StyleController.swift */,
 				BA49CC821F33A0410040060A /* MessageController.swift */,
 				BA49CC7C1F33A0410040060A /* CVDAlertController.swift */,
@@ -442,6 +447,7 @@
 				BA49CCA71F33A35E0040060A /* CVDAction.swift */,
 				BA49CCA81F33A35E0040060A /* CVDToolbar.swift */,
 				BA49CCA91F33A35E0040060A /* CVDTopbar.swift */,
+				BA6518941F61F14F00743EC9 /* MenuAction.swift */,
 				BA49CCAB1F33A35E0040060A /* Evaluation.swift */,
 				BA49CCAC1F33A35E0040060A /* EvaluationItem.swift */,
 				BA49CCCD1F33A35E0040060A /* ObjectLoader.swift */,
@@ -752,7 +758,9 @@
 				BA49CCE31F33A35E0040060A /* HeartSpecialistManagement.swift in Sources */,
 				BA49CCD31F33A35E0040060A /* CVDTopbar.swift in Sources */,
 				BA49CC8C1F33A0410040060A /* HypertensionController.swift in Sources */,
+				BA6518911F61EB0500743EC9 /* SideMenuController.swift in Sources */,
 				BA49CCE21F33A35E0040060A /* Diagnostics.swift in Sources */,
+				BA6518951F61F14F00743EC9 /* MenuAction.swift in Sources */,
 				BA49CCD11F33A35E0040060A /* CVDAction.swift in Sources */,
 				BA49CD251F33A6B00040060A /* HMS.swift in Sources */,
 				BA49CC9A1F33A0C90040060A /* PoliciesController.swift in Sources */,
