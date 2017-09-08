@@ -46,7 +46,7 @@ class SideMenuController: UIViewController {
 	@IBOutlet weak var sheetView: UIView!
 	@IBOutlet weak var sheetHeightConstraint: NSLayoutConstraint!
 	
-	let duration: TimeInterval = 0.2
+	let duration: TimeInterval = 0.3
 	var sheetHeight: CGFloat = 0.0
 	
 	private var menuButtons = [MenuButton]()
@@ -95,10 +95,9 @@ class SideMenuController: UIViewController {
 			menuButton = MenuButton(action: action, target: self)
 			
 			self.sheetView.addSubview(menuButton.button)
-			menuButton.button.frame = CGRect(x: 0, y: sheetHeight, width: 130, height: 40)
+			menuButton.button.frame = CGRect(x: 0, y: sheetHeight, width: 150, height: 40)
 			
-			let seperator: UIView = UIView(frame: CGRect(x: 0, y: sheetHeight + 40.0, width: 130, height: 1))
-//			seperator.backgroundColor = 
+			let seperator: UIView = UIView(frame: CGRect(x: 0, y: sheetHeight + 40.0, width: 150, height: 1))
 			self.sheetView.addSubview(seperator)
 			
 			sheetHeight += 40.0

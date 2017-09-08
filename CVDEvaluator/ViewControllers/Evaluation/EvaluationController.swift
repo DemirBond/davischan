@@ -150,7 +150,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		var actions = [MenuAction] ()
 		
 		// Save evaluation
-		actions.append(MenuAction(title: "Save".localized, handler: {
+		actions.append(MenuAction(title: "Save Evaluation".localized, handler: {
 			
 			let model = DataManager.manager.evaluation!
 			let client: RestClient = RestClient.client
