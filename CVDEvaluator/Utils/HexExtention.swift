@@ -19,6 +19,7 @@ public enum ColorPalette: String {
 	case purple = "#purple"
 	case red = "#red"
 	case spanishGray = "#spanishGray"
+	case lineGray = "#lineGray"
 	case grannySmith = "#grannySmith"
 	case geraniumLake = "#geraniumLake"
 	case canary = "#canary"
@@ -50,6 +51,8 @@ public enum ColorPalette: String {
 			return "#FF0000"
 		case .spanishGray:
 			return "#979797"
+		case .lineGray:
+			return "#E1E1E1"
 		case .grannySmith:
 			return "#98E2A2"
 		case .geraniumLake:

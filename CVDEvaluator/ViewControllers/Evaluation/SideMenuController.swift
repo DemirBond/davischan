@@ -97,8 +97,11 @@ class SideMenuController: UIViewController {
 			self.sheetView.addSubview(menuButton.button)
 			menuButton.button.frame = CGRect(x: 0, y: sheetHeight, width: 150, height: 40)
 			
-			let seperator: UIView = UIView(frame: CGRect(x: 0, y: sheetHeight + 40.0, width: 150, height: 1))
-			self.sheetView.addSubview(seperator)
+			if Int(sheetHeight/40) < menuActions.count - 1 {
+				let seperator: UIView = UIView(frame: CGRect(x: 0, y: sheetHeight + 40.0, width: 150, height: 1))
+				seperator.backgroundColor = UIColor(palette: ColorPalette.lineGray)
+				self.sheetView.addSubview(seperator)
+			}
 			
 			sheetHeight += 40.0
 			menuButtons.append(menuButton!)
