@@ -203,6 +203,11 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			})
 		}))
 		
+		// Exit evaluation
+		actions.append(MenuAction(title: "Exit Evaluation", handler: { 
+			self.backButtonConfirmAlert()
+		}))
+		
 		self.showDropMenu(actions: actions)
 	}
 	
@@ -345,8 +350,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		}, short: false, border: false))
 		actions.append(CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false, border: false))
 		
-		self.showCVDAlert(title: "Leave Evaluation?".localized,
-		                  message: "Are you sure you want to leave this evaluation?".localized,
+		self.showCVDAlert(title: "Exit Evaluation?".localized,
+		                  message: "Are you sure you want to exit this evaluation?".localized,
 		                  actions: actions)
 	}
 
