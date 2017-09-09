@@ -199,10 +199,23 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	}
 	
 	
-	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
+	/*override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() {
 			performSegue(withIdentifier: unwindToEvaluationSegueID, sender: self.pageForm)
 		}
+	}*/
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
+		
+		var actions = [MenuAction] ()
+		
+		// Reset Fields
+		actions.append(MenuAction(title: "Reset Fields", handler: {
+			self.resetFields(items: self.pageForm.items)
+			
+			self.tableView.reloadData()
+		}))
+		
+		self.showDropMenu(actions: actions)
 	}
 	
 	
@@ -308,6 +321,31 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 				self.pageForm.form.status = .valued
 			}
 		}		
+	}
+	
+	
+	func resetFields(items: [EvaluationItem]) {
+		for item: EvaluationItem in items {
+			let type = item.form.itemType
+			if type == ItemType.textLeft || type == ItemType.decimalLeft || type == ItemType.integerLeft {
+				if let _: String = item.storedValue?.value {
+					item.storedValue?.value = nil
+				}
+			}
+			else if type == ItemType.check || type == ItemType.disclosureControl || type == ItemType.disclosureControlExpandable {
+				if let _: Bool = item.storedValue?.isChecked {
+					item.storedValue?.isChecked = false
+				}
+				if type == ItemType.disclosureControlExpandable {
+					resetFields(items: item.items)
+				}
+			}
+			else if type == ItemType.radio {
+				if let _: String = item.storedValue?.radioGroup?.selectedRadioItem {
+					item.storedValue?.radioGroup?.selectedRadioItem = nil
+				}
+			}
+		}
 	}
 	
 	

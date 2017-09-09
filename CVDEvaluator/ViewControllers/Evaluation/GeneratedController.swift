@@ -238,6 +238,20 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
+	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
+		
+		var actions = [MenuAction] ()
+		
+		actions.append(MenuAction(title: "Reset Fields", handler: {
+			self.resetFields(items: self.pageForm.items)
+			
+			self.tableView.reloadData()
+		}))
+		
+		self.showDropMenu(actions: actions)
+	}
+	
+	
 	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
 		if validatePage() && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
 			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -338,6 +352,31 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				self.navigationController?.pushViewController(controller, animated: true)
 				
 				self.pageForm.form.status = .valued
+			}
+		}
+	}
+	
+	
+	func resetFields(items: [EvaluationItem]) {
+		for item: EvaluationItem in items {
+			let type = item.form.itemType
+			if type == ItemType.textLeft || type == ItemType.decimalLeft || type == ItemType.integerLeft {
+				if let _: String = item.storedValue?.value {
+					item.storedValue?.value = nil
+				}
+			}
+			else if type == ItemType.check || type == ItemType.disclosureControl || type == ItemType.disclosureControlExpandable {
+				if let _: Bool = item.storedValue?.isChecked {
+					item.storedValue?.isChecked = false
+				}
+				if type == ItemType.disclosureControlExpandable {
+					resetFields(items: item.items)
+				}
+			}
+			else if type == ItemType.radio {
+				if let _: String = item.storedValue?.radioGroup?.selectedRadioItem {
+					item.storedValue?.radioGroup?.selectedRadioItem = nil
+				}
 			}
 		}
 	}
