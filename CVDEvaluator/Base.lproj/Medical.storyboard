@@ -4260,7 +4260,10 @@ for a patient </string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nl4-fJ-A43" userLabel="User Name label">
-                                            <rect key="frame" x="128" y="15" width="231" height="30"/>
+                                            <rect key="frame" x="128" y="10" width="231" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="1dU-E5-KCk"/>
+                                            </constraints>
                                             <color key="textColor" red="0.1215686275" green="0.16078431369999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
@@ -4297,7 +4300,10 @@ for a patient </string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaW-zP-EUV" userLabel="User Name label">
-                                            <rect key="frame" x="128" y="15" width="231" height="30"/>
+                                            <rect key="frame" x="128" y="10" width="231" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="RI0-1A-xdP"/>
+                                            </constraints>
                                             <color key="textColor" red="0.1215686275" green="0.16078431369999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -4334,7 +4340,10 @@ for a patient </string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nqy-3n-jB0" userLabel="User Name label">
-                                            <rect key="frame" x="128" y="15" width="231" height="30"/>
+                                            <rect key="frame" x="128" y="10" width="231" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="bKY-a9-ZLO"/>
+                                            </constraints>
                                             <color key="textColor" red="0.1215686275" green="0.16078431369999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
@@ -4357,24 +4366,25 @@ for a patient </string>
                                     <outlet property="titleLabel" destination="UtV-oa-cnv" id="Sk1-ja-UoX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="96" id="9Ie-Yu-O1c" customClass="CustomCell" customModule="Heart_Check" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="238" width="375" height="96"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="70" id="9Ie-Yu-O1c" customClass="CustomCell" customModule="Heart_Check" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="238" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Ie-Yu-O1c" id="6lf-jf-bGi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpL-25-wMN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReM-4s-wpU">
-                                                    <rect key="frame" x="16" y="20" width="343" height="55"/>
+                                                    <rect key="frame" x="87" y="15" width="200" height="40"/>
                                                     <color key="backgroundColor" red="0.59215686270000001" green="0.39607843139999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="55" id="upD-1t-r6G"/>
+                                                        <constraint firstAttribute="height" constant="40" id="EF3-9Z-x73"/>
+                                                        <constraint firstAttribute="width" constant="200" id="Mgz-KU-viw"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <state key="normal" title="Submit">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="SUBMIT">
                                                         <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
@@ -4384,20 +4394,21 @@ for a patient </string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="ReM-4s-wpU" firstAttribute="centerY" secondItem="DpL-25-wMN" secondAttribute="centerY" id="SJg-cO-svg"/>
-                                                <constraint firstAttribute="trailing" secondItem="ReM-4s-wpU" secondAttribute="trailing" constant="16" id="TMt-DL-1dE"/>
-                                                <constraint firstItem="ReM-4s-wpU" firstAttribute="centerX" secondItem="DpL-25-wMN" secondAttribute="centerX" id="kcJ-rc-hhR"/>
-                                                <constraint firstItem="ReM-4s-wpU" firstAttribute="leading" secondItem="DpL-25-wMN" secondAttribute="leading" constant="16" id="pCC-Qj-g0Z"/>
+                                                <constraint firstItem="ReM-4s-wpU" firstAttribute="centerY" secondItem="DpL-25-wMN" secondAttribute="centerY" id="Z9f-bj-DL2"/>
+                                                <constraint firstItem="ReM-4s-wpU" firstAttribute="centerX" secondItem="DpL-25-wMN" secondAttribute="centerX" id="bte-j6-r0v"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="DpL-25-wMN" secondAttribute="trailing" id="1IZ-1w-877"/>
-                                        <constraint firstAttribute="bottom" secondItem="DpL-25-wMN" secondAttribute="bottom" id="nxI-8G-mcY"/>
-                                        <constraint firstItem="DpL-25-wMN" firstAttribute="top" secondItem="6lf-jf-bGi" secondAttribute="top" id="paT-tB-hEU"/>
-                                        <constraint firstItem="DpL-25-wMN" firstAttribute="leading" secondItem="6lf-jf-bGi" secondAttribute="leading" id="xSv-Ol-Td5"/>
+                                        <constraint firstAttribute="bottom" secondItem="DpL-25-wMN" secondAttribute="bottom" id="RQL-97-I6b"/>
+                                        <constraint firstAttribute="trailing" secondItem="DpL-25-wMN" secondAttribute="trailing" id="U4b-Xb-bqL"/>
+                                        <constraint firstItem="DpL-25-wMN" firstAttribute="leading" secondItem="6lf-jf-bGi" secondAttribute="leading" id="d9B-WY-4I7"/>
+                                        <constraint firstItem="DpL-25-wMN" firstAttribute="top" secondItem="6lf-jf-bGi" secondAttribute="top" id="ytN-q0-R90"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="submitButton" destination="ReM-4s-wpU" id="LT2-Vi-El0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -4440,7 +4451,7 @@ for a patient </string>
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="3545" y="263"/>
+            <point key="canvasLocation" x="3544.8000000000002" y="262.21889055472263"/>
         </scene>
         <!--Policies Controller-->
         <scene sceneID="uZQ-vQ-BHK">

@@ -16,6 +16,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	@IBOutlet weak var newEvaluationView: UIView!
 	@IBOutlet weak var savedEvaluationsView: UIView!
 	
+	static let profileSegueID = "profileSegueID"
 	static let aboutSegueID = "aboutSegueID"
 	static let newEvaluationSegueID = "newEvaluationSegueID"
 	static let savedEvaluationSegueID = "savedEvaluationSegueID"
@@ -95,7 +96,10 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	
 	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
 		var actions = [MenuAction] ()
-		actions.append(MenuAction(title: "Settings".localized, handler: {
+		actions.append(MenuAction(title: "Doctor's Profile".localized, handler: {
+			self.performSegue(withIdentifier: HomeController.profileSegueID, sender: nil)
+		}))
+		actions.append(MenuAction(title: "About".localized, handler: {
 			self.performSegue(withIdentifier: HomeController.aboutSegueID, sender: nil)
 		}))
 		actions.append(MenuAction(title: "Sign out".localized, handler: {

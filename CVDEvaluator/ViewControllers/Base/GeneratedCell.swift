@@ -1012,6 +1012,15 @@ class OutputSimpleCell: GeneratedCell {}
 class MailCell: GeneratedCell {}
 class PasswordCell: GeneratedCell {}
 class CustomCell: GeneratedCell {
+	@IBOutlet weak var submitButton: UIButton!
+	
+	override func updateCell() {
+		super.updateCell()
+		self.submitButton.layer.cornerRadius = 4.0
+		self.submitButton.layer.borderColor = self.submitButton.backgroundColor?.cgColor
+		self.submitButton.layer.borderWidth = 2.0
+	}
+	
 	@IBAction func buttonAction(_ sender: UIButton) {
 		delegate?.keyboardReturnDidPress(model: cellModel)
 	}

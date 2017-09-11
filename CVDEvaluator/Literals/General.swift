@@ -32,7 +32,7 @@ struct General {
 	static let profile = 	   "#id:profile|  #title:Doctor's Profile|    #type:#disclosureSimple"
 
 	static let doctorProfile = "#type:#model| #title: Profile| #id: doctorProfile"
-	static let pSeparator1 = "#type:#separator| #title: Personal Data | #id: separator"
+	static let pSeparator1 = "#type:#separator| #title: Personal Info | #id: separator"
 	static let pSeparator2 = "#type:#separator| #title: Password | #id: separator"
 	static let pMail = 		"#id:mail|        #title:Email|    #type:#mail |  #placeholder:Enter your Email Address | #maxLength: 80 | #mandatory: 0"
 	static let pScreenName = "#id:screenName | #title:Name |    #type: #textLeft|  #placeholder: Enter yor Name |      #maxLength: 80 | #mandatory: 0"

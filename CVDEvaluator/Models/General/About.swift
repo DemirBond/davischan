@@ -21,9 +21,6 @@ class About: EvaluationItem {
 	let termsOfUse = EvaluationItem(literal: General.termsOfUse)
 	let helpSupport = Support(literal: General.helpSupport)
 	
-	let separator2 = EvaluationItem(literal: General.separator2)
-	let profile = Profile(literal: General.profile)
-	
 	override var items: [EvaluationItem] {
 		return [
 			version,
@@ -34,8 +31,6 @@ class About: EvaluationItem {
 			privacyPolicy,
 			termsOfUse,
 			helpSupport,
-//			separator2,
-//			profile,
 		]
 	}
 }

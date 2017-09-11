@@ -204,8 +204,10 @@ enum ItemType: String {
 		// Text Fields
 		case .textLeft:
 			return "LeftTextCell"
+			
 		case .mail:
 			return "MailCell"
+			
 		case .password:
 			return "PasswordCell"
 			

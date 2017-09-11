@@ -13,11 +13,17 @@ class ProfileController: BaseTableController {
 		
 	override var createdID: String! { return "profile" }
 	
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
 		
+		self.pageForm = Profile(literal: General.doctorProfile)
+	}
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.title = pageForm.title
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
 		let profie = self.pageForm as! Profile
@@ -42,7 +48,9 @@ class ProfileController: BaseTableController {
 		let name = profile.name
 		let mail = profile.email
 		let password = profile.password
+		
 		hideKeyboard()
+		
 		guard validateEmail(mail: profile.email!) else {
 			let alertController = UIAlertController(title: "The mail address is not valid".localized,
 				message: "Email is used for authentication and communications.Please choose the correct mail address.".localized, preferredStyle: .alert)
@@ -89,7 +97,8 @@ class ProfileController: BaseTableController {
 			if data == "success" {
 				var actions = [CVDAction] ()
 				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: {
-					_ = self.navigationController?.popViewController(animated: true)}, short: true))
+					_ = self.navigationController?.popViewController(animated: true)
+				}, short: false))
 				let alertTitle = "Doctor's profile was successfully updated".localized
 				self.showCVDAlert(title: alertTitle, message: nil, actions: actions)
 
@@ -143,6 +152,10 @@ class ProfileController: BaseTableController {
 			cell.cellModel = itemModel
 			cell.selectionStyle = .none
 			
+			if cellType ==  .textLeft || cellType ==  .mail || cellType ==  .password  {
+				cell.textField?.borderStyle = UITextBorderStyle.none
+			}
+		
 			return cell
 		
 		} else {
@@ -150,6 +163,8 @@ class ProfileController: BaseTableController {
 			let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! CustomCell
 			cell.cellModel = EvaluationItem()
 			cell.delegate = self
+			cell.selectionStyle = .none
+			
 			return cell
 		}
 
@@ -163,7 +178,7 @@ class ProfileController: BaseTableController {
 			return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
 		
 		} else {
-			return 96.0
+			return 80.0
 		}
 	}
 

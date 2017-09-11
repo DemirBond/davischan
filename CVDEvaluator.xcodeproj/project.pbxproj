@@ -358,8 +358,8 @@
 		BA49CC651F339A230040060A /* About&Help */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CC961F33A0C90040060A /* AboutController.swift */,
 				BA49CC941F33A0C90040060A /* ProfileController.swift */,
+				BA49CC961F33A0C90040060A /* AboutController.swift */,
 				BA49CC951F33A0C90040060A /* RateController.swift */,
 				BA49CC931F33A0C90040060A /* PoliciesController.swift */,
 				BA49CC971F33A0C90040060A /* TermsController.swift */,

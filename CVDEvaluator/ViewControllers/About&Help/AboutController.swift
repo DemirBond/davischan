@@ -24,8 +24,6 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		self.title = pageForm.title
 	}
 	
 	
@@ -91,11 +89,6 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 //			case aboutModel.writeAReview.identifier:
 //				sendEmail(recipient: "cvmedicalsoftware@gmail.com",subject: "App Rating")
 			
-			case aboutModel.profile.identifier :
-				let controller = storyboard.instantiateViewController(withIdentifier: "ProfileControllerID") as! ProfileController
-				controller.pageForm = Profile(literal: General.doctorProfile)
-				self.navigationController?.pushViewController(controller, animated: true)
-
 			case aboutModel.privacyPolicy.identifier :
 				let controller = storyboard.instantiateViewController(withIdentifier: "PoliciesControllerID") as! PoliciesController
 				controller.pageForm = itemModel
