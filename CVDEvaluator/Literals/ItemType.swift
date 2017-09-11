@@ -35,6 +35,8 @@ enum ItemType: String {
 	case disclosureRadio = "#disclosureRadio"
 	case disclosureWeather = "#disclosureWeather"
 	
+	case disclousreNoArrow = "#disclousreNoArrow"
+	
 	case separator = "#separator"
 	
 	case textRight = "#textRight"
@@ -62,6 +64,8 @@ enum ItemType: String {
 	case segment = "#segment"
 	case date = "#date"
 	
+	case appInfo = "#appInfo"
+	
 	
 	func defaultHeight() -> CGFloat {
 		switch self {
@@ -84,6 +88,9 @@ enum ItemType: String {
 		case .disclosureVieved, .disclosureControl, .disclosureRadio, .disclosureSimple, .disclosureSimpleExpandable,.disclosureWeather:
 			return 55.0
 			
+		case .disclousreNoArrow:
+			return 60.0
+			
 		case .textLeft, .integerLeft, .decimalLeft, .mail, .password:
 			return 60.0
 			
@@ -102,6 +109,9 @@ enum ItemType: String {
 		case .custom:
 			return 70.0
 			
+		case .appInfo:
+			return 200.0
+			
 		default:
 			return 70.0
 		}
@@ -118,6 +128,9 @@ enum ItemType: String {
 			return nil
 			
 		case .disclosureVieved, .disclosureSimple, .disclosureSimpleExpandable, .disclosureWeather:
+			return nil
+			
+		case .disclousreNoArrow:
 			return nil
 			
 		case .model:
@@ -140,6 +153,9 @@ enum ItemType: String {
 			
 		case .radio, .disclosureRadio:
 			return .radioValue
+			
+		case .appInfo:
+			return nil
 			
 		default:
 			return nil
@@ -178,6 +194,9 @@ enum ItemType: String {
 			
 		case .disclosureWeather:
 			return "WeatherDisclosureCell"
+			
+		case .disclousreNoArrow:
+			return "DisclosureSimpleCellNoArrow"
 		
 		case .separator:
 			return "SeparatorCell"
@@ -236,6 +255,9 @@ enum ItemType: String {
 			
 		case .custom:
 			return "CustomCell"
+			
+		case .appInfo:
+			return "AboutCell"
 			
 		default:
 			return ""

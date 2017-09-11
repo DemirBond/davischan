@@ -38,12 +38,11 @@
 		BA49CC8E1F33A0410040060A /* ReferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC831F33A0410040060A /* ReferencesController.swift */; };
 		BA49CC8F1F33A0410040060A /* SpecialistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC841F33A0410040060A /* SpecialistController.swift */; };
 		BA49CC901F33A0410040060A /* StyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC851F33A0410040060A /* StyleController.swift */; };
-		BA49CC981F33A0C90040060A /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC911F33A0C90040060A /* AboutController.swift */; };
 		BA49CC991F33A0C90040060A /* HelpSupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC921F33A0C90040060A /* HelpSupportController.swift */; };
 		BA49CC9A1F33A0C90040060A /* PoliciesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC931F33A0C90040060A /* PoliciesController.swift */; };
 		BA49CC9B1F33A0C90040060A /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC941F33A0C90040060A /* ProfileController.swift */; };
 		BA49CC9C1F33A0C90040060A /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC951F33A0C90040060A /* RateController.swift */; };
-		BA49CC9D1F33A0C90040060A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC961F33A0C90040060A /* SettingsController.swift */; };
+		BA49CC9D1F33A0C90040060A /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC961F33A0C90040060A /* AboutController.swift */; };
 		BA49CC9E1F33A0C90040060A /* TermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC971F33A0C90040060A /* TermsController.swift */; };
 		BA49CCA21F33A0F40040060A /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCA01F33A0F40040060A /* BaseController.swift */; };
 		BA49CCA31F33A0F40040060A /* BaseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCA11F33A0F40040060A /* BaseTableController.swift */; };
@@ -66,7 +65,7 @@
 		BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC51F33A35E0040060A /* SurgicalRisk.swift */; };
 		BA49CCED1F33A35E0040060A /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCC61F33A35E0040060A /* Symptoms.swift */; };
 		BA49CCEF1F33A35E0040060A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCA1F33A35E0040060A /* Profile.swift */; };
-		BA49CCF11F33A35E0040060A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCC1F33A35E0040060A /* Settings.swift */; };
+		BA49CCF11F33A35E0040060A /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCC1F33A35E0040060A /* About.swift */; };
 		BA49CCF21F33A35E0040060A /* ObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCD1F33A35E0040060A /* ObjectLoader.swift */; };
 		BA49CCF31F33A35E0040060A /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCE1F33A35E0040060A /* RadioGroup.swift */; };
 		BA49CCF41F33A35E0040060A /* Specialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CCCF1F33A35E0040060A /* Specialist.swift */; };
@@ -183,12 +182,11 @@
 		BA49CC831F33A0410040060A /* ReferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferencesController.swift; sourceTree = "<group>"; };
 		BA49CC841F33A0410040060A /* SpecialistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialistController.swift; sourceTree = "<group>"; };
 		BA49CC851F33A0410040060A /* StyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleController.swift; sourceTree = "<group>"; };
-		BA49CC911F33A0C90040060A /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		BA49CC921F33A0C90040060A /* HelpSupportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpSupportController.swift; sourceTree = "<group>"; };
 		BA49CC931F33A0C90040060A /* PoliciesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliciesController.swift; sourceTree = "<group>"; };
 		BA49CC941F33A0C90040060A /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		BA49CC951F33A0C90040060A /* RateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateController.swift; sourceTree = "<group>"; };
-		BA49CC961F33A0C90040060A /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		BA49CC961F33A0C90040060A /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		BA49CC971F33A0C90040060A /* TermsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsController.swift; sourceTree = "<group>"; };
 		BA49CCA01F33A0F40040060A /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		BA49CCA11F33A0F40040060A /* BaseTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableController.swift; sourceTree = "<group>"; };
@@ -211,7 +209,7 @@
 		BA49CCC51F33A35E0040060A /* SurgicalRisk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgicalRisk.swift; sourceTree = "<group>"; };
 		BA49CCC61F33A35E0040060A /* Symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
 		BA49CCCA1F33A35E0040060A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		BA49CCCC1F33A35E0040060A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BA49CCCC1F33A35E0040060A /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		BA49CCCD1F33A35E0040060A /* ObjectLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectLoader.swift; sourceTree = "<group>"; };
 		BA49CCCE1F33A35E0040060A /* RadioGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
 		BA49CCCF1F33A35E0040060A /* Specialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Specialist.swift; sourceTree = "<group>"; };
@@ -360,8 +358,7 @@
 		BA49CC651F339A230040060A /* About&Help */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CC961F33A0C90040060A /* SettingsController.swift */,
-				BA49CC911F33A0C90040060A /* AboutController.swift */,
+				BA49CC961F33A0C90040060A /* AboutController.swift */,
 				BA49CC941F33A0C90040060A /* ProfileController.swift */,
 				BA49CC951F33A0C90040060A /* RateController.swift */,
 				BA49CC931F33A0C90040060A /* PoliciesController.swift */,
@@ -483,7 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				BA49CCCA1F33A35E0040060A /* Profile.swift */,
-				BA49CCCC1F33A35E0040060A /* Settings.swift */,
+				BA49CCCC1F33A35E0040060A /* About.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -791,7 +788,7 @@
 				BA49CCF81F33A4220040060A /* DemoController.swift in Sources */,
 				BA49CD0E1F33A5F80040060A /* ExpyTableView.swift in Sources */,
 				BA49CD0C1F33A5CD0040060A /* BuildAppearance.swift in Sources */,
-				BA49CCF11F33A35E0040060A /* Settings.swift in Sources */,
+				BA49CCF11F33A35E0040060A /* About.swift in Sources */,
 				BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */,
 				BA49CD071F33A54E0040060A /* HexExtention.swift in Sources */,
 				BA49CC871F33A0410040060A /* CVDAlertController.swift in Sources */,
@@ -829,9 +826,8 @@
 				BA49CD161F33A62D0040060A /* FontSetView.swift in Sources */,
 				BA49CCD71F33A35E0040060A /* BioPersonal.swift in Sources */,
 				BA49CC8E1F33A0410040060A /* ReferencesController.swift in Sources */,
-				BA49CC9D1F33A0C90040060A /* SettingsController.swift in Sources */,
+				BA49CC9D1F33A0C90040060A /* AboutController.swift in Sources */,
 				BA49CCA21F33A0F40040060A /* BaseController.swift in Sources */,
-				BA49CC981F33A0C90040060A /* AboutController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

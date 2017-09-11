@@ -14,7 +14,6 @@ enum ControllerStyle: String {
 	case resetAccount =		 "resetAccount"
 	case codeAutorization =  "codeAutorization"
 	case home =					 "home"
-	case settings =			 "settings"
 	case about =				 "about"
 	case demo =					 "demo"
 	case evaluationList =	 "evaluationList"
@@ -42,9 +41,6 @@ enum ControllerStyle: String {
 			
 		case .home:
 			return ["title": "Heart Check", "rightMenuButton" : "Settings"]
-			
-		case .settings:
-			return ["title": "Settings", "rightTextButton": "Aa"]
 			
 		case .about:
 			return ["title": "About", "rightTextButton": "Aa"]

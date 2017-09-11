@@ -1017,6 +1017,7 @@ class CustomCell: GeneratedCell {
 	}
 }
 
+class AboutCell: GeneratedCell {}
 class DateCell: GeneratedCell {}
 
 

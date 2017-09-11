@@ -16,7 +16,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	@IBOutlet weak var newEvaluationView: UIView!
 	@IBOutlet weak var savedEvaluationsView: UIView!
 	
-	static let settingsSegueID = "settingsSegueID"
+	static let aboutSegueID = "aboutSegueID"
 	static let newEvaluationSegueID = "newEvaluationSegueID"
 	static let savedEvaluationSegueID = "savedEvaluationSegueID"
 	
@@ -96,7 +96,24 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	override func rightMenuButtonAction(_ sender: UIBarButtonItem) {
 		var actions = [MenuAction] ()
 		actions.append(MenuAction(title: "Settings".localized, handler: {
-			self.performSegue(withIdentifier: HomeController.settingsSegueID, sender: nil)
+			self.performSegue(withIdentifier: HomeController.aboutSegueID, sender: nil)
+		}))
+		actions.append(MenuAction(title: "Sign out".localized, handler: {
+			let alertController = UIAlertController(title: "Are you sure to Sign out?".localized, message: nil, preferredStyle: .actionSheet)
+			let logoutAction = UIAlertAction(title: "Sign out", style: .default) { (UIAlertAction) in
+				DataManager.manager.signOut()
+				
+				let mainStoriboard = UIStoryboard(name: "Main", bundle: nil)
+				let destination = mainStoriboard.instantiateInitialViewController()
+				
+				UIApplication.shared.keyWindow?.rootViewController = destination
+				
+			}
+			alertController.addAction(logoutAction)
+			let defaultAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil )
+			alertController.addAction(defaultAction)
+			
+			self.present(alertController, animated: true, completion: nil)
 		}))
 		self.showDropMenu(actions: actions)
 	}

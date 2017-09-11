@@ -1,8 +1,8 @@
 //
-//  
+//  AboutController.swift
 //  CVDEvaluator
 //
-//  Created by IgorKhomiak on 2/2/17.
+//  Created by IgorKhomiak on 2/7/17.
 //  Copyright © 2017 IgorKhomiak. All rights reserved.
 //
 
@@ -10,31 +10,34 @@ import UIKit
 import MessageUI
 
 
-class AboutCell: GeneratedCell {}
-
-
 class AboutController: BaseTableController, MFMailComposeViewControllerDelegate {
 	
-	override var createdID: String? { return "about" }
+	override var createdID: String! { return "about" }
 	
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		self.pageForm = AboutPage(literal: General.aboutPage)
+		self.pageForm = About(literal: General.about)
 	}
-
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.title = pageForm.title
-		self.navigationController?.setToolbarHidden(false, animated: false)
-
 	}
 	
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		self.navigationController?.setToolbarHidden(false, animated: false)
+		
+	}
 	
+	
+
 	// MARK: - Table view data source
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,91 +55,84 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let color = UIColor.init(hexString: "#E5E5E5")?.cgColor
-		let borderWidth = CGFloat(0.5)
+		let itemModel = pageForm.items[indexPath.row]
 		
-		switch indexPath.row {
-			
-			case 0:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCellNoArrow") as! GeneratedCell
-				cell.layer.borderWidth = borderWidth
-				cell.layer.borderColor = color
-			
-				let itemModel = pageForm.items[indexPath.row]
-			
-				cell.accessoryBar = nil
-				cell.delegate = self
-				cell.cellModel = itemModel
-				cell.selectionStyle = .none
-
-				if cell.cellModel.identifier == "version" {
-					cell.subtitleLabel?.text = appVersion()!
-				}
-			
-				return cell
-			
-			case 1:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "AboutCell") as! GeneratedCell
-				cell.layer.borderWidth = borderWidth
-				cell.layer.borderColor = color
-			
-				let itemModel = pageForm.items[indexPath.row]
-			
-				cell.accessoryBar = self.accessoryBar
-				cell.delegate = self
-				cell.cellModel = itemModel
-				cell.selectionStyle = .none
-			
-				return cell
-			
-			case 2, 3:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureSimpleCell") as! GeneratedCell
-				cell.layer.borderWidth = borderWidth
-				cell.layer.borderColor = color
-			
-				let itemModel = pageForm.items[indexPath.row]
-			
-				cell.accessoryBar = self.accessoryBar
-				cell.delegate = self
-				cell.cellModel = itemModel
-				cell.selectionStyle = .gray
-			
-				return cell
-			
-			default:
-				return UITableViewCell()
-			}
-	}
-	
-	
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.row == 1 {
-			return 200.0
-		} else {
-			return 50.0
+		let cellType = itemModel.form.itemType
+		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
+		cell.accessoryBar = self.accessoryBar
+		cell.delegate = self
+		cell.cellModel = itemModel
+		cell.selectionStyle = (cellType == .separator) ? .none : .gray
+		
+		if cell.cellModel.identifier == "version" {
+			cell.subtitleLabel?.text = appVersion()!
+			cell.accessoryBar = nil
+			cell.selectionStyle = .none
 		}
+		
+		return cell
 	}
-	
+
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		
-		let settingsModel = pageForm as! AboutPage
-		let itemModel = settingsModel.items[indexPath.row]
-	
+		let aboutModel = pageForm as! About
+		let itemModel = aboutModel.items[indexPath.row]
+		
 		switch itemModel.identifier {
 			
-			case settingsModel.rateApp.identifier:
-				let controller = storyboard.instantiateViewController(withIdentifier: "RateControllerID") as! BaseTableController
+//			case aboutModel.rateApp.identifier:
+//				let controller = storyboard.instantiateViewController(withIdentifier: "RateControllerID") as! BaseTableController
+//				controller.pageForm = itemModel
+//				self.navigationController?.pushViewController(controller, animated: true)
+//			
+//			case aboutModel.writeAReview.identifier:
+//				sendEmail(recipient: "cvmedicalsoftware@gmail.com",subject: "App Rating")
+			
+			case aboutModel.profile.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "ProfileControllerID") as! ProfileController
+				controller.pageForm = Profile(literal: General.doctorProfile)
+				self.navigationController?.pushViewController(controller, animated: true)
+
+			case aboutModel.privacyPolicy.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "PoliciesControllerID") as! PoliciesController
 				controller.pageForm = itemModel
 				self.navigationController?.pushViewController(controller, animated: true)
 			
-			case settingsModel.writeAReview.identifier:
-				sendEmail(recipient: "cvmedicalsoftware@gmail.com",subject: "App Rating")
+			case aboutModel.termsOfUse.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "TermsControllerID") as! TermsController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
+			
+			case aboutModel.helpSupport.identifier :
+				let controller = storyboard.instantiateViewController(withIdentifier: "HelpSupportControllerID") as! HelpSupportController
+				controller.pageForm = itemModel
+				self.navigationController?.pushViewController(controller, animated: true)
 
 			default:
 				()
+		}
+	}
+	
+	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		let itemModel = pageForm.items[indexPath.row]
+		return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
+	}
+
+	
+	fileprivate func appVersion() -> String? {
+		guard let appVersion = Bundle.main.object(forInfoDictionaryKey:
+			"CFBundleShortVersionString") as? String else { return nil }
+		
+		if let build = Bundle.main.object(forInfoDictionaryKey:
+			"CFBundleVersion") {
+			return appVersion + " (\(build))"
+		}
+		else {
+			return appVersion
 		}
 	}
 	
@@ -159,19 +155,16 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 		controller.dismiss(animated: true)
 	}
-
 	
-	fileprivate func appVersion() -> String? {
-		guard let appVersion = Bundle.main.object(forInfoDictionaryKey:
-			"CFBundleShortVersionString") as? String else { return nil }
-		
-		if let build = Bundle.main.object(forInfoDictionaryKey:
-			"CFBundleVersion") {
-			return appVersion + " (\(build))"
-		}
-		else {
-			return appVersion
-		}
+	
+	/*
+	// MARK: - Navigation
+	
+	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	// Get the new view controller using segue.destinationViewController.
+	// Pass the selected object to the new view controller.
 	}
+	*/
 	
 }
