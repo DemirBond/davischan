@@ -435,9 +435,12 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		switch itemModel.form.itemType {
 			
+		case .textLeft, .textRight, .integerLeft, .integerRight, .decimalLeft, .decimalRight:
+			cell.selectionStyle = .none
+			cell.textField?.borderStyle = UITextBorderStyle.none
+			
 		case .disclosureControl where itemModel.storedValue!.isChecked == false:
 			cell.selectionStyle = .none
-		 
 			
 		case .disclosureControlWithCheck where itemModel.storedValue!.isChecked == false:
 			cell.selectionStyle = .none
