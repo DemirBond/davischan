@@ -77,7 +77,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		shortcutModel = nil
 		
 		if pageForm.identifier == "bioPAHMain", let form = pageForm as? BioPAHMain {
-			
 			if let selectedGender = form.gender.male.storedValue?.radioGroup?.selectedRadioItem {
 				form.gender.subtitle = (selectedGender == form.gender.male.identifier) ? "Male".localized : "Female".localized
 			}
@@ -129,14 +128,15 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		super.viewDidAppear(animated)
 		
 		if let alert = pageForm.form.alert {
+			
 			let handler1: CVDHandler = {() in
 				_ = self.navigationController?.popViewController(animated: true)
 			}
 			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: handler1, short: false)
 			
-			
 			let handler2 = createPahHandler(model: DataManager.manager.evaluation!.heartSpecialistManagement, navigation: self.navigationController)
 			let navigateAction = CVDAction(title: "Refer".localized, type: CVDActionType.done, handler: handler2, short: false)
+			
 			self.showCVDAlert(title: alert, message: nil, actions: [navigateAction, cancelAction])
 			
 		}
@@ -290,18 +290,10 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				/*let evaluation = EvaluationRequest(isSave: false,
+				let evaluation = EvaluationRequest(isSave: false,
 				                                   age: Int((model.bio.age.storedValue?.value)!)!,
 				                                   isPAH:String(DataManager.manager.getPAHValue()),
 				                                   name: "None",
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
-				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
-				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
-				                                   inputs: inputs)*/
-				let evaluation = EvaluationRequest(isSave: true,
-				                                   age: Int((model.bio.age.storedValue?.value)!)!,
-				                                   isPAH:String(DataManager.manager.getPAHValue()),
-				                                   name: (model.bio.name.storedValue?.value)!,
 				                                   gender: model.bio.gender.female.isFilled ? 2:1,
 				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
 				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,

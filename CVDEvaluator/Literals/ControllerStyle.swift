@@ -162,6 +162,8 @@ class CVDStyle {
 			UserDefaults.standard.set(currentFontSize, forKey: "currentFontSize")
 		}
 	}
+	
+	let symptomsLink = CVDLink(screens: ["bio"], link: "symptoms")
 	let reviewOfSystemLink = CVDLink(screens:["symptoms", "dyspnea", "chestpain", "syncope"], link: "reviewOfSystem")
 	let physicalExamLink = CVDLink(screens: ["reviewOfSystem"], link: "currentPastCVProfile")
 	let cvProfileLink = CVDLink(screens: ["currentPastCVProfile", "heartMurmurInPhysicalExam", "systolicMurmur",
@@ -193,7 +195,7 @@ class CVDStyle {
 	let rhcInHSMLink = CVDLink(screens: ["laboratoryEKG"], link: "rhcInHSM")
 	
 	var links: [CVDLink] {
-		return [reviewOfSystemLink, physicalExamLink, cvProfileLink, s2AorticLink, p2PulmonicLink, s1TricuspidLink, murmurLink,
+		return [symptomsLink, reviewOfSystemLink, physicalExamLink, cvProfileLink, s2AorticLink, p2PulmonicLink, s1TricuspidLink, murmurLink,
 		        pulmonaryRenalLink, renalLink,
 		        riskFactorsLink, heartFailureLink, atrialFibrillationLink, thromboembolicLink, pulmonaryLink, surgicalRiskLink,
 		        laboratoriesLink, diagnosticsLink, nsrLink, heartSpecialistLink,

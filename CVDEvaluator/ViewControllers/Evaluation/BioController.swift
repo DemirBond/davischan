@@ -42,9 +42,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 			                                                        style: .plain, target: self, action: #selector(self.leftButtonAction(_:)))
 		}
 		
-//		self.title = pageForm.title
-		
-		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.00, 0)
+		//self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.00, 0)
 		
 		self.tableView.dataSource = self
 		
@@ -69,7 +67,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		shortcutModel = nil
 		
 		if pageForm.identifier == "bio", let form = pageForm as? BioPersonal {
-			
 			if let selectedGender = form.gender.male.storedValue?.radioGroup?.selectedRadioItem {
 				form.gender.subtitle = (selectedGender == form.gender.male.identifier) ? "Male".localized : "Female".localized
 			}
@@ -78,15 +75,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 		let bottomSelectors: [Selector?] = [#selector(self.bottomRightButtonAction(_:)),
 		                                    #selector(self.bottomRightButtonAction1(_:))]
 		
-		if ["nsr", "heartSpecialistManagement", "rhcInHSM"].contains(where: { $0 == pageForm.identifier }) {
-			self.navigationController?.setToolbarHidden(false, animated: false)
-			shortcutModel = DataManager.manager.evaluation!.outputInMain
-			let dictInfo = ["rightBottom" : "Compute".localized]
-			let toolbar = CVDToolbar()
-			toolbar.setup(dict: dictInfo, target: self, actions: bottomSelectors )
-			self.toolbarItems = toolbar.barItems
-			
-		} else if let id = CVDStyle.style.smartLink(from: pageForm.identifier) {
+		if let id = CVDStyle.style.smartLink(from: pageForm.identifier) {
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			let model = DataManager.manager.evaluation!.model(with: id)
 			shortcutModel = model
@@ -106,14 +95,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		
-		self.navigationController?.setToolbarHidden(true, animated: false)
-		
-		if let selectedGender = bioModel.gender.male.storedValue?.radioGroup?.selectedRadioItem {
-			bioModel.gender.subtitle = (selectedGender == bioModel.gender.male.identifier) ? "Male".localized : "Female".localized
-		}
-		
-		self.tableView.reloadData()
 		
 	}
 	
@@ -220,107 +201,20 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func bottomRightButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() && shortcutModel != nil && shortcutModel?.title != DataManager.manager.evaluation!.outputInMain.title{
-			let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-			
-			if generatedID == "bio" {
-				DataManager.manager.setPAHValue(pah: true)
-				let controller = storyboard.instantiateViewController(withIdentifier: "HypertensionControllerID") as! HypertensionController
-				controller.pageForm = shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-			
-			} else {
-				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = self.shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-			}
-			
-			print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
-			self.pageForm.form.status = .valued
-			
-		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
-			
-			//			print("+++++++++++++" + generatedID!)
-			if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
-				DataManager.manager.setPAHValue(pah: true)
-			}
-			
-			let model = DataManager.manager.evaluation!
-			
-			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
-			
-			if DataManager.manager.isEvaluationChanged() {
-				
-				let client: RestClient = RestClient.client
-				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				/*let evaluation = EvaluationRequest(isSave: false,
-				                                   age: Int((model.bio.age.storedValue?.value)!)!,
-				                                   isPAH:String(DataManager.manager.getPAHValue()),
-				                                   name: "None",
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
-				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
-				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
-				                                   inputs: inputs)*/
-				let evaluation = EvaluationRequest(isSave: true,
-				                                   age: Int((model.bio.age.storedValue?.value)!)!,
-				                                   isPAH:String(DataManager.manager.getPAHValue()),
-				                                   name: (model.bio.name.storedValue?.value)!,
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
-				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
-				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
-				                                   inputs: inputs)
-				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-				
-				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
-					
-					let result = DataManager()
-					result.setOutputEvaluation(response: response)
-					
-					// add pah value false
-					print(String(DataManager.manager.getPAHValue()))
-					DataManager.manager.setPAHValue(pah: false)
-					
-					// save current evaluation and compute
-					DataManager.manager.saveCurrentEvaluation()
-					DataManager.manager.saveCurrentCompute()
-					
-					self.stopAnimating()
-					
-					let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-					controller.pageForm = self.shortcutModel!
-					self.navigationController?.pushViewController(controller, animated: true)
+		if validatePage() {
+			DataManager.manager.evaluation!.isBioCompleted = true
+		}
+		else {
+			DataManager.manager.evaluation!.isBioViewed = true
+		}
 
-					self.pageForm.form.status = .valued
-					
-				}, failure: { error in print(error)
-					
-					var actions = [CVDAction] ()
-					var alertTitle: String?
-					var alertDescription : String?
-					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-					alertTitle = "Network Connection".localized
-					alertDescription = "Check network connection before computing the evaluation.".localized
-					
-					self.stopAnimating()
-					
-					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-					
-				})
-			}
-			else {
-				
-				// add pah value false
-				print(String(DataManager.manager.getPAHValue()))
-				DataManager.manager.setPAHValue(pah: false)
-
-				self.stopAnimating()
-				
-				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = self.shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-				self.pageForm.form.status = .valued
-			}
-		}		
+		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+		
+		let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+		controller.pageForm = self.shortcutModel!
+		self.navigationController?.pushViewController(controller, animated: true)
+		
+		self.pageForm.form.status = .valued
 	}
 	
 	
