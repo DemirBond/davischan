@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-import Alamofire
 
 
 class HomeController: BaseController, NVActivityIndicatorViewable {
@@ -37,7 +36,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		savedEvaluationsView.layer.borderColor = UIColor.lightGray.cgColor
 		savedEvaluationsView.clipsToBounds = true
 		
-		savedEvaluationsView.isHidden = true
+		//savedEvaluationsView.isHidden = true
 
 	}
 	
@@ -47,42 +46,6 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
-		if NetworkReachabilityManager()!.isReachable {
-			
-			self.startAnimating()
-			
-			DataManager.manager.fetchEvaluationsFromRestAPI { (success, error) -> (Void) in
-				
-				self.stopAnimating()
-				
-				if success != nil {
-					
-					DataManager.manager.fetchEvaluations()
-				
-					if DataManager.manager.hasSavedEvaluations() {
-						self.savedEvaluationsView.isHidden = false
-					}
-					else {
-						self.savedEvaluationsView.isHidden = true
-					}
-					
-				}
-				else {
-					print("Could not fetch \(String(describing: error))")
-				}
-			}
-		}
-		else {
-			
-			DataManager.manager.fetchEvaluations()
-			
-			if DataManager.manager.hasSavedEvaluations() {
-				self.savedEvaluationsView.isHidden = false
-			}
-			else {
-				self.savedEvaluationsView.isHidden = true
-			}
-		}
 	}
 	
 	

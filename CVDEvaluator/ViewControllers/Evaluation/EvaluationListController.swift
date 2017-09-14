@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import CoreData
 import NVActivityIndicatorView
+import Alamofire
 
 
 class EvaluationListCell: UITableViewCell {
@@ -37,6 +38,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 		super.viewDidLoad()
 		
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
+		
 	}
 	
 	
@@ -47,8 +49,32 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 		
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
-		//DataManager.manager.fetchEvaluations()
-		//self.tableView.reloadData()
+		if NetworkReachabilityManager()!.isReachable {
+			
+			self.startAnimating()
+			
+			DataManager.manager.fetchEvaluationsFromRestAPI { (success, error) -> (Void) in
+				
+				self.stopAnimating()
+				
+				if success != nil {
+					
+					DataManager.manager.fetchEvaluations()
+					
+					self.tableView.reloadData()
+					
+				}
+				else {
+					print("Could not fetch \(String(describing: error))")
+				}
+			}
+		}
+		else {
+			
+			DataManager.manager.fetchEvaluations()
+			
+			self.tableView.reloadData()
+		}
 	}
 	
 	

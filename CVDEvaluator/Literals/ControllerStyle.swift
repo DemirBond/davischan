@@ -68,7 +68,7 @@ enum ControllerStyle: String {
 			return [:]
 			
 		case .outputInMain:
-			return [:]
+            return [:]
 
 		case .generated, .hypertension:
 			return ["rightTextButton": "Aa", "rightListButton":"list", "rightMenuButton" : "Settings"]
