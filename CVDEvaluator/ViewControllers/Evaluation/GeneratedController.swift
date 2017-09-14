@@ -242,11 +242,30 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		var actions = [MenuAction] ()
 		
-		actions.append(MenuAction(title: "Reset Fields", handler: {
-			self.resetFields(items: self.pageForm.items)
+		if pageForm.title == DataManager.manager.evaluation!.outputInMain.title {
+			actions.append(MenuAction(title: "Save Evaluation".localized, handler: {
+				self.computeEvaluation(isSaveMode: true)
+			}))
 			
-			self.tableView.reloadData()
-		}))
+			actions.append(MenuAction(title: "Exit Evaluation", handler: {
+				var actions = [CVDAction] ()
+				actions.append(CVDAction(title: "Yes, I'm sure".localized, type: CVDActionType.done, handler: {
+					self.navigationController?.popToRootViewController(animated: true)
+				}, short: false, border: false))
+				actions.append(CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false, border: false))
+				
+				self.showCVDAlert(title: "Exit Evaluation?".localized,
+				                  message: "Are you sure you want to exit this evaluation?".localized,
+				                  actions: actions)
+			}))
+		}
+		else {
+			actions.append(MenuAction(title: "Reset Fields", handler: {
+				self.resetFields(items: self.pageForm.items)
+				
+				self.tableView.reloadData()
+			}))
+		}
 		
 		self.showDropMenu(actions: actions)
 	}
@@ -263,8 +282,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				controller.isHeartSpecilaistManagement = self.isHeartSpecilaistManagement
 				controller.isHeartSpecilaistManagementPop = self.isHeartSpecilaistManagementPop
 				self.navigationController?.pushViewController(controller, animated: true)
+			
 			} else {
-				
 				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 				controller.pageForm = self.shortcutModel!
 				controller.isHeartSpecilaistManagement = self.isHeartSpecilaistManagement
@@ -276,75 +295,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			self.pageForm.form.status = .valued
 			
 		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
+			self.computeEvaluation(isSaveMode: false)
 			
-			if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
-				DataManager.manager.setPAHValue(pah: true)
-			}else{
-				DataManager.manager.setPAHValue(pah: false)
-			}
-			let model = DataManager.manager.evaluation!
-			
-			self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
-			
-			if DataManager.manager.isEvaluationChanged() {
-				
-				let client: RestClient = RestClient.client
-				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				let evaluation = EvaluationRequest(isSave: false,
-				                                   age: Int((model.bio.age.storedValue?.value)!)!,
-				                                   isPAH:String(DataManager.manager.getPAHValue()),
-				                                   name: "None",
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
-				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
-				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
-				                                   inputs: inputs)
-				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
-				
-				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
-
-					let result = DataManager()
-					result.setOutputEvaluation(response: response)
-
-					// add pah value false
-					print(String(DataManager.manager.getPAHValue()))
-					DataManager.manager.setPAHValue(pah: false)
-					
-					// save current evaluation and compute
-					DataManager.manager.saveCurrentEvaluation()
-					DataManager.manager.saveCurrentCompute()
-
-					self.stopAnimating()
-
-					let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-					controller.pageForm = self.shortcutModel!
-					self.navigationController?.pushViewController(controller, animated: true)
-					
-					self.pageForm.form.status = .valued
-					
-				}, failure: { error in print(error)
-					
-					var actions = [CVDAction] ()
-					var alertTitle: String?
-					var alertDescription : String?
-					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-					alertTitle = "Network Connection".localized
-					alertDescription = "Check network connection before computing the evaluation.".localized
-					
-					self.stopAnimating()
-					
-					self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
-					
-				})
-			}
-			else {
-				self.stopAnimating()
-				
-				let controller = self.storyboard?.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
-				controller.pageForm = self.shortcutModel!
-				self.navigationController?.pushViewController(controller, animated: true)
-				
-				self.pageForm.form.status = .valued
-			}
 		}
 	}
 	
@@ -372,6 +324,96 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			}
 		}
 	}
+	
+	
+	func computeEvaluation(isSaveMode: Bool) {
+		
+		let model = DataManager.manager.evaluation!
+		
+		if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
+			DataManager.manager.setPAHValue(pah: true)
+		} else {
+			DataManager.manager.setPAHValue(pah: false)
+		}
+		
+		self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
+		
+		if DataManager.manager.isEvaluationChanged() {
+			
+			let client: RestClient = RestClient.client
+			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+			let saveMode: Bool = isSaveMode
+			let patientname: String = isSaveMode ? (model.bio.name.storedValue?.value)! : "None"
+			
+			let evaluation = EvaluationRequest(isSave: saveMode,
+			                                   age: Int((model.bio.age.storedValue?.value)!)!,
+			                                   isPAH:String(DataManager.manager.getPAHValue()),
+			                                   name: patientname,
+			                                   gender: model.bio.gender.female.isFilled ? 2:1,
+			                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
+			                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
+			                                   inputs: inputs)
+			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+			
+			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
+				
+				let result = DataManager()
+				result.setOutputEvaluation(response: response)
+				
+				// add pah value false
+				print(String(DataManager.manager.getPAHValue()))
+				DataManager.manager.setPAHValue(pah: false)
+				
+				// save current evaluation and compute
+				DataManager.manager.saveCurrentEvaluation()
+				DataManager.manager.saveCurrentCompute()
+				
+				self.stopAnimating()
+				
+				self.pageForm.form.status = .valued
+				
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				if isSaveMode {
+					let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
+					controller.message = "Saved"
+					controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+					self.present(controller, animated: false)// { controller.showMessage() }
+				}
+				else {
+					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+					controller.pageForm = self.shortcutModel!
+					self.navigationController?.pushViewController(controller, animated: false)
+				}
+				
+			}, failure: { error in print(error)
+				
+				var actions = [CVDAction] ()
+				var alertTitle: String?
+				var alertDescription : String?
+				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+				alertTitle = "Network Connection".localized
+				alertDescription = "Check network connection before computing the evaluation.".localized
+				
+				self.stopAnimating()
+				
+				self.showCVDAlert(title: alertTitle!, message: alertDescription, actions: actions)
+				
+			})
+		}
+		else {
+			self.stopAnimating()
+			
+			self.pageForm.form.status = .valued
+			
+			if !isSaveMode {
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
+				controller.pageForm = self.shortcutModel!
+				self.navigationController?.pushViewController(controller, animated: true)
+			}
+		}
+	}
+	
 	
 
 	// MARK: - Table view data source

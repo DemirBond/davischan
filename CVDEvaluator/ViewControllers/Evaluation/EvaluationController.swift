@@ -145,7 +145,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		
 		// Save evaluation
 		actions.append(MenuAction(title: "Save Evaluation".localized, handler: {
-			self.evaluate(mode: "Save")
+			self.computeEvaluation(isSaveMode: true)
 		}))
 		
 		// Exit evaluation
@@ -158,7 +158,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	
 	
 	override func bottomRightButtonAction(_ sender: UIBarButtonItem) { // Compute Evaluation
-		self.evaluate(mode: "Compute")
+		self.computeEvaluation(isSaveMode: false)
 		
 	}
 	
@@ -231,12 +231,12 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
-	func evaluate(mode: String) {
+	func computeEvaluation(isSaveMode: Bool) {
 		
 		let model = DataManager.manager.evaluation!
 		
 		var alertTitle = "Cannot open output screen".localized
-		if mode == "Save" {
+		if isSaveMode {
 			alertTitle =  "Cannot save evaluation".localized
 		}
 		
@@ -286,8 +286,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
-				let saveMode: Bool = mode == "Save" ? true : false
-				let patientname: String = mode == "Save" ? (model.bio.name.storedValue?.value)! : "None"
+				let saveMode: Bool = isSaveMode
+				let patientname: String = isSaveMode ? (model.bio.name.storedValue?.value)! : "None"
 				
 				let evaluation = EvaluationRequest(isSave: saveMode,
 				                                   age: Int((model.bio.age.storedValue?.value)!)!,
@@ -314,7 +314,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 					self.stopAnimating()
 					
 					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-					if mode == "Save" {
+					if isSaveMode {
 						let controller = storyboard.instantiateViewController(withIdentifier: "TaskCompletedControllerID") as! TaskCompletedController
 						controller.message = "Saved"
 						controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
@@ -324,8 +324,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 						let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 						controller.pageForm = DataManager.manager.evaluation!.outputInMain
 						self.navigationController?.pushViewController(controller, animated: false)
-						// self.navigationController?.present(controller, animated: true, completion: nil)
-						
 					}
 					
 				}, failure: { error in print(error)
@@ -349,12 +347,11 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				
 				self.stopAnimating()
 				
-				if mode == "Compute" {
+				if !isSaveMode {
 					let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 					let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 					controller.pageForm = DataManager.manager.evaluation!.outputInMain
 					self.navigationController?.pushViewController(controller, animated: true)
-					// self.navigationController?.present(controller, animated: true, completion: nil)
 				}
 			}
 		}
