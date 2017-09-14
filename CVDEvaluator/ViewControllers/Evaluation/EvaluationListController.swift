@@ -38,7 +38,6 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 		super.viewDidLoad()
 		
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
-		
 	}
 	
 	
@@ -106,7 +105,8 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 			return cell
 		
 		} else {
-			let patient = DataManager.manager.patients![indexPath.row - 1]
+			let num = DataManager.manager.patients?.count
+			let patient = DataManager.manager.patients![num! - indexPath.row]
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SavedListCell", for: indexPath) as! SavedListCell
 			cell.titleLabel.text = patient.patientName
 			
