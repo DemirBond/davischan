@@ -139,8 +139,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		670AF3941E4F53AF00576848 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		670AF3951E4F53AF00576848 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		789268A41E6478C80018FEF5 /* Evaluation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Evaluation.xcdatamodel; sourceTree = "<group>"; };
 		78BF73E41E3F640F0040EC81 /* Heart Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BF73E71E3F640F0040EC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CVDEvaluator/AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,9 +153,6 @@
 		78BF74071E3F640F0040EC81 /* CVDEvaluatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVDEvaluatorUITests.swift; sourceTree = "<group>"; };
 		78BF74091E3F640F0040EC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78BF74171E3F690F0040EC81 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
-		B70706111E85E091009342E1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
-		B70706121E85E091009342E1 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulmonary.swift; sourceTree = "<group>"; };
 		BA395C431F5EF993000C5A33 /* Renal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renal.swift; sourceTree = "<group>"; };
 		BA49CC401F3339360040060A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Frameworks/Alamofire.framework; sourceTree = "<group>"; };
@@ -168,7 +163,6 @@
 		BA49CC451F3339360040060A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Frameworks/SwiftyJSON.framework; sourceTree = "<group>"; };
 		BA49CC461F3339360040060A /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Frameworks/ToastSwiftFramework.framework; sourceTree = "<group>"; };
 		BA49CC471F3339360040060A /* YNExpandableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YNExpandableCell.framework; path = Frameworks/YNExpandableCell.framework; sourceTree = "<group>"; };
-		BA49CC5C1F3386370040060A /* SwiftToast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftToast.framework; path = Frameworks/SwiftToast.framework; sourceTree = "<group>"; };
 		BA49CC6C1F339AC80040060A /* SplashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		BA49CC731F339FDD0040060A /* CodeAutorizationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeAutorizationController.swift; sourceTree = "<group>"; };
 		BA49CC751F339FDD0040060A /* RegistraionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistraionController.swift; sourceTree = "<group>"; };
@@ -562,7 +556,6 @@
 		BA9A1B5E1F31ED0100EABFAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CC5C1F3386370040060A /* SwiftToast.framework */,
 				BA49CC401F3339360040060A /* Alamofire.framework */,
 				BA49CC411F3339360040060A /* Crashlytics.framework */,
 				BA49CC421F3339360040060A /* Fabric.framework */,
@@ -571,11 +564,6 @@
 				BA49CC451F3339360040060A /* SwiftyJSON.framework */,
 				BA49CC461F3339360040060A /* ToastSwiftFramework.framework */,
 				BA49CC471F3339360040060A /* YNExpandableCell.framework */,
-				AA824E6D1EF258D300D75320 /* NVActivityIndicatorView.framework */,
-				670AF3951E4F53AF00576848 /* Crashlytics.framework */,
-				670AF3941E4F53AF00576848 /* Fabric.framework */,
-				B70706121E85E091009342E1 /* SwiftyJSON.framework */,
-				B70706111E85E091009342E1 /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

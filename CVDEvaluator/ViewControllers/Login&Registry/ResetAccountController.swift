@@ -79,7 +79,7 @@ class ResetAccountController: BaseController, UITextFieldDelegate, MFMailCompose
 	@IBAction func cannotPerformAction(_ sender: AnyObject) {
 		nameField?.resignFirstResponder()
 		
-		sendEmail(recipient: "davischan83@gmail.com", subject: "Cannot reset form")		
+		sendEmail(recipient: "cvmedicalsoftware@gmail.com", subject: "Cannot reset form")
 	}
 	
 	
