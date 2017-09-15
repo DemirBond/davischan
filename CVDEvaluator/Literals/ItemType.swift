@@ -106,6 +106,9 @@ enum ItemType: String {
 		case .resultOutput:
 			return 80.0
 			
+		case .referencesCard:
+			return 120.0
+			
 		case .custom:
 			return 70.0
 			

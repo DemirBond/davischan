@@ -4998,13 +4998,20 @@ These Terms and Conditions are governed by the substantive laws of the State of 
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNp-tP-FwI">
-                                <rect key="frame" x="16" y="0.0" width="343" height="262"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNp-tP-FwI">
+                                <rect key="frame" x="16" y="8" width="343" height="262"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="262" id="kw0-xY-P9B"/>
+                                </constraints>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bNp-tP-FwI" firstAttribute="leading" secondItem="vys-Kt-Nb2" secondAttribute="leading" constant="16" id="DOw-pk-zXt"/>
+                            <constraint firstAttribute="trailing" secondItem="bNp-tP-FwI" secondAttribute="trailing" constant="16" id="cUF-XD-W4U"/>
+                            <constraint firstItem="bNp-tP-FwI" firstAttribute="top" secondItem="vys-Kt-Nb2" secondAttribute="top" constant="8" id="wpq-1n-CIU"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="referenceWebView" destination="bNp-tP-FwI" id="ef4-fN-Hni"/>
