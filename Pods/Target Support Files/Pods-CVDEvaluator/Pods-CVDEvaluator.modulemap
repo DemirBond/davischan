@@ -1,0 +1,6 @@
+framework module Pods_CVDEvaluator {
+  umbrella header "Pods-CVDEvaluator-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,17 +14,9 @@
 		78BF73F21E3F640F0040EC81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BF73F01E3F640F0040EC81 /* LaunchScreen.storyboard */; };
 		78BF73FD1E3F640F0040EC81 /* CVDEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF73FC1E3F640F0040EC81 /* CVDEvaluatorTests.swift */; };
 		78BF74081E3F640F0040EC81 /* CVDEvaluatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF74071E3F640F0040EC81 /* CVDEvaluatorUITests.swift */; };
+		86E6256A62A6F17CD20FF4F7 /* Pods_CVDEvaluator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */; };
 		BA395C401F5EED95000C5A33 /* Pulmonary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */; };
 		BA395C441F5EF993000C5A33 /* Renal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA395C431F5EF993000C5A33 /* Renal.swift */; };
-		BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC411F3339360040060A /* Crashlytics.framework */; };
-		BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC421F3339360040060A /* Fabric.framework */; };
-		BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC451F3339360040060A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BA49CC541F3340830040060A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC401F3339360040060A /* Alamofire.framework */; };
-		BA49CC551F3340830040060A /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC401F3339360040060A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BA49CC581F3340830040060A /* ToastSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC461F3339360040060A /* ToastSwiftFramework.framework */; };
-		BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC461F3339360040060A /* ToastSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; };
-		BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA49CC6D1F339AC80040060A /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC6C1F339AC80040060A /* SplashController.swift */; };
 		BA49CC771F339FDD0040060A /* CodeAutorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC731F339FDD0040060A /* CodeAutorizationController.swift */; };
 		BA49CC791F339FDD0040060A /* RegistraionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC751F339FDD0040060A /* RegistraionController.swift */; };
@@ -121,24 +113,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D51A51581E9442850084352C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BA49CC591F3340830040060A /* ToastSwiftFramework.framework in Embed Frameworks */,
-				BA49CC551F3340830040060A /* Alamofire.framework in Embed Frameworks */,
-				BA49CC5B1F3340A30040060A /* NVActivityIndicatorView.framework in Embed Frameworks */,
-				BA49CC531F333E2C0040060A /* SwiftyJSON.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		2AB6A5BC01152DFBE0438B0C /* Pods-CVDEvaluator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVDEvaluator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator.debug.xcconfig"; sourceTree = "<group>"; };
 		789268A41E6478C80018FEF5 /* Evaluation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Evaluation.xcdatamodel; sourceTree = "<group>"; };
 		78BF73E41E3F640F0040EC81 /* Heart Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BF73E71E3F640F0040EC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CVDEvaluator/AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,16 +129,9 @@
 		78BF74071E3F640F0040EC81 /* CVDEvaluatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVDEvaluatorUITests.swift; sourceTree = "<group>"; };
 		78BF74091E3F640F0040EC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78BF74171E3F690F0040EC81 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVDEvaluator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulmonary.swift; sourceTree = "<group>"; };
 		BA395C431F5EF993000C5A33 /* Renal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renal.swift; sourceTree = "<group>"; };
-		BA49CC401F3339360040060A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Frameworks/Alamofire.framework; sourceTree = "<group>"; };
-		BA49CC411F3339360040060A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
-		BA49CC421F3339360040060A /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
-		BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Frameworks/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
-		BA49CC441F3339360040060A /* NVActivityIndicatorViewAppExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorViewAppExtension.framework; path = Frameworks/NVActivityIndicatorViewAppExtension.framework; sourceTree = "<group>"; };
-		BA49CC451F3339360040060A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Frameworks/SwiftyJSON.framework; sourceTree = "<group>"; };
-		BA49CC461F3339360040060A /* ToastSwiftFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToastSwiftFramework.framework; path = Frameworks/ToastSwiftFramework.framework; sourceTree = "<group>"; };
-		BA49CC471F3339360040060A /* YNExpandableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YNExpandableCell.framework; path = Frameworks/YNExpandableCell.framework; sourceTree = "<group>"; };
 		BA49CC6C1F339AC80040060A /* SplashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		BA49CC731F339FDD0040060A /* CodeAutorizationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeAutorizationController.swift; sourceTree = "<group>"; };
 		BA49CC751F339FDD0040060A /* RegistraionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistraionController.swift; sourceTree = "<group>"; };
@@ -240,6 +209,7 @@
 		BA6518901F61EB0500743EC9 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		BA6518941F61F14F00743EC9 /* MenuAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
 		BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletedController.swift; sourceTree = "<group>"; };
+		ED6EC9AD19A52EDC0FAC146A /* Pods-CVDEvaluator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVDEvaluator.release.xcconfig"; path = "Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,11 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA49CC581F3340830040060A /* ToastSwiftFramework.framework in Frameworks */,
-				BA49CC491F3339360040060A /* Crashlytics.framework in Frameworks */,
-				BA49CC541F3340830040060A /* Alamofire.framework in Frameworks */,
-				BA49CC4A1F3339360040060A /* Fabric.framework in Frameworks */,
-				BA49CC5A1F3340A30040060A /* NVActivityIndicatorView.framework in Frameworks */,
+				86E6256A62A6F17CD20FF4F7 /* Pods_CVDEvaluator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		535FC24423E7C3D638A9AC6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2AB6A5BC01152DFBE0438B0C /* Pods-CVDEvaluator.debug.xcconfig */,
+				ED6EC9AD19A52EDC0FAC146A /* Pods-CVDEvaluator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		78BF73DB1E3F640F0040EC81 = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +255,7 @@
 				78BF73FB1E3F640F0040EC81 /* CVDEvaluatorTests */,
 				78BF74061E3F640F0040EC81 /* CVDEvaluatorUITests */,
 				78BF73E51E3F640F0040EC81 /* Products */,
+				535FC24423E7C3D638A9AC6A /* Pods */,
 			);
 			indentWidth = 3;
 			sourceTree = "<group>";
@@ -556,14 +532,7 @@
 		BA9A1B5E1F31ED0100EABFAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA49CC401F3339360040060A /* Alamofire.framework */,
-				BA49CC411F3339360040060A /* Crashlytics.framework */,
-				BA49CC421F3339360040060A /* Fabric.framework */,
-				BA49CC431F3339360040060A /* NVActivityIndicatorView.framework */,
-				BA49CC441F3339360040060A /* NVActivityIndicatorViewAppExtension.framework */,
-				BA49CC451F3339360040060A /* SwiftyJSON.framework */,
-				BA49CC461F3339360040060A /* ToastSwiftFramework.framework */,
-				BA49CC471F3339360040060A /* YNExpandableCell.framework */,
+				9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -575,12 +544,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78BF740C1E3F640F0040EC81 /* Build configuration list for PBXNativeTarget "CVDEvaluator" */;
 			buildPhases = (
+				6956F807DB9E27984E40E678 /* [CP] Check Pods Manifest.lock */,
 				78BF73E01E3F640F0040EC81 /* Sources */,
 				78BF73E11E3F640F0040EC81 /* Frameworks */,
 				78BF73E21E3F640F0040EC81 /* Resources */,
 				670AF3931E4F537E00576848 /* Fabric */,
-				D51A51581E9442850084352C /* Embed Frameworks */,
 				BA71B65A1F34DAD1004959EE /* ShellScript */,
+				B23428E9A6FCF28084C0323B /* [CP] Embed Pods Frameworks */,
+				E684F44F146F736554A26EE3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -717,7 +688,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Frameworks/Fabric.framework/run b024c492635d69ccfafb7e31f949953e20d40ee3 bede7a2a39f36be4ef577d3e3c788b1010418959d1bd503c8d955c6cad2e396c";
+			shellScript = "";
+		};
+		6956F807DB9E27984E40E678 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B23428E9A6FCF28084C0323B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		BA71B65A1F34DAD1004959EE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -731,6 +732,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.p\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+		E684F44F146F736554A26EE3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -981,6 +997,7 @@
 		};
 		78BF740D1E3F640F0040EC81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AB6A5BC01152DFBE0438B0C /* Pods-CVDEvaluator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Demir Baykal (29F8XS98B7)";
@@ -1006,6 +1023,7 @@
 		};
 		78BF740E1E3F640F0040EC81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED6EC9AD19A52EDC0FAC146A /* Pods-CVDEvaluator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Demir Baykal (29F8XS98B7)";
