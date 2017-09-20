@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol EvaluationEditing {
 	
 	func evaluationFieldDidBeginEditing(_ textField: UITextField, model: EvaluationItem)
@@ -19,7 +20,7 @@ protocol EvaluationEditing {
 }
 
 
-class GeneratedCell: UITableViewCell, UITextFieldDelegate {
+class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 	
 	var cellModel: EvaluationItem! {
 		didSet{
@@ -40,6 +41,8 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate {
 	@IBOutlet weak var accessoryBar: UINavigationBar?
 	@IBOutlet weak var secondaryTextField: UITextField?
 	@IBOutlet var textFieldCollection: [UITextField]!
+	
+	var numberPad: KBNumberPad?
 	
 	// expandableCell outlets
 	
@@ -170,6 +173,14 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate {
 			field.placeholder = cellModel.storedValue?.placeholder
 			field.text = self.cellModel.storedValue?.value
 			drawFieldWithDefaultColor()
+			
+			if cellModel.form.itemType == .integerRight || cellModel.form.itemType == .integerLeft {
+				numberPad = KBNumberPad()
+				numberPad?.delegate = self
+				numberPad?.padType = .Integer
+				numberPad?.returnType = .Next
+				field.inputView = numberPad
+			}
 		}
 		
 		
@@ -268,6 +279,29 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate {
 				self.textField?.textColor = CVDStyle.style.rightFieldColor
 			}
 		}
+	}
+	
+	
+	
+	// MARK: - KBNumberPad Delegate
+	
+	func onNumberClicked(numberPad: KBNumberPad, number: Int) {
+		
+	}
+	
+	
+	func onDoneClicked(numberPad: KBNumberPad) {
+		
+	}
+	
+	
+	func onNextClicked(numberPad: KBNumberPad) {
+		
+	}
+	
+	
+	func onClearClicked(numberPad: KBNumberPad) {
+		
 	}
 	
 	

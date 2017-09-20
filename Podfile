@@ -10,6 +10,5 @@ target 'CVDEvaluator' do
     pod 'SwiftyJSON'
     pod 'NVActivityIndicatorView'
     pod 'YNExpandableCell'
-    pod 'APNumberPad'
     
 end
