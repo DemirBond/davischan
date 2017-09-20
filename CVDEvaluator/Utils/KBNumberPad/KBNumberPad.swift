@@ -13,16 +13,16 @@ import UIKit
 // MARK: - Delegate
 
 public protocol KBNumberPadDelegate {
-	func onNumberClicked(numberPad: KBNumberPad, number: Int);
+	//func onNumberClicked(numberPad: KBNumberPad, number: Int);
 	func onDoneClicked(numberPad: KBNumberPad);
 	func onNextClicked(numberPad: KBNumberPad);
-	func onClearClicked(numberPad: KBNumberPad);
+	//func onClearClicked(numberPad: KBNumberPad);
 }
 
 
 // MARK: NumberPadType
 
-enum KBNumberPadType {
+public enum KBNumberPadType {
 	case Integer
 	case Decimal
 }
@@ -30,7 +30,7 @@ enum KBNumberPadType {
 
 // MARK: - NumberPad ReturnType
 
-enum KBNumberPadReturnType {
+public enum KBNumberPadReturnType {
 	case Done
 	case Next
 }
@@ -45,39 +45,51 @@ public class KBNumberPad: UIView {
 	private static let clearSymbolFilledIconName = "ClearSymbolFilledIcon"
 	
 	private static let estimatedWidth = Int(UIScreen.main.bounds.width)
-	private static let estimatedHeight = 250
+	private static let estimatedHeight = 180
+	
+	var textInput: (UITextInput & UIResponder)?
 	
 	@IBOutlet var containerView: UIView!
 	@IBOutlet var numberButtons: [UIButton]!
+	@IBOutlet var puncButton: UIButton!
 	@IBOutlet var doneButton: UIButton!
 	@IBOutlet var nextButton: UIButton!
-	
 	@IBOutlet var clearButton: UIButton!
+	
+	var isPunctuated: Bool = false
+	var lastString: String?
 	
 	public var delegate: KBNumberPadDelegate?
 	
-	var padType: KBNumberPadType = .Integer
-	var returnType: KBNumberPadReturnType = .Done
+	var padType: KBNumberPadType?
+	var returnType: KBNumberPadReturnType?
 	
 	
 	// MARK: - Init
 	
-	convenience init() {
+	convenience init(padType: KBNumberPadType, returnType: KBNumberPadReturnType) {
 		self.init(frame: KBNumberPad.defaultRect())
+		
+		self.padType = padType
+		self.returnType = returnType
+		setupViewFromXib()
+		
+		addNotificationsObservers()
 	}
 	
 	override public init(frame: CGRect) {
 		super.init(frame: frame)
-		setupViewFromXib()
 	}
 	
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setupViewFromXib()
+		addNotificationsObservers()
 	}
 	
 	deinit {
 		delegate = nil
+		NotificationCenter.default.removeObserver(self)
 	}
 	
 	private func setupViewFromXib() {
@@ -89,11 +101,17 @@ public class KBNumberPad: UIView {
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		addSubview(view)
 		
+		for index in 0...15 {
+			let buttonView: UIView = view.viewWithTag(100 + index)!
+			buttonView.layer.cornerRadius = 4.0
+			buttonView.layer.masksToBounds = false
+		}
+		
 		if padType == .Integer {
-			
+			self.puncButton.isHidden = true
 		}
 		else {
-			
+			self.puncButton.isHidden = false
 		}
 		
 		if returnType == .Done {
@@ -103,7 +121,6 @@ public class KBNumberPad: UIView {
 		else {
 			self.doneButton.isHidden = true
 			self.nextButton.isHidden = false
-			
 		}
 	}
 	
@@ -124,6 +141,34 @@ public class KBNumberPad: UIView {
 		return Bundle(for: type(of: self))
 	}
 	
+	
+	func addNotificationsObservers() {
+		NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)
+		
+	}
+	
+	
+	// MARK: - TextField Editing
+	
+	func textDidBeginEditing(notification: NSNotification) {
+//		if !(notification.object as! NSObject).conforms(to: protocol(UITextInput)) do {
+//			return
+//		}
+		
+		let textInput: (UITextInput & UIResponder)? = notification.object as? (UITextInput & UIResponder)
+		if textInput?.inputView != nil && textInput?.inputView == self {
+			self.textInput = textInput
+		}
+	}
+	
+	func textDidEndEditing(notification: NSNotification) {
+		self.textInput = nil
+	}
+
+	
 	// MARK: - Public methods
 	
 	public func setDelimiterColor(_ color: UIColor) {
@@ -132,16 +177,18 @@ public class KBNumberPad: UIView {
 	
 	public func setButtonsColor(_ color: UIColor) {
 		setNumberButtonsColor(color)
+		setPuncButtonColor(color)
 		setDoneButtonColor(color)
 		setNextButtonColor(color)
 		setClearButtonColor(color)
 	}
 	
 	public func setButtonsBackgroundColor(_ color: UIColor) {
-		[numberButtons, [doneButton, nextButton, clearButton]].joined().forEach {
+		[numberButtons, [puncButton, doneButton, nextButton, clearButton]].joined().forEach {
 			$0.backgroundColor = color
 		}
 	}
+	
 	
 	// - Number buttons
 	
@@ -156,6 +203,26 @@ public class KBNumberPad: UIView {
 			$0.titleLabel?.font = font
 		}
 	}
+	
+	
+	// - Punc button
+	
+	public func setPuncButtonColor(_ color: UIColor) {
+		puncButton.setTitleColor(color, for: UIControlState.normal)
+	}
+	
+	public func setPuncButtonFont(_ font: UIFont) {
+		puncButton.titleLabel?.font = font
+	}
+	
+	public func setPuncButtonTitle(_ title: String) {
+		puncButton.titleLabel?.text = title
+	}
+	
+	public func setPuncButtonBackgroundColor(_ color: UIColor) {
+		puncButton.backgroundColor = color
+	}
+	
 	
 	// - Done button
 	
@@ -175,6 +242,7 @@ public class KBNumberPad: UIView {
 		doneButton.backgroundColor = color
 	}
 	
+	
 	// - Next button
 	
 	public func setNextButtonColor(_ color: UIColor) {
@@ -192,6 +260,7 @@ public class KBNumberPad: UIView {
 	public func setNextButtonBackgroundColor(_ color: UIColor) {
 		nextButton.backgroundColor = color
 	}
+	
 	
 	// - Clear button
 	
@@ -217,11 +286,24 @@ public class KBNumberPad: UIView {
 		setClearButtonImage(image!)
 	}
 	
+	
 	// MARK: - IBActions
 	
 	@IBAction func onNumberClicked(_ sender: UIButton) {
-		let number = Int((sender.titleLabel?.text)!)
-		delegate?.onNumberClicked(numberPad: self, number: number!)
+		guard let text: String = sender.titleLabel?.text else { return }
+		self.lastString = text
+		self.textInput?.insertText(text)
+	}
+	
+	@IBAction func onPuncButtonClicked(_ sender: UIButton) {
+		guard let text: String = sender.titleLabel?.text else { return }
+		self.lastString = text
+		if text == "." {
+			if !isPunctuated {
+				self.textInput?.insertText(text)
+				isPunctuated = true
+			}
+		}
 	}
 	
 	@IBAction func onDoneClicked(_ sender: UIButton) {
@@ -233,6 +315,11 @@ public class KBNumberPad: UIView {
 	}
 	
 	@IBAction func onClearClicked(_ sender: UIButton) {
-		delegate?.onClearClicked(numberPad: self)
+		if isPunctuated {
+			if self.lastString == "." {
+				isPunctuated = false
+			}
+		}
+		self.textInput?.deleteBackward()
 	}
 }

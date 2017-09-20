@@ -167,18 +167,21 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 		
 		self.icon?.image = nil
 		if let field = self.textField {
-			field.inputAccessoryView = self.accessoryBar
+			//field.inputAccessoryView = self.accessoryBar
 			field.font = CVDStyle.style.currentFont
-			
+			field.returnKeyType = .next
 			field.placeholder = cellModel.storedValue?.placeholder
 			field.text = self.cellModel.storedValue?.value
 			drawFieldWithDefaultColor()
 			
 			if cellModel.form.itemType == .integerRight || cellModel.form.itemType == .integerLeft {
-				numberPad = KBNumberPad()
+				numberPad = KBNumberPad(padType: .Integer, returnType: .Next)
 				numberPad?.delegate = self
-				numberPad?.padType = .Integer
-				numberPad?.returnType = .Next
+				field.inputView = numberPad
+			}
+			else if cellModel.form.itemType == .decimalRight || cellModel.form.itemType == .decimalLeft {
+				numberPad = KBNumberPad(padType: .Decimal, returnType: .Next)
+				numberPad?.delegate = self
 				field.inputView = numberPad
 			}
 		}
@@ -285,23 +288,13 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 	
 	// MARK: - KBNumberPad Delegate
 	
-	func onNumberClicked(numberPad: KBNumberPad, number: Int) {
-		
-	}
-	
-	
 	func onDoneClicked(numberPad: KBNumberPad) {
-		
+		self.delegate?.keyboardReturnDidPress(model: self.cellModel)
 	}
 	
 	
 	func onNextClicked(numberPad: KBNumberPad) {
-		
-	}
-	
-	
-	func onClearClicked(numberPad: KBNumberPad) {
-		
+		self.delegate?.keyboardReturnDidPress(model: self.cellModel)
 	}
 	
 	

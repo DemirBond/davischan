@@ -93,6 +93,9 @@
 		BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CD3D1F34044E0040060A /* EvaluationController.swift */; };
 		BA6518911F61EB0500743EC9 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6518901F61EB0500743EC9 /* SideMenuController.swift */; };
 		BA6518951F61F14F00743EC9 /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6518941F61F14F00743EC9 /* MenuAction.swift */; };
+		BAB2486B1F71F05C0004642E /* KBNumberPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB2486A1F71EFF70004642E /* KBNumberPad.xib */; };
+		BAB2486C1F71F1220004642E /* KBNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB248681F71EFF70004642E /* KBNumberPad.swift */; };
+		BAB2486D1F71F1260004642E /* KBNumberPad.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB248691F71EFF70004642E /* KBNumberPad.xcassets */; };
 		BAC5E5C41F390E400093E5A3 /* TaskCompletedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */; };
 /* End PBXBuildFile section */
 
@@ -208,6 +211,9 @@
 		BA49CD3D1F34044E0040060A /* EvaluationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationController.swift; sourceTree = "<group>"; };
 		BA6518901F61EB0500743EC9 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		BA6518941F61F14F00743EC9 /* MenuAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
+		BAB248681F71EFF70004642E /* KBNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBNumberPad.swift; sourceTree = "<group>"; };
+		BAB248691F71EFF70004642E /* KBNumberPad.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = KBNumberPad.xcassets; sourceTree = "<group>"; };
+		BAB2486A1F71EFF70004642E /* KBNumberPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBNumberPad.xib; sourceTree = "<group>"; };
 		BAC5E5C31F390E400093E5A3 /* TaskCompletedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCompletedController.swift; sourceTree = "<group>"; };
 		ED6EC9AD19A52EDC0FAC146A /* Pods-CVDEvaluator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVDEvaluator.release.xcconfig"; path = "Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -458,6 +464,7 @@
 		BA49CD021F33A54E0040060A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BAB248671F71EFF70004642E /* KBNumberPad */,
 				BA49CD1A1F33A6650040060A /* AuxiliaryFunctions.swift */,
 				BA49CD0D1F33A5F80040060A /* ExpyTableView.swift */,
 				BA49CD031F33A54E0040060A /* HexExtention.swift */,
@@ -535,6 +542,16 @@
 				9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAB248671F71EFF70004642E /* KBNumberPad */ = {
+			isa = PBXGroup;
+			children = (
+				BAB248681F71EFF70004642E /* KBNumberPad.swift */,
+				BAB248691F71EFF70004642E /* KBNumberPad.xcassets */,
+				BAB2486A1F71EFF70004642E /* KBNumberPad.xib */,
+			);
+			path = KBNumberPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -652,6 +669,8 @@
 				BA49CCFF1F33A4510040060A /* Output.storyboard in Resources */,
 				BA49CCFC1F33A43E0040060A /* Medical.storyboard in Resources */,
 				78BF73F21E3F640F0040EC81 /* LaunchScreen.storyboard in Resources */,
+				BAB2486B1F71F05C0004642E /* KBNumberPad.xib in Resources */,
+				BAB2486D1F71F1260004642E /* KBNumberPad.xcassets in Resources */,
 				BA49CD171F33A62D0040060A /* TextSizeView.xib in Resources */,
 				BA49CD151F33A62D0040060A /* DemoView.xib in Resources */,
 				78BF73EF1E3F640F0040EC81 /* Assets.xcassets in Resources */,
@@ -731,7 +750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.p\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+			shellScript = "#\tAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n#\n#\t# This script loops through the frameworks embedded in the application and\n#\t# removes unused architectures.p\n#\tfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\n#\tdo\n#\tFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\n#\tFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n#\techo \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n#\n#\tEXTRACTED_ARCHS=()\n#\n#\tfor ARCH in $ARCHS\n#\tdo\n#\techo \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\n#\tlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\n#\tEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\n#\tdone\n#\n#\techo \"Merging extracted architectures: ${ARCHS}\"\n#\tlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\n#\trm \"${EXTRACTED_ARCHS[@]}\"\n#\n#\techo \"Replacing original executable with thinned version\"\n#\trm \"$FRAMEWORK_EXECUTABLE_PATH\"\n#\tmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n#\n#\tdone";
 		};
 		E684F44F146F736554A26EE3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -782,6 +801,7 @@
 				BA49CD241F33A6B00040060A /* General.swift in Sources */,
 				BA49CC991F33A0C90040060A /* HelpSupportController.swift in Sources */,
 				BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */,
+				BAB2486C1F71F1220004642E /* KBNumberPad.swift in Sources */,
 				BA49CC8D1F33A0410040060A /* MessageController.swift in Sources */,
 				BA49CCF31F33A35E0040060A /* RadioGroup.swift in Sources */,
 				BA49CD331F33A6FE0040060A /* RestClient.swift in Sources */,
