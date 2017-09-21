@@ -415,7 +415,49 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
+	
+	//MARK: - EvaluationEditing protocol
+	
+	override func keyboardReturnDidPress(model: EvaluationItem) {
+		guard nil != activeModel else { return }
+		
+		checkDependancies()
+		
+		repeat {
+			if self.presentedViewController != nil {
+				self.dismiss(animated: false, completion: nil)
+			}
+			
+			let index = (modelChain as NSArray).index(of: activeModel!)
+			if index < modelChain.count - 1 {
+				activeModel = modelChain[index + 1]
+			}
+			else {
+				self.hideKeyboard()
+				return
+			}
+			
+		} while nil != activeModel && activeModel!.form.isEnabled == false
+		
+		if let path = activeModel?.modelIndexPath {
+			if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
+				activeField = cell.textField
+				activeField?.isEnabled = true
+				activeField?.becomeFirstResponder()
+				
+			} else {
+				self.tableView.scrollToRow(at: path, at: UITableViewScrollPosition.middle, animated: false)
+				if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
+					activeField = cell.textField
+					activeField?.isEnabled = true
+					activeField?.becomeFirstResponder()
+				}
+			}
+		}
+	}
+	
 
+	
 	// MARK: - Table view data source
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {

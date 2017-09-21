@@ -45,7 +45,7 @@ public class KBNumberPad: UIView {
 	private static let clearSymbolFilledIconName = "ClearSymbolFilledIcon"
 	
 	private static let estimatedWidth = Int(UIScreen.main.bounds.width)
-	private static let estimatedHeight = 180
+	private static let estimatedHeight = 190
 	
 	var textInput: (UITextInput & UIResponder)?
 	

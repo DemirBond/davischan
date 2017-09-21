@@ -245,20 +245,6 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	//MARK: - EvaluationEditing protocol
 	
-	override func evaluationValueDidNotValidate(model: EvaluationItem, message: String, description: String?) {
-		
-		guard !isCancelled else { return }
-		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
-		
-		let controller = storyboard.instantiateViewController(withIdentifier: "MessageControllerID") as! MessageController
-		controller.message = message
-		controller.descriptionMessage = description
-		controller.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-		self.present(controller, animated: false) { controller.showMessage() }
-
-	}
-	
-	
 	override func keyboardReturnDidPress(model: EvaluationItem) {
 		guard nil != activeModel else { return }
 		
