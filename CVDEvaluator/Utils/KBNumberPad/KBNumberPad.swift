@@ -45,7 +45,7 @@ public class KBNumberPad: UIView {
 	private static let clearSymbolFilledIconName = "ClearSymbolFilledIcon"
 	
 	private static let estimatedWidth = Int(UIScreen.main.bounds.width)
-	private static let estimatedHeight = 190
+	private static let estimatedHeight = 216
 	
 	var textInput: (UITextInput & UIResponder)?
 	
@@ -105,8 +105,12 @@ public class KBNumberPad: UIView {
 			let buttonView: UIView = view.viewWithTag(100 + index)!
 			buttonView.layer.cornerRadius = 4.0
 			buttonView.layer.masksToBounds = false
+			buttonView.layer.shadowColor = UIColor(palette: ColorPalette.black)?.cgColor
+			buttonView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+			buttonView.layer.shadowRadius = 0.5
+			buttonView.layer.shadowOpacity = 0.5
 		}
-		
+
 		if padType == .Integer {
 			self.puncButton.isHidden = true
 		}

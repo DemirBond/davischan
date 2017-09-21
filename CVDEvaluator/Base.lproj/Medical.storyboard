@@ -371,7 +371,7 @@
                                             </constraints>
                                             <color key="textColor" red="0.95620638209999997" green="0.41502210169999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" textContentType="honorifix-prefix"/>
                                             <connections>
                                                 <outlet property="delegate" destination="tjr-G9-nmh" id="Jjf-Jv-dgx"/>
                                             </connections>
