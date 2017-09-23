@@ -24,10 +24,12 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 		gotoLogin.layer.cornerRadius = gotoLogin.frame.size.height / 2
 		gotoLogin.layer.borderColor = UIColor.white.cgColor
 		gotoLogin.layer.borderWidth = 2.0
+		gotoLogin.isHidden = true
 		
 		gotoSignin.layer.cornerRadius = gotoSignin.frame.size.height / 2
 		gotoSignin.layer.borderColor = UIColor.white.cgColor
 		gotoSignin.layer.borderWidth = 2.0
+		gotoSignin.isHidden = true
 	}
 	
 
@@ -54,6 +56,10 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 			}
 			
 			DataManager.manager.signIn(with: userName, completionHandler: completionHandler)
+		}
+		else {
+			gotoLogin.isHidden = false
+			gotoSignin.isHidden = false
 		}
 	}
 
