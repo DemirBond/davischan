@@ -37,7 +37,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		savedEvaluationsView.clipsToBounds = true
 		
 		//savedEvaluationsView.isHidden = true
-
+		DataManager.manager.deleteTempEvaluations()
 	}
 	
 	

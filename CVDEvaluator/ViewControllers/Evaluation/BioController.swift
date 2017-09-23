@@ -101,12 +101,12 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	override func viewWillDisappear(_ animated : Bool) {
 		super.viewWillDisappear(animated)
 		
-		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
-			let isValid = validatePage()
-			if isValid {
-				DataManager.manager.saveCurrentEvaluation()
-			}
-		}
+//		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
+//			let isValid = validatePage()
+//			if isValid {
+//				DataManager.manager.saveCurrentEvaluation()
+//			}
+//		}
 	}
 	
 	

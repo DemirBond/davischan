@@ -170,7 +170,10 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		
 		var actions = [CVDAction] ()
 		actions.append(CVDAction(title: "Yes, I'm sure".localized, type: CVDActionType.done, handler: {
+			DataManager.manager.deleteTempEvaluations()
+			
 			self.navigationController?.popViewController(animated: true)
+			
 		}, short: false, border: false))
 		actions.append(CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false, border: false))
 		
@@ -310,7 +313,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 					
 					// save current evaluation and compute
 					DataManager.manager.saveCurrentEvaluation()
-					DataManager.manager.saveCurrentCompute()
+					DataManager.manager.saveCurrentCompute(saveMode: isSaveMode)
 					
 					self.stopAnimating()
 					

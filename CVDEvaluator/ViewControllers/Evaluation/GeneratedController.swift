@@ -146,12 +146,12 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	override func viewWillDisappear(_ animated : Bool) {
 		super.viewWillDisappear(animated)
 		
-		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
-			let isValid = validatePage()
-			if isValid && generatedID != "outputInMain" {
-				DataManager.manager.saveCurrentEvaluation()
-			}
-		}
+//		if self.isMovingFromParentViewController && (DataManager.manager.evaluation?.isBioCompleted ?? false) {
+//			let isValid = validatePage()
+//			if isValid && generatedID != "outputInMain" {
+//				DataManager.manager.saveCurrentEvaluation()
+//			}
+//		}
 	}
 	
 	
@@ -367,7 +367,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				
 				// save current evaluation and compute
 				DataManager.manager.saveCurrentEvaluation()
-				DataManager.manager.saveCurrentCompute()
+				DataManager.manager.saveCurrentCompute(saveMode: isSaveMode)
 				
 				self.stopAnimating()
 				

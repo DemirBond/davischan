@@ -136,7 +136,7 @@ class DataManager {
 						self.saveContext()
 
 						self.currentDoctor = doctor
-						self.fetchEvaluations()
+						//self.fetchEvaluations()
 						completionHandler("success", nil)
 					}
 					
@@ -277,7 +277,7 @@ class DataManager {
 	}
 	
 	
-	func saveCurrentCompute() {
+	func saveCurrentCompute(saveMode: Bool) {
 		guard evaluation != nil && evaluation!.isBioCompleted  else { return }
 		
 		var isFound = false
@@ -287,8 +287,9 @@ class DataManager {
 			for patient in self.patients! {
 				if patient.identifier == uuid {
 					
+					patient.setValue(saveMode, forKey: "computeSaved")
 					patient.setValue(String(DataManager.manager.getPAHValue()), forKey: "computeEvaluationRequestPAH")
-					patient.setValue(evaluation!.bio.gender.female.isFilled ? 2:1, forKey: "computeEvaluationRequestGender")
+					patient.setValue(evaluation!.bio.gender.storedValue?.value == "female" ? 2:1, forKey: "computeEvaluationRequestGender")
 					patient.setValue(Int((evaluation!.bio.sbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestSBP")
 					patient.setValue(Int((evaluation!.bio.dbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestDBP")
 					patient.setValue(self.getEvaluationItemsAsRequestInputsString(), forKey: "computeEvaluationRequestInputs")
@@ -310,6 +311,7 @@ class DataManager {
 			let entity =  NSEntityDescription.entity(forEntityName: "Patient", in: self.managedObjectContext)
 			let patient = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Patient
 			
+			patient.setValue(saveMode, forKey: "computeSaved")
 			patient.setValue(evaluation!.bio.name.storedValue?.value, forKey: "patientName")
 			patient.setValue(evaluation!.bio.age.storedValue?.value, forKey: "patientAge")
 			patient.setValue(evaluation!.dateCreated, forKey: "dateCreated")
@@ -318,7 +320,7 @@ class DataManager {
 			patient.setValue(currentDoctor?.loginName ?? "unknown", forKey: "doctorLoginName")
 			
 			patient.setValue(String(DataManager.manager.getPAHValue()), forKey: "computeEvaluationRequestPAH")
-			patient.setValue(evaluation!.bio.gender.female.isFilled ? 2:1, forKey: "computeEvaluationRequestGender")
+			patient.setValue(evaluation!.bio.gender.storedValue?.value == "female" ? 2:1, forKey: "computeEvaluationRequestGender")
 			patient.setValue(Int((evaluation!.bio.sbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestSBP")
 			patient.setValue(Int((evaluation!.bio.dbp.storedValue?.value)!)!, forKey: "computeEvaluationRequestDBP")
 			patient.setValue(self.getEvaluationItemsAsRequestInputsString(), forKey: "computeEvaluationRequestInputs")
@@ -344,6 +346,18 @@ class DataManager {
 		guard  patients != nil && index >= 0 && index < patients!.count else { return }
 		managedObjectContext.delete(patients!.remove(at: index))
 		saveContext()
+	}
+	
+	
+	func deleteTempEvaluations() {
+		guard  patients != nil else { return }
+		for patient: Patient in patients! {
+			if (patient.value(forKey: "computeSaved") as! Bool) == false {
+				managedObjectContext.delete(patient)
+			}
+		}
+		saveContext()
+		fetchEvaluations()
 	}
 	
 	
@@ -533,6 +547,7 @@ class DataManager {
 					let entity =  NSEntityDescription.entity(forEntityName: "Patient", in: self.managedObjectContext)
 					let patient = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext) as! Patient
 					
+					patient.setValue(true, forKey: "computeSaved")
 					patient.setValue(patientJson["Name"].stringValue, forKey: "patientName")
 					patient.setValue(patientJson["createdate"].stringValue, forKey: "dateCreated")
 					patient.setValue(patientJson["createdate"].stringValue, forKey: "dateModified")
@@ -733,13 +748,17 @@ class DataManager {
 							return true
 					}
 					
+					let name = evaluation!.bio.name.storedValue?.value
+					let age = evaluation!.bio.age.storedValue?.value
 					let isPAH = String(DataManager.manager.getPAHValue())
-					let gender = evaluation!.bio.gender.female.isFilled ? 2:1
+					let gender = evaluation!.bio.gender.storedValue?.value == "female" ? 2:1
 					let SBP = Int((evaluation!.bio.sbp.storedValue?.value)!)!
 					let DBP = Int((evaluation!.bio.dbp.storedValue?.value)!)!
 					let inputs = self.getEvaluationItemsAsRequestInputsString()
 					
-					if isPAH == cerPAH &&
+					if name == patient.value(forKey: "patientName") as? String &&
+						age == patient.value(forKey: "patientAge") as? String &&
+						isPAH == cerPAH &&
 						gender == patient.value(forKey: "computeEvaluationRequestGender") as! Int &&
 						SBP == patient.value(forKey: "computeEvaluationRequestSBP") as! Int &&
 						DBP == patient.value(forKey: "computeEvaluationRequestDBP") as! Int &&
