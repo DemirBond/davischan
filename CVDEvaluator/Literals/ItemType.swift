@@ -130,8 +130,11 @@ enum ItemType: String {
 		case .partnerCard, .statusCard, .resultOutput:
 			return nil
 			
-		case .disclosureVieved, .disclosureSimple, .disclosureSimpleExpandable, .disclosureWeather:
+		case .disclosureVieved, .disclosureSimple, .disclosureWeather:
 			return nil
+			
+		case .disclosureSimpleExpandable:
+			return .string
 			
 		case .disclousreNoArrow:
 			return nil

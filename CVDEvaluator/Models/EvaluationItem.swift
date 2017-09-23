@@ -58,6 +58,7 @@ func setupEvaluation(evaluationItem: EvaluationItem) {
 				item.storedValue?.radioGroup = commonGroup
 			} else {
 				evaluationItem.radioGroups.append(group)
+				evaluationItem.storedValue?.value = group.selectedRadioItem
 				print("To \(evaluationItem.title) appended group \(group)")
 			}
 		}
@@ -72,6 +73,7 @@ func setupEvaluation(evaluationItem: EvaluationItem) {
 				item.storedValue?.radioGroup = commonGroup
 			} else {
 				evaluationItem.radioGroups.append(group)
+				evaluationItem.storedValue?.value = group.selectedRadioItem
 				print("To \(evaluationItem.title) appended group \(group)")
 			}
 		}
@@ -253,6 +255,12 @@ class EvaluationItem  {
 				self.storedValue?.value = String(describing: value)
 			}
 			print(self.storedValue?.value)
+			
+			if self.identifier == "gender" {
+				self.storedValue?.value = (value as! Int) == 1 ? "male" : "female"
+				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
+				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
+			}
 		}
 		if self.items.isEmpty {
 			return

@@ -341,7 +341,8 @@ extension BioController {
 		
 		if cellType ==  .disclosureSimpleExpandable{
 			//cell.titleLabel?.text = cell.cellModel?.title
-			cell.subtitleLabel?.text = "pick one" // cell.cellModel?.subtitle
+			//cell.subtitleLabel?.text = "pick one" // cell.cellModel?.subtitle
+			cell.subtitleLabel?.text = itemModel.storedValue?.value != nil ? itemModel.storedValue?.value : "pick one"
 			
 			cell.subLabelOne?.text = genderList[0]
 			cell.subLabelTwo?.text = genderList[1]

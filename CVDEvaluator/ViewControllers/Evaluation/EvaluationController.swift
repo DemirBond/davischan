@@ -288,12 +288,13 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
 				let saveMode: Bool = isSaveMode
 				let patientname: String = isSaveMode ? (model.bio.name.storedValue?.value)! : "None"
+				let gender: Int = model.bio.gender.storedValue?.value == "male" ? 1 : 2
 				
 				let evaluation = EvaluationRequest(isSave: saveMode,
 				                                   age: Int((model.bio.age.storedValue?.value)!)!,
 				                                   isPAH: String(DataManager.manager.getPAHValue()),
 				                                   name: patientname,
-				                                   gender: model.bio.gender.female.isFilled ? 2:1,
+				                                   gender: gender,
 				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
 				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
 				                                   inputs: inputs)
