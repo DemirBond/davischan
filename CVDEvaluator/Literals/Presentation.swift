@@ -120,7 +120,7 @@ struct Presentation {
 	static let dyspnea = "#id: chkDyspnea | #title: Dyspnea | #type: #disclosureControl"
 	static let chestPain = "#id: chkCP | #title: Chest Pain | #type: #disclosureControl"
 	static let syncope = "#id: chkTestSyncope | #title: Syncope/Presyncope | #type: #disclosureControl"
-	static let edemaInSymptoms = "#id:secedema | #title:Edema | #type:#disclosureControl"
+	//static let edemaInSymptoms = "#id:secedema | #title:Edema | #type:#disclosureControl"
 	static let weakness = "id:chkmalaise | #title:Weakness | #type:#disclosureControlExpandable"
 	static let palpitationsInSymptoms = "#id:chkp| #title:Palpitations| #type:#disclosureControl"
 	static let abdominalPain = "#id:chkplaceholderone | #title:Abdominal Pain | #type:#disclosureControl"
@@ -253,10 +253,10 @@ struct Presentation {
 	static let traumaticInjury = "#id:chkSyntrauma | #title:Traumatic Injury | #type:#check"
 	
 	// Symptoms -> Edema
-	static let pittingEdema = "#id:chkpitting | #title:Pitting  | #type:#check"
-	static let nonpittingEdema = "#id:chknonpitting | #title:Nonpitting  | #type:#check"
-	static let localizedEdema = "#id:chklocaledema | #title:Localize  | #type:#check"
-	static let diffuseEdema = "#id:chkdiffusedema | #title:Diffuse  | #type:#check"
+//	static let pittingEdema = "#id:chkpitting | #title:Pitting  | #type:#check"
+//	static let nonpittingEdema = "#id:chknonpitting | #title:Nonpitting  | #type:#check"
+//	static let localizedEdema = "#id:chklocaledema | #title:Localize  | #type:#check"
+//	static let diffuseEdema = "#id:chkdiffusedema | #title:Diffuse  | #type:#check"
 	
 	//	Symptoms -> Weakness
 	static let malaiseFatigue = "#id:malaiseFatigue | #title:Malaise/Fatigue | #type:#check"
@@ -816,9 +816,9 @@ struct Presentation {
 	static let fvc = "#id:txtFVCP| #title:% FVC | #type:#decimalRight | #min:0.0 | #max:120.0 | #placeholder: % FVC"
 	static let dlco = "#id:txtDLCO| #title:% DLCO | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: % DLCO"
 	static let po2 = "#id:txtPO2| #title:PO₂ mmhg | #type:#decimalRight | #min:10.0 | #max:100.0 | #placeholder: PO₂ mmhg"
-	static let nsevere = "#id:chknsevere| #title:NSevere chronic hypercapnia | #type:#check"
+	static let nsevere = "#id:chknsevere| #title:Severe chronic hypercapnia | #type:#check"
 	static let asthmadisease = "#id:chkasthma| #title:Asthma / Reactive airway disease | #type:#disclosureControl"
-	static let acuteExacerbation = "#id:chkexacerbation| #title:Acute exacerbation | #type:#disclosureControl"
+	static let lung_copd = "#id:chkCOPD| #title:COPD | #type:#disclosureControl"
 	static let interstitialLungDisease = "#id:chkILD| #title:Interstitial lung disease | #type:#check"
 	
 	// Pulmonary -> Asthma / Reactive airway disease:
@@ -844,12 +844,16 @@ struct Presentation {
 	//
 	static let acuteRF = "#id:chkWG | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
 	static let chronicKD = "#id:chkCKD | #title: Chronic kidney disease | #type:#disclosureControl"
-
-	// Renal -> Acute Renal Failure / Worsening Renal Function
-	static let crinic = "#id:txtcrinc| #title:Increase in SCrx baseline | #type:#decimalRight | #min:1.0 | #max:10.0 | #placeholder: Value"
-	static let cr48h = "#id:txtcr| #title: Increase in SCr by mg/dl in 48hr | #type:#decimalRight | #min:0.1 | #max:112.0 | #placeholder: Value"
-	static let urinvolume = "#id:txturine| #title:Urine Volume ml/kg/h | #type:#decimalRight | #min:0.0 | #max:200.0 | #placeholder: Value"
 	
+	// Renal -> Acute Renal Failure / Worsening Renal Function
+	static let crinic = "#id:txtcr| #title:Increase in SCrx baseline | #type:#decimalRight | #min:1.0 | #max:10.0 | #placeholder: Value"
+	static let cr48h = "#id:txtcrinc| #title: Increase in SCr by mg/dl in 48hr | #type:#decimalRight | #min:0.1 | #max:112.0 | #placeholder: Value"
+	static let urinvolume = "#id:txturine| #title:Urine Volume ml/kg/h | #type:#decimalRight | #min:0.0 | #max:200.0 | #placeholder: Value"
+
+	// Renal -> Chronic kidney disease
+	static let renalImage = "#id:chkrenalimage| #title:Abnormal Renal Imaging | #type:#check"
+	static let histology = "#id:chkhistology| #title:Abnormal Laboratory | #type:#check"
+
 	
 	//
 	// MARK: - Major CV Risk Factors https://zpl.io/1OuArq

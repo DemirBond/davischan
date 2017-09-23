@@ -20,7 +20,7 @@ class Pulmonary: EvaluationItem {
 	let po2 = EvaluationItem(literal: Presentation.po2)
 	let nsevere = EvaluationItem(literal: Presentation.nsevere)
 	let asthmadisease = AsthmaReactiveAirwayDisease(literal: Presentation.asthmadisease)
-	let acuteExacerbation = AcuteExacerbation(literal: Presentation.acuteExacerbation)
+	let copd = LungCOPD(literal: Presentation.lung_copd)
 	let interstitialLungDisease = EvaluationItem(literal: Presentation.interstitialLungDisease)
 	
 	override var items: [EvaluationItem] {
@@ -32,7 +32,7 @@ class Pulmonary: EvaluationItem {
 			po2,
 			nsevere,
 			asthmadisease,
-			acuteExacerbation,
+			copd,
 			interstitialLungDisease
 		]
 	}
@@ -79,9 +79,9 @@ class InterferenceWithActivity: EvaluationItem {
 }
 
 
-// MARK: - Pulmonary -> Acute exacerbation:
+// MARK: - Pulmonary -> LungCOPD:
 
-class AcuteExacerbation: EvaluationItem {
+class LungCOPD: EvaluationItem {
 	
 	let acute = EvaluationItem(literal: Presentation.acute)
 	let copdex = EvaluationItem(literal: Presentation.copdex)

@@ -17,7 +17,7 @@ class Symptoms: EvaluationItem {
 	var chestPain = ChestPain(literal: Presentation.chestPain)
 	var syncope = Syncope(literal: Presentation.syncope)
 	
-	let edema = EdemaInSymptoms(literal: Presentation.edemaInSymptoms )
+//	let edema = EdemaInSymptoms(literal: Presentation.edemaInSymptoms )
 	let weakness  = Weakness(literal: Presentation.weakness )
 	let palpitations = Palpitations(literal: Presentation.palpitationsInSymptoms)
 	let abdominalPain  = AbdominalPain(literal: Presentation.abdominalPain )
@@ -28,7 +28,7 @@ class Symptoms: EvaluationItem {
 			dyspnea,
 			chestPain,
 			syncope,
-			edema,
+//			edema,
 			weakness,
 			palpitations,
 			abdominalPain,
@@ -584,24 +584,24 @@ class Syncope: EvaluationItem {
 
 // MARK: - Symptoms -> Edema
 
-class EdemaInSymptoms: EvaluationItem {
-	
-	let localizedEdema = EvaluationItem(literal: Presentation.localizedEdema)
-	let diffuseEdema = EvaluationItem(literal: Presentation.diffuseEdema)
-	let separator1 = EvaluationItem(literal: Presentation.separator)
-	let pittingEdema = EvaluationItem(literal: Presentation.pittingEdema)
-	let nonpittingEdema = EvaluationItem(literal: Presentation.nonpittingEdema)
-	
-	override var items: [EvaluationItem] {
-		return [
-			pittingEdema,
-			nonpittingEdema,
-			separator1,
-			localizedEdema,
-			diffuseEdema
-		]
-	}
-}
+//class EdemaInSymptoms: EvaluationItem {
+//	
+//	let localizedEdema = EvaluationItem(literal: Presentation.localizedEdema)
+//	let diffuseEdema = EvaluationItem(literal: Presentation.diffuseEdema)
+//	let separator1 = EvaluationItem(literal: Presentation.separator)
+//	let pittingEdema = EvaluationItem(literal: Presentation.pittingEdema)
+//	let nonpittingEdema = EvaluationItem(literal: Presentation.nonpittingEdema)
+//	
+//	override var items: [EvaluationItem] {
+//		return [
+//			pittingEdema,
+//			nonpittingEdema,
+//			separator1,
+//			localizedEdema,
+//			diffuseEdema
+//		]
+//	}
+//}
 
 
 // MARK: - Symptoms -> Weakness

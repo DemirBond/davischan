@@ -47,13 +47,13 @@ class AcuteRenalFailure: EvaluationItem {
 
 class ChronicKidneyDisease: EvaluationItem {
 	
-	let copdex = EvaluationItem(literal: Presentation.copdex)
-	let copdhos = EvaluationItem(literal: Presentation.copdhos)
+	let renalImage = EvaluationItem(literal: Presentation.renalImage)
+	let histology = EvaluationItem(literal: Presentation.histology)
 	
 	override var items: [EvaluationItem] {
 		return [
-			copdex,
-			copdhos
+			renalImage,
+			histology
 		]
 	}
 }
