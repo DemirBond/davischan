@@ -31,10 +31,24 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		newEvaluationView.layer.borderColor = UIColor.lightGray.cgColor
 		newEvaluationView.clipsToBounds = true
 		
+		newEvaluationView.layer.borderWidth = 0.0
+		newEvaluationView.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+		newEvaluationView.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+		newEvaluationView.layer.shadowRadius = 2.0
+		newEvaluationView.layer.shadowOpacity = 0.8
+		newEvaluationView.layer.masksToBounds = false
+		
 		savedEvaluationsView.layer.cornerRadius = 4.0
 		savedEvaluationsView.layer.borderWidth = 1.0
 		savedEvaluationsView.layer.borderColor = UIColor.lightGray.cgColor
 		savedEvaluationsView.clipsToBounds = true
+		
+		savedEvaluationsView.layer.borderWidth = 0.0
+		savedEvaluationsView.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+		savedEvaluationsView.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+		savedEvaluationsView.layer.shadowRadius = 2.0
+		savedEvaluationsView.layer.shadowOpacity = 0.8
+		savedEvaluationsView.layer.masksToBounds = false
 		
 		//savedEvaluationsView.isHidden = true
 		DataManager.manager.deleteTempEvaluations()
@@ -44,6 +58,10 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+		self.navigationController?.navigationBar.tintColor = UIColor.black
+		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
 	}
@@ -54,6 +72,21 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		
 		self.navigationItem.hidesBackButton = true
 		
+	}
+	
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		self.navigationController?.navigationBar.barTintColor = UIColor(palette: ColorPalette.hanPurple)
+		self.navigationController?.navigationBar.tintColor = UIColor.black
+		self.navigationController?.navigationBar.isTranslucent = false
+		self.navigationController?.navigationBar.layer.borderWidth = 0.0
+		self.navigationController?.navigationBar.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+		self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+		self.navigationController?.navigationBar.layer.shadowRadius = 2.0
+		self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+		self.navigationController?.navigationBar.layer.masksToBounds = false
 	}
 	
 	

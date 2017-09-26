@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (4.5.0)
+  - Crashlytics (3.8.5):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.12)
+  - NVActivityIndicatorView (3.7.0):
+    - NVActivityIndicatorView/Presenter (= 3.7.0)
+  - NVActivityIndicatorView/Presenter (3.7.0)
+  - SwiftyJSON (3.1.4)
+  - YNExpandableCell (1.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Crashlytics
+  - Fabric
+  - NVActivityIndicatorView
+  - SwiftyJSON
+  - YNExpandableCell
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  YNExpandableCell: 47bf7cff721aa535c0e9e1163bf22b5573441bb4
+
+PODFILE CHECKSUM: 3288c772cce1f03500229f2f84b90ef10103d7cd
+
+COCOAPODS: 1.2.1

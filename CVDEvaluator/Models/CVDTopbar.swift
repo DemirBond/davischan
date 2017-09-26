@@ -40,7 +40,7 @@ class CVDTopbar: NSObject {
 		}
 		
 		if let _ = dict["rightListButton"] as? String {
-			let barItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: target, action: actions[2])
+			let barItem = UIBarButtonItem(image: UIImage(named: "home_black"), style: .plain, target: target, action: actions[2])
 			barItem.imageInsets = UIEdgeInsetsMake(0, 0, 0, 5)
 			if self.rightMenuBarItem != nil {
 				barItem.imageInsets = UIEdgeInsetsMake(0, 5, 0, -5)
@@ -54,12 +54,12 @@ class CVDTopbar: NSObject {
 			if self.rightMenuBarItem != nil  {
 				barItem.imageInsets = UIEdgeInsetsMake(0, 5, 0, -5)
 				if self.rightListBarItem != nil {
-					barItem.imageInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+					barItem.imageInsets = UIEdgeInsetsMake(0, 15, 0, -15)
 				}
 			}
 			else {
 				if self.rightListBarItem != nil {
-					barItem.imageInsets = UIEdgeInsetsMake(0, 5, 0, -5)
+					barItem.imageInsets = UIEdgeInsetsMake(0, 10, 0, -10)
 				}
 			}
 			self.rightTextBarItem = barItem

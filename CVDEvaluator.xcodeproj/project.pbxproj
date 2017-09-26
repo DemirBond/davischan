@@ -579,7 +579,7 @@
 				78BF73E11E3F640F0040EC81 /* Frameworks */,
 				78BF73E21E3F640F0040EC81 /* Resources */,
 				670AF3931E4F537E00576848 /* Fabric */,
-				BA71B65A1F34DAD1004959EE /* ShellScript */,
+				BA71B65A1F34DAD1004959EE /* Run Script */,
 				B23428E9A6FCF28084C0323B /* [CP] Embed Pods Frameworks */,
 				E684F44F146F736554A26EE3 /* [CP] Copy Pods Resources */,
 				BA5B26471F733EA700CCAB66 /* Embed App Extensions */,
@@ -753,13 +753,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BA71B65A1F34DAD1004959EE /* ShellScript */ = {
+		BA71B65A1F34DAD1004959EE /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

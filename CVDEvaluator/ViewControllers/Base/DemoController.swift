@@ -52,6 +52,10 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+		self.navigationController?.navigationBar.tintColor = UIColor.black
+		self.navigationController?.navigationBar.isTranslucent = true
 		//self.navigationController?.setToolbarHidden(true, animated: false)
 	}
 	

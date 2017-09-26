@@ -30,7 +30,7 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		self.navigationController?.setToolbarHidden(false, animated: false)
+		self.navigationController?.setToolbarHidden(true, animated: false)
 		
 	}
 	

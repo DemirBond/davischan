@@ -29,6 +29,8 @@ class EvaluationCell: UITableViewCell {
 
 	func setupCell() {
 		
+		self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		
 		self.titleLabel?.textColor = CVDStyle.style.defaultFontColor
 		self.titleLabel?.font = CVDStyle.style.currentFont
 		
