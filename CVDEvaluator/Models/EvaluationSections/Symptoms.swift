@@ -62,8 +62,8 @@ class Dyspnea: EvaluationItem {
 	}
 	
 	let pleaseSelectOneLabel = EvaluationItem(literal: Presentation.pleaseSelectOneLabel)
-	let chronicHFWithKnownEtiology = EvaluationItem(literal: Presentation.chronicHFWithKnownEtiology)
 	let newOnsetSuspectedHF = EvaluationItem(literal: Presentation.newOnsetSuspectedHF)
+	let chronicHFWithKnownEtiology = EvaluationItem(literal: Presentation.chronicHFWithKnownEtiology)
 	let chronicLungDisease = EvaluationItem(literal: Presentation.chronicLungDisease)
 	
 	let separator1 = EvaluationItem(literal: Presentation.separator)
@@ -89,8 +89,8 @@ class Dyspnea: EvaluationItem {
 	override var items: [EvaluationItem] {
 		return [
 			pleaseSelectOneLabel,
-			chronicHFWithKnownEtiology,
 			newOnsetSuspectedHF,
+			chronicHFWithKnownEtiology,
 			chronicLungDisease,
 			
 			separator1,
@@ -644,9 +644,9 @@ class Palpitations: EvaluationItem  {
 	let syncopePalpitationsLabel = EvaluationItem(literal: Presentation.syncopePalpitationsLabel)
 	let palSyncopePalpitations = EvaluationItem(literal: Presentation.palSyncopePalpitations)
 	let anginaSyncopePalpitations = EvaluationItem(literal: Presentation.anginaSyncopePalpitations)
-	let pulsationsSyncopePalpitations = EvaluationItem(literal: Presentation.pulsationsSyncopePalpitations)
 	let polyuriaSyncopePalpitations = EvaluationItem(literal: Presentation.polyuriaSyncopePalpitations)
-	
+	let pulsationsSyncopePalpitations = EvaluationItem(literal: Presentation.pulsationsSyncopePalpitations)
+
 	// ekg
 	let ekgPalpitationsLabel = EvaluationItem(literal: Presentation.ekgPalpitationsLabel)
 	let nsrEkgPalpitations = EvaluationItem(literal: Presentation.nsrEkgPalpitations)
@@ -697,9 +697,9 @@ class Palpitations: EvaluationItem  {
 			syncopePalpitationsLabel,
 			palSyncopePalpitations,
 			anginaSyncopePalpitations,
-			pulsationsSyncopePalpitations,
 			polyuriaSyncopePalpitations,
-			
+			pulsationsSyncopePalpitations,
+
 			ekgPalpitationsLabel,
 			nsrEkgPalpitations,
 			regularEkgPalpitations,
@@ -860,8 +860,8 @@ class AbdominalPain: EvaluationItem {
 	
 	//
 	let locationAbdominalPainLabel = EvaluationItem(literal: Presentation.locationAbdominalPainLabel)
-	let epigastricFindAbdominalPain = EvaluationItem(literal: Presentation.epigastricFindAbdominalPain)
 	let periumbilicalLocationAbdominalPain = EvaluationItem(literal: Presentation.periumbilicalLocationAbdominalPain)
+	let epigastricFindAbdominalPain = EvaluationItem(literal: Presentation.epigastricFindAbdominalPain)
 	let suprapubicEdemaLocationAbdominalPain = EvaluationItem(literal: Presentation.suprapubicEdemaLocationAbdominalPain)
 	let refferedAbdominalPain = EvaluationItem(literal: Presentation.refferedAbdominalPain)
 	
@@ -898,8 +898,8 @@ class AbdominalPain: EvaluationItem {
 		   colickyQualityAbdominalPain,
 		   achingQualityAbdominalPain,
 		   locationAbdominalPainLabel,
-			epigastricFindAbdominalPain,
 			periumbilicalLocationAbdominalPain,
+			epigastricFindAbdominalPain,
 			suprapubicEdemaLocationAbdominalPain,
 			refferedAbdominalPain,
 			
@@ -908,12 +908,10 @@ class AbdominalPain: EvaluationItem {
 			reboundFindings,
 			pulsatileFindings,
 			bowelFindings,
-			psoasFindings,
 			mcburneyFindings,
-			rovsingsignFindings,
 			murphysignFindings,
+			psoasFindings,
 			rovsingsignFindings,
-			murphysignFindings,
 			obturatorFindings,
 			carnettsignFindings,
 			costovertebralFindings,
@@ -933,21 +931,21 @@ class AbdominalPain: EvaluationItem {
 	
 	class SkinAbdominalPain: EvaluationItem {
 		
-		let wallSkinFindings = EvaluationItem(literal: Presentation.wallSkinFindings)
 		let herpesSkinFindings = EvaluationItem(literal: Presentation.herpesSkinFindings)
-		let rashSkinFindings = EvaluationItem(literal: Presentation.rashSkinFindings)
 		let celulitisSkinFindings = EvaluationItem(literal: Presentation.celulitisSkinFindings)
-		let jaundiceSkinFindings = EvaluationItem(literal: Presentation.jaundiceSkinFindings)
+		let wallSkinFindings = EvaluationItem(literal: Presentation.wallSkinFindings)
 		let caoutmedusaSkinFindings = EvaluationItem(literal: Presentation.caoutmedusaSkinFindings)
+		let jaundiceSkinFindings = EvaluationItem(literal: Presentation.jaundiceSkinFindings)
+		let rashSkinFindings = EvaluationItem(literal: Presentation.rashSkinFindings)
 		
 		override var items: [EvaluationItem] {
 			return [
-				wallSkinFindings,
 				herpesSkinFindings,
-				rashSkinFindings,
 				celulitisSkinFindings,
-				jaundiceSkinFindings,
+				wallSkinFindings,
 				caoutmedusaSkinFindings
+//				jaundiceSkinFindings,
+				rashSkinFindings,
 			]
 		}
 	}

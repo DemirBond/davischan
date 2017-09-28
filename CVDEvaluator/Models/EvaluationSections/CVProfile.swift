@@ -266,14 +266,14 @@ class NYHAClass: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			NYHACCSVClass1,
+			NYHACCSVClass2,
+			NYHACCSVClass3,
+			NYHACCSVClass4,
 			atHighRiskOfHF,
 			structuralHeartDeseaseNoSymptoms,
 			structuralHeartDeseaseSymptoms,
-			refactoryHFInterventions //,
-			//NYHACCSVClass1,
-			//NYHACCSVClass2,
-			//NYHACCSVClass3,
-			//NYHACCSVClass4
+			refactoryHFInterventions
 		]
 	}
 }
