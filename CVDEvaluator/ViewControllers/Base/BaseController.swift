@@ -11,9 +11,6 @@ import UIKit
 
 class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
-	@IBOutlet weak var accessoryBar: UINavigationBar!
-	@IBOutlet weak var segmentedControl: UISegmentedControl?
-	
 	var activeField: UITextField?
 	var activeModel: EvaluationItem?
 	var isCancelled = false
@@ -26,9 +23,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	weak var styleController: StyleController?
 	
-	var whiteView: UIView?
-	
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -38,10 +33,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		if pageForm.form.status == .open {
 			pageForm.form.status = .viewed
 		}
-		
-		whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-		whiteView?.backgroundColor = UIColor.white
-		whiteView?.isHidden = true
 	}
 	
 	
@@ -58,8 +49,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 		}
 		
 		self.modelChain = models
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
 	}
 	
 	
@@ -74,8 +63,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 
 //		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target:nil, action:nil)
-		
-		self.accessoryBar?.tintColor = UIColor(palette: ColorPalette.warmGrey)
 		
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }

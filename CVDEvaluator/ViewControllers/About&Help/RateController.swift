@@ -40,7 +40,6 @@ class RateController: BaseTableController {
 		
 		let cellType = itemModel.form.itemType
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
-		cell.accessoryBar = self.accessoryBar
 		cell.delegate = self
 		cell.cellModel = itemModel
 		cell.selectionStyle = .none

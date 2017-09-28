@@ -64,7 +64,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 					
 				}
 				else {
-					print("Could not fetch \(String(describing: error))")
+					//print("Could not fetch \(String(describing: error))")
 				}
 			}
 		}
@@ -150,7 +150,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 					performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
 					
 				} else {
-					print("Error - identifier is empty")
+					//print("Error - identifier is empty")
 				}
 			}
 			else {
@@ -165,7 +165,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 						self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)						
 					}
 					else {
-						print("Could not fetch \(String(describing: error))")
+						//print("Could not fetch \(String(describing: error))")
 					}
 				})
 			}

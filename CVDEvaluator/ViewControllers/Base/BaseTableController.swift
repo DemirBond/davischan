@@ -11,9 +11,6 @@ import UIKit
 
 class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppearance, EvaluationEditing, FontChanging {
 	
-	@IBOutlet weak var accessoryBar: UINavigationBar!
-	@IBOutlet weak var segmentedControl: UISegmentedControl?
-	
 	var activeField: UITextField?
 	var activeModel: EvaluationItem?
 	var isCancelled = false
@@ -26,9 +23,7 @@ class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppe
 	
 	weak var styleController: StyleController?
 	
-	var whiteView: UIView?
 	
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -40,31 +35,10 @@ class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppe
 			pageForm.form.status = .viewed
 		}
 		
-		whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-		whiteView?.backgroundColor = UIColor.white
-		
 		self.tableView.bounces = false
 		self.tableView.showsVerticalScrollIndicator = false
 		self.tableView.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
 		
-	}
-	
-	
-	func evaluateResponderChain() {
-		
-		var models = [EvaluationItem]()
-		
-		for (index, item) in pageForm.items.enumerated() {
-			
-			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
-				item.modelIndexPath = IndexPath(row: index, section: 0)
-				models.append(item)
-			}
-		}
-		
-		self.modelChain = models
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 0)
-		self.segmentedControl?.setEnabled(modelChain.count > 1, forSegmentAt: 1)
 	}
 	
 	
@@ -75,9 +49,6 @@ class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppe
 		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
 		self.tableView.tableFooterView = UIView()
-		self.accessoryBar?.tintColor = UIColor(palette: ColorPalette.warmGrey)
-		
-		//self.navigationItem.title
 		
 		let applyStyle = { (style: ControllerStyle) -> Void in
 			guard let appearanceInfo = style.styleInfo() else { return }
@@ -130,6 +101,56 @@ class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppe
 	}
 	
 	
+	func evaluateResponderChain() {
+		
+		var models = [EvaluationItem]()
+		
+		for (index, item) in pageForm.items.enumerated() {
+			
+			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password, .date].contains(where: { $0 == item.form.itemType }) {
+				item.modelIndexPath = IndexPath(row: index, section: 0)
+				models.append(item)
+			}
+		}
+		
+		self.modelChain = models
+	}
+	
+	
+	func checkDependancies() {
+		
+		for depended in pageForm.items {
+			guard let dependsOn = depended.dependancy?.dependsOn else { continue }
+			
+			for item in pageForm.items {
+				if item.identifier == dependsOn {
+					if let path = item.modelIndexPath {
+						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
+							let field = cell.textField
+							item.storedValue?.value = field?.text
+						}
+					}
+					
+					if let str = item.storedValue?.value, let storedVal = Double(str),
+						let minValue = depended.dependancy?.dependMinValue,
+						let maxValue = depended.dependancy?.dependMaxValue {
+						depended.form.isEnabled = storedVal >= minValue && storedVal <= maxValue
+					}
+					
+					if let path = depended.modelIndexPath {
+						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
+							let field = cell.textField
+							field?.isEnabled = depended.form.isEnabled
+							cell.titleLabel?.textColor = depended.form.isEnabled ? CVDStyle.style.defaultFontColor : UIColor.lightGray
+						}
+					}
+					
+				}
+			}
+		}
+	}
+	
+	
 	func showCVDAlert(title: String, message: String?, actions: [CVDAction]) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		
@@ -156,81 +177,6 @@ class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppe
 	
 	
 	// MARK: - Actions
-	
-	func checkDependancies() {
-		
-		for depended in pageForm.items {
-			guard let dependsOn = depended.dependancy?.dependsOn else { continue }
-			
-			for item in pageForm.items {
-				if item.identifier == dependsOn {
-					if let path = item.modelIndexPath {
-						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-							let field = cell.textField
-							item.storedValue?.value = field?.text
-						}
-					}
-
-					if let str = item.storedValue?.value, let storedVal = Double(str),
-						let minValue = depended.dependancy?.dependMinValue,
-						let maxValue = depended.dependancy?.dependMaxValue {
-						depended.form.isEnabled = storedVal >= minValue && storedVal <= maxValue
-					}
-					
-					if let path = depended.modelIndexPath {
-						if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-							let field = cell.textField
-							field?.isEnabled = depended.form.isEnabled
-							cell.titleLabel?.textColor = depended.form.isEnabled ? CVDStyle.style.defaultFontColor : UIColor.lightGray
-						} 
-					}
-
-				}
-			}
-		}
-	}
-	
-
-	@IBAction func moveToItem(_ sender: UISegmentedControl) {
-		guard nil != activeModel else { return }
-		
-		checkDependancies()
-		
-		repeat {
-			if self.presentedViewController != nil {
-				self.dismiss(animated: false, completion: nil)
-			}
-			
-			let index = (modelChain as NSArray).index(of: activeModel!)
-			if sender.selectedSegmentIndex == 0 {
-				if index > 0 {
-					activeModel = modelChain[index - 1]
-				}
-				
-			} else if index < modelChain.count - 1 {
-				activeModel = modelChain[index + 1]
-			}
-			
-		} while nil != activeModel && activeModel!.form.isEnabled == false
-		
-		if let path = activeModel?.modelIndexPath {
-			if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-				activeField = cell.textField
-				activeField?.isEnabled = true
-				activeField?.becomeFirstResponder()
-
-			} else {
-				self.tableView.scrollToRow(at: path, at: UITableViewScrollPosition.middle, animated: false)
-				if let cell = tableView.cellForRow(at: path) as? GeneratedCell {
-					activeField = cell.textField
-					activeField?.isEnabled = true
-					activeField?.becomeFirstResponder()
-				}
-			}
-		}
-
-	}
-	
 	
 	@IBAction func doneAction(_ sender: AnyObject) {
 		hideKeyboard()

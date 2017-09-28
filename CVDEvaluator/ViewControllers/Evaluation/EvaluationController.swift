@@ -303,7 +303,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
 				                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
 				                                   inputs: inputs)
-				print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+				//print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
 				
 				client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
 					

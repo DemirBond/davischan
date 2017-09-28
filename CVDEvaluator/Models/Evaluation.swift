@@ -25,7 +25,7 @@ class Evaluation: EvaluationItem {
 	var dateCreated: String?
 	var evaluationStatus: EvaluationStatus = EvaluationStatus.initialized {
 		didSet {
-			print("Did change status \(evaluationStatus)")
+			//print("Did change status \(evaluationStatus)")
 		}
 	}
 	var isBioViewed: Bool = false {

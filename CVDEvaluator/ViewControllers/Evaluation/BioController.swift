@@ -310,7 +310,6 @@ extension BioController {
 		
 		let cellType = itemModel.form.itemType
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
-		cell.accessoryBar = self.accessoryBar
 		cell.delegate = self
 		
 		// self.textField?.text = self.cellModel.storedValue?.value
@@ -320,13 +319,6 @@ extension BioController {
 		}
 		
 		cell.cellModel = itemModel
-		
-		if let title = cell.cellModel?.title{
-			print("cell title \(title)")
-		}
-		else {
-			print("cell title nl")
-		}
 		
 		cell.updateCell()
 		
@@ -406,7 +398,7 @@ extension BioController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		let itemModel = pageForm.items[indexPath.row]
-		print("row selected type \(itemModel.form.itemType)")
+		//print("row selected type \(itemModel.form.itemType)")
 		
 		//self.textField?.text = self.cellModel.storedValue?.value
 		

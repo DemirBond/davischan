@@ -55,7 +55,7 @@ class RestClient: NSObject {
 	
 	func login(username: String, password: String, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
 	{
-		print("Login Called with " + username + " " + password)
+		//print("Login Called with " + username + " " + password)
 		let params: Dictionary = ["grant_type": "password", "username": username, "password": password]
 		Alamofire.request(RestClient.loginUrl, method: .post, parameters: params).responseJSON {(responseObject) -> Void in
 			//print(responseObject)
@@ -124,7 +124,7 @@ class RestClient: NSObject {
 			"Accept": "application/json"
 		]
 		Alamofire.request(RestClient.retreiveEvaluationsUrl, method: .get, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
-			print(responseObject)
+			//print(responseObject)
 			if responseObject.result.isSuccess {
 				let resJson = JSON(responseObject.result.value!)
 				success(resJson)

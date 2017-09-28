@@ -85,7 +85,7 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 		
 		self.scrollView.layer.add(animation, forKey: "FadeAnimation")
 		
-		NSLog("page %@", pageControl.currentPage);
+		//NSLog("page %@", pageControl.currentPage);
 		
 		if (pageControl.currentPage == 3) {
 			self.contiuneButton.isHidden = false;
@@ -96,7 +96,7 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 	 
 		let indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width; //your stuff with index
-		print("the index is \(indexOfPage)")
+		//print("the index is \(indexOfPage)")
 		
 		self.pageControl.currentPage = Int(indexOfPage)
 		
@@ -117,13 +117,13 @@ class DemoController: BaseController, UIScrollViewDelegate, CAAnimationDelegate 
 	
 	
 	@IBAction func continueButtonPressed(_ sender: Any) {
-		print("button pressed")
+		//print("button pressed")
 		self.performSegue(withIdentifier: DemoController.demoHomeSegueID, sender: nil)
 	}
 	
 	
 	func continueButton(){
-		print("button pressed")
+		//print("button pressed")
 		self.performSegue(withIdentifier: DemoController.demoHomeSegueID, sender: nil)
 	}
 	

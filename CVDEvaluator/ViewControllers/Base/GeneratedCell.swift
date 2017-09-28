@@ -38,7 +38,6 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 	@IBOutlet weak var disclosureIcon: UIImageView?
 	@IBOutlet weak var button: UIButton?
 	@IBOutlet weak var textField: UITextField?
-	@IBOutlet weak var accessoryBar: UINavigationBar?
 	@IBOutlet weak var secondaryTextField: UITextField?
 	@IBOutlet var textFieldCollection: [UITextField]!
 	
@@ -236,7 +235,7 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 		
 		if cellModel.form.itemType == .integerRightExpandable {
 			cellModel.subCellsCount = theitems.count
-			print("this expandable cell has \(theitems.count) items")
+			//print("this expandable cell has \(theitems.count) items")
 			
 			subCellModelOne = EvaluationItem(literal: Presentation.urineNaMeql)
 			
@@ -252,11 +251,11 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 		
 		updateCell()
 		
-		print("\(cellModel.title)  -  items size \(theitems.count)")
+		//print("\(cellModel.title)  -  items size \(theitems.count)")
 		
 		for i in theitems {
 			let t = i.title
-			print("      title - \(t)")
+			//print("      title - \(t)")
 		}
 		
 	}
@@ -316,15 +315,15 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 				
 				let intInput = Int(strInput!)
 				
-				print("input value - \(String(describing: intInput))")
+				//print("input value - \(String(describing: intInput))")
 				if (intInput! < 130) {
-					print("should be expanded")
+					//print("should be expanded")
 					cellModel.isExpanded = true
 					self.delegate?.evaluationFieldTogglesDropDown()
 					
 				}
 				else {
-					print("should not be expanded")
+					//print("should not be expanded")
 					cellModel.isExpanded = false
 					self.delegate?.evaluationFieldTogglesDropDown()
 				}
@@ -421,20 +420,20 @@ class CheckBoxCell: GeneratedCell {
 	var isCheckedButton: Bool {
 		get {
 			if (cellModel.storedValue == nil){
-				print("!!!!!!!!!!!!! ffffuuuuuuuuuuu ------ ")
+				//print("!!!!!!!!!!!!! ffffuuuuuuuuuuu ------ ")
 				return false
 			}
 			return cellModel.storedValue!.isChecked
 		}
 		set {
 			if (cellModel.storedValue == nil){
-				print("!!!!!!!!!!!!! set ffffuuuuuuuuuuu ------ ")
+				//print("!!!!!!!!!!!!! set ffffuuuuuuuuuuu ------ ")
 				return
 			}
 			cellModel.storedValue!.isChecked = newValue
 			updateCell()
 			// self.delegate?.evaluationValueDidChange(model: cellModel)
-			print("check box checked")
+			//print("check box checked")
 		}
 	}
 	
@@ -481,7 +480,7 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 			subCellModelOne?.storedValue!.isChecked = newValue
 			updateCellOne()
 			// self.delegate?.evaluationValueDidChange(model: cellModel)
-			print("check box checked")
+			//print("check box checked")
 		}
 	}
 	
@@ -493,7 +492,7 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 			subCellModelTwo?.storedValue!.isChecked = newValue
 			updateCellTwo()
 			// self.delegate?.evaluationValueDidChange(model: cellModel)
-			print("check box checked")
+			//print("check box checked")
 		}
 	}
 	
@@ -505,7 +504,7 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 			subCellModelThree?.storedValue!.isChecked = newValue
 			updateCellThree()
 			// self.delegate?.evaluationValueDidChange(model: cellModel)
-			print("check box checked")
+			//print("check box checked")
 		}
 	}
 	
@@ -523,7 +522,7 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 		let theitems = cellModel.items
 		
 		cellModel.subCellsCount = theitems.count
-		print("this expandable cell has \(theitems.count) items")
+		//print("this expandable cell has \(theitems.count) items")
 		
 		if(cellModel.subCellsCount == 1) {
 			subCellModelOne = theitems[0]
@@ -867,17 +866,17 @@ class DisclosureSimpleCellExpandable: GeneratedCell { // GeneratedCell {
 	
 	
 	@IBAction func pressActionDownOne(_ sender: UIButton) {
-		print("one pressed down")
+		//print("one pressed down")
 		self.iconOne?.isHighlighted = true
 	}
 	
 	@IBAction func pressActionDownTwo(_ sender: UIButton) {
-		print("two pressed down")
+		//print("two pressed down")
 		self.iconTwo?.isHighlighted = true
 	}
 	
 	@IBAction func pressActionUpOne(_ sender: UIButton) {
-		print("one pressed up")
+		//print("one pressed up")
 		self.iconOne?.isHighlighted = false
 		isCheckedButtonOne = !isCheckedButtonOne
 		//isCheckedButtonTwo = false
@@ -897,7 +896,7 @@ class DisclosureSimpleCellExpandable: GeneratedCell { // GeneratedCell {
 	}
 	
 	@IBAction func pressActionUpTwo(_ sender: UIButton) {
-		print("two pressed up")
+		//print("two pressed up")
 		self.iconTwo?.isHighlighted = false
 		isCheckedButtonTwo = !isCheckedButtonTwo
 		//isCheckedButtonOne = false
@@ -982,28 +981,28 @@ class RightIntegerCellExpandable: GeneratedCell {
 	
 	override func textFieldDidEndEditing(_ textField: UITextField) {
 		super.textFieldDidEndEditing(textField)
-		print("------does this get called?")
+		//print("------does this get called?")
 		
 		let strInput = textField.text
 		
 		let intInput = Int(strInput!)
 		
-		print("input value - \(String(describing: intInput))")
+		//print("input value - \(String(describing: intInput))")
 		if (intInput! < 130) {
-			print("should be expanded")
+			//print("should be expanded")
 			cellModel.isExpanded = true
 			self.delegate?.evaluationFieldTogglesDropDown()
 			
 		}
 		else {
-			print("should not be expanded")
+			//print("should not be expanded")
 			cellModel.isExpanded = false
 			self.delegate?.evaluationFieldTogglesDropDown()
 		}
 	}
 	
 	override func textFieldDidBeginEditing(_ textField: UITextField) {
-		print("-dis called?")
+		//print("-dis called?")
 		//self.delegate?.evaluationFieldDidBeginEditing(textField, model: self.cellModel)
 		//drawFieldWithDefaultColor()
 	}

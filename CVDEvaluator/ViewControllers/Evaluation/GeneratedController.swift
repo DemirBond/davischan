@@ -217,7 +217,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		if validatePage() {
 			
 			if ( (isHeartSpecilaistManagement  && !(pageForm is HeartSpecialistManagement)) || (pageForm is PAH)  || (pageForm is PAH1) || (pageForm is PAH2) || (pageForm is PAH3)) {
-				print("--is this pah ??? \(pageForm is PAH)")
+				//print("--is this pah ??? \(pageForm is PAH)")
 				
 				// find controller to go back to
 				let viewControllers = self.navigationController?.viewControllers
@@ -291,7 +291,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				self.navigationController?.pushViewController(controller, animated: true)
 			}
 			
-			print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
+			//print(validatePage().description + " -- " + (shortcutModel?.title)! + " -- " + DataManager.manager.evaluation!.outputInMain.title)
 			self.pageForm.form.status = .valued
 			
 		} else if validatePage() && shortcutModel != nil && shortcutModel?.title == DataManager.manager.evaluation!.outputInMain.title {
@@ -354,7 +354,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			                                   SBP: Int((model.bio.sbp.storedValue?.value)!)!,
 			                                   DBP: Int((model.bio.dbp.storedValue?.value)!)!,
 			                                   inputs: inputs)
-			print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
+			//print("PAH:\t" + evaluation.isPAH + "\t Inputs:\t " + evaluation.inputs)
 			
 			client.computeEvaluation(evaluationRequest: evaluation, success: { (response) in print(response)
 				
@@ -362,7 +362,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				result.setOutputEvaluation(response: response)
 				
 				// add pah value false
-				print(String(DataManager.manager.getPAHValue()))
+				//print(String(DataManager.manager.getPAHValue()))
 				DataManager.manager.setPAHValue(pah: false)
 				
 				// save current evaluation and compute
@@ -480,7 +480,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		let cellType = itemModel.form.itemType
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
-		cell.accessoryBar = self.accessoryBar
 		cell.delegate = self
 		if cellType == .date {
 			cell.textField?.inputView = self.datePicker
@@ -493,18 +492,18 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		// Laboratories only logic
 		let classType = type(of:pageForm)
 		
-		print("page class is %@", classType)
-		print("page class is %@", pageForm )
+		//print("page class is %@", classType)
+		//print("page class is %@", pageForm )
 		if (pageForm is Laboratories) {
-			print(" we at laboratories one cell -")
-			// print("    - cell title \(String(describing: cell.cellModel?.title)) -  at row \( indexPath.row) ")
-			print("    - cell id \(String(describing: itemModel.identifier)) -  at row \( indexPath.row) ")
+			//print(" we at laboratories one cell -")
+			//print("    - cell title \(String(describing: cell.cellModel?.title)) -  at row \( indexPath.row) ")
+			//print("    - cell id \(String(describing: itemModel.identifier)) -  at row \( indexPath.row) ")
 			
 			if let title = cell.cellModel?.identifier{
-				print("  cell title \(title) at row %d", indexPath.row)
+				//print("  cell title \(title) at row %d", indexPath.row)
 			}
 			else {
-				print("  cell title nl")
+				//print("  cell title nl")
 			}
 		}
 		
@@ -590,7 +589,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			
 		default:
 			()
-			print("not selected")
+			//print("not selected")
 		}
 	}
 	

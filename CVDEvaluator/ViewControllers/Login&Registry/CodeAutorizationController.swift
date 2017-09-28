@@ -61,7 +61,7 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 			self.stopAnimating()
 			
 			guard error == nil else {
-				print("Server returned error \(String(describing: error))")
+				//print("Server returned error \(String(describing: error))")
 				
 				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot authrize".localized, viewcontroller: self, handler: {
 					self.codeField.text = ""

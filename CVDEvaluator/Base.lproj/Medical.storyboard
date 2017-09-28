@@ -695,38 +695,8 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <connections>
-                        <outlet property="accessoryBar" destination="p6C-cf-auX" id="j63-ok-AUB"/>
-                        <outlet property="segmentedControl" destination="W6l-y4-OCS" id="a9a-bT-Abg"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b3u-n2-P7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationBar contentMode="scaleToFill" id="p6C-cf-auX">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <items>
-                        <navigationItem id="njx-Jb-9Wh">
-                            <barButtonItem key="leftBarButtonItem" title="Done" id="AUw-gi-oQM">
-                                <connections>
-                                    <action selector="doneAction:" destination="wGm-Zx-aLa" id="ULn-jr-Og6"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="BSL-AV-RbS">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" id="W6l-y4-OCS">
-                                    <rect key="frame" x="282" y="7.5" width="77" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="" image="backGrayIcon"/>
-                                        <segment title="" image="nextGrayIcon"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="moveToItem:" destination="wGm-Zx-aLa" eventType="valueChanged" id="Ws2-zk-RUJ"/>
-                                    </connections>
-                                </segmentedControl>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <view contentMode="scaleToFill" id="Pp3-rl-JMR">
                     <rect key="frame" x="0.0" y="0.0" width="39" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2469,9 +2439,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2800"/>
                     <connections>
-                        <outlet property="accessoryBar" destination="NOU-7g-ESA" id="I60-W4-0IO"/>
                         <outlet property="datePicker" destination="24E-1t-WGg" id="aZX-WB-oSE"/>
-                        <outlet property="segmentedControl" destination="YLn-jB-dSx" id="WFl-Sm-1Ri"/>
                         <segue destination="ZdH-ic-4rn" kind="unwind" identifier="unwindToEvaluationSegueID" unwindAction="unwindToEvaluationWithSegue:" id="4Te-lz-vBE"/>
                     </connections>
                 </tableViewController>
@@ -2495,33 +2463,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.72941176470588232" green="0.84313725490196079" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <navigationBar contentMode="scaleToFill" id="NOU-7g-ESA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.72941176470588232" green="0.84313725490196079" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <items>
-                        <navigationItem id="20O-kl-zar">
-                            <barButtonItem key="leftBarButtonItem" systemItem="done" id="wdF-Pp-VY0">
-                                <connections>
-                                    <action selector="doneAction:" destination="SOd-is-z68" id="7Zq-TB-hsW"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="Isz-EL-Xeb">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" id="YLn-jB-dSx">
-                                    <rect key="frame" x="282" y="7.5" width="77" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="" image="backGrayIcon"/>
-                                        <segment title="" image="nextGrayIcon"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="moveToItem:" destination="SOd-is-z68" eventType="valueChanged" id="ZCL-B3-Vgv"/>
-                                    </connections>
-                                </segmentedControl>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
             </objects>
             <point key="canvasLocation" x="6186" y="1333"/>
         </scene>
@@ -4430,39 +4371,8 @@ for a patient </string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Mq5-yX-MNa"/>
-                    <connections>
-                        <outlet property="accessoryBar" destination="fZD-HZ-xwF" id="Sxi-uI-Ln3"/>
-                        <outlet property="segmentedControl" destination="kbR-20-7vm" id="yDK-Op-D8g"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXU-Ah-4xi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationBar contentMode="scaleToFill" id="fZD-HZ-xwF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.72941176470000002" green="0.84313725490000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <items>
-                        <navigationItem id="8aA-O6-sda">
-                            <barButtonItem key="leftBarButtonItem" systemItem="done" id="8C5-1J-JQR">
-                                <connections>
-                                    <action selector="doneAction:" destination="B3o-8V-vaa" id="uye-FV-4pQ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="BN8-0d-pIE">
-                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" id="kbR-20-7vm">
-                                    <rect key="frame" x="282" y="7.5" width="77" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="" image="backGrayIcon"/>
-                                        <segment title="" image="nextGrayIcon"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="moveToItem:" destination="B3o-8V-vaa" eventType="valueChanged" id="gPr-Bu-1ZK"/>
-                                    </connections>
-                                </segmentedControl>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
             </objects>
             <point key="canvasLocation" x="3544.8000000000002" y="262.21889055472263"/>
         </scene>
@@ -5011,7 +4921,6 @@ These Terms and Conditions are governed by the substantive laws of the State of 
         <image name="FirstIcon" width="24" height="24"/>
         <image name="HalfIcon" width="24" height="24"/>
         <image name="Icon-60" width="60" height="60"/>
-        <image name="backGrayIcon" width="24" height="24"/>
         <image name="check-large" width="84" height="84"/>
         <image name="checkUp" width="24" height="24"/>
         <image name="chevron" width="24" height="24"/>

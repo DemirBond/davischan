@@ -43,7 +43,7 @@ class ReferencesController: UIViewController, UIWebViewDelegate {
 	}
 	
 	public func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-		print("in On Click Link")
+		//print("in On Click Link")
 		
 		switch navigationType {
 		case .linkClicked:

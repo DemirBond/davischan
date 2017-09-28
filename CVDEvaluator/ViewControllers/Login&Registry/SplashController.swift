@@ -31,7 +31,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 				self.stopAnimating()
 				
 				guard error == nil else {
-					print("Server returned error \(String(describing: error))")
+					//print("Server returned error \(String(describing: error))")
 					
 					UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Login".localized, viewcontroller: self, handler: {
 						self.performSegue(withIdentifier: "loginSegueID", sender: nil)

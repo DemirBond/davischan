@@ -265,8 +265,7 @@ class DataManager {
 						saveContext()
 						
 					} catch let err as NSError {
-						//print err
-						NSLog(err.localizedDescription)
+						//NSLog(err.localizedDescription)
 					}
 					
 					isFound = true
@@ -291,7 +290,7 @@ class DataManager {
 				patients?.append(patient)
 				saveContext()
 			} catch let err as NSError {
-				NSLog(err.localizedDescription)
+				//NSLog(err.localizedDescription)
 			}
 		}
 	}
@@ -310,7 +309,7 @@ class DataManager {
 					return evaluation
 					
 				} catch let err as NSError {
-					print("Error : \(err.localizedDescription)")
+					//print("Error : \(err.localizedDescription)")
 				}
 			}
 		}
@@ -377,7 +376,7 @@ class DataManager {
 				patients?.append(patient)
 				saveContext()
 			} catch let err as NSError {
-				NSLog(err.localizedDescription)
+				//NSLog(err.localizedDescription)
 			}
 		}
 	}
@@ -434,7 +433,7 @@ class DataManager {
 			let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
 			// Replace this with code to handle the error appropriately.
 			// abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-			NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+			//NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
 			abort()
 		}
 		
@@ -462,7 +461,7 @@ class DataManager {
 				// Replace this implementation with code to handle the error appropriately.
 				// abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 				let nserror = error as NSError
-				NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+				//NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
 				abort()
 			}
 		}
@@ -492,7 +491,7 @@ class DataManager {
 			return array.count > 0 ? array : nil
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 			return nil
 		}
 	}
@@ -518,7 +517,7 @@ class DataManager {
 			return array.count > 0 ? array[0] : nil
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 			return nil
 		}
 	}
@@ -537,7 +536,7 @@ class DataManager {
 			self.saveContext()
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 		}
 	}
 	
@@ -555,7 +554,7 @@ class DataManager {
 			self.saveContext()
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 		}
 	}
 	
@@ -573,7 +572,7 @@ class DataManager {
 			patients = try managedContext.fetch(fetchRequest) as? [Patient]
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 		}
 	}
 	
@@ -591,7 +590,7 @@ class DataManager {
 			savedPatients = try managedContext.fetch(fetchRequest) as? [Patient]
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 		}
 		
 		var deleteIndex: [String:Bool] = [String:Bool]()
@@ -644,7 +643,7 @@ class DataManager {
 			completionHandler("success", nil)
 			
 		}, failure:  { (error) in
-			print("Could not fetch \(error)")
+			//print("Could not fetch \(error)")
 			completionHandler(nil, error as NSError)
 		})
 		
@@ -658,7 +657,7 @@ class DataManager {
 			let evaluation = Evaluation()
 			
 			var parameters = [String:Any]()
-			print(responseJson)
+			//print(responseJson)
 			parameters["isPAH"] = (responseJson["isPAH"].intValue == 0) ? true:false
 			parameters["name"] = responseJson["Name"].stringValue
 			parameters["age"] = responseJson["age"].intValue
@@ -708,8 +707,7 @@ class DataManager {
 							self.saveContext()
 							
 						} catch let err as NSError {
-							//print err
-							NSLog(err.localizedDescription)
+							//NSLog(err.localizedDescription)
 						}
 						
 						break
@@ -722,7 +720,7 @@ class DataManager {
 			completionHandler("success", nil)
 			
 		}, failure: { (error) in
-			print("Could not fetch \(error)")
+			//print("Could not fetch \(error)")
 			completionHandler(nil, error as NSError)
 		})
 	}
@@ -785,7 +783,8 @@ class DataManager {
 				break;
 				
 			default:
-				print("There is no result for the inquiry")
+				()
+				//print("There is no result for the inquiry")
 			}
 		}
 		self.outputs = results
@@ -811,7 +810,7 @@ class DataManager {
 			savedPatients = try managedContext.fetch(fetchRequest) as! [Patient]
 			
 		} catch let error as NSError {
-			print("Could not fetch \(error), \(error.userInfo)")
+			//print("Could not fetch \(error), \(error.userInfo)")
 		}
 		
 		let uuid = evaluation!.evaluationUUID
@@ -884,7 +883,7 @@ class DataManager {
 				result = result + "|" + s
 			}
 		}
-		print(result)
+		//print(result)
 		return result
 	}
 	
@@ -927,24 +926,24 @@ class DataManager {
 		}
 		
 		if (prefix == "chk" && item.storedValue?.radioGroup?.selectedRadioItem == item.identifier){
-//			print("chkpharm is added")
+			//print("chkpharm is added")
 			inputs.append(item.identifier)
-//			print(item.storedValue?.isChecked)
-//			print(item.storedValue?.placeholder)
-//			print(item.storedValue?.radioGroup?.selectedRadioItem)
+			//print(item.storedValue?.isChecked)
+			//print(item.storedValue?.placeholder)
+			//print(item.storedValue?.radioGroup?.selectedRadioItem)
 		}
 		else if (prefix == "chk" && item.storedValue?.radioGroup?.selectedRadioItem == item.identifier){
-//			print("chkCV is added")
+			//print("chkCV is added")
 			inputs.append(item.identifier)
-//			print(item.storedValue?.isChecked)
-//			print(item.storedValue?.placeholder)
-//			print(item.storedValue?.radioGroup?.selectedRadioItem)
+			//print(item.storedValue?.isChecked)
+			//print(item.storedValue?.placeholder)
+			//print(item.storedValue?.radioGroup?.selectedRadioItem)
 		}
 		
 		if (item.storedValue?.isChecked)! {
 			
 			if(prefix == "chk") {
-				print("Identifier: " + item.identifier)
+				//print("Identifier: " + item.identifier)
 				inputs.append(item.identifier)
 			}
 			else if (item.identifier == "rbAnginaIndex") {
@@ -982,7 +981,7 @@ class DataManager {
 				}
 			}
 		}
-		print(finalInputsString)
+		//print(finalInputsString)
 		return finalInputsString
 	}
 
@@ -993,7 +992,7 @@ class DataManager {
 
 		for pahItem in pahItems.items {
 			for item in regularItem.items {
-//				print(item.identifier + " -- " + pahItem.identifier)
+				//print(item.identifier + " -- " + pahItem.identifier)
 				
 				if (item.items.count > 0 && pahItem.items.count == 0) {
 					checkInsideofRegularItem(item: item.items, pahItem: pahItem)
@@ -1002,7 +1001,7 @@ class DataManager {
 				}else if (item.items.count > 0 && pahItem.items.count > 0) {
 					checkInsideofAllItem(item: item.items, pahItem: pahItem.items)
 				}else if (item.identifier == pahItem.identifier && item.identifier.characters.count >= 3) {
-//					print(pahItem.identifier + ": \(String(describing: pahItem.storedValue?.value))" + " equals! " + item.identifier + ": \(String(describing: item.storedValue?.value))")
+					//print(pahItem.identifier + ": \(String(describing: pahItem.storedValue?.value))" + " equals! " + item.identifier + ": \(String(describing: item.storedValue?.value))")
 					let index = item.identifier.index(item.identifier.startIndex, offsetBy: 3)
 					let prefix = item.identifier.substring(to: index)
 
@@ -1023,12 +1022,12 @@ class DataManager {
 		
 		for regItem in item {
 			
-//			print(regItem.identifier + " ---- " + pahItem.identifier)
+			//print(regItem.identifier + " ---- " + pahItem.identifier)
 			
 			if (regItem.items.count > 0) {
 				checkInsideofRegularItem(item: regItem.items, pahItem: pahItem)
 			} else if (regItem.identifier == pahItem.identifier && regItem.identifier.characters.count >= 3) {
-//				print(pahItem.identifier + " equals " + regItem.identifier)
+				//print(pahItem.identifier + " equals " + regItem.identifier)
 				let index = regItem.identifier.index(regItem.identifier.startIndex, offsetBy: 3)
 				let prefix = regItem.identifier.substring(to: index)
 				
@@ -1049,12 +1048,12 @@ class DataManager {
 		
 		for pItem in pahItem {
 			
-//			print(item.identifier + " ---- -- " + pItem.identifier)
+			//print(item.identifier + " ---- -- " + pItem.identifier)
 			
 			if (pItem.items.count > 0) {
 				checkInsideofPahItem(item:item, pahItem: pItem.items)
 			} else if (item.identifier == pItem.identifier && item.identifier.characters.count >= 3) {
-//				print(pItem.identifier + " -- equals " + item.identifier)
+				//print(pItem.identifier + " -- equals " + item.identifier)
 				let index = item.identifier.index(item.identifier.startIndex, offsetBy: 3)
 				let prefix = item.identifier.substring(to: index)
 				
@@ -1076,7 +1075,7 @@ class DataManager {
 			
 			for pItem in pahItem {
 				
-//				print(regItem.identifier + " ---- -- -- " + pItem.identifier)
+				//print(regItem.identifier + " ---- -- -- " + pItem.identifier)
 				
 				if (regItem.items.count > 0 && pItem.items.count == 0) {
 					checkInsideofRegularItem(item: regItem.items, pahItem: pItem)
@@ -1085,7 +1084,7 @@ class DataManager {
 				} else if (regItem.items.count > 0 && pItem.items.count > 0) {
 					checkInsideofAllItem(item: regItem.items, pahItem: pItem.items)
 				} else if (regItem.identifier == pItem.identifier && regItem.identifier.characters.count >= 3) {
-//					print(pItem.identifier + " -- -- equals " + regItem.identifier)
+					//print(pItem.identifier + " -- -- equals " + regItem.identifier)
 					
 					let index = regItem.identifier.index(regItem.identifier.startIndex, offsetBy: 3)
 					let prefix = regItem.identifier.substring(to: index)

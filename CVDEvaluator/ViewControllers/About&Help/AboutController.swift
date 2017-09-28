@@ -57,14 +57,12 @@ class AboutController: BaseTableController, MFMailComposeViewControllerDelegate 
 		
 		let cellType = itemModel.form.itemType
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
-		cell.accessoryBar = self.accessoryBar
 		cell.delegate = self
 		cell.cellModel = itemModel
 		cell.selectionStyle = (cellType == .separator) ? .none : .gray
 		
 		if cell.cellModel.identifier == "version" {
 			cell.subtitleLabel?.text = appVersion()!
-			cell.accessoryBar = nil
 			cell.selectionStyle = .none
 		}
 		
