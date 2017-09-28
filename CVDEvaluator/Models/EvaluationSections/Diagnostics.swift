@@ -17,6 +17,7 @@ class Diagnostics: EvaluationItem {
 	let stressTesting = StressTesting(literal: Presentation.stressTesting)
 	let echocardiography = Echocardiography(literal: Presentation.echocardiography)
 	let chestXRay = ChestXRay(literal: Presentation.chestXRay)
+	let hrct = HRCT(literal: Presentation.hrct)
 	let rhc = RHC(literal: Presentation.rhc)
 	let coronaryCalciumScore = EvaluationItem(literal: Presentation.coronaryCalciumScore)
 	let total = EvaluationItem(literal: Presentation.total)
@@ -27,6 +28,7 @@ class Diagnostics: EvaluationItem {
 			stressTesting,
 			echocardiography,
 			chestXRay,
+			hrct,
 			rhc,
 			coronaryCalciumScore,
 			total
@@ -272,6 +274,38 @@ class ChestXRay: EvaluationItem {
 	}
 }
 
+
+// MARK: - Diagnostics -> High Resolution CT
+
+class HRCT: EvaluationItem {
+	
+	let ground = EvaluationItem(literal: Presentation.ground)
+	let septal = EvaluationItem(literal: Presentation.septal)
+	let reticular = EvaluationItem(literal: Presentation.reticular)
+	let nodular = EvaluationItem(literal: Presentation.nodular)
+	let consolidate = EvaluationItem(literal: Presentation.consolidate)
+	let honey = EvaluationItem(literal: Presentation.honey)
+	let bronch = EvaluationItem(literal: Presentation.bronch)
+	let medias = EvaluationItem(literal: Presentation.medias)
+	let pleuralthick = EvaluationItem(literal: Presentation.pleuralthick)
+	
+	override var items: [EvaluationItem] {
+		return [
+			ground,
+			septal,
+			reticular,
+			nodular,
+			consolidate,
+			honey,
+			bronch,
+			medias,
+			pleuralthick
+		]
+	}
+	
+	
+	
+}
 
 // MARK: - Diagnostics -> RHC
 

@@ -970,6 +970,7 @@ struct Presentation {
 	static let stressTesting = "#id:chkDTS | #title:Stress Testing | #type:#disclosureControl"
 	static let echocardiography = "#id:chkEcho | #title:Echocardiography | #type:#disclosureControl"
 	static let chestXRay = "#id:chkchestxray | #title:Chest X-Ray | #type:#disclosureControl"
+	static let hrct = "#id:chkHRCT | #title:High resolution CT | #type:#disclosureControl"
 	static let rhc = "#id:chkHC | #title:RHC | #type:#disclosureControl | #alert: Refer to Heart Failure Specialist for Management"
 	static let coronaryCalciumScore = "#id:txtCCS | #title:Coronary Calcium Score |#type:#integerRight | #min:0 | #max:100 | #placeholder: Value"
 	static let total = "#id:txtTotalCCS | #title:Total |#type:#integerRight | #min:0 | #max:10000 | #placeholder: Value"
@@ -1067,6 +1068,17 @@ struct Presentation {
 	static let infiltrate = "#id:chkinfiltrate | #title:Infiltrate(s) | #type:#check"
 	static let consolidation = "#id:chkconsolidation | #title:Consolidation | #type:#check"
 	
+	// Diagnostics -> High resolution CT
+	static let ground = "#id:chkground | #title:Ground glass infiltrates | #type:#check"
+	static let septal = "#id:chkseptal | #title:Inter, intralobular septal thickening | #type:#check"
+	static let reticular = "#id:chkreticular | #title:Reticular infiltrates | #type:#check"
+	static let nodular = "#id:chknodular | #title:Nodules | #type:#check"
+	static let consolidate = "#id:chkconsolidate | #title:Consolidation | #type:#check"
+	static let honey = "#id:chkhoney | #title:Honey combing | #type:#check"
+	static let bronch = "#id:chkbronch | #title:Mediastinal lymphadenopathy | #type:#check"
+	static let medias = "#id:chkmedias | #title:Bronchiectasis | #type:#check"
+	static let pleuralthick = "#id:chkpleuralthick | #title:Pleural thickening | #type:#check"
+	
 	
 	//
 	// MARK: - Current Therapies (hsr)
@@ -1098,9 +1110,9 @@ struct Presentation {
 	static let lisinopril5 = "#id:chklisinopril5 | #title:Lisinopril <10mg qd | #type:#check"
 	static let lisinopril10 = "#id:chklisinopril10| #title:Lisinopril 10-20mg qd | #type:#check"
 	static let lisinopril20 = "#id:chklisinopril20 | #title:Lisinopril 20mg qd | #type:#check"
-	static let losartan25 = "#id:chklosartan25 | #title:Lorsatan 25mg qd | #type:#check"
-	static let losartan50 = "#id:chklosartan50 | #title:Lorsatan 50mg qd | #type:#check"
-	static let losartan100 = "#id:chklosartan100 | #title:Lorsatan 100mg qd | #type:#check"
+	static let losartan25 = "#id:chklosartan25 | #title:Losartan 25mg qd | #type:#check"
+	static let losartan50 = "#id:chklosartan50 | #title:Losartan 50mg qd | #type:#check"
+	static let losartan100 = "#id:chklosartan100 | #title:Losartan 100mg qd | #type:#check"
 	
 	// HSR -> PO Meds -> PO Diuretic https://zpl.io/1FSlBB
 	static let furosemide40 = "#id:chkfurosemide40 | #title:Furosemide 40 | #type:#check"
