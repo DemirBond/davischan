@@ -31,6 +31,12 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 				self.stopAnimating()
 				
 				guard error == nil else {
+					print("Server returned error \(String(describing: error))")
+					
+					UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Login".localized, viewcontroller: self, handler: {
+						self.performSegue(withIdentifier: "loginSegueID", sender: nil)
+					})
+					
 					return
 				}
 				
@@ -38,6 +44,9 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
 					let destination = medicalStoriboard.instantiateInitialViewController()
 					UIApplication.shared.keyWindow?.rootViewController = destination
+				}
+				else if data == "nopass" {
+					self.performSegue(withIdentifier: "loginSegueID", sender: nil)
 				}
 			}
 			

@@ -15,6 +15,7 @@
 		78BF73FD1E3F640F0040EC81 /* CVDEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF73FC1E3F640F0040EC81 /* CVDEvaluatorTests.swift */; };
 		78BF74081E3F640F0040EC81 /* CVDEvaluatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF74071E3F640F0040EC81 /* CVDEvaluatorUITests.swift */; };
 		86E6256A62A6F17CD20FF4F7 /* Pods_CVDEvaluator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */; };
+		BA3206231F7D44A300ACB211 /* CodeAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3206221F7D44A300ACB211 /* CodeAuthRequest.swift */; };
 		BA395C401F5EED95000C5A33 /* Pulmonary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */; };
 		BA395C441F5EF993000C5A33 /* Renal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA395C431F5EF993000C5A33 /* Renal.swift */; };
 		BA49CC6D1F339AC80040060A /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49CC6C1F339AC80040060A /* SplashController.swift */; };
@@ -146,6 +147,7 @@
 		78BF74091E3F640F0040EC81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78BF74171E3F690F0040EC81 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9A142773B00F7CC2F8E6C6F4 /* Pods_CVDEvaluator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CVDEvaluator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3206221F7D44A300ACB211 /* CodeAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeAuthRequest.swift; sourceTree = "<group>"; };
 		BA395C3F1F5EED95000C5A33 /* Pulmonary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulmonary.swift; sourceTree = "<group>"; };
 		BA395C431F5EF993000C5A33 /* Renal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renal.swift; sourceTree = "<group>"; };
 		BA49CC6C1F339AC80040060A /* SplashController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 			children = (
 				BA49CD2B1F33A6FE0040060A /* EvaluationRequest.swift */,
 				BA49CD2C1F33A6FE0040060A /* RegisterRequest.swift */,
+				BA3206221F7D44A300ACB211 /* CodeAuthRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				BA49CCF81F33A4220040060A /* DemoController.swift in Sources */,
 				BA49CD0E1F33A5F80040060A /* ExpyTableView.swift in Sources */,
 				BA49CD0C1F33A5CD0040060A /* BuildAppearance.swift in Sources */,
+				BA3206231F7D44A300ACB211 /* CodeAuthRequest.swift in Sources */,
 				BA49CCF11F33A35E0040060A /* About.swift in Sources */,
 				BA49CD3E1F34044E0040060A /* EvaluationController.swift in Sources */,
 				BA49CD071F33A54E0040060A /* HexExtention.swift in Sources */,

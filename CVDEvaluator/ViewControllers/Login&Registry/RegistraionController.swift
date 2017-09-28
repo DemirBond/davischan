@@ -46,7 +46,7 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 		
 		self.view.backgroundColor = UIColor.white
 		
-		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegistraionController.hideKeyboard))
 		self.view.addGestureRecognizer(tapRecognizer)
 		
 	}
@@ -135,16 +135,16 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 			}
 			
 			if data == "success" {
-				UserDefaults.standard.set(mail, forKey: "loginName")
+//				UserDefaults.standard.set(mail, forKey: "loginName")
 				
-//				self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
+				self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
 				
-				UIAlertController.infoAlert(message: nil, title: "Registered".localized, viewcontroller: self, handler: {
-					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-					let destanation = medicalStoriboard.instantiateInitialViewController()
-					
-					UIApplication.shared.keyWindow?.rootViewController = destanation
-				})
+//				UIAlertController.infoAlert(message: nil, title: "Registered".localized, viewcontroller: self, handler: {
+//					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+//					let destanation = medicalStoriboard.instantiateInitialViewController()
+//
+//					UIApplication.shared.keyWindow?.rootViewController = destanation
+//				})
 			}
 		}
 		
@@ -246,14 +246,15 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 	}
 	
 	
-	/*
+	
 	// MARK: - Navigation
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-	// Get the new view controller using segue.destinationViewController.
-	// Pass the selected object to the new view controller.
+		if segue.identifier == RegistraionController.verificationCodeSegueID {
+			let vc: CodeAutorizationController = segue.destination as! CodeAutorizationController
+			vc.registeredName = emailField.text
+		}
 	}
-	*/
 
 }

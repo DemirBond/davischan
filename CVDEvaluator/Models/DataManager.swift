@@ -75,6 +75,34 @@ class DataManager {
 	}
 	
 	
+	func codeAuthWith(email: String, code: String, completionHandler: @escaping (String?, NSError?) -> (Void)) {
+		
+		if let array = fetchDoctor(loginName: email), array.count > 0 {
+			
+			let returnError: String = "This email was used for sign up"
+			let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
+			completionHandler(nil, error)
+			return
+		}
+		
+		let codeAuthRequest = CodeAuthRequest(email: email, registrationCode: code)
+		RestClient.client.codeAuth(codeAuthRequest: codeAuthRequest, success: { (registerResponse) in
+			if (registerResponse.isSuccess) {
+				completionHandler("success", nil)
+				
+			} else {
+				let returnError: String = registerResponse.message
+				let error = NSError(domain: "RegisterManagerDomain", code: 501, userInfo: ["message" : returnError])
+				completionHandler(nil, error)
+			}
+			
+		}, failure: { (error) in
+			completionHandler(nil, NSError(domain: "RegisterManagerDomain", code: 501, userInfo: ["message" : error.localizedDescription]))
+			
+		})
+	}
+	
+	
 	func updateProfile(doctorName: String?, loginName: String?, password: String?, completionHandler: (String?, NSError?) -> (Void)) {
 		
 		if nil != loginName { currentDoctor?.setValue(loginName, forKey: "loginName") }
@@ -144,6 +172,10 @@ class DataManager {
 				
 				failure: { (error) in
 					//TODO change this error with actual error coming from server
+					self.removeDoctor(loginName: loginName, password: password)
+					UserDefaults.standard.set(nil, forKey: "loginName")
+					UserDefaults.standard.synchronize()
+
 					let returnError: String = "UserName or Password is incorrect"
 					let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
 					completionHandler(nil, error)
@@ -176,7 +208,16 @@ class DataManager {
 					completionHandler("success", nil)
 												
 				},
-				failure: { _ in}
+				failure: { (error) in
+					//TODO change this error with actual error coming from server
+					self.removeDoctor(loginName: loginName)
+					UserDefaults.standard.set(nil, forKey: "loginName")
+					UserDefaults.standard.synchronize()
+					
+					let returnError: String = "UserName or Password is incorrect"
+					let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
+					completionHandler(nil, error)
+				}
 			)
 		}
 		else {
@@ -479,6 +520,42 @@ class DataManager {
 		} catch let error as NSError {
 			print("Could not fetch \(error), \(error.userInfo)")
 			return nil
+		}
+	}
+	
+	
+	private func removeDoctor(loginName: String) -> Void {
+		let managedContext = managedObjectContext
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Doctor")
+		fetchRequest.predicate = NSPredicate(format: "loginName == %@", loginName)
+		do {
+			let results = try managedContext.fetch(fetchRequest)
+			for obj in results as! [NSManagedObject] {
+				managedContext.delete(obj)
+			}
+			
+			self.saveContext()
+			
+		} catch let error as NSError {
+			print("Could not fetch \(error), \(error.userInfo)")
+		}
+	}
+	
+	
+	private func removeDoctor(loginName: String, password: String) -> Void {
+		let managedContext = managedObjectContext
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Doctor")
+		fetchRequest.predicate = NSPredicate(format: "loginName == %@ AND password == %@", loginName, password)
+		do {
+			let results = try managedContext.fetch(fetchRequest)
+			for obj in results as! [NSManagedObject] {
+				managedContext.delete(obj)
+			}
+			
+			self.saveContext()
+			
+		} catch let error as NSError {
+			print("Could not fetch \(error), \(error.userInfo)")
 		}
 	}
 	

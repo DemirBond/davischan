@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 class ResetAccountController: BaseController, UITextFieldDelegate, MFMailComposeViewControllerDelegate, NVActivityIndicatorViewable {
 	
 	@IBOutlet weak var nameField: UITextField!
+	@IBOutlet weak var submitButton: UIButton!
 	
 	override var createdID: String! { return "resetAccount" }
 	

@@ -14,12 +14,23 @@ import NVActivityIndicatorView
 class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailComposeViewControllerDelegate, NVActivityIndicatorViewable {
 	
 	@IBOutlet weak var codeField: UITextField!
+	@IBOutlet weak var submitButton: UIButton!
+	
+	var registeredName: String?
 	
 	override var createdID: String! { return "codeAutorization" }
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		self.navigationItem.hidesBackButton = true
+		
+		submitButton.layer.cornerRadius = 4.0
+		submitButton.layer.borderColor = submitButton.backgroundColor?.cgColor
+		submitButton.layer.borderWidth = 2.0
+		
+		codeField.text = ""
 		
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(CodeAutorizationController.hideKeyboard))
 		self.view.addGestureRecognizer(tapRecognizer)
@@ -39,47 +50,40 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 		hideKeyboard()
 		
 		guard let auth_code = self.codeField.text, !auth_code.isEmpty else {
-				UIAlertController.infoAlert(message: "", title: "The verification code field is empty", viewcontroller: self, handler: {
+				UIAlertController.infoAlert(message: "", title: "The verification code field is empty", viewcontroller: self, handler: {})				
+				return
+		}
+		
+		self.startAnimating()
+		
+		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
+			
+			self.stopAnimating()
+			
+			guard error == nil else {
+				print("Server returned error \(String(describing: error))")
+				
+				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot authrize".localized, viewcontroller: self, handler: {
 					self.codeField.text = ""
 				})
 				
 				return
+			}
+			
+			if data == "success" {
+				UserDefaults.standard.set(self.registeredName, forKey: "loginName")
+				UserDefaults.standard.synchronize()
+				
+				UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
+					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+					let destanation = medicalStoriboard.instantiateInitialViewController()
+					
+					UIApplication.shared.keyWindow?.rootViewController = destanation
+				})
+			}
 		}
 		
-//		self.startAnimating()
-//		
-//		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
-//			
-//			self.stopAnimating()
-//			
-//			guard error == nil else {
-//				print("Server returned error \(String(describing: error))")
-//				
-//				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Sign In".localized, viewcontroller: self, handler: {
-//					self.codeField.text = ""
-//				})
-//				
-//				return
-//			}
-//			
-//			if data == "success" {
-//				UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
-//					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-//					let destanation = medicalStoriboard.instantiateInitialViewController()
-//					
-//					UIApplication.shared.keyWindow?.rootViewController = destanation
-//				})
-//			}
-//		}
-//		
-//		DataManager.manager.authUser(with: name, password: pass, completionHandler: completionHandler)
-		
-		UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
-			let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-			let destanation = medicalStoriboard.instantiateInitialViewController()
-			
-			UIApplication.shared.keyWindow?.rootViewController = destanation
-		})
+		DataManager.manager.codeAuthWith(email: registeredName!, code: auth_code, completionHandler: completionHandler)
 	}
 	
 	

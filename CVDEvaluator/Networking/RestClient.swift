@@ -83,12 +83,31 @@ class RestClient: NSObject {
 		let params = registerRequest.toDictionary()
 		//Server side does not return anything other than 200 Ok
 		Alamofire.request(RestClient.registerUrl, method: .post, parameters: params).responseString {(responseObject) -> Void in
-				if responseObject.response?.statusCode == 200 {
-					success(RegisterResponse(isSuccess: true, message: ""))
-				} else {
-					let resJson = JSON.parse(responseObject.result.value ?? "{}")
-					print(success(RegisterResponse(isSuccess: false, message: resJson["Message"].stringValue)))
-				}
+			if responseObject.response?.statusCode == 200 {
+				success(RegisterResponse(isSuccess: true, message: ""))
+			} else {
+				let resJson = JSON.parse(responseObject.result.value ?? "{}")
+				print(success(RegisterResponse(isSuccess: false, message: resJson["Message"].stringValue)))
+			}
+			
+			if responseObject.result.isFailure {
+				let error : Error = responseObject.error!
+				failure(error)
+			}
+		}
+	}
+	
+	func codeAuth(codeAuthRequest: CodeAuthRequest, success:@escaping (RegisterResponse) -> Void, failure:@escaping (Error) -> Void)
+	{
+		let params = codeAuthRequest.toDictionary()
+		//Server side does not return anything other than 200 Ok
+		Alamofire.request(RestClient.registerUrl, method: .post, parameters: params).responseString {(responseObject) -> Void in
+			if responseObject.response?.statusCode == 200 {
+				success(RegisterResponse(isSuccess: true, message: ""))
+			} else {
+				let resJson = JSON.parse(responseObject.result.value ?? "{}")
+				print(success(RegisterResponse(isSuccess: false, message: resJson["Message"].stringValue)))
+			}
 			
 			if responseObject.result.isFailure {
 				let error : Error = responseObject.error!

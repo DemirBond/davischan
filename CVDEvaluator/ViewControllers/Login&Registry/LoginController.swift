@@ -132,6 +132,7 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 			
 			if data == "success" {
 				UserDefaults.standard.set(name, forKey: "loginName")
+				UserDefaults.standard.synchronize()
 				
 				let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
 				let destination = medicalStoriboard.instantiateInitialViewController()
@@ -145,7 +146,7 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 	
 	@IBAction func registerAction(_ sender: AnyObject) {
 		hideKeyboard()
-		self.performSegue(withIdentifier: "gotoRegister", sender: nil)
+		self.performSegue(withIdentifier: LoginController.registerSegueID, sender: nil)
 	}
 	
 	
