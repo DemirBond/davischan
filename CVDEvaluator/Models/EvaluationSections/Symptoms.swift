@@ -943,7 +943,7 @@ class AbdominalPain: EvaluationItem {
 				herpesSkinFindings,
 				celulitisSkinFindings,
 				wallSkinFindings,
-				caoutmedusaSkinFindings
+				caoutmedusaSkinFindings,
 //				jaundiceSkinFindings,
 				rashSkinFindings,
 			]

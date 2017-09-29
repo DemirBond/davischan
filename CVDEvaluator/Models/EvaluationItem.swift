@@ -429,10 +429,10 @@ class EvaluationItem  {
 		
 		let suggestedHeight = self.form.suggestedHeight
 		
-		if [.label, .textLeft, .mail, .integerLeft, .decimalLeft].contains(where: { $0 == form.itemType }) {
+		if [.label, .separator, .textLeft, .mail, .integerLeft, .decimalLeft].contains(where: { $0 == form.itemType }) {
 			return suggestedHeight
 			
-		} else if [.simple, .separator, .disclosureControl, .disclosureControlExpandable, .disclosureRadio, .disclosureWeather,  .disclosureVieved, .disclosureSimple,
+		} else if [.simple, .disclosureControl, .disclosureControlExpandable, .disclosureRadio, .disclosureWeather,  .disclosureVieved, .disclosureSimple,
 		           .check, .radio, .textRight, .integerRight, .decimalRight, .minutesSeconds].contains(where: { $0 == form.itemType }) {
 			
 			var textWidth: CGFloat = 0.0

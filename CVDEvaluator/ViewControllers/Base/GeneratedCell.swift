@@ -157,7 +157,11 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 		let isMandatory = cellModel.storedValue?.isMandatory ?? false
 		let isSelected = cellModel.form.isSelected
 		if isSelected {
-			self.backgroundColor = UIColor(palette: ColorPalette.white)
+			//self.backgroundColor = UIColor(palette: ColorPalette.white)
+		}
+		if cellModel.form.itemType == .separator {
+			self.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
+			//self.backgroundColor = UIColor(palette: ColorPalette.white)
 		}
 		let title = cellModel?.title ?? ""
 		self.titleLabel?.text = title + (isMandatory ? "*" : "")
@@ -1023,7 +1027,14 @@ class RightIntegerCellExpandable: GeneratedCell {
 class DisclosureRadioCell: RadioButtonCell {}
 
 // Simple Cells --------------------------
-class LabelCell: GeneratedCell {}
+class LabelCell: GeneratedCell {
+	override func setupCell() {
+		super.setupCell()
+//		self.titleLabel?.textColor = CVDStyle.style.subtitleColor
+		self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: CVDStyle.style.currentFont.pointSize)!
+	}
+}
+
 class SimpleCell: GeneratedCell {}
 class DisclosureSimpleCell: GeneratedCell {}
 
