@@ -302,9 +302,6 @@ class HRCT: EvaluationItem {
 			pleuralthick
 		]
 	}
-	
-	
-	
 }
 
 // MARK: - Diagnostics -> RHC

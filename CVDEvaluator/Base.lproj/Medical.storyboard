@@ -2133,6 +2133,9 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENc-aU-QaF">
                                             <rect key="frame" x="15" y="19" width="220" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="eaF-ko-DMf"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2140,7 +2143,7 @@
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-Pv-Jxs" userLabel="User Name label">
                                             <rect key="frame" x="243" y="4" width="116" height="51.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="116" id="WCC-2S-kcP"/>
+                                                <constraint firstAttribute="width" constant="116" id="aFq-Gt-uCY"/>
                                             </constraints>
                                             <color key="textColor" red="0.1215686275" green="0.16078431369999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -2151,12 +2154,12 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="cAO-Pv-Jxs" secondAttribute="trailing" constant="16" id="84A-Vu-zTj"/>
-                                        <constraint firstItem="cAO-Pv-Jxs" firstAttribute="top" secondItem="jeR-Pt-HGb" secondAttribute="top" constant="4" id="NuL-Jt-fee"/>
-                                        <constraint firstItem="ENc-aU-QaF" firstAttribute="leading" secondItem="jeR-Pt-HGb" secondAttribute="leading" constant="15" id="VNc-MU-BuB"/>
-                                        <constraint firstItem="cAO-Pv-Jxs" firstAttribute="leading" secondItem="ENc-aU-QaF" secondAttribute="trailing" constant="8" id="p91-dJ-rY9"/>
-                                        <constraint firstItem="ENc-aU-QaF" firstAttribute="centerY" secondItem="cAO-Pv-Jxs" secondAttribute="centerY" id="qm1-CG-8cT"/>
-                                        <constraint firstAttribute="bottom" secondItem="cAO-Pv-Jxs" secondAttribute="bottom" constant="4" id="ulZ-3h-t64"/>
+                                        <constraint firstItem="cAO-Pv-Jxs" firstAttribute="top" secondItem="jeR-Pt-HGb" secondAttribute="top" constant="4" id="D0o-N5-Ar1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cAO-Pv-Jxs" secondAttribute="trailing" constant="8" id="QUf-BL-qSP"/>
+                                        <constraint firstItem="ENc-aU-QaF" firstAttribute="leading" secondItem="jeR-Pt-HGb" secondAttribute="leadingMargin" constant="7" id="TPd-JB-HZO"/>
+                                        <constraint firstItem="ENc-aU-QaF" firstAttribute="centerY" secondItem="cAO-Pv-Jxs" secondAttribute="centerY" id="fNg-SG-wsU"/>
+                                        <constraint firstItem="cAO-Pv-Jxs" firstAttribute="leading" secondItem="ENc-aU-QaF" secondAttribute="trailing" constant="8" id="kFO-qO-iSS"/>
+                                        <constraint firstAttribute="bottom" secondItem="cAO-Pv-Jxs" secondAttribute="bottom" constant="4" id="kUA-cA-HMK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

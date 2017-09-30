@@ -9,7 +9,7 @@
 import UIKit
 
 
-class BaseTableController: UITableViewController, CAAnimationDelegate, BuildAppearance, EvaluationEditing, FontChanging {
+class BaseTableController: UITableViewController, BuildAppearance, EvaluationEditing, FontChanging {
 	
 	var activeField: UITextField?
 	var activeModel: EvaluationItem?

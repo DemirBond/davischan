@@ -36,32 +36,9 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	}
 	
 	
-	func evaluateResponderChain() {
-		
-		var models = [EvaluationItem]()
-		
-		for (index, item) in pageForm.items.enumerated() {
-			
-			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password].contains(where: { $0 == item.form.itemType }) {
-				item.modelIndexPath = IndexPath(row: index, section: 0)
-				models.append(item)
-			}
-		}
-		
-		self.modelChain = models
-	}
-	
-	
-	func setupFixedSpace(width: CGFloat) -> UIBarButtonItem {
-		let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-		item.width = width
-		return item
-	}
-	
-	
 	func setupAppearance() {
-
-//		self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
+		
+		//self.view.backgroundColor = UIColor(palette: ColorPalette.snow)
 		self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target:nil, action:nil)
 		
 		let applyStyle = { (style: ControllerStyle) -> Void in
@@ -115,6 +92,29 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	}
 	
 	
+	func evaluateResponderChain() {
+		
+		var models = [EvaluationItem]()
+		
+		for (index, item) in pageForm.items.enumerated() {
+			
+			if [.textRight, .textLeft, .integerRight, .integerLeft, .decimalRight, .decimalLeft, .mail, .password].contains(where: { $0 == item.form.itemType }) {
+				item.modelIndexPath = IndexPath(row: index, section: 0)
+				models.append(item)
+			}
+		}
+		
+		self.modelChain = models
+	}
+	
+	
+	func setupFixedSpace(width: CGFloat) -> UIBarButtonItem {
+		let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+		item.width = width
+		return item
+	}
+	
+	
 	func showCVDAlert(title: String, message: String?, actions: [CVDAction]) {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		
@@ -142,18 +142,8 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	// MARK: - Actions
 	
-	@IBAction func moveToItem(_ sender: UISegmentedControl) {
-		guard nil != activeField else { return }
-		if self.presentedViewController != nil {
-			self.dismiss(animated: false, completion: nil)
-		}
-	
-	}
-	
-	
 	@IBAction func doneAction(_ sender: AnyObject) {
 	}
-	
 	
 	func leftButtonAction(_ sender: UIBarButtonItem) { /* tooverride */}
 	func rightTextButtonAction(_ sender: UIBarButtonItem) {
@@ -182,7 +172,6 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	
 	
 	func keyboardReturnDidPress(model: EvaluationItem) {
-	
 	}
 
 	
@@ -191,8 +180,7 @@ class BaseController: UIViewController, BuildAppearance, EvaluationEditing {
 	}
 	
 	
-	func evaluationValueDidEnter(_ textField: UITextField, model: EvaluationItem) {
-		
+	func evaluationValueDidEnter(_ textField: UITextField, model: EvaluationItem) {		
 	}
 	
 	
