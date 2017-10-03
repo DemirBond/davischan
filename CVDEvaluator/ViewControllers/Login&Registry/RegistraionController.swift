@@ -135,16 +135,10 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 			}
 			
 			if data == "success" {
-//				UserDefaults.standard.set(mail, forKey: "loginName")
+				UserDefaults.standard.set(mail, forKey: "loginName")
+				UserDefaults.standard.synchronize()
 				
-				self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
-				
-//				UIAlertController.infoAlert(message: nil, title: "Registered".localized, viewcontroller: self, handler: {
-//					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-//					let destanation = medicalStoriboard.instantiateInitialViewController()
-//
-//					UIApplication.shared.keyWindow?.rootViewController = destanation
-//				})
+				self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)				
 			}
 		}
 		
@@ -246,15 +240,12 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 	}
 	
 	
-	
+	/*
 	// MARK: - Navigation
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == RegistraionController.verificationCodeSegueID {
-			let vc: CodeAutorizationController = segue.destination as! CodeAutorizationController
-			vc.registeredName = emailField.text
-		}
-	}
+		
+	}*/
 
 }

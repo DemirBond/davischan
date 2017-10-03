@@ -28,6 +28,7 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 	
 	static let registerSegueID = "registerSegueID"
 	static let resetSegueID = "resetSegueID"
+	static let verificationCodeSegueID = "verificationCodeSegueID"
 	
 	override var createdID: String! { return "login" }
 	
@@ -130,13 +131,18 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 				return
 			}
 			
+			UserDefaults.standard.set(name, forKey: "loginName")
+			UserDefaults.standard.synchronize()
+			
 			if data == "success" {
-				UserDefaults.standard.set(name, forKey: "loginName")
-				UserDefaults.standard.synchronize()
-				
 				let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
 				let destination = medicalStoriboard.instantiateInitialViewController()
 				UIApplication.shared.keyWindow?.rootViewController = destination
+			}
+			else if data == "not_verified" {
+				UIAlertController.infoAlert(message: "", title: "Not authenticated".localized, viewcontroller: self, handler: {
+					self.performSegue(withIdentifier: LoginController.verificationCodeSegueID, sender: nil)
+				})
 			}
 		}
 		

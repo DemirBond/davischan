@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13C-uD-EGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="-270"/>
+            <point key="canvasLocation" x="1894" y="56"/>
         </scene>
         <!--Reset Account Controller-->
         <scene sceneID="cy5-Xp-FQd">
@@ -287,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85r-UM-l2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="433"/>
+            <point key="canvasLocation" x="860" y="519"/>
         </scene>
         <!--Registraion Controller-->
         <scene sceneID="bl5-WE-EWt">
@@ -506,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6Z-n3-TZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="-270"/>
+            <point key="canvasLocation" x="860" y="-255"/>
         </scene>
         <!--Splash Controller-->
         <scene sceneID="PLl-fz-XiU">
@@ -751,6 +751,7 @@
                         <outlet property="scrollView" destination="aLA-to-SGB" id="qjE-YM-3mV"/>
                         <segue destination="4Ak-r5-MBg" kind="show" identifier="registerSegueID" id="lOE-1I-mxZ"/>
                         <segue destination="uYr-7V-ok0" kind="show" identifier="resetSegueID" id="BrR-Ia-zWE"/>
+                        <segue destination="YZH-HD-ix9" kind="show" identifier="verificationCodeSegueID" id="WwU-zQ-qbO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fth-GX-tkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -763,4 +764,7 @@
         <image name="outline" width="120" height="44"/>
         <image name="splash" width="320" height="569"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="WwU-zQ-qbO"/>
+    </inferredMetricsTieBreakers>
 </document>

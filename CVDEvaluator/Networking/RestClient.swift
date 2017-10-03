@@ -15,7 +15,8 @@ import SwiftyJSON
 class RestClient: NSObject {
 	
 	static let client = RestClient()
-	static let baseUrl: String = "http://www.cvdevaluator.com/api/"
+//	static let baseUrl: String = "http://www.cvdevaluator.com/api/"
+	static let baseUrl: String = "http://cvd.xpsign.com/"
 	static let loginUrl: String = baseUrl + "token"
 	static let registerUrl: String = baseUrl + "api/account/register"
 	static let computeEvaluationUrl: String = baseUrl + "api/values"

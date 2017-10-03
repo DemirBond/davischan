@@ -77,14 +77,6 @@ class DataManager {
 	
 	func codeAuthWith(email: String, code: String, completionHandler: @escaping (String?, NSError?) -> (Void)) {
 		
-		if let array = fetchDoctor(loginName: email), array.count > 0 {
-			
-			let returnError: String = "This email was used for sign up"
-			let error = NSError(domain: "LoginManagerDomain", code: 501, userInfo: ["message" : returnError])
-			completionHandler(nil, error)
-			return
-		}
-		
 		let codeAuthRequest = CodeAuthRequest(email: email, registrationCode: code)
 		RestClient.client.codeAuth(codeAuthRequest: codeAuthRequest, success: { (registerResponse) in
 			if (registerResponse.isSuccess) {
@@ -156,7 +148,6 @@ class DataManager {
 						self.saveContext()
 						
 						self.currentDoctor = doc
-						completionHandler("success", nil)
 						
 					}
 					else {
@@ -165,9 +156,17 @@ class DataManager {
 
 						self.currentDoctor = doctor
 						//self.fetchEvaluations()
-						completionHandler("success", nil)
+						
 					}
 					
+					let verified: Bool = responseJson["verified"].boolValue
+					if verified == false {
+						completionHandler("not_verified", nil)
+						return
+					}
+					else {
+						completionHandler("success", nil)
+					}
 				},
 				
 				failure: { (error) in
@@ -205,8 +204,15 @@ class DataManager {
 					self.currentDoctor = doctor
 					self.fetchEvaluations()
 					
-					completionHandler("success", nil)
-												
+					let verified: Bool = responseJson["verified"].boolValue
+					if verified == false {
+						completionHandler("not_verified", nil)
+						return
+					}
+					else {
+						completionHandler("success", nil)
+					}
+
 				},
 				failure: { (error) in
 					//TODO change this error with actual error coming from server

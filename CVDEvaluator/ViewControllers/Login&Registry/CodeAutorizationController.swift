@@ -16,8 +16,6 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 	@IBOutlet weak var codeField: UITextField!
 	@IBOutlet weak var submitButton: UIButton!
 	
-	var registeredName: String?
-	
 	override var createdID: String! { return "codeAutorization" }
 	
 	
@@ -42,16 +40,21 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
 		hideKeyboard()
-		self.dismiss(animated: true, completion: nil)
+		self.navigationController?.popViewController(animated: true)
+		
 	}
 	
 	
 	@IBAction func submitAction(_ sender: AnyObject) {
 		hideKeyboard()
 		
+		guard let username = UserDefaults.standard.string(forKey: "loginName"), !username.isEmpty else {
+			return
+		}
+		
 		guard let auth_code = self.codeField.text, !auth_code.isEmpty else {
-				UIAlertController.infoAlert(message: "", title: "The verification code field is empty", viewcontroller: self, handler: {})				
-				return
+			UIAlertController.infoAlert(message: "", title: "The verification code field is empty", viewcontroller: self, handler: {})
+			return
 		}
 		
 		self.startAnimating()
@@ -71,8 +74,6 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 			}
 			
 			if data == "success" {
-				UserDefaults.standard.set(self.registeredName, forKey: "loginName")
-				UserDefaults.standard.synchronize()
 				
 				UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
 					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
@@ -83,7 +84,7 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 			}
 		}
 		
-		DataManager.manager.codeAuthWith(email: registeredName!, code: auth_code, completionHandler: completionHandler)
+		DataManager.manager.codeAuthWith(email: username, code: auth_code, completionHandler: completionHandler)
 	}
 	
 	
