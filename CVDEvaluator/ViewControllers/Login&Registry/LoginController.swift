@@ -139,11 +139,11 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 				let destination = medicalStoriboard.instantiateInitialViewController()
 				UIApplication.shared.keyWindow?.rootViewController = destination
 			}
-			else if data == "not_verified" {
+			/*else if data == "not_verified" {
 				UIAlertController.infoAlert(message: "", title: "Not authenticated".localized, viewcontroller: self, handler: {
 					self.performSegue(withIdentifier: LoginController.verificationCodeSegueID, sender: nil)
 				})
-			}
+			}*/
 		}
 		
 		DataManager.manager.signIn(with: name, password: pass, completionHandler: completionHandler)
