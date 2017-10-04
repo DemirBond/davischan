@@ -105,8 +105,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 			return cell
 		
 		} else {
-			let num = DataManager.manager.patients?.count
-			let patient = DataManager.manager.patients![num! - indexPath.row]
+			let patient = DataManager.manager.patients![indexPath.row - 1]
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SavedListCell", for: indexPath) as! SavedListCell
 			cell.titleLabel.text = patient.patientName
 			
@@ -118,24 +117,6 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 	}
 
 	
-	/*
-	To retreive each clicked item
-	
-		let patient = DataManager.manager.patients![indexPath.row - 1]
-		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
-	
-			guard error == nil else {
-				print("Server returned error \(String(describing: error))")
-				return
-			}
-	
-			if data == "success" {
-				self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
-			}
-		}
-		DataManager.manager.fetchEvaluationByIDFromRestAPI(id: 11, completionHandler: completionHandler)
-	*/
-	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		if indexPath.row == 0 {
@@ -145,7 +126,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 		} else {
 			let patient = DataManager.manager.patients![indexPath.row - 1]
 			
-			if let evaluationID = patient.identifier, let _ = patient.evaluationData {
+			if let evaluationID = patient.evaluationUUID, let _ = patient.evaluationData {
 				if let _ = DataManager.manager.extractEvaluation(by: evaluationID) {
 					performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
 					
@@ -157,7 +138,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 				
 				self.startAnimating()
 				
-				DataManager.manager.fetchEvaluationByIDFromRestAPI(id: Int(patient.identifier!)!, completionHandler: { (success, error) -> (Void) in
+				DataManager.manager.fetchEvaluationByIDFromRestAPI(uuid: Int(patient.evaluationUUID!)!, completionHandler: { (success, error) -> (Void) in
 					
 					self.stopAnimating()
 					
@@ -188,11 +169,32 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			// Delete the row from the data source
-			tableView.beginUpdates()
-			tableView.deleteRows(at: [indexPath], with: .fade)
-			DataManager.manager.deleteEvaluation(at: indexPath.row-1)
-
-			tableView.endUpdates()
+			
+			let evaluation = DataManager.manager.patients![indexPath.row - 1]
+			
+			self.startAnimating()
+			
+			RestClient.client.deleteEvaluationByID(uuid: Int(evaluation.evaluationUUID!)!, success: { (response) in print(response)
+				
+				self.stopAnimating()
+				
+				tableView.beginUpdates()
+				tableView.deleteRows(at: [indexPath], with: .fade)
+				DataManager.manager.deleteEvaluation(at: indexPath.row - 1)
+				tableView.endUpdates()
+				
+			}, failure: { error in print(error)
+				
+				var actions = [CVDAction] ()
+				var alertTitle: String?
+				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+				alertTitle = "Failed to delete evaluation".localized
+				
+				self.stopAnimating()
+				
+				self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
+				
+			})
 		}
 	}
 	

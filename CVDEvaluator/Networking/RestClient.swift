@@ -21,6 +21,7 @@ class RestClient: NSObject {
 	static let registerUrl: String = baseUrl + "api/account/register"
 	static let computeEvaluationUrl: String = baseUrl + "api/values"
 	static let retreiveEvaluationsUrl: String = baseUrl + "api/values"
+	static let deleteEvaluationUrl: String = baseUrl + "api/values"
 	
 	var token: String = ""
 	var isLoggedIn: Bool = false
@@ -138,14 +139,34 @@ class RestClient: NSObject {
 		}
 	}
 	
-	func retrieveEvaluationByID(id: Int, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
+	func retrieveEvaluationByID(uuid: Int, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
 	{
-		let params: Dictionary = ["ID": id]
+		let params: Dictionary = ["ID": uuid]
 		let headers: HTTPHeaders = [
 			"Authorization": token,
 			"Accept": "application/json"
 		]
 		Alamofire.request(RestClient.retreiveEvaluationsUrl, method: .get, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
+			if responseObject.result.isSuccess {
+				let resJson = JSON(responseObject.result.value!)
+				success(resJson)
+			}
+			
+			if responseObject.result.isFailure {
+				let error : Error = responseObject.result.error!
+				failure(error)
+			}
+		}
+	}
+	
+	func deleteEvaluationByID(uuid: Int, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void)
+	{
+		let params: Dictionary = ["ID": uuid]
+		let headers: HTTPHeaders = [
+			"Authorization": token,
+			"Accept": "application/json"
+		]
+		Alamofire.request(RestClient.deleteEvaluationUrl, method: .delete, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
 			if responseObject.result.isSuccess {
 				let resJson = JSON(responseObject.result.value!)
 				success(resJson)

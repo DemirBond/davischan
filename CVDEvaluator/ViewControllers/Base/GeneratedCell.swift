@@ -1081,6 +1081,7 @@ class PartnerCardCell: GeneratedCell {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		let controller = storyboard.instantiateViewController(withIdentifier: "SpecialistControllerID") as! SpecialistController
 		self.backgroundView = controller.view
+		//self.backgroundView?.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
 	}
 }
 
@@ -1090,6 +1091,7 @@ class ReferencesCardCell: GeneratedCell {
 		let storyboard = UIStoryboard(name: "Medical", bundle: nil)
 		let controller = storyboard.instantiateViewController(withIdentifier: "ReferencesControllerID") as! ReferencesController
 		self.backgroundView = controller.view
+		//self.backgroundView?.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
 	}
 }
 

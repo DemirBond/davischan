@@ -23,7 +23,7 @@
         <attribute name="dateModified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="doctorLoginName" optional="YES" attributeType="String" customClassName="Doctor" syncable="YES"/>
         <attribute name="evaluationData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="evaluationUUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientAge" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patientName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor" inverseName="relationship" inverseEntity="Doctor" syncable="YES"/>

@@ -2556,7 +2556,7 @@
                                 <color key="backgroundColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eEM-eH-uWv" firstAttribute="leading" secondItem="nkq-7B-qCo" secondAttribute="trailing" constant="8" id="4E7-vU-8ia"/>
                             <constraint firstItem="Nh3-RG-MHu" firstAttribute="centerX" secondItem="rB9-CS-orX" secondAttribute="centerX" id="5H8-XT-FFT"/>
@@ -4904,7 +4904,7 @@ These Terms and Conditions are governed by the substantive laws of the State of 
                                 </constraints>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bNp-tP-FwI" firstAttribute="leading" secondItem="vys-Kt-Nb2" secondAttribute="leading" constant="16" id="DOw-pk-zXt"/>
                             <constraint firstAttribute="trailing" secondItem="bNp-tP-FwI" secondAttribute="trailing" constant="16" id="cUF-XD-W4U"/>
