@@ -338,15 +338,16 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
 		
-		if DataManager.manager.isEvaluationChanged() {
+		if !model.isSaved || DataManager.manager.isEvaluationChanged() {
 			
 			let client: RestClient = RestClient.client
-			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 			let saveMode: Bool = isSaveMode
+			let uuid: String? = model.isSaved ? model.evaluationUUID : nil
 			let patientname: String = (model.bio.name.storedValue?.value)!
 			let gender: Int = model.bio.gender.storedValue?.value == "male" ? 1 : 2
 			
-			let evaluationRequest = EvaluationRequest(uuid: Int(model.evaluationUUID!)!,
+			let evaluationRequest = EvaluationRequest(uuid: uuid,
 			                                          isSave: saveMode,
 			                                          age: Int((model.bio.age.storedValue?.value)!)!,
 			                                          isPAH:String(DataManager.manager.getPAHValue()),
@@ -359,16 +360,31 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			
 			client.computeEvaluation(evaluationRequest: evaluationRequest, success: { (response) in print(response)
 				
-				let result = DataManager()
-				result.setOutputEvaluation(response: response)
+				// cache current evaluation
+				DataManager.manager.setEvaluationCache()
 				
 				// add pah value false
-				//print(String(DataManager.manager.getPAHValue()))
 				DataManager.manager.setPAHValue(pah: false)
 				
-				// save current evaluation and compute
-				DataManager.manager.saveCurrentEvaluation()
-				DataManager.manager.saveCurrentCompute(saveMode: isSaveMode)
+				if isSaveMode {
+					let evaluationID: String = response["evaluationID"].stringValue
+					if !evaluationID.isEmpty {
+						model.isSaved = true
+						model.evaluationUUID = evaluationID
+						DataManager.manager.saveCurrentEvaluation()
+					}
+					else {
+						model.isSaved = false
+					}
+				}
+				else {
+					let result = DataManager()
+					result.setOutputEvaluation(response: response)
+					
+					if model.isSaved {
+						DataManager.manager.saveCurrentCompute()
+					}
+				}
 				
 				self.stopAnimating()
 				

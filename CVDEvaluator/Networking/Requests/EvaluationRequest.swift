@@ -12,7 +12,7 @@ import Foundation
 
 struct EvaluationRequest{
 	
-	var uuid: Int
+	var uuid: String?
 	var isSave: Bool
 	var age: Int
 	var isPAH: String
@@ -24,10 +24,15 @@ struct EvaluationRequest{
 	
 	func toDictionary() -> Dictionary<String, AnyObject> {
 		var dict = ["age": age as AnyObject, "isPAH": isPAH as AnyObject, "gender": gender as AnyObject, "SBP": SBP as AnyObject, "DBP": DBP as AnyObject, "inputs": inputs as AnyObject]
+		
 		if (isSave) {
-			dict["evaluationID"] = uuid as AnyObject
 			dict["name"] = name as AnyObject
+			
+			if uuid != nil { // update evaluation
+				dict["evaluationID"] = uuid as AnyObject
+			}
 		}
+		
 		return dict
 	}
 }

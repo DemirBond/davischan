@@ -61,6 +61,9 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			  style: .plain, target: self, action: #selector(self.leftButtonAction(_:)))
 		}
 		
+		let evaluationSaved = DataManager.manager.evaluation?.isSaved
+		DataManager.manager.evalCache = evaluationSaved! ? DataManager.manager.evaluation : nil
+		
 	}
 	
 	
@@ -172,7 +175,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		
 		var actions = [CVDAction] ()
 		actions.append(CVDAction(title: "Yes, I'm sure".localized, type: CVDActionType.done, handler: {
-			DataManager.manager.deleteTempEvaluations()
+			//DataManager.manager.deleteTempEvaluations()
 			
 			self.navigationController?.popViewController(animated: true)
 			
@@ -287,15 +290,16 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			// convert pah as false if we are not in the HMS section
 			DataManager.manager.setPAHValue(pah: false)
 			
-			if DataManager.manager.isEvaluationChanged() {
+			if !model.isSaved || DataManager.manager.isEvaluationChanged() {
 				
 				let client: RestClient = RestClient.client
-				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString()
+				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 				let saveMode: Bool = isSaveMode
+				let uuid: String? = model.isSaved ? model.evaluationUUID : nil
 				let patientname: String = (model.bio.name.storedValue?.value)!
 				let gender: Int = model.bio.gender.storedValue?.value == "male" ? 1 : 2
 				
-				let evaluationRequest = EvaluationRequest(uuid: Int(model.evaluationUUID!)!,
+				let evaluationRequest = EvaluationRequest(uuid: uuid,
 				                                          isSave: saveMode,
 				                                          age: Int((model.bio.age.storedValue?.value)!)!,
 				                                          isPAH: String(DataManager.manager.getPAHValue()),
@@ -308,15 +312,31 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				
 				client.computeEvaluation(evaluationRequest: evaluationRequest, success: { (response) in print(response)
 					
-					let result = DataManager()
-					result.setOutputEvaluation(response: response)
+					// cache current evaluation
+					DataManager.manager.setEvaluationCache()
 					
 					// add pah value false
 					DataManager.manager.setPAHValue(pah: false)
 					
-					// save current evaluation and compute
-					DataManager.manager.saveCurrentEvaluation()
-					DataManager.manager.saveCurrentCompute(saveMode: isSaveMode)
+					if isSaveMode {
+						let evaluationID: String = response["evaluationID"].stringValue
+						if !evaluationID.isEmpty {
+							model.isSaved = true
+							model.evaluationUUID = evaluationID
+							DataManager.manager.saveCurrentEvaluation()							
+						}
+						else {
+							model.isSaved = false
+						}
+					}
+					else {
+						let result = DataManager()
+						result.setOutputEvaluation(response: response)
+						
+						if model.isSaved {
+							DataManager.manager.saveCurrentCompute()
+						}
+					}
 					
 					self.stopAnimating()
 					
