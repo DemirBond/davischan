@@ -290,7 +290,12 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			// convert pah as false if we are not in the HMS section
 			DataManager.manager.setPAHValue(pah: false)
 			
-			if !model.isSaved || DataManager.manager.isEvaluationChanged() {
+			if (isSaveMode && !model.isSaved) ||
+				(model.isSaved && DataManager.manager.isEvaluationChanged()) ||
+				(!isSaveMode && DataManager.manager.isEvaluationChanged()) {
+				
+//			}
+//			if !model.isSaved || DataManager.manager.isEvaluationChanged() {
 				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
