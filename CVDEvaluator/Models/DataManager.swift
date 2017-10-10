@@ -693,6 +693,12 @@ class DataManager {
 			parameters["dbp"] = responseJson["DBP"].intValue
 			
 			let rest = responseJson["rest"].stringValue
+			if rest.isEmpty {
+				let error = NSError(domain: "Empty Evaluation", code: 501, userInfo: ["message" : ""])
+				completionHandler(nil, error)
+				return
+			}
+			
 			let attributes = rest.components(separatedBy: "|")
 			for attribute in attributes {
 				

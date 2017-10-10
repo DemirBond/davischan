@@ -121,7 +121,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	
 	@IBAction func newEvaluationAction(_ sender: Any) {
 		DataManager.manager.evaluation = Evaluation()
-		performSegue(withIdentifier: HomeController.newEvaluationSegueID, sender: nil)
+		self.performSegue(withIdentifier: HomeController.newEvaluationSegueID, sender: nil)
 	}
 	
 	

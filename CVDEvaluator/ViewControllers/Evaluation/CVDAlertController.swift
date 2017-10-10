@@ -169,13 +169,9 @@ class CVDAlertController: UIViewController {
 		self.sheetView.alpha = 0.0
 		
 		UIView.animate(withDuration: self.duration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-			self.stageView.alpha = 0.7
-		}, completion: { (animated) in
-			UIView.animate(withDuration: self.duration/2.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-				self.stageView.alpha = 0.48
-				self.sheetView.alpha = 1.0
-			}, completion: nil)
-		})
+			self.stageView.alpha = 0.48
+			self.sheetView.alpha = 1.0
+		}, completion: nil)
 	}
 	
 	

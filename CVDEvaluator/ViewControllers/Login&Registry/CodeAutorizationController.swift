@@ -60,31 +60,30 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 		self.startAnimating()
 		
 		let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
-			
 			self.stopAnimating()
 			
 			guard error == nil else {
 				//print("Server returned error \(String(describing: error))")
-				
 				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot authrize".localized, viewcontroller: self, handler: {
 					self.codeField.text = ""
 				})
-				
 				return
 			}
 			
 			if data == "success" {
-				
-				UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
-					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-					let destanation = medicalStoriboard.instantiateInitialViewController()
-					
-					UIApplication.shared.keyWindow?.rootViewController = destanation
-				})
+				DispatchQueue.main.async {
+					UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
+						let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+						let destanation = medicalStoriboard.instantiateInitialViewController()						
+						UIApplication.shared.keyWindow?.rootViewController = destanation
+					})
+				}
 			}
 		}
 		
-		DataManager.manager.codeAuthWith(email: username, code: auth_code, completionHandler: completionHandler)
+		DispatchQueue.global().async {
+			DataManager.manager.codeAuthWith(email: username, code: auth_code, completionHandler: completionHandler)
+		}
 	}
 	
 	

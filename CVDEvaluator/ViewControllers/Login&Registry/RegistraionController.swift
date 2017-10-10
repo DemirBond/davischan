@@ -100,37 +100,31 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 			let mail = emailField.text, !mail.isEmpty,
 			let password = passwordField.text, !password.isEmpty else {
 				UIAlertController.infoAlert(message: "Please fill all required fields".localized, title: "The mail, username or password field is empty".localized, viewcontroller: self, handler: {} )
-				
 				return
 		}
 		
 		guard validateEmail(mail: emailField.text!) else {
 			UIAlertController.infoAlert(message: "Email is used for authentication and communications.Please choose the correct mail address.".localized, title: "The mail address is not valid".localized, viewcontroller: self, handler: {} )
-			
 			return
 		}
 		
 		guard password.characters.count >= General.minPasswordLength else {
 			UIAlertController.infoAlert(message: "Password must contain at least \(General.minPasswordLength) characters", title: "The password is too short".localized, viewcontroller: self, handler: {} )
-			
 			return
 		}
 		
 		guard password == repeatPwdField.text  else {
 			UIAlertController.infoAlert(message: "Please enter passwords again".localized, title: "The repeat password doesn't match password".localized, viewcontroller: self, handler: {} )
-			
 			return
 		}
 		
 		self.startAnimating()
 		
 		let handler = { [unowned self] (data : String?, error: NSError?) -> Void in
-			
 			self.stopAnimating()
 			
 			guard error == nil else {
 				UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot sign up".localized, viewcontroller: self, handler: {} )
-				
 				return
 			}
 			
@@ -138,16 +132,19 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 			UserDefaults.standard.synchronize()
 			
 			if data == "success" {
-				
-				let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-				let destination = medicalStoriboard.instantiateInitialViewController()
-				UIApplication.shared.keyWindow?.rootViewController = destination
-				
-				//self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
+				DispatchQueue.main.async {
+					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+					let destination = medicalStoriboard.instantiateInitialViewController()
+					UIApplication.shared.keyWindow?.rootViewController = destination
+					
+					//self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
+				}
 			}
 		}
 		
-		DataManager.manager.registerWith(doctorName: name, loginName: mail, password: password, completionHandler: handler)
+		DispatchQueue.global().async {
+			DataManager.manager.registerWith(doctorName: name, loginName: mail, password: password, completionHandler: handler)
+		}
 	}
 	
 	

@@ -49,29 +49,29 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
 		if NetworkReachabilityManager()!.isReachable {
-			
 			self.startAnimating()
 			
-			DataManager.manager.fetchEvaluationsFromRestAPI { (success, error) -> (Void) in
-				
+			let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
 				self.stopAnimating()
 				
-				if success != nil {
-					
-					DataManager.manager.fetchEvaluations()
-					
-					self.tableView.reloadData()
-					
+				if data == "success" {
+					DispatchQueue.main.async {
+						DataManager.manager.fetchEvaluations()
+						self.tableView.reloadData()
+					}
 				}
 				else {
 					//print("Could not fetch \(String(describing: error))")
 				}
 			}
+			
+			DispatchQueue.global().async {
+				DataManager.manager.fetchEvaluationsFromRestAPI(completionHandler: completionHandler)
+			}
+			
 		}
 		else {
-			
 			DataManager.manager.fetchEvaluations()
-			
 			self.tableView.reloadData()
 		}
 	}
@@ -135,20 +135,29 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 				}
 			}
 			else {
-				
 				self.startAnimating()
 				
-				DataManager.manager.fetchEvaluationByIDFromRestAPI(uuid: Int(patient.evaluationUUID!)!, completionHandler: { (success, error) -> (Void) in
-					
+				let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
 					self.stopAnimating()
 					
-					if success != nil {
-						self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)						
+					if data == "success" {
+						self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
 					}
 					else {
 						//print("Could not fetch \(String(describing: error))")
+						
+						var actions = [CVDAction] ()
+						var alertTitle: String?
+						actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+						alertTitle = error?.domain
+						
+						self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
 					}
-				})
+				}
+				
+				DispatchQueue.global().async {
+					DataManager.manager.fetchEvaluationByIDFromRestAPI(uuid: Int(patient.evaluationUUID!)!, completionHandler: completionHandler)
+				}
 			}
 		}
 	}
@@ -174,27 +183,29 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 			
 			self.startAnimating()
 			
-			RestClient.client.deleteEvaluationByID(uuid: Int(evaluation.evaluationUUID!)!, success: { (response) in print(response)
-				
-				self.stopAnimating()
-				
-				tableView.beginUpdates()
-				tableView.deleteRows(at: [indexPath], with: .fade)
-				DataManager.manager.deleteEvaluation(at: indexPath.row - 1)
-				tableView.endUpdates()
-				
-			}, failure: { error in print(error)
-				
-				var actions = [CVDAction] ()
-				var alertTitle: String?
-				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Failed to delete evaluation".localized
-				
-				self.stopAnimating()
-				
-				self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
-				
-			})
+			DispatchQueue.global().async {
+				RestClient.client.deleteEvaluationByID(uuid: Int(evaluation.evaluationUUID!)!, success: { (response) in print(response)
+					
+					self.stopAnimating()
+					
+					tableView.beginUpdates()
+					tableView.deleteRows(at: [indexPath], with: .fade)
+					DataManager.manager.deleteEvaluation(at: indexPath.row - 1)
+					tableView.endUpdates()
+					
+				}, failure: { error in print(error)
+					
+					var actions = [CVDAction] ()
+					var alertTitle: String?
+					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
+					alertTitle = "Failed to delete evaluation".localized
+					
+					self.stopAnimating()
+					
+					self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
+					
+				})
+			}			
 		}
 	}
 	

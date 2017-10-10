@@ -27,30 +27,31 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 			self.startAnimating()
 			
 			let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
-				
 				self.stopAnimating()
 				
 				guard error == nil else {
 					//print("Server returned error \(String(describing: error))")
-					
 					UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Login".localized, viewcontroller: self, handler: {
 						self.performSegue(withIdentifier: "loginSegueID", sender: nil)
 					})
-					
 					return
 				}
 				
 				if data == "success" {
-					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-					let destination = medicalStoriboard.instantiateInitialViewController()
-					UIApplication.shared.keyWindow?.rootViewController = destination
+					DispatchQueue.main.async {
+						let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+						let destination = medicalStoriboard.instantiateInitialViewController()
+						UIApplication.shared.keyWindow?.rootViewController = destination
+					}					
 				}
 				else if data == "nopass" {
 					self.performSegue(withIdentifier: "loginSegueID", sender: nil)
 				}
 			}
 			
-			DataManager.manager.signIn(with: userName, completionHandler: completionHandler)
+			DispatchQueue.global().async {
+				DataManager.manager.signIn(with: userName, completionHandler: completionHandler)
+			}
 		}
 		else {
 			self.performSegue(withIdentifier: "loginSegueID", sender: nil)

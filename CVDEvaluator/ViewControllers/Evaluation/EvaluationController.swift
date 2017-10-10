@@ -131,8 +131,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			default:
 				()
 		}
-		
-		self.tableView.reloadData()
 	}
 	
 	
