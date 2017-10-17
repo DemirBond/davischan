@@ -18,11 +18,11 @@ class RestClient: NSObject {
 	static let baseUrl: String = "http://www.cvdevaluator.com/api/"
 //	static let baseUrl: String = "http://cvd.xpsign.com/"
 	static let loginUrl: String = baseUrl + "token"
-	static let registerUrl: String = baseUrl + "api/account/register"
-	static let computeEvaluationUrl: String = baseUrl + "api/values"
-	static let retreiveEvaluationsUrl: String = baseUrl + "api/values"
-	static let deleteEvaluationUrl: String = baseUrl + "api/values"
-	
+	static let registerUrl: String = baseUrl + "api/account/Register"
+	static let computeEvaluationUrl: String = baseUrl + "api/Values"
+	static let retreiveEvaluationsUrl: String = baseUrl + "api/Values"
+	static let deleteEvaluationUrl: String = baseUrl + "api/Values"
+
 	var token: String = ""
 	var isLoggedIn: Bool = false
 	
