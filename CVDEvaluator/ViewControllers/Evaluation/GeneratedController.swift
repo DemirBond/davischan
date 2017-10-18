@@ -329,6 +329,11 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		let model = DataManager.manager.evaluation!
 		
+		var alertTitle = "Cannot open output screen".localized
+		if isSaveMode {
+			alertTitle =  "Cannot save evaluation".localized
+		}
+		
 		if generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.rhcInHSM.identifier || generatedID == DataManager.manager.evaluation?.heartSpecialistManagement.identifier {
 			DataManager.manager.setPAHValue(pah: true)
 		} else {
@@ -340,6 +345,31 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		if (isSaveMode && !model.isSaved) ||
 			(model.isSaved && DataManager.manager.isEvaluationChanged()) ||
 			(!isSaveMode && DataManager.manager.isEvaluationChanged()) {
+			
+			if model.bio.name.storedValue?.value == nil ||
+				model.bio.age.storedValue?.value == nil ||
+				model.bio.gender.storedValue?.value == nil ||
+				model.bio.sbp.storedValue?.value == nil ||
+				model.bio.dbp.storedValue?.value == nil
+			{
+				let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: nil, short: false)
+				
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let alertDescription = "Please fill out the Bio form first".localized
+				let handler1 = {() in
+					if let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as? BioController {
+						controller.pageForm = model.bio
+						self.navigationController?.pushViewController(controller, animated: true)
+					}
+				}
+				
+				let navigateAction = CVDAction(title: "Open ".localized + model.bio.title, type: CVDActionType.done, handler: handler1, short: false)
+				self.showCVDAlert(title: alertTitle, message: alertDescription, actions: [navigateAction, cancelAction])
+				
+				self.stopAnimating()
+				
+				return
+			}
 			
 			let client: RestClient = RestClient.client
 			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
