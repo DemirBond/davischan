@@ -30,7 +30,7 @@ struct EvaluationRequest{
 			
 			if uuid != nil { // update evaluation
 				dict["evaluationID"] = uuid as AnyObject
-			}			
+			}
 		}
 		
 		return dict

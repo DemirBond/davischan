@@ -133,11 +133,11 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 			
 			if data == "success" {
 				DispatchQueue.main.async {
-					let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-					let destination = medicalStoriboard.instantiateInitialViewController()
-					UIApplication.shared.keyWindow?.rootViewController = destination
+					//let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+					//let destination = medicalStoriboard.instantiateInitialViewController()
+					//UIApplication.shared.keyWindow?.rootViewController = destination
 					
-					//self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
+					self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
 				}
 			}
 		}

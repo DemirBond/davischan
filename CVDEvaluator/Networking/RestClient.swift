@@ -19,6 +19,7 @@ class RestClient: NSObject {
 //	static let baseUrl: String = "http://cvd.xpsign.com/"
 	static let loginUrl: String = baseUrl + "token"
 	static let registerUrl: String = baseUrl + "api/account/Register"
+	static let activateUrl: String = baseUrl + "api/account/Activate"
 	static let computeEvaluationUrl: String = baseUrl + "api/Values"
 	static let retreiveEvaluationsUrl: String = baseUrl + "api/Values"
 	static let deleteEvaluationUrl: String = baseUrl + "api/Values"
@@ -103,7 +104,7 @@ class RestClient: NSObject {
 	{
 		let params = codeAuthRequest.toDictionary()
 		//Server side does not return anything other than 200 Ok
-		Alamofire.request(RestClient.registerUrl, method: .post, parameters: params).responseString {(responseObject) -> Void in
+		Alamofire.request(RestClient.activateUrl, method: .post, parameters: params).responseString {(responseObject) -> Void in
 			if responseObject.response?.statusCode == 200 {
 				success(RegisterResponse(isSuccess: true, message: ""))
 			} else {
