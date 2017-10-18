@@ -140,10 +140,16 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 				let completionHandler = { [unowned self] (data : String?, error: NSError?) -> Void in
 					self.stopAnimating()
 					
+					guard error == nil else {
+						//print("Server returned error \(String(describing: error))")
+						UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot fetch".localized, viewcontroller: self, handler: {})
+						return
+					}
+					
 					if data == "success" {
 						self.performSegue(withIdentifier: EvaluationListController.fromListEvaluationSegueID, sender: nil)
 					}
-					else {
+					/*else {
 						//print("Could not fetch \(String(describing: error))")
 						
 						var actions = [CVDAction] ()
@@ -152,7 +158,7 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 						alertTitle = error?.domain
 						
 						self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
-					}
+					}*/
 				}
 				
 				DispatchQueue.global().async {
@@ -195,15 +201,17 @@ class EvaluationListController: BaseTableController, NVActivityIndicatorViewable
 					
 				}, failure: { error in print(error)
 					
-					var actions = [CVDAction] ()
+					self.stopAnimating()
+					
+					UIAlertController.infoAlert(message: error.localizedDescription, title: "Failed to delete evaluation".localized, viewcontroller: self, handler: {})
+					
+					/*var actions = [CVDAction] ()
 					var alertTitle: String?
 					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
 					alertTitle = "Failed to delete evaluation".localized
 					
-					self.stopAnimating()
-					
 					self.showCVDAlert(title: alertTitle!, message: nil, actions: actions)
-					
+					*/
 				})
 			}			
 		}

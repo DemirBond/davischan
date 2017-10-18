@@ -297,9 +297,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				(model.isSaved && DataManager.manager.isEvaluationChanged()) ||
 				(!isSaveMode && DataManager.manager.isEvaluationChanged()) {
 				
-//			}
-//			if !model.isSaved || DataManager.manager.isEvaluationChanged() {
-				
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 				let saveMode: Bool = isSaveMode
@@ -367,8 +364,8 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 					var alertTitle: String?
 					var alertDescription : String?
 					actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-					alertTitle = "Network Connection".localized
-					alertDescription = "Check network connection before computing the evaluation.".localized
+					alertTitle = isSaveMode ? "Failed to save evaluation".localized : "Failed to compute evaluation".localized
+					alertDescription = error.localizedDescription
 					
 					self.stopAnimating()
 					

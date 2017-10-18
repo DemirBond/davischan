@@ -43,9 +43,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		
 		// print("--is this pah ??? \(pageForm is HeartSpecialistManagement) --- \(isHeartSpecilaistManagement)")
 		
-		let classType = type(of:pageForm)
-		
-		// print("page class is %@", classType)
+		//let classType = type(of:pageForm)
+		//print("page class is %@", classType)
 		
 		if self.navigationItem.leftBarButtonItem == nil {
 			self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backIcon"),
@@ -342,9 +341,6 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			(model.isSaved && DataManager.manager.isEvaluationChanged()) ||
 			(!isSaveMode && DataManager.manager.isEvaluationChanged()) {
 			
-//		}
-//		if !model.isSaved || DataManager.manager.isEvaluationChanged() {
-			
 			let client: RestClient = RestClient.client
 			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 			let saveMode: Bool = isSaveMode
@@ -414,8 +410,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 				var alertTitle: String?
 				var alertDescription : String?
 				actions.append(CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: nil, short: true))
-				alertTitle = "Network Connection".localized
-				alertDescription = "Check network connection before computing the evaluation.".localized
+				alertTitle = isSaveMode ? "Failed to save evaluation".localized : "Failed to compute evaluation".localized
+				alertDescription = error.localizedDescription
 				
 				self.stopAnimating()
 				
@@ -512,8 +508,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		cell.updateCell()
 
 		// Laboratories only logic
-		let classType = type(of:pageForm)
-		
+		//let classType = type(of:pageForm)
 		//print("page class is %@", classType)
 		//print("page class is %@", pageForm )
 		if (pageForm is Laboratories) {
@@ -521,12 +516,12 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			//print("    - cell title \(String(describing: cell.cellModel?.title)) -  at row \( indexPath.row) ")
 			//print("    - cell id \(String(describing: itemModel.identifier)) -  at row \( indexPath.row) ")
 			
-			if let title = cell.cellModel?.identifier{
-				//print("  cell title \(title) at row %d", indexPath.row)
+			/*if let title = cell.cellModel?.identifier{
+				print("  cell title \(title) at row %d", indexPath.row)
 			}
 			else {
-				//print("  cell title nl")
-			}
+				print("  cell title nl")
+			}*/
 		}
 		
 		/////
