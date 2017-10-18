@@ -20,6 +20,7 @@ class RestClient: NSObject {
 	static let loginUrl: String = baseUrl + "token"
 	static let registerUrl: String = baseUrl + "api/account/Register"
 	static let activateUrl: String = baseUrl + "api/account/Activate"
+	static let logoutUrl: String = baseUrl + "api/account/Logout"
 	static let computeEvaluationUrl: String = baseUrl + "api/Values"
 	static let retreiveEvaluationsUrl: String = baseUrl + "api/Values"
 	static let deleteEvaluationUrl: String = baseUrl + "api/Values"

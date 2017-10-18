@@ -38,18 +38,18 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 				}
 				
 				if data == "success" {
-					DispatchQueue.main.async {
+					//DispatchQueue.main.async {
 						let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
 						let destination = medicalStoriboard.instantiateInitialViewController()
 						UIApplication.shared.keyWindow?.rootViewController = destination
-					}					
+					//}
 				}
 				else if data == "nopass" {
 					self.performSegue(withIdentifier: "loginSegueID", sender: nil)
 				}
 			}
 			
-			DispatchQueue.global().async {
+			DispatchQueue.main.async {
 				DataManager.manager.signIn(with: userName, completionHandler: completionHandler)
 			}
 		}

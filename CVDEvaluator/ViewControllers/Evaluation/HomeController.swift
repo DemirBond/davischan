@@ -103,13 +103,12 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		actions.append(MenuAction(title: "Sign out".localized, handler: {
 			let alertController = UIAlertController(title: "Are you sure to Sign out?".localized, message: nil, preferredStyle: .actionSheet)
 			let logoutAction = UIAlertAction(title: "Sign out", style: .default) { (UIAlertAction) in
-				DataManager.manager.signOut()
-				
-				let mainStoriboard = UIStoryboard(name: "Main", bundle: nil)
-				let destination = mainStoriboard.instantiateInitialViewController()
-				
-				UIApplication.shared.keyWindow?.rootViewController = destination
-				
+				DataManager.manager.signOut(completeHandler: {
+					let mainStoriboard = UIStoryboard(name: "Main", bundle: nil)
+					let destination = mainStoriboard.instantiateInitialViewController()
+					
+					UIApplication.shared.keyWindow?.rootViewController = destination
+				})
 			}
 			alertController.addAction(logoutAction)
 			let defaultAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil )
