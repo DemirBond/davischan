@@ -95,7 +95,7 @@ class TextItemStyle {
 	class var attributes: Dictionary<String, Any> {
 		
 		var dict = Dictionary<String, Any>()
-		dict[NSForegroundColorAttributeName] = fontColor
+		dict[NSForegroundColorAttributeName] = tintColor
 		dict[NSFontAttributeName] = textFont
 		
 		return dict

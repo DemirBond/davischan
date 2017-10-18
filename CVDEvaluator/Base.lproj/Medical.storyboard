@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -3745,7 +3745,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.91764705879999997" green="0.89411764709999997" blue="0.98823529409999999" alpha="0.99759203770000004" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="Jo6-Jo-iLD" firstAttribute="trailing" secondItem="FT9-tH-b3C" secondAttribute="trailingMargin" id="Exv-hf-xIe"/>
                                         <constraint firstItem="Jo6-Jo-iLD" firstAttribute="leading" secondItem="BjE-g8-Lqm" secondAttribute="trailing" constant="8" id="JtQ-DY-BnG"/>
@@ -3824,7 +3824,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.91764705879999997" green="0.89411764709999997" blue="0.98823529409999999" alpha="0.99759203770000004" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="UhA-dl-m2N" firstAttribute="leading" secondItem="aBV-6K-eFm" secondAttribute="leadingMargin" id="2A6-Yh-V3o"/>
                                         <constraint firstItem="QgU-Kr-met" firstAttribute="leading" secondItem="UhA-dl-m2N" secondAttribute="trailing" constant="8" id="2jj-6U-pUV"/>
@@ -5298,6 +5298,6 @@ E0w
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kIA-xh-b1S"/>
-        <segue reference="coa-a7-lCu"/>
+        <segue reference="1xa-VW-5f1"/>
     </inferredMetricsTieBreakers>
 </document>

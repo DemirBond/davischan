@@ -35,9 +35,10 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 			pageForm.form.status = .viewed
 		}
 		
-		self.tableView.bounces = false
+		//self.tableView.bounces = false
 		self.tableView.showsVerticalScrollIndicator = false
-		self.tableView.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		//self.tableView.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		self.tableView.backgroundColor = UIColor(palette: ColorPalette.white)
 		
 	}
 	
@@ -87,6 +88,11 @@ class BaseTableController: UITableViewController, BuildAppearance, EvaluationEdi
 			let cvdToolbar = CVDToolbar()
 			cvdToolbar.setup(dict: appearanceInfo, target: self, actions: bottomSelectors)
 			cvdToolbar.barTintColor = .white
+			cvdToolbar.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor
+			cvdToolbar.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+			cvdToolbar.layer.shadowRadius = 2.0
+			cvdToolbar.layer.shadowOpacity = 0.8
+			cvdToolbar.layer.masksToBounds = false
 			cvdToolbar.sizeToFit()
 			self.toolbarItems = cvdToolbar.barItems
 			

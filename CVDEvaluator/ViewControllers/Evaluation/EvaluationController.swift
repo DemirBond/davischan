@@ -29,7 +29,8 @@ class EvaluationCell: UITableViewCell {
 
 	func setupCell() {
 		
-		self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		//self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		self.backgroundColor = UIColor(palette: ColorPalette.white)
 		
 		self.titleLabel?.textColor = CVDStyle.style.defaultFontColor
 		self.titleLabel?.font = CVDStyle.style.currentFont
@@ -62,7 +63,11 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		}
 		
 		let evaluationSaved = DataManager.manager.evaluation?.isSaved
-		DataManager.manager.evalCache = evaluationSaved! ? DataManager.manager.evaluation : nil
+		DataManager.manager.evalCache = nil
+		if evaluationSaved! {
+			DataManager.manager.setEvaluationCache()
+		}
+		//DataManager.manager.evalCache = evaluationSaved! ? DataManager.manager.evaluation : nil
 		
 	}
 	
@@ -298,7 +303,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 				let client: RestClient = RestClient.client
 				let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 				let saveMode: Bool = isSaveMode
-				let uuid: String? = model.isSaved ? model.evaluationUUID : nil
+				let uuid: String? = model.isSaved ? model.evaluationUUID : "0"
 				let patientname: String = (model.bio.name.storedValue?.value)!
 				let gender: Int = model.bio.gender.storedValue?.value == "male" ? 1 : 2
 				
@@ -326,7 +331,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 						if !evaluationID.isEmpty {
 							model.isSaved = true
 							model.evaluationUUID = evaluationID
-							DataManager.manager.saveCurrentEvaluation()							
+							DataManager.manager.saveCurrentEvaluation()
 						}
 						else {
 							model.isSaved = false
@@ -451,18 +456,18 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 	}
 	
 	
-	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		
-		let view = UIView(frame: CGRect(x: 0, y: 300, width: self.view.bounds.width, height: 300) )
-		
-		let button = UIButton(frame: CGRect(x: 50.0, y: 500.00, width: 300.00, height: 100.00))
-		button.titleLabel?.text = "Compute"
-		button.tintColor = UIColor.purple
-		
-		view.addSubview(button)
-		
-		return view
-		
-	}
+//	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//
+//		let view = UIView(frame: CGRect(x: 0, y: 300, width: self.view.bounds.width, height: 300) )
+//
+//		let button = UIButton(frame: CGRect(x: 50.0, y: 500.00, width: 300.00, height: 100.00))
+//		button.titleLabel?.text = "Compute"
+//		button.tintColor = UIColor.purple
+//
+//		view.addSubview(button)
+//
+//		return view
+//
+//	}
 	
 }

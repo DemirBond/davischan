@@ -257,7 +257,7 @@ class DataManager {
 
 	
 	func saveCurrentEvaluation() {
-		guard evaluation != nil && evaluation!.isBioCompleted  else { return }
+		guard evaluation != nil && (evaluation!.isBioCompleted || evaluation?.evaluationStatus == .evaluated) else { return }
 		
 		var isFound = false
 		let uuid = evaluation!.evaluationUUID
@@ -317,6 +317,8 @@ class DataManager {
 						options: .mutableContainers) as! Dictionary<String, Any>
 					let evaluation = Evaluation(with: dict)
 					self.evaluation = evaluation
+					self.evaluation?.isSaved = true
+					self.evaluation?.evaluationStatus = .evaluated
 					return evaluation
 					
 				} catch let err as NSError {
@@ -329,7 +331,7 @@ class DataManager {
 	
 	
 	func saveCurrentCompute() {
-		guard evaluation != nil && evaluation!.isBioCompleted  else { return }
+		guard evaluation != nil && (evaluation!.isBioCompleted || evaluation?.evaluationStatus == .evaluated)  else { return }
 		
 		var isFound = false
 		let uuid = evaluation!.evaluationUUID
@@ -627,7 +629,9 @@ class DataManager {
 							isExist = true
 							deleteIndex[savedPatient.evaluationUUID!] = false
 							
-							if patientJson["createdate"].stringValue != savedPatient.dateModified {
+							if patientJson["createdate"].stringValue != savedPatient.dateCreated /*||
+								patientJson["modifieddate"].stringValue != savedPatient.dateModified */
+							{
 								savedPatient.evaluationData = nil
 								
 								savedPatient.setValue(nil, forKey: "computeEvaluationRequestPAH")
@@ -640,6 +644,9 @@ class DataManager {
 								savedPatient.setValue(nil, forKey: "computeEvaluationResultTherapeutics")
 								savedPatient.setValue(nil, forKey: "computeEvaluationResultICD")
 								savedPatient.setValue(nil, forKey: "computeEvaluationResultReferences")
+							
+								savedPatient.setValue(patientJson["createdate"].stringValue, forKey: "dateCreated")
+								savedPatient.setValue(patientJson["createdate"].stringValue, forKey: "dateModified")
 							}
 						}
 					}
@@ -877,10 +884,21 @@ class DataManager {
 								return true
 						}
 						
+						let prevName: String = (DataManager.manager.evalCache?.bio.name.storedValue?.value)!
+						let prevAge: String =  (DataManager.manager.evalCache?.bio.age.storedValue?.value)!
+						let prevGender: Int = (DataManager.manager.evalCache?.bio.gender.storedValue?.value) == "female" ? 2:1
+						let prevSBP: Int = (Int)((DataManager.manager.evalCache?.bio.sbp.storedValue?.value)!)!
+						let prevDBP: Int = (Int)((DataManager.manager.evalCache?.bio.dbp.storedValue?.value)!)!
 						let prevInputs: String = self.getEvaluationItemsAsRequestInputsString(evaluation: DataManager.manager.evalCache!)
+						
+						let currentName: String = (DataManager.manager.evaluation?.bio.name.storedValue?.value)!
+						let currentAge: String =  (DataManager.manager.evaluation?.bio.age.storedValue?.value)!
+						let currentGender: Int = (DataManager.manager.evaluation?.bio.gender.storedValue?.value) == "female" ? 2:1
+						let currentSBP: Int = (Int)((DataManager.manager.evaluation?.bio.sbp.storedValue?.value)!)!
+						let currentDBP: Int = (Int)((DataManager.manager.evaluation?.bio.dbp.storedValue?.value)!)!
 						let currentInputs: String = self.getEvaluationItemsAsRequestInputsString(evaluation: DataManager.manager.evaluation!)
 						
-						if prevInputs == currentInputs {
+						if prevName == currentName && prevAge == currentAge && prevGender == currentGender && prevSBP == currentSBP && prevDBP == currentDBP && prevInputs == currentInputs {
 							DataManager.manager.evaluation!.outputInMain.diagnosticsResult.subtitle = patient.value(forKey: "computeEvaluationResultDiagnostics") as? String
 							DataManager.manager.evaluation!.outputInMain.therapeuticsResult.subtitle = patient.value(forKey: "computeEvaluationResultTherapeutics") as? String
 							DataManager.manager.evaluation!.outputInMain.icd10Result.subtitle = patient.value(forKey: "computeEvaluationResultICD") as? String

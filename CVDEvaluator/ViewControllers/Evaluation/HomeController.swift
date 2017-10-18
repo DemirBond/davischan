@@ -29,6 +29,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		newEvaluationView.layer.cornerRadius = 4.0
 		newEvaluationView.layer.borderWidth = 1.0
 		newEvaluationView.layer.borderColor = UIColor.lightGray.cgColor
+		//newEvaluationView.backgroundColor = UIColor(palette: ColorPalette.white)
 		newEvaluationView.clipsToBounds = true
 		
 		newEvaluationView.layer.borderWidth = 0.0
@@ -41,6 +42,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		savedEvaluationsView.layer.cornerRadius = 4.0
 		savedEvaluationsView.layer.borderWidth = 1.0
 		savedEvaluationsView.layer.borderColor = UIColor.lightGray.cgColor
+		//savedEvaluationsView.backgroundColor = UIColor(palette: ColorPalette.white)
 		savedEvaluationsView.clipsToBounds = true
 		
 		savedEvaluationsView.layer.borderWidth = 0.0
@@ -60,7 +62,7 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 		
 		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.navigationController?.navigationBar.shadowImage = UIImage()
-		self.navigationController?.navigationBar.tintColor = UIColor.black
+		self.navigationController?.navigationBar.tintColor = UIColor(palette: ColorPalette.purple)
 		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.setToolbarHidden(true, animated: false)
 		
@@ -78,8 +80,8 @@ class HomeController: BaseController, NVActivityIndicatorViewable {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
-		self.navigationController?.navigationBar.barTintColor = UIColor(palette: ColorPalette.hanPurple)
-		self.navigationController?.navigationBar.tintColor = UIColor.black
+		self.navigationController?.navigationBar.barTintColor = UIColor(palette: ColorPalette.white)
+		self.navigationController?.navigationBar.tintColor = UIColor(palette: ColorPalette.purple)
 		self.navigationController?.navigationBar.isTranslucent = false
 		self.navigationController?.navigationBar.layer.borderWidth = 0.0
 		self.navigationController?.navigationBar.layer.shadowColor = UIColor(palette: ColorPalette.warmGrey)?.cgColor

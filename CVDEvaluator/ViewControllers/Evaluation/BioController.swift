@@ -168,14 +168,18 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
-		if validatePage() {
-			DataManager.manager.evaluation!.isBioCompleted = true
-			_ = self.navigationController?.popViewController(animated: true)
+		if (DataManager.manager.evaluation?.isSaved)! {
+			DataManager.manager.evaluation?.evaluationStatus = .evaluated
 		}
 		else {
-			DataManager.manager.evaluation!.isBioViewed = true
-			self.navigationController?.popViewController(animated: true)
+			if validatePage() {
+				DataManager.manager.evaluation!.isBioCompleted = true
+			}
+			else {
+				DataManager.manager.evaluation!.isBioViewed = true
+			}
 		}
+		self.navigationController?.popViewController(animated: true)
 	}
 	
 	

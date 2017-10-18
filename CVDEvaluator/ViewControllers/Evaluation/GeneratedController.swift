@@ -337,13 +337,18 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		}
 		
 		self.startAnimating(CGSize(width:80, height:80), message: nil, messageFont: nil, type: NVActivityIndicatorType.ballPulse, color: UIColor(palette: ColorPalette.white), padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR, textColor: nil)
-		
-		if !model.isSaved || DataManager.manager.isEvaluationChanged() {
+
+		if (isSaveMode && !model.isSaved) ||
+			(model.isSaved && DataManager.manager.isEvaluationChanged()) ||
+			(!isSaveMode && DataManager.manager.isEvaluationChanged()) {
+			
+//		}
+//		if !model.isSaved || DataManager.manager.isEvaluationChanged() {
 			
 			let client: RestClient = RestClient.client
 			let inputs = DataManager.manager.getEvaluationItemsAsRequestInputsString(evaluation: model)
 			let saveMode: Bool = isSaveMode
-			let uuid: String? = model.isSaved ? model.evaluationUUID : nil
+			let uuid: String? = model.isSaved ? model.evaluationUUID : "0"
 			let patientname: String = (model.bio.name.storedValue?.value)!
 			let gender: Int = model.bio.gender.storedValue?.value == "male" ? 1 : 2
 			

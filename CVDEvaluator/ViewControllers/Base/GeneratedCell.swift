@@ -152,11 +152,13 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 		self.titleLabel?.textColor = CVDStyle.style.defaultFontColor
 		self.titleLabel?.font = CVDStyle.style.currentFont
 		
-		self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		//self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+		self.backgroundColor = UIColor(palette: ColorPalette.white)
 		
 		let isMandatory = cellModel.storedValue?.isMandatory ?? false
 		let isSelected = cellModel.form.isSelected
 		if isSelected {
+			self.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
 			//self.backgroundColor = UIColor(palette: ColorPalette.white)
 		}
 		if cellModel.form.itemType == .separator {
