@@ -11,6 +11,9 @@ import NVActivityIndicatorView
 
 
 class SplashController: UIViewController, NVActivityIndicatorViewable {
+	
+	static let segueFromSplashToLogin = "loginSegueID"
+	
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,7 +35,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 				guard error == nil else {
 					//print("Server returned error \(String(describing: error))")
 					UIAlertController.infoAlert(message: error!.userInfo["message"] as? String, title: "Cannot Login".localized, viewcontroller: self, handler: {
-						self.performSegue(withIdentifier: "loginSegueID", sender: nil)
+						self.performSegue(withIdentifier: SplashController.segueFromSplashToLogin, sender: nil)
 					})
 					return
 				}
@@ -45,7 +48,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 					//}
 				}
 				else if data == "nopass" {
-					self.performSegue(withIdentifier: "loginSegueID", sender: nil)
+					self.performSegue(withIdentifier: SplashController.segueFromSplashToLogin, sender: nil)
 				}
 			}
 			
@@ -54,7 +57,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
 			}
 		}
 		else {
-			self.performSegue(withIdentifier: "loginSegueID", sender: nil)
+			self.performSegue(withIdentifier: SplashController.segueFromSplashToLogin, sender: nil)
 		}
 	}
 

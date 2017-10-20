@@ -51,7 +51,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAx-YN-aYu">
                                         <rect key="frame" x="0.0" y="115" width="375" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123 456" borderStyle="roundedRect" placeholder="xxxxx" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jFu-ZU-ktw" userLabel="Verification Code">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="255" verticalCompressionResistancePriority="755" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123 456" borderStyle="roundedRect" placeholder="XXXXX" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jFu-ZU-ktw" userLabel="Verification Code">
                                                 <rect key="frame" x="20" y="6" width="335" height="38"/>
                                                 <color key="textColor" red="0.1215686275" green="0.16078431369999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -146,6 +146,7 @@
                     <connections>
                         <outlet property="codeField" destination="jFu-ZU-ktw" id="Akq-n7-KnF"/>
                         <outlet property="submitButton" destination="umw-2q-uBr" id="sBD-ca-mY2"/>
+                        <segue destination="L11-P4-7bA" kind="show" identifier="loginSegueID" id="ebF-sI-nnI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13C-uD-EGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -765,6 +766,7 @@
         <image name="splash" width="320" height="569"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WwU-zQ-qbO"/>
+        <segue reference="ebF-sI-nnI"/>
+        <segue reference="cB6-dO-WgG"/>
     </inferredMetricsTieBreakers>
 </document>

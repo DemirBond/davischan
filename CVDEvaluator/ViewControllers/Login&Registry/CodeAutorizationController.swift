@@ -16,6 +16,8 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 	@IBOutlet weak var codeField: UITextField!
 	@IBOutlet weak var submitButton: UIButton!
 	
+	static let segueFromAuthorizationToLogin = "loginSegueID"
+	
 	override var createdID: String! { return "codeAutorization" }
 	
 	
@@ -73,9 +75,11 @@ class CodeAutorizationController: BaseController, UITextFieldDelegate, MFMailCom
 			if data == "success" {
 				DispatchQueue.main.async {
 					UIAlertController.infoAlert(message: nil, title: "Authorized".localized, viewcontroller: self, handler: {
-						let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
-						let destanation = medicalStoriboard.instantiateInitialViewController()						
-						UIApplication.shared.keyWindow?.rootViewController = destanation
+						//let medicalStoriboard = UIStoryboard(name: "Medical", bundle: nil)
+						//let destanation = medicalStoriboard.instantiateInitialViewController()
+						//UIApplication.shared.keyWindow?.rootViewController = destanation
+						
+						self.performSegue(withIdentifier: CodeAutorizationController.segueFromAuthorizationToLogin, sender: nil)						
 					})
 				}
 			}

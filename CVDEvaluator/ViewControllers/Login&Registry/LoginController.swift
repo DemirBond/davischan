@@ -26,9 +26,9 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 	
 	var activeRect: CGRect = CGRect()
 	
-	static let registerSegueID = "registerSegueID"
-	static let resetSegueID = "resetSegueID"
-	static let verificationCodeSegueID = "verificationCodeSegueID"
+	static let segueFromLoginToRegister = "registerSegueID"
+	static let segueFromLoginToReset = "resetSegueID"
+	static let segueFromLoginToAuthorization = "verificationCodeSegueID"
 	
 	override var createdID: String! { return "login" }
 	
@@ -153,13 +153,13 @@ class LoginController: BaseController, UITextFieldDelegate, UIGestureRecognizerD
 	
 	@IBAction func registerAction(_ sender: AnyObject) {
 		hideKeyboard()
-		self.performSegue(withIdentifier: LoginController.registerSegueID, sender: nil)
+		self.performSegue(withIdentifier: LoginController.segueFromLoginToRegister, sender: nil)
 	}
 	
 	
 	@IBAction func resetAction(_ sender: AnyObject) {
 		hideKeyboard()
-		self.performSegue(withIdentifier: LoginController.resetSegueID, sender: nil)
+		self.performSegue(withIdentifier: LoginController.segueFromLoginToReset, sender: nil)
 	}
 	
 	

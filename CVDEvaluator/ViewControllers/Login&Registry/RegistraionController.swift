@@ -27,7 +27,7 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 	
 	var activeRect: CGRect = CGRect()
 	
-	static let verificationCodeSegueID = "verificationCodeSegueID"
+	static let segueFromRegisterToAuthorization = "verificationCodeSegueID"
 	
 	override var createdID: String! { return "registration" }
 	
@@ -137,7 +137,7 @@ class RegistraionController: BaseController, UIGestureRecognizerDelegate, NVActi
 					//let destination = medicalStoriboard.instantiateInitialViewController()
 					//UIApplication.shared.keyWindow?.rootViewController = destination
 					
-					self.performSegue(withIdentifier: RegistraionController.verificationCodeSegueID, sender: nil)
+					self.performSegue(withIdentifier: RegistraionController.segueFromRegisterToAuthorization, sender: nil)
 				}
 			}
 		}
