@@ -22,7 +22,7 @@ class CVDToolbar: UIToolbar {
 	override func sizeThatFits(_ size: CGSize) -> CGSize {
 		
 		var newSize: CGSize = super.sizeThatFits(size)
-		newSize.height = 60  // there to set your toolbar height
+		newSize.height = 56  // there to set your toolbar height
 		
 		return newSize
 	}
@@ -43,19 +43,19 @@ class CVDToolbar: UIToolbar {
 			
 			let screenSize: CGRect = UIScreen.main.bounds
 			
-			let button = UIButton(frame: CGRect(x: 24, y: 6, width: screenSize.width - 80, height: 48) )
+			let button = UIButton(frame: CGRect(x: 24, y: 0, width: screenSize.width - 80, height: 56) )
 			button.setTitle(rightBottom, for: .normal)
-			button.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 19)
+			button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 19)
 			button.setTitleColor(UIColor(palette: ColorPalette.lighterPurple), for: UIControlState.normal)
 			//button.backgroundColor = UIColor(palette: ColorPalette.lighterPurple)
 			//button.layer.cornerRadius = 5
 			// button.layer.borderWidth = 1
 			button.addTarget(target, action: actions[0]!, for: .touchUpInside)
 			
-			let disclosureImageView = UIImageView(frame: CGRect(x: screenSize.width - 50, y: 18, width: 24, height: 24) )
+			let disclosureImageView = UIImageView(frame: CGRect(x: screenSize.width - 50, y: 16, width: 24, height: 24) )
 			disclosureImageView.image = UIImage(named: "chevron")
 			
-			let bottomView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width - 32, height: 60))
+			let bottomView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width - 32, height: 56))
 			bottomView.addSubview(button)
 			bottomView.addSubview(disclosureImageView)
 			
