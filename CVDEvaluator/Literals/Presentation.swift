@@ -842,7 +842,7 @@ struct Presentation {
 	//
 	// MARK: - Renal
 	//
-	static let acuteRF = "#id:chkWG | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
+	static let acuteRF = "#id:ChkWG | #title: Acute Renal Failure / Worsening Renal Function | #type:#disclosureControl"
 	static let chronicKD = "#id:chkCKD | #title: Chronic kidney disease | #type:#disclosureControl"
 	
 	// Renal -> Acute Renal Failure / Worsening Renal Function
