@@ -113,7 +113,7 @@ enum ItemType: String {
 			return 70.0
 			
 		case .appInfo:
-			return 200.0
+			return 140.0
 			
 		default:
 			return 70.0

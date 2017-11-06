@@ -27,7 +27,7 @@ class About: EvaluationItem {
 			appCell,
 //			rateApp,
 //			writeAReview,
-			separator1,
+//			separator1,
 			privacyPolicy,
 			termsOfUse,
 			helpSupport,

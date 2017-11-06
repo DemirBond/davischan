@@ -14,7 +14,7 @@ struct General {
 	static let about = "#type:#model| #title:About| #id: about"
 
 	static let version = "#id:version | #title: Version | #subtitle: AppVersion | #type:#disclousreNoArrow"
-	static let appCell = "#id:appCell | #title: CVDEvaluator | #subtitle: Subtitle text| #type:#appInfo | #height: 200"
+	static let appCell = "#id:appCell | #title: CVDEvaluator | #subtitle: Subtitle text| #type:#appInfo | #height: 140"
 	static let rateApp = "#id:rateApp | #title: Rate App | #type:#simple"
 	static let writeAReview = "#id:writeAReview | #title: Write A Review | #type:#simple"
 	static let rateAppCell = "#id:rateAppCell | #title: Rate App | #type:#custom"
