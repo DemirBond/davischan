@@ -21,9 +21,11 @@ class RestClient: NSObject {
 	static let registerUrl: String = baseUrl + "api/account/Register"
 	static let activateUrl: String = baseUrl + "api/account/Activate"
 	static let logoutUrl: String = baseUrl + "api/account/Logout"
-	static let computeEvaluationUrl: String = baseUrl + "api/Values"
-	static let retreiveEvaluationsUrl: String = baseUrl + "api/Values"
-	static let deleteEvaluationUrl: String = baseUrl + "api/Values"
+	static let computeEvaluationUrl: String = baseUrl + "api/evaluation/Evaluate"
+	static let saveEvaluationUrl: String = baseUrl + "api/evaluation/SaveEvaluation"
+	static let retreiveEvaluationsUrl: String = baseUrl + "api/evaluation/GetAllEvaluations"
+	static let retreiveEvaluationByIDUrl: String = baseUrl + "api/evaluation/GetEvaluationById"
+	static let deleteEvaluationUrl: String = baseUrl + "api/evaluation/DeleteEvaluationById"
 
 	var token: String = ""
 	var isLoggedIn: Bool = false
@@ -41,7 +43,8 @@ class RestClient: NSObject {
 			"Accept": "application/json"
 		]
 		
-		Alamofire.request(RestClient.computeEvaluationUrl, method: .get, parameters: evaluationRequest.toDictionary(), headers: headers).responseJSON { (responseObject) -> Void in
+		let evaluationUrl = evaluationRequest.name.isEmpty ? RestClient.computeEvaluationUrl : RestClient.saveEvaluationUrl
+		Alamofire.request(evaluationUrl, method: .get, parameters: evaluationRequest.toDictionary(), headers: headers).responseJSON { (responseObject) -> Void in
 			//print(responseObject)
 			if responseObject.result.isSuccess {
 				let resJson = JSON(responseObject.result.value!)
@@ -148,7 +151,7 @@ class RestClient: NSObject {
 			"Authorization": token,
 			"Accept": "application/json"
 		]
-		Alamofire.request(RestClient.retreiveEvaluationsUrl, method: .get, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
+		Alamofire.request(RestClient.retreiveEvaluationByIDUrl, method: .get, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
 			if responseObject.result.isSuccess {
 				let resJson = JSON(responseObject.result.value!)
 				success(resJson)
