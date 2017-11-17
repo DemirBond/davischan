@@ -43,7 +43,7 @@ class RestClient: NSObject {
 			"Accept": "application/json"
 		]
 		
-		let evaluationUrl = evaluationRequest.name.isEmpty ? RestClient.computeEvaluationUrl : RestClient.saveEvaluationUrl
+		let evaluationUrl = evaluationRequest.isSave ? RestClient.saveEvaluationUrl : RestClient.computeEvaluationUrl
 		Alamofire.request(evaluationUrl, method: .get, parameters: evaluationRequest.toDictionary(), headers: headers).responseJSON { (responseObject) -> Void in
 			//print(responseObject)
 			if responseObject.result.isSuccess {
@@ -171,7 +171,7 @@ class RestClient: NSObject {
 			"Authorization": token,
 			"Accept": "application/json"
 		]
-		Alamofire.request(RestClient.deleteEvaluationUrl, method: .delete, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
+		Alamofire.request(RestClient.deleteEvaluationUrl, method: .get, parameters: params, headers:headers).responseJSON {(responseObject) -> Void in
 			if responseObject.result.isSuccess {
 				let resJson = JSON(responseObject.result.value!)
 				success(resJson)
