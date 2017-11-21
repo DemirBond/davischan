@@ -625,7 +625,7 @@ class DataManager {
 				
 				if savedPatients != nil && savedPatients?.count != 0 {
 					for savedPatient: Patient in savedPatients! {
-						if patientJson["ID"].stringValue == savedPatient.evaluationUUID {
+						/*if patientJson["ID"].stringValue == savedPatient.evaluationUUID {
 					
 							isExist = true
 							deleteIndex[savedPatient.evaluationUUID!] = false
@@ -649,7 +649,8 @@ class DataManager {
 								savedPatient.setValue(patientJson["createdate"].stringValue, forKey: "dateCreated")
 								savedPatient.setValue(patientJson["createdate"].stringValue, forKey: "dateModified")
 							}
-						}
+						}*/
+						self.managedObjectContext.delete(savedPatient)
 					}
 				}
 				
@@ -665,11 +666,11 @@ class DataManager {
 				}
 			}
 			
-			for savedPatient: Patient in savedPatients! {
+			/*for savedPatient: Patient in savedPatients! {
 				if deleteIndex[savedPatient.evaluationUUID!] == true {
 					self.managedObjectContext.delete(savedPatient)
 				}
-			}
+			}*/
 			
 			self.saveContext()
 			
@@ -844,7 +845,7 @@ class DataManager {
 	
 	func isEvaluationChanged() -> Bool {
 		
-		if DataManager.manager.evaluation?.isSaved == false { // compare for only computing
+		/*if DataManager.manager.evaluation?.isSaved == false { // compare for only computing
 			if DataManager.manager.evalCache == nil {
 				return true
 			}
@@ -913,7 +914,7 @@ class DataManager {
 					}
 				}
 			}
-		}
+		}*/
 		
 		return true
 	}

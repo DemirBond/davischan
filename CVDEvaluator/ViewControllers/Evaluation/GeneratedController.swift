@@ -681,6 +681,12 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			
 		}
 		
+		if pageForm.title == DataManager.manager.evaluation!.outputInMain.title {
+			if itemModel.subtitle == "No Result" {
+				return 0
+			}
+		}
+		
 		return itemModel.calculateCellHeight(forWidth: self.view.frame.size.width)
 	}
 	

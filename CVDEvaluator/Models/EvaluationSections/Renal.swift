@@ -18,8 +18,8 @@ class Renal: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
-			acuteRenalFailure,
-			chronicKidneydisease
+			chronicKidneydisease,
+			acuteRenalFailure
 		]
 	}
 }
