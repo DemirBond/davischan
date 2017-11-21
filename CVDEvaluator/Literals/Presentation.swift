@@ -128,12 +128,12 @@ struct Presentation {
 	
 	// Symptoms -> Dyspnea: https://zpl.io/Z1jN2eH
 	static let pleaseSelectOneLabel = "#id:pleaseSelectOneLabel|    #title:Please select one|    #type:#label "
-	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:Unknown, suspected HF|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
-	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Chronic HF with Known Etiology|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
-	static let chronicLungDisease = "#id:chklung|    #title:Chronic Lung Disease|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
+	static let newOnsetSuspectedHF = "#id:chknewHF|    #title:Dyspnea unknown or < 6 weeks|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
+	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Known HF, click Heart Failure tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
+	static let chronicLungDisease = "#id:chklung|    #title:Known lung disease, click Pulmonary tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	
-	static let outpatient = "#id:chkD5| #title:Slowly Progressive / Ambulatory |    #type:#check|"
-	static let emergencyRoom = "#id:chkD4| #title:Worsening / Emergency room |    #type:#check"
+	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient |    #type:#check|"
+	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room |    #type:#check"
 	
 	// Symptoms -> Dyspnea -> Decompensated / Hospitalized
 	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureControlExpandable"
@@ -142,12 +142,12 @@ struct Presentation {
 	static let day3 = "#id:chkD3|    #title:Day 3|    #type:#check"
 	
 	// Symptoms -> Dyspnea -> Dyspnea on Exertion https://zpl.io/xTF0A
-	static let dyspneaOnExertionNotAtRest = "#id:chkDOE|    #title:Dyspnea on Exertion|    #type:#disclosureControlExpandable"
+	static let dyspneaOnExertionNotAtRest = "#id:chkDOE|    #title:Dyspnea on Exertion, not at Rest|    #type:#disclosureControlExpandable"
 	static let strenousExertion = "#id:chkclass1|    #title:Strenous Exertion|    #type:#check"
 	static let moreThanDailyRoutine = "#id:chkclass2|    #title:More than Daily Routine|    #type:#check"
 	static let dailyRoutineMinimalActivities = "#id:chkclass3|    #title:Daily Routine / Minimal Activities |  #type:#check"
 	
-	static let dyspneaAtRestOrphopnea = "#id:chkdysp|    #title:Dyspnea at Rest|    #type:#check"
+	static let dyspneaAtRestOrphopnea = "#id:chkdysp|    #title:Dyspnea at Rest / Orthopnea|    #type:#check"
 	static let weightGain = "#id:chkWeight|    #title:Weight Gain|    #type:#check"
 	
 	// Symptoms -> Chest Pain https://zpl.io/xUvxt
@@ -931,28 +931,29 @@ struct Presentation {
 	static let kmeql = "#id:txtHomo | #title:K meq/l |#type:#decimalRight | #min:2.0 | #max:9.0 | #placeholder: Value"
 	static let creatinineMgDl = "#id:txtcreatinine | #title:Creatinine mg/dl |#type:#decimalRight | #min:0.4 | #max:20.0 | #placeholder: Value"
 	static let bunMgDl = "#id:txtBUN | #title:BUN mg/dl |#type:#integerRight | #min:6 | #max:200 | #placeholder: Value"
-	static let fastingPlasmaGlucose = "#id:txtGlucose | #title:Glucose mg/dl |#type:#integerRight | #min:35 | #max:1000 | #placeholder: Value"
 	static let gfrMlMin173M2 = "#id:txtGFR | #title:GFR ml/min/1.73 M2 |#type:#integerRight | #min:5 | #max:120 | #placeholder: Value"
+	//static let hemoglobin = "#id:txtGFR | #title:Hemoglobin g/dl |#type:#integerRight | #min:0 | #max:1200 | #placeholder: Value"
 	static let worseningRenalFx = "#id:chkWG | #title:Worsening Renal Fx | #type:#check"
 	
 	static let lipidProfileLabel = "#id:lipidProfileLabel | #title:Lipid Profile | #type:#label"
-	static let alreadyOnStatin = "#id:chkalready | #title:Already on Statin | #type:#check"
 	static let statinIntolerance = "#id:chkstatint | #title:Statin Intolerance | #type:#check"
-	static let cholesterol = "#id:txtCholesterol | #title:Cholesterol |#type:#integerRight | #min:40 | #max:500 | #placeholder: Value"
-	static let trg = "#id:txtTRG | #title:TRG |#type:#integerRight | #min:25 | #max:25000 | #placeholder: Value"
+	static let cholesterol = "#id:txtCholesterol | #title:Total Cholesterol mg/dl |#type:#integerRight | #min:40 | #max:500 | #placeholder: Value"
+	static let trg = "#id:txtTRG | #title:Tryglyceride mg/dl |#type:#integerRight | #min:25 | #max:25000 | #placeholder: Value"
 	static let ldlc = "#id:txtLDL | #title:LDL-C |#type:#integerRight | #min:0 | #max:500 | #placeholder: Value"
 	static let hdlc = "#id:txtHDL | #title:HDL-C |#type:#integerRight | #min:1 | #max:200 | #placeholder: Value"
 	static let apoB = "#id:txtApoB | #title:Apo B |#type:#integerRight | #min:0 | #max:400 | #placeholder: Value"
 	static let ldlp = "#id:txtLDLP | #title:LDL-P |#type:#integerRight | #min:100 | #max:5000 | #placeholder: Value"
 	static let lpaMgdl = "#id:txtLPA | #title:LPa mg/dl |#type:#integerRight | #min:1 | #max:500 | #placeholder: Value"
-	static let ascvdRisk = "#id:txtASCVD | #title:ASCVD Risk |#type:#decimalRight | #min:0.1 | #max:30 | #placeholder: Value"
+	static let alreadyOnStatin = "#id:chkalready | #title:Already on Statin | #type:#check"
+	static let ascvdRisk = "#id:txtASCVD | #title:10 Year ASCVD Risk |#type:#decimalRight | #min:0.1 | #max:30 | #placeholder: Value"
 	
 	static let othersLabel = "#id:othersLabel | #title:Others | #type:#label"
+	static let fastingPlasmaGlucose = "#id:txtGlucose | #title:Glucose |#type:#integerRight | #min:35 | #max:1000 | #placeholder: Value"
 	static let hba1c = "#id:txtHBA1C | #title:HBA1C |#type:#decimalRight | #min:4.9 | #max:19.99 | #placeholder: Value"
 	static let crpMgl = "#id:txtCRP | #title:CRP mg/l |#type:#decimalRight | #min:0.1 | #max:30.0 | #placeholder: Value"
 	static let ntProBNPPgMl = "#id:txtproBNP | #title:NT-proBNP pg/ml |#type:#integerRight | #min:50 | #max:100000 | #placeholder: Value"
 	static let bnpPgMl = "#id:txtBNP | #title:BNP pg/ml |#type:#integerRight | #min:10 | #max:100000 | #placeholder: Value"
-	static let albuminuriaMgGmOrMg24hr = "#id:txtMICRO | #title:Albuminuria Mg.Gm or Mg/24hr |#type:#integerRight | #min:1 | #max:10000 | #placeholder: Value"
+	static let albuminuriaMgGmOrMg24hr = "#id:txtMICRO | #title:Albumin/creatinin mg/G |#type:#integerRight | #min:1 | #max:10000 | #placeholder: Value"
 	
 	// Laboratories -> Abnormal urine sediment
 	static let abnormalurinsediment = "#id:chksediment | #title:Abnormal urine sediment | #type:#disclosureControl"
@@ -960,7 +961,7 @@ struct Presentation {
 	static let rbccast = "#id:chkRBCcast | #title: RBC Cast| #type:#check"
 	static let wbccast = "#id:chkWBCcast | #title: WBC Cast | #type:#check"
 	static let granularcast = "#id:chkgranular | #title:Granular Cast | #type:#check"
-	static let ovalcellbodies = "#id:chkoval | #title:Oval Cell Bodies | #type:#check"
+	static let ovalcellbodies = "#id:chkoval | #title:Oval fat bodies | #type:#check"
 
 	
 	//

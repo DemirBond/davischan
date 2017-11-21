@@ -18,12 +18,10 @@ class Laboratories: EvaluationItem {
 	let kmeql = EvaluationItem(literal: Presentation.kmeql)
 	let creatinineMgDl = EvaluationItem(literal: Presentation.creatinineMgDl)
 	let bunMgDl = EvaluationItem(literal: Presentation.bunMgDl)
-	let fastingPlasmaGlucose = EvaluationItem(literal: Presentation.fastingPlasmaGlucose)
 	let gfrMlMin173M2 = EvaluationItem(literal: Presentation.gfrMlMin173M2)
 	let worseningRenalFx = EvaluationItem(literal: Presentation.worseningRenalFx)
 	
 	let lipidProfileLabel = EvaluationItem(literal: Presentation.lipidProfileLabel)
-	let alreadyOnStatin = EvaluationItem(literal: Presentation.alreadyOnStatin)
 	let statinIntolerance = EvaluationItem(literal: Presentation.statinIntolerance)
 	let cholesterol = EvaluationItem(literal: Presentation.cholesterol)
 	let trg = EvaluationItem(literal: Presentation.trg)
@@ -32,9 +30,11 @@ class Laboratories: EvaluationItem {
 	let apoB = EvaluationItem(literal: Presentation.apoB)
 	let ldlp = EvaluationItem(literal: Presentation.ldlp)
 	let lpaMgdl = EvaluationItem(literal: Presentation.lpaMgdl)
+	let alreadyOnStatin = EvaluationItem(literal: Presentation.alreadyOnStatin)
 	let ascvdRisk = EvaluationItem(literal: Presentation.ascvdRisk)
 	
 	let othersLabel = EvaluationItem(literal: Presentation.othersLabel)
+	let fastingPlasmaGlucose = EvaluationItem(literal: Presentation.fastingPlasmaGlucose)
 	let hba1c = EvaluationItem(literal: Presentation.hba1c)
 	let crpMgl = EvaluationItem(literal: Presentation.crpMgl)
 	let ntProBNPPgMl = EvaluationItem(literal: Presentation.ntProBNPPgMl)
@@ -49,12 +49,10 @@ class Laboratories: EvaluationItem {
 			kmeql,
 			creatinineMgDl,
 			bunMgDl,
-			fastingPlasmaGlucose,
 			gfrMlMin173M2,
-			worseningRenalFx,
+			//worseningRenalFx,
 			
 			lipidProfileLabel,
-			alreadyOnStatin,
 			statinIntolerance,
 			cholesterol,
 			trg,
@@ -63,9 +61,11 @@ class Laboratories: EvaluationItem {
 			apoB,
 			ldlp,
 			lpaMgdl,
+			alreadyOnStatin,
 			ascvdRisk,
 			
 			othersLabel,
+			fastingPlasmaGlucose,
 			hba1c,
 			crpMgl,
 			ntProBNPPgMl,

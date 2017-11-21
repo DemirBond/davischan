@@ -149,18 +149,18 @@ class DyspneaOnExertionNotAtRest: EvaluationItem {
 
 class ChestPain: EvaluationItem {
 	
-	let emergencyRoom = EmergencyRoomInChestPain(literal: Presentation.emergencyRoomInChestPain)
 	var typicalAnginaNew = TypicalAnginaNewInChestPain(literal: Presentation.typicalAnginaNewInChestPain)
 	let probableAngina = ProbableAnginaInChestPain(literal: Presentation.probablyAnginaNewInChestPain)
 	var undeterminedCP = UndeterminedCPInChestPain(literal: Presentation.undeterminedCPNewInChestPain)
+	let emergencyRoom = EmergencyRoomInChestPain(literal: Presentation.emergencyRoomInChestPain)
 	let unableToExercise = EvaluationItem(literal: Presentation.unableToExerciseInChestPain)
 	
 	override var items: [EvaluationItem] {
 		return [
-			emergencyRoom,
 			typicalAnginaNew,
 			probableAngina,
 			undeterminedCP,
+			emergencyRoom,
 			unableToExercise
 		]
 	}

@@ -32,8 +32,8 @@ class Pulmonary: EvaluationItem {
 			po2,
 			nsevere,
 			asthmadisease,
-			copd,
-			interstitialLungDisease
+			interstitialLungDisease,
+			copd
 		]
 	}
 }
@@ -89,7 +89,7 @@ class LungCOPD: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
-			acute,
+			//acute,
 			copdex,
 			copdhos
 		]
