@@ -28,7 +28,6 @@ class StoredValue {
 		
 	var valueDict: Dictionary<String, Any> {
 		var dict = [String : Any]()
-		
 		dict = ["type": valueType.rawValue, "checked": isChecked]
 		dict["value"] = value != nil ? value : NSNull()
 		
@@ -57,7 +56,6 @@ class StoredValue {
 	
 	
 	func validateValue() throws {
-		
 		switch self.valueType {
 		case ValueType.integer:
 			if value != nil && value!.characters.count > 0 {

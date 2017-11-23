@@ -93,6 +93,10 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func viewDidAppear(_ animated: Bool) {
+//		// added bio is viewd to this, possible fix to bug of reentering bio twice
+//		DataManager.manager.evaluation!.isBioViewed = true
+//		print("Bio is viewed")
+		
 		super.viewDidAppear(animated)
 		
 	}
@@ -111,6 +115,7 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	func validatePage() -> Bool {
+		//print("Validate Page being called")
 		do {
 			try pageForm.validateEvaluationItem()
 			return true
@@ -168,12 +173,18 @@ class BioController: BaseTableController, NVActivityIndicatorViewable { //, UITa
 	
 	
 	override func leftButtonAction(_ sender: UIBarButtonItem) {
+		// Added this section to fix double entering of bio page, problem was that when the user exited the page with the keyboard still up, the .isBioCompleted, would not evaulate.
+		self.hideKeyboard()
+		
 		if (DataManager.manager.evaluation?.isSaved)! {
 			DataManager.manager.evaluation?.evaluationStatus = .evaluated
+			
+
 		}
 		else {
 			if validatePage() {
 				DataManager.manager.evaluation!.isBioCompleted = true
+
 			}
 			else {
 				DataManager.manager.evaluation!.isBioViewed = true

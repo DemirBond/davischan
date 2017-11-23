@@ -20,22 +20,25 @@ enum EvaluationStatus: Int {
 }
 
 class Evaluation: EvaluationItem {
+
 	
 	var evaluationUUID: String!
 	var dateCreated: String?
 	var evaluationStatus: EvaluationStatus = EvaluationStatus.initialized {
 		didSet {
-			//print("Did change status \(evaluationStatus)")
+			print("Did change status \(evaluationStatus)")
 		}
 	}
 	var isBioViewed: Bool = false {
 		didSet {
 			completeScreen()
+			print("isbioviewed called bool = \(isBioViewed)");
 		}
 	}
 	var isBioCompleted: Bool = false {
 		didSet {
 			completeScreen()
+			print("isbiocompleted called bool = \(isBioCompleted)");
 		}
 	}
 	

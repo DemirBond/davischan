@@ -2400,6 +2400,24 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClearCardCell" rowHeight="178" id="7uN-t8-5BO" customClass="ClearCardCell">
+                                <rect key="frame" x="0.0" y="2860" width="375" height="178"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7uN-t8-5BO" id="gqD-Ui-kpr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="177.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gl-Lp-HbA">
+                                            <rect key="frame" x="164" y="73" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8gl-Lp-HbA" firstAttribute="centerX" secondItem="gqD-Ui-kpr" secondAttribute="centerX" id="CvK-qs-kJ6"/>
+                                        <constraint firstItem="8gl-Lp-HbA" firstAttribute="centerY" secondItem="gqD-Ui-kpr" secondAttribute="centerY" id="Scz-Am-JO2"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -5265,7 +5283,7 @@ E0w
         <image name="star-xxl-2x" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kIA-xh-b1S"/>
-        <segue reference="1xa-VW-5f1"/>
+        <segue reference="3dT-g9-ywJ"/>
+        <segue reference="coa-a7-lCu"/>
     </inferredMetricsTieBreakers>
 </document>

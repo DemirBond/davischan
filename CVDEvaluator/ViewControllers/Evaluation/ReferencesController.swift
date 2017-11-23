@@ -16,12 +16,15 @@ class ReferencesController: UIViewController, UIWebViewDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-
+		//print("referencewebview = : \(referenceWebView)")
 		referenceHtml = DataManager.manager.evaluation!.outputInMain.references.subtitle
 		
+		// FIXME: Cannot fix until API returns a split string. Errors on current string.
 		if referenceHtml != nil && referenceWebView != nil {
 			referenceWebView.loadHTMLString(referenceHtml!, baseURL: nil)
+			
+
+
 		}
 		
 		// Do any additional setup after loading the view.

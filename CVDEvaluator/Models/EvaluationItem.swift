@@ -496,9 +496,11 @@ class EvaluationItem  {
 	
 	func validateEvaluationItem() throws {
 		for item in self.items {
+
 			try item.storedValue?.validateValue()
 		}
 		for item in self.storedItems {
+	
 			try item.storedValue?.validateValue()
 		}
 	}

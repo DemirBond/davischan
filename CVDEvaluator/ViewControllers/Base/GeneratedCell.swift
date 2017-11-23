@@ -803,10 +803,12 @@ class RadioButtonCell: GeneratedCell {
 	@IBAction func pressActionUp(_ sender: UIButton) {
 		self.icon?.isHighlighted = false
 		isCheckedButton = !isCheckedButton
+
 	}
 	
 	@IBAction func pressActionOutside(_ sender: UIButton) {
 		self.icon?.isHighlighted = false
+
 	}
 }
 
@@ -1084,6 +1086,7 @@ class PartnerCardCell: GeneratedCell {
 		let controller = storyboard.instantiateViewController(withIdentifier: "SpecialistControllerID") as! SpecialistController
 		self.backgroundView = controller.view
 		//self.backgroundView?.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+
 	}
 }
 
@@ -1094,6 +1097,7 @@ class ReferencesCardCell: GeneratedCell {
 		let controller = storyboard.instantiateViewController(withIdentifier: "ReferencesControllerID") as! ReferencesController
 		self.backgroundView = controller.view
 		//self.backgroundView?.backgroundColor = UIColor(palette: ColorPalette.hanPurple)
+
 	}
 }
 
@@ -1106,5 +1110,6 @@ class OutputResultsCell: GeneratedCell {
 		self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 24.0)
 		self.subtitleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 19.0)
 		self.subtitleLabel?.textColor = CVDStyle.style.defaultFontColor
+
 	}
 }

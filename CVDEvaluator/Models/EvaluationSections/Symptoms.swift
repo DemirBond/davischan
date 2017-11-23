@@ -114,7 +114,7 @@ class Dyspnea: EvaluationItem {
 
 
 // MARK: - Symptoms -> Dyspnea -> Decompensated / Hospitalized
-
+// FIXME: This is not saving the checks inside the days mark
 class InHospitalLabel: EvaluationItem{
 	
 	let day1 = EvaluationItem(literal: Presentation.day1)
@@ -132,7 +132,7 @@ class InHospitalLabel: EvaluationItem{
 
 
 // MARK: - Symptoms -> Dyspnea -> Dyspnea on Exertion
-
+//FIXME: Also not saving the checks inside this marks
 class DyspneaOnExertionNotAtRest: EvaluationItem {
 	
 	let strenousExertion = EvaluationItem(literal: Presentation.strenousExertion)

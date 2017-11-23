@@ -119,6 +119,11 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 			case .initialized:
 				lockItems(array: [model.symptoms, model.physicalExam, model.cvProfile, model.reviewOfSystem, model.pulmonary, model.renal, model.riskFactors,
 				                  model.surgicalRisk, model.laboratories, model.diagnostics, model.nsr])
+				// FIXME: Fixed this area by adding a line to forward user
+				let storyboard = UIStoryboard(name: "Medical", bundle: nil)
+				let controller = storyboard.instantiateViewController(withIdentifier: "BioControllerID") as! BioController
+				controller.pageForm = DataManager.manager.evaluation!.items[0]
+				self.navigationController?.pushViewController(controller, animated: true)
 			
 			case .bioViewed:
 				()
@@ -204,7 +209,6 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 		
 		self.showCVDAlert(title: title, message: description, actions: alertActions)
 	}
-	
 	
 	private func showLockedScreenAlert(for item: EvaluationItem) {
 		
@@ -381,6 +385,7 @@ class EvaluationController: BaseTableController, NVActivityIndicatorViewable {
 						let controller = storyboard.instantiateViewController(withIdentifier: "GeneratedControllerID") as! GeneratedController
 						controller.pageForm = DataManager.manager.evaluation!.outputInMain
 						self.navigationController?.pushViewController(controller, animated: false)
+						
 					}
 					
 				}, failure: { error in print(error)

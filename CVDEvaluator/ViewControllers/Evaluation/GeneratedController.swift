@@ -100,6 +100,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			self.toolbarItems = toolbar.barItems
 			
 		} else if let id = CVDStyle.style.smartLink(from: pageForm.identifier) {
+			
 			self.navigationController?.setToolbarHidden(false, animated: false)
 			
 			let model = DataManager.manager.evaluation!.model(with: id)
@@ -319,6 +320,7 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 			else if type == ItemType.radio {
 				if let _: String = item.storedValue?.radioGroup?.selectedRadioItem {
 					item.storedValue?.radioGroup?.selectedRadioItem = nil
+					
 				}
 			}
 		}
@@ -525,7 +527,8 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let itemModel = pageForm.items[indexPath.row]
-		
+
+
 		let cellType = itemModel.form.itemType
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier(), for: indexPath) as! GeneratedCell
 		cell.delegate = self
