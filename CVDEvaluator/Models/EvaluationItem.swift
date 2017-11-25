@@ -52,7 +52,6 @@ class ItemForm {
 func setupEvaluation(evaluationItem: EvaluationItem) {
 	for item in evaluationItem.items {
 		item.parentItem = evaluationItem
-		
 		if let group = item.storedValue?.radioGroup {
 			if let commonGroup = groupPresented(group: group, in: evaluationItem.radioGroups) {
 				item.storedValue?.radioGroup = commonGroup
@@ -261,6 +260,7 @@ class EvaluationItem  {
 				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
 				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
 			}
+			
 		}
 		if self.items.isEmpty {
 			return
