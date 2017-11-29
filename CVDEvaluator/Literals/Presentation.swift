@@ -109,6 +109,8 @@ struct Presentation {
 	// Bio -> Gender: https://zpl.io/Z16UrC4
 	static let male = 		"#id:male|    #title:Male|    #type:#radio | #group: (male, female)"
 	static let female = 		"#id:female|    #title:Female|    #type:#radio | #group: (male, female)"
+//	static let male = 		"#id:male|    #title:Male|    #type:#check"
+//	static let female = 		"#id:female|    #title:Female|    #type:#check"
 	
 	static let maleInHMS = 		"#id:maleInHMS|    #title:Male|    #type:#radio | #group: (maleInHMS, femaleInHMS)"
 	static let femaleInHMS = 		"#id:femaleInHMS|    #title:Female|    #type:#radio | #group: (maleInHMS, femaleInHMS)"
@@ -132,11 +134,12 @@ struct Presentation {
 	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Known HF, click Heart Failure tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	static let chronicLungDisease = "#id:chklung|    #title:Known lung disease, click Pulmonary tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	
-	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient |    #type:#check|"
-	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room |    #type:#check"
+	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient |    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
+	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room |    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
 	
 	// Symptoms -> Dyspnea -> Decompensated / Hospitalized
-	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureControl"
+	//static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureControl"
+	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
 	static let day1 = "#id:chkD1|    #title:Day 1|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
 	static let day2 = "#id:chkD2|    #title:Day 2|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
 	static let day3 = "#id:chkD3|    #title:Day 3|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
@@ -275,10 +278,14 @@ struct Presentation {
 	
 	// Symptoms  -> Palpitations -> Frequency
 	static let frequencyPalpitationsLabel = "#id: frequencyLabel| #title:Frequency | #type:#label"
-	static let dailyFreqPalpitations = "#id:chkpalday | #title:Daily | #type:#check"
-	static let weeklyFreqPalpitations = "#id:chkpalweek | #title:Weekly | #type:#check"
-	static let monthlyFreqPalpitations = "#id:chkpalmonth | #title:Monthly | #type:#check"
-	static let yearlyFreqPalpitations = "#id:chkpalyear | #title:Yearly| #type:#check"
+	static let dailyFreqPalpitations = "#id:chkpalday | #title:Daily | #type:#radio | #group: (chkpalday,chkpalweek,chkpalmonth, chkpalyear)"
+	static let weeklyFreqPalpitations = "#id:chkpalweek | #title:Weekly | #type:#radio | #group: (chkpalday,chkpalweek,chkpalmonth, chkpalyear)"
+	static let monthlyFreqPalpitations = "#id:chkpalmonth | #title:Monthly | #type:#radio | #group: (chkpalday,chkpalweek,chkpalmonth, chkpalyear)"
+	static let yearlyFreqPalpitations = "#id:chkpalyear | #title:Yearly| #type:#radio | #group: (chkpalday,chkpalweek,chkpalmonth, chkpalyear)"
+//	static let dailyFreqPalpitations = "#id:chkpalday | #title:Daily | #type:#check"
+//	static let weeklyFreqPalpitations = "#id:chkpalweek | #title:Weekly | #type:#check"
+//	static let monthlyFreqPalpitations = "#id:chkpalmonth | #title:Monthly | #type:#check"
+//	static let yearlyFreqPalpitations = "#id:chkpalyear | #title:Yearly| #type:#radio | #group: (chkpalday,chkpalweek,chkpalmonth, chkpalyear)"
 	
 	// Symptoms -> Palpitations -> Type
 	static let typePalpitationsLabel = "#id: typePalpitations | #title:Type | #type:#label"
@@ -307,9 +314,9 @@ struct Presentation {
 
 	// Symptoms -> Palpitations -> Ekg
 	static let ekgPalpitationsLabel = "#id: ekgPalpitations | #title:EKG During Symptoms | #type:#label"
-	static let nsrEkgPalpitations = "#id:chkpalNSR | #title:Normal Sinus Rhtym | #type:#check"
-	static let regularEkgPalpitations = "#id:chkpalregRR | #title:Regular RR, other than sinus | #type:#check"
-	static let irregularEkgPalpitations = "#id:chkpalirregRR | #title:Irregular RR, other than sinus | #type:#check"
+	static let nsrEkgPalpitations = "#id:chkpalNSR | #title:Normal Sinus Rhtym | #type:#radio | #group:(chkpalNSR, chkpalregRR,chkpalirregRR)"
+	static let regularEkgPalpitations = "#id:chkpalregRR | #title:Regular RR, other than sinus | #type:#radio | #group:(chkpalNSR, chkpalregRR,chkpalirregRR)"
+	static let irregularEkgPalpitations = "#id:chkpalirregRR | #title:Irregular RR, other than sinus | #type:#radio | #group:(chkpalNSR, chkpalregRR,chkpalirregRR)"
 	
 	// Symptoms -> Palpitations -> Onset, trigger
 	static let onsetPalpitationsLabel = "#id: onsetPalpitations | #title:Onset, Trigger | #type:#label"
@@ -320,9 +327,9 @@ struct Presentation {
 	
 	// Symptoms ->Abdominal Pain -> Quality
 	static let qualityAbdominalPainLabel = "#type:#label | #title: Quality | #id: qualityAbdominalPain"
-	static let sharpQualityAbdominalPain = "#id:chkAbsharp | #title:Sharp | #type:#check"
-	static let colickyQualityAbdominalPain = "#id:chkAbcolic | #title:Colicky | #type:#check"
-	static let achingQualityAbdominalPain = "#id:chkAbaching | #title:Aching or spasm | #type:#check"
+	static let sharpQualityAbdominalPain = "#id:chkAbsharp | #title:Sharp | #type:#radio | #group: (chkAbsharp, chkAbcolic, chkAbaching)"
+	static let colickyQualityAbdominalPain = "#id:chkAbcolic | #title:Colicky | #type:#radio | #group: (chkAbsharp, chkAbcolic, chkAbaching)"
+	static let achingQualityAbdominalPain = "#id:chkAbaching | #title:Aching or spasm | #type:#radio | #group: (chkAbsharp, chkAbcolic, chkAbaching)"
 	
 	// Symptoms ->Abdominal Pain -> Location
 	static let locationAbdominalPainLabel = "#type:#label | #title: Location | #id: locationAbdominalPain"
@@ -522,7 +529,7 @@ struct Presentation {
 	static let changingTropI = "#id:chkchangetrop | #title:Changing Trop I | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> Acute Coronary Syndrome -> STEMI https://zpl.io/Z1Kb0YP
-	static let durationhoursSTEMI = "#id:TxtSTEMIdur | #title:Duration/Hours | #type:#integerRight | #min:0 | #max:48 | #placeholder: Value"
+	static let durationhoursSTEMI = "#id:TxtSTEMIdur | #title:Time to Intervention/hours | #type:#integerRight | #min:0 | #max:48 | #placeholder: Value"
 	static let anteriorSTEMI = "#id:chkanterior | #title:Anterior | #type:#check"
 	static let inferiorSTEMI = "#id:chkinferior | #title:Inferior | #type:#check"
 	static let otherSTEMI = "#id:chkother | #title:Other | #type:#check"
@@ -534,9 +541,9 @@ struct Presentation {
 	static let cabg = "#id:chkCABG | #title:CABG | #type:#disclosureControl"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> PCI/CABG -> CABG https://zpl.io/1H0tEY
-	static let autoVein = "#id:chkautovein | #title:Auto Vein | #type:#radio | #group: (chkautovein, chkautoartery, chknonauto)"
-	static let autoArtery = "#id:chkautoartery | #title:Auto Artery | #type:#radio | #group: (chkautovein, chkautoartery, chknonauto)"
-	static let nonAuto = "#id:chknonauto | #title:Non Auto | #type:#radio | #group: (chkautovein, chkautoartery, chknonauto)"
+	static let autoVein = "#id:chkautovein | #title:Auto Vein | #type:#check"
+	static let autoArtery = "#id:chkautoartery | #title:Auto Artery | #type:#check"
+	static let nonAuto = "#id:chknonauto | #title:Non Auto | #type:#check"
 	
 	//	CurrentPast CV Profile -> Coronary Heart Disease -> Stable Ang https://zpl.io/1nIjn5 (Android)
 	static let nyhaccvsClass1 = "#id:chkNYHA1 | #title: NYHA/CCVS Class 1 | #type:#check"

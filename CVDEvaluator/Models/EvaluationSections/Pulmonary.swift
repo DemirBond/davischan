@@ -25,15 +25,16 @@ class Pulmonary: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			asthmadisease,
+			copd,
+			interstitialLungDisease,
 			fev1_lt,
 			fev1_percent,
 			fvc,
 			dlco,
 			po2,
 			nsevere,
-			asthmadisease,
-			interstitialLungDisease,
-			copd
+
 		]
 	}
 }

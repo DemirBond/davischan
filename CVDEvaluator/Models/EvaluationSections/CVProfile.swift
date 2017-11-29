@@ -86,12 +86,12 @@ class AcuteCoronarySyndrome: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			stemi,
 			moreAnginaIn24Hours,
 			anginaMore20min,
 			asaUseInPast1Week,
 			postiveTropIorT,
 			moreTwoAntanginal,
-			stemi,
 			refractoryAngina,
 			changingTropI
 		]
@@ -629,12 +629,12 @@ class ValvularHeartDiseaseInThrombVKA: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			blnsysemb,
 			blncage,
 			blnmech,
 			blnMdav,
 			blnRMVD,
 			blnbiop,
-			blnsysemb,
 			blnIE,
 			blnLPVT,
 			blnRPVT

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		788EF4E61FC65D7B00CEA079 /* RadioButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788EF4E51FC65D7B00CEA079 /* RadioButtonExtension.swift */; };
 		789268A51E6478C80018FEF5 /* Evaluation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 789268A31E6478C80018FEF5 /* Evaluation.xcdatamodeld */; };
 		78BF73E81E3F640F0040EC81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF73E71E3F640F0040EC81 /* AppDelegate.swift */; };
 		78BF73ED1E3F640F0040EC81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BF73EB1E3F640F0040EC81 /* Main.storyboard */; };
@@ -133,7 +132,6 @@
 
 /* Begin PBXFileReference section */
 		2AB6A5BC01152DFBE0438B0C /* Pods-CVDEvaluator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVDEvaluator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CVDEvaluator/Pods-CVDEvaluator.debug.xcconfig"; sourceTree = "<group>"; };
-		788EF4E51FC65D7B00CEA079 /* RadioButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonExtension.swift; sourceTree = "<group>"; };
 		789268A41E6478C80018FEF5 /* Evaluation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Evaluation.xcdatamodel; sourceTree = "<group>"; };
 		78BF73E41E3F640F0040EC81 /* Heart Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BF73E71E3F640F0040EC81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CVDEvaluator/AppDelegate.swift; sourceTree = "<group>"; };
@@ -484,7 +482,6 @@
 				BAB248671F71EFF70004642E /* KBNumberPad */,
 				BA49CD1A1F33A6650040060A /* AuxiliaryFunctions.swift */,
 				BA49CD0D1F33A5F80040060A /* ExpyTableView.swift */,
-				788EF4E51FC65D7B00CEA079 /* RadioButtonExtension.swift */,
 				BA49CD031F33A54E0040060A /* HexExtention.swift */,
 				BA49CD041F33A54E0040060A /* StringExtentions.swift */,
 				BA49CD051F33A54E0040060A /* UIAlertControllerExtention.swift */,
@@ -825,7 +822,6 @@
 				BA49CCEC1F33A35E0040060A /* SurgicalRisk.swift in Sources */,
 				BAB2486C1F71F1220004642E /* KBNumberPad.swift in Sources */,
 				BA49CC8D1F33A0410040060A /* MessageController.swift in Sources */,
-				788EF4E61FC65D7B00CEA079 /* RadioButtonExtension.swift in Sources */,
 				BA49CCF31F33A35E0040060A /* RadioGroup.swift in Sources */,
 				BA49CD331F33A6FE0040060A /* RestClient.swift in Sources */,
 				BA49CD191F33A6440040060A /* GeneratedCell.swift in Sources */,

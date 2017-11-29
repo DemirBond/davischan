@@ -786,7 +786,7 @@ class DataManager {
 			results[String(describing: group["groupname"])] = true
 			
 			if group["groupname"] == "References" {
-				
+				//FIXME: THIS IS WHERE WE RECIEVE REFERENCE LINKS
 				for (_, field):(String,JSON) in group["fields"] {
 					row.append(String(describing: field["val"]))
 					row.append("<br/>")
@@ -822,6 +822,8 @@ class DataManager {
 			case "References":
 				DataManager.manager.evaluation!.outputInMain.references.subtitle = row
 				break;
+			case "Assessment" :
+				DataManager.manager.evaluation!.outputInMain.assessmentResult.subtitle = row
 				
 			default:
 				()

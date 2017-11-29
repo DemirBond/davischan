@@ -845,6 +845,7 @@ class DisclosureSimpleCellExpandable: GeneratedCell { // GeneratedCell {
 	
 	func updateCellOne() {
 		//super.updateCell()
+		print("update cell 1 called")
 		self.iconOne?.image = isCheckedButtonOne ? UIImage(named: "radioDown") : UIImage(named: "radioUp")
 		self.iconOne?.highlightedImage = isCheckedButtonOne ? UIImage(named: "radioDownPressed") : UIImage(named: "radioUpPressed")
 		if(isCheckedButtonOne) {
@@ -854,6 +855,7 @@ class DisclosureSimpleCellExpandable: GeneratedCell { // GeneratedCell {
 	
 	func updateCellTwo() {
 		//super.updateCell()
+		print("update cell 2 called")
 		self.iconTwo?.image = isCheckedButtonTwo ? UIImage(named: "radioDown") : UIImage(named: "radioUp")
 		self.iconTwo?.highlightedImage = isCheckedButtonTwo ? UIImage(named: "radioDownPressed") : UIImage(named: "radioUpPressed")
 		if(isCheckedButtonTwo) {
@@ -866,9 +868,18 @@ class DisclosureSimpleCellExpandable: GeneratedCell { // GeneratedCell {
 		
 		self.iconOne?.image = isCheckedButtonOne ? UIImage(named: "radioDown") : UIImage(named: "radioUp")
 		self.iconOne?.highlightedImage = isCheckedButtonOne ? UIImage(named: "radioDownPressed") : UIImage(named: "radioUpPressed")
-		
+
 		self.iconTwo?.image = isCheckedButtonTwo ? UIImage(named: "radioDown") : UIImage(named: "radioUp")
 		self.iconTwo?.highlightedImage = isCheckedButtonTwo ? UIImage(named: "radioDownPressed") : UIImage(named: "radioUpPressed")
+		
+		// FIXME: Here here hrere for gender radio button
+//		if isCheckedButtonOne {
+//			updateCellOne()
+//		}
+//		if isCheckedButtonTwo {
+//			updateCellTwo()
+//		}
+//		print("is check button one \(isCheckedButtonOne) and check button 2 \(isCheckedButtonTwo)")
 		
 	}
 	

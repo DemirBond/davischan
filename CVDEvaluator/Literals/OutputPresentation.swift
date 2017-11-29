@@ -12,6 +12,9 @@ import UIKit
 struct OutputPresentation {
 	static let outputSampleCell = "#id: overview | #title: Overview | #type: #statusCard | #subtitle: This is a placeholder for a description of what the output/results may be. This can also be omitted altogether. The background color for the output will serve as a severity of the prognosis."
 	
+	// Phillips add to show assessment
+	static let assessmentOutput = "#id: diagnostics | #title: Assessment | #type: #resultOutput | #subtitle: No assessment"
+	
 	static let outputSampleCell2 = "#id: overview | #title: Overview | #type: #statusCard | #subtitle: This is a placeholder for a description of what the output/results may be. This can also be omitted altogether. The background color for the output will serve as a severity of the prognosis."
 	
 	static let resultOutputBad = "#id: resultOutputBad | #title: Output | #type: #resultOutput | #subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
