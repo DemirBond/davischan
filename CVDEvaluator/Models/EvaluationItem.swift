@@ -248,8 +248,11 @@ class EvaluationItem  {
 			let index = self.identifier.index(self.identifier.startIndex, offsetBy: 3)
 			let prefix = self.identifier.substring(to: index)
 			
+			//print(prefix)
+			// FIXME: PHillips edit: changing to add a condition to check if identifier is any of the radio buttons
 			if prefix == "chk" {
 				self.storedValue?.isChecked = true
+				self.storedValue?.reopenedFromSave = true;
 			} else {
 				self.storedValue?.value = String(describing: value)
 			}
@@ -260,6 +263,8 @@ class EvaluationItem  {
 				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
 				self.storedValue?.radioGroup?.selectedRadioItem = (value as! Int) == 1 ? "male" : "female"
 			}
+			
+
 			
 		}
 		if self.items.isEmpty {

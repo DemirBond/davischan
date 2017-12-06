@@ -25,8 +25,13 @@ class StoredValue {
 	var valueType: ValueType
 	var value: String?
 	var isChecked: Bool = false
+	
+	// both of these are needed to properly redisplay radio buttons.
+	var reopenedFromSave: Bool = false
+	var looped = 0;
 		
 	var valueDict: Dictionary<String, Any> {
+		
 		var dict = [String : Any]()
 		dict = ["type": valueType.rawValue, "checked": isChecked]
 		dict["value"] = value != nil ? value : NSNull()

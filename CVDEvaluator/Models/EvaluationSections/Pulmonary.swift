@@ -22,12 +22,16 @@ class Pulmonary: EvaluationItem {
 	let asthmadisease = AsthmaReactiveAirwayDisease(literal: Presentation.asthmadisease)
 	let copd = LungCOPD(literal: Presentation.lung_copd)
 	let interstitialLungDisease = EvaluationItem(literal: Presentation.interstitialLungDisease)
+	let separator = EvaluationItem(literal: Presentation.separator)
 	
 	override var items: [EvaluationItem] {
 		return [
 			asthmadisease,
 			copd,
 			interstitialLungDisease,
+			
+			separator,
+			
 			fev1_lt,
 			fev1_percent,
 			fvc,

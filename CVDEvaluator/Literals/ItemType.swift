@@ -71,7 +71,7 @@ enum ItemType: String {
 		switch self {
 			
 		case .separator:
-			return 10.0
+			return 5.0
 			
 		case .segment:
 			return 44.0    // segment height

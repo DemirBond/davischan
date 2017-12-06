@@ -148,6 +148,8 @@ class DyspneaOnExertionNotAtRest: EvaluationItem {
 // MARK: - Symptoms -> ChestPain
 
 class ChestPain: EvaluationItem {
+	let pleaseSelectOneLabel = EvaluationItem(literal: Presentation.pleaseSelectOneLabel)
+	let separator1 = EvaluationItem(literal: Presentation.separator)
 	
 	var typicalAnginaNew = TypicalAnginaNewInChestPain(literal: Presentation.typicalAnginaNewInChestPain)
 	let probableAngina = ProbableAnginaInChestPain(literal: Presentation.probablyAnginaNewInChestPain)
@@ -157,9 +159,12 @@ class ChestPain: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			pleaseSelectOneLabel,
+			
 			typicalAnginaNew,
 			probableAngina,
 			undeterminedCP,
+			separator1,
 			emergencyRoom,
 			unableToExercise
 		]

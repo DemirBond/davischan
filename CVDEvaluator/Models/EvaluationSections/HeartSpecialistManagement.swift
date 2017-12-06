@@ -26,7 +26,7 @@ class HeartSpecialistManagement: EvaluationItem {
 			bioPAHMain,
 			pah,
 			valvularInHSM,
-			advancedLHF,
+			//advancedLHF,
 			echocardiographyInHSM,
 			laboratoryEKG,
 			rhcInHSM

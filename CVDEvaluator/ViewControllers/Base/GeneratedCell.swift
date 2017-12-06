@@ -148,7 +148,6 @@ class GeneratedCell: UITableViewCell, UITextFieldDelegate, KBNumberPadDelegate {
 	*/
 	
 	func setupCell() {
-
 		self.titleLabel?.textColor = CVDStyle.style.defaultFontColor
 		self.titleLabel?.font = CVDStyle.style.currentFont
 		
@@ -516,6 +515,7 @@ class DisclosureControlCellExpandable:  DisclosureControlCell {
 	
 	
 	override func setupCell() {
+		//print("Override setup cell called")
 		super.setupCell()
 		
 		if cellModel.isExpanded {
@@ -791,9 +791,26 @@ class RadioButtonCell: GeneratedCell {
 	}
 	
 	override func updateCell() {
+		//FIXME: Phillip fixed this section by adding a condition check.
 		super.updateCell()
+
 		self.icon?.image = isCheckedButton ? UIImage(named: "radioDown") : UIImage(named: "radioUp")
 		self.icon?.highlightedImage = isCheckedButton ? UIImage(named: "radioDownPressed") : UIImage(named: "radioUpPressed")
+		
+		if cellModel.storedValue?.reopenedFromSave == true && cellModel.storedValue?.isChecked == true {
+			guard let loop = cellModel.storedValue?.looped else {
+				return
+			}
+			cellModel.storedValue?.looped += 1;
+			if loop == 1 {
+				isCheckedButton = true
+				cellModel.storedValue?.reopenedFromSave = false
+			}
+		}
+
+
+		
+		
 	}
 	
 	@IBAction func pressActionDown(_ sender: UIButton) {

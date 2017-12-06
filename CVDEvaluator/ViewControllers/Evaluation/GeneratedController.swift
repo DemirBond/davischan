@@ -128,18 +128,30 @@ class GeneratedController: BaseTableController, NVActivityIndicatorViewable {
 		super.viewDidAppear(animated)
 		
 		if let alert = pageForm.form.alert {
-			
+			print(alert)
+			// FIXME: add condition check to see what the alert says. If its one that Dr doesn't want refered, add here.
 			let handler1: CVDHandler = {() in
 				_ = self.navigationController?.popViewController(animated: true)
 			}
-			let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: handler1, short: false)
 			
-			let handler2 = createPahHandler(model: DataManager.manager.evaluation!.heartSpecialistManagement, navigation: self.navigationController)
-			let navigateAction = CVDAction(title: "Refer".localized, type: CVDActionType.done, handler: handler2, short: false)
+			if alert == "Please use Heart Failure app for Refactory Heart Failure" {
+				let okAction = CVDAction(title: "OK".localized, type: CVDActionType.cancel, handler: handler1, short: false)
+				self.showCVDAlert(title: alert, message: nil, actions: [okAction])
+				
+			} else {
+				let cancelAction = CVDAction(title: "Cancel".localized, type: CVDActionType.cancel, handler: handler1, short: false)
+				
+				let handler2 = createPahHandler(model: DataManager.manager.evaluation!.heartSpecialistManagement, navigation: self.navigationController)
+				let navigateAction = CVDAction(title: "Refer".localized, type: CVDActionType.done, handler: handler2, short: false)
+				self.showCVDAlert(title: alert, message: nil, actions: [navigateAction, cancelAction])
+			}
+
 			
-			self.showCVDAlert(title: alert, message: nil, actions: [navigateAction, cancelAction])
+			
+			
 			
 		}
+		
 	}
 
 	

@@ -201,7 +201,7 @@ class CVDStyle {
 		        laboratoriesLink, diagnosticsLink, nsrLink, heartSpecialistLink,
 		        pahLink,
 		        valvularInHSMLink,
-		        advancedLHFLink,
+		        //advancedLHFLink,
 		        echocardiographyLink,
 		        laboratoryEKGLink,
 		        rhcInHSMLink,

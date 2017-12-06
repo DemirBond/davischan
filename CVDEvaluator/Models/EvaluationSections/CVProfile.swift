@@ -332,6 +332,7 @@ class HOCM: EvaluationItem {
 // MARK: - CVProfile -> Atrial Fibrillation
 
 class AtrialFibrilation: EvaluationItem {
+	let pleaseSelectOneLabel = EvaluationItem(literal: Presentation.pleaseSelectOneLabel)
 	
 	let chronicAF = EvaluationItem(literal: Presentation.chronicAF)
 	let persistentAF = EvaluationItem(literal: Presentation.persistentAF)
@@ -352,14 +353,19 @@ class AtrialFibrilation: EvaluationItem {
 	
 	override var items: [EvaluationItem] {
 		return [
+			pleaseSelectOneLabel,
 			chronicAF,
 			persistentAF,
 			paroxymalAF,
+			separator,
 			spSuccessfulAblation,
+			
+			//separator,
 			
 			atrialFibrillationLabel,
 			rhythmControl,
 			ventricularRateControl,
+			
 			separator,
 			
 			symptomatic,

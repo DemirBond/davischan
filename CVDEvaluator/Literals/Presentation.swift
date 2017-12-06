@@ -92,7 +92,9 @@ struct Presentation {
 	//
 	static let name = 		"#id:name|      #title:Name|      #type:#textLeft |  #placeholder: Patient Name  | #maxLength: 50 | #mandatory: 1"
 	static let age = 			"#id:age |      #title:Age|       #type:#integerLeft|   #min:20|  #max:100| #placeholder: Patient Age | #mandatory: 1"
-	//static let gender = 		"#id:gender|    #title:Gender*|    #type:#disclosureSimple | #height: 60"
+	
+	//FIXME: Phillips fix to check if radio button saves
+	//static let gender = 		"#id:gender|    #title:Gender|    #type:#disclosureSimple | #height: 60 | #madatory: 1"
 	static let gender = 		"#id:gender|    #title:Gender|    #type:#disclosureSimpleExpandable | #height: 60 | #mandatory: 1"
 	static let bmi = 		"#id:txtBMI|    #title:BMI|    #type:#integerLeft|   #min:10.0|  #max:50.0| #placeholder: BMI Value"
 	static let weight = 		"#id:weight|    #title:Weight|    #type:#integerLeft|   #min:40|  #max:400| #placeholder: Weight/kg"
@@ -134,12 +136,13 @@ struct Presentation {
 	static let chronicHFWithKnownEtiology = "#id:chkHFPLVF|    #title:Known HF, click Heart Failure tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	static let chronicLungDisease = "#id:chklung|    #title:Known lung disease, click Pulmonary tab|    #type:#radio | #group: (chronicHFWithKnownEtiology, newOnsetSuspectedHF, chronicLungDisease) | #selected: 1"
 	
+	// FIXME: Phillips Edit for grouping radio buttons
 	static let outpatient = "#id:chkD5| #title:Ambulatory / Outpatient |    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
 	static let emergencyRoom = "#id:chkD4| #title:Escalating / Emergency Room |    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
 	
 	// Symptoms -> Dyspnea -> Decompensated / Hospitalized
 	//static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureControl"
-	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#radio | #group: (chkD5,chdD4, inHospitalLabel)"
+	static let inHospitalLabel = "#id:inHospitalLabel|    #title:Decompensated / Hospitalized|    #type:#disclosureRadio | #group: (chkD5,chdD4, inHospitalLabel)"
 	static let day1 = "#id:chkD1|    #title:Day 1|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
 	static let day2 = "#id:chkD2|    #title:Day 2|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
 	static let day3 = "#id:chkD3|    #title:Day 3|    #type:#radio | #group:  (chkD1, chkD2, chkD3)"
@@ -158,10 +161,10 @@ struct Presentation {
 //	static let typicalAnginaNewInChestPain = "#id:chkTA | #title:Typical Angina  | #type:#disclosureControlExpandable"
 //	static let probablyAnginaNewInChestPain = "#id:chkPA | #title:Probable Angina | #type:#disclosureControlExpandable"
 	// phillips changes to register check marks
-	static let typicalAnginaNewInChestPain = "#id:chkTA | #title:Typical Angina  | #type:#disclosureControl"
-	static let probablyAnginaNewInChestPain = "#id:chkPA | #title:Probable Angina | #type:#disclosureControl"
+	static let typicalAnginaNewInChestPain = "#id:chkTA | #title:Typical Angina  | #type:#disclosureRadio | #group : (chkTA, chkPA, chkNCP)"
+	static let probablyAnginaNewInChestPain = "#id:chkPA | #title:Probable Angina | #type:#disclosureRadio| #group : (chkTA, chkPA, chkNCP)"
 	
-	static let undeterminedCPNewInChestPain = "#id:chkNCP | #title:Undetermined Chest Pain | #type:#disclosureControl"
+	static let undeterminedCPNewInChestPain = "#id:chkNCP | #title:Undetermined Chest Pain | #type:#disclosureRadio| #group : (chkTA, chkPA, chkNCP)"
 	static let unableToExerciseInChestPain = "#id:chkunable | #title:Unable To Exercise | #type:#check"
 	
 	// Symptoms -> Chest Pain -> Emergency Room https://zpl.io/ZwjY5c
@@ -582,8 +585,10 @@ struct Presentation {
 	static let refactoryHFInterventions = "#id:chkD | #title:Refactory HF Requiring Specialized Interventions | #type:#disclosureControl"
 	
 	//	CurrentPast CV Profile -> Heart Failure -> Heart Failure Stage -> Refactory HF Requiring Specialized Interventions https://zpl.io/Z1LXV1U
-	static let calculateHFSS = "#id:CalculateHFSS | #title:Calculate HFSS, enter NAmeq, VO₂ max, Heart Rate, and ECG QRS Duration | #type:#label"
-	static let noSignificantComorbidities = "#id:chkcom | #title:No Significant Comorbidities |#type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
+	static let calculateHFSS = "#id:CalculateHFSS | #title:Calculate HFSS, enter Na meq, VO₂ max, Heart Rate, and ECG QRS Duration | #type:#label | #height: 100"
+//	static let noSignificantComorbidities = "#id:chkcom | #title:No Significant Comorbidities |#type:#disclosureWeather | #alert: Refer to Heart Failure Specialist for Management"
+	// Phillisp change at Dr's request. The alert string gets called on the Generated COntroller which decides to send the user to a dead link or not.
+	static let noSignificantComorbidities = "#id:chkcom | #title:No Significant Comorbidities |#type:#disclosureWeather | #alert: Please use Heart Failure app for Refactory Heart Failure"
 	static let vo2maxkg = "#id:TxtVO2 | #title:VO₂ max kg | #type:#decimalRight | #min:6 | #max:40 | #placeholder: VO₂ max kg"
 	
 	//	CurrentPast CV Profile -> Heart Failure -> Post MI>45 Days https://zpl.io/ZcwnUr
@@ -597,9 +602,11 @@ struct Presentation {
 	static let restDynamicPeakLVOT = "#id:chkLVOT | #title:Rest/Dynamic Peak LVOT Gradient > 50mmHg | #type:#check"
 	
 	//	CurrentPast CV Profile -> Atrial Fibrillation https://zpl.io/1NE0A3
-	static let chronicAF = "#id:chkchronicAF | #title:Chronic AF | #type:#check"
-	static let persistentAF = "#id:chkpersistent | #title:Persistent AF | #type:#check"
-	static let paroxymalAF = "#id:chkparoxysmal | #title:Paroxymal AF | #type:#check"
+	static let chronicAF = "#id:chkchronicAF | #title:Chronic AF | #type:#radio | #group: (chkchronicAF, chkpersistent, chkparoxysmal)"
+	static let persistentAF = "#id:chkpersistent | #title:Persistent AF | #type:#radio | #group: (chkchronicAF, chkpersistent, chkparoxysmal)"
+	static let paroxymalAF = "#id:chkparoxysmal | #title:Paroxymal AF | #type:#radio | #group: (chkchronicAF, chkpersistent, chkparoxysmal)"
+	
+	
 	static let spSuccessfulAblation = "#id:chkablation | #title:S/P Successful Ablation | #type:#check"
 	
 	static let atrialFibrillationLabel = "#id: AtrialFibrillationLabel | #title: Select V/R Control | #type:#label"
@@ -839,10 +846,10 @@ struct Presentation {
 	
 	// Pulmonary -> Asthma / Reactive airway disease -> Interference with activity:
 	static let interference = "#id:chkinterference| #title: Interference with activity | #type:#disclosureControl"
-	static let noneInterference = "#id:chknone| #title:None | #type:#check"
-	static let minor = "#id:chkminor| #title:Minor | #type:#check"
-	static let some = "#id:chksome| #title:Some | #type:#check"
-	static let significant = "#id:chksignificant| #title:Significant | #type:#check"
+	static let noneInterference = "#id:chknone| #title:None | #type:#radio | #group: (chknone, chkminor, chksome, chksignificant)"
+	static let minor = "#id:chkminor| #title:Minor | #type:#radio | #group: (chknone, chkminor, chksome, chksignificant)"
+	static let some = "#id:chksome| #title:Some | #type:#radio | #group: (chknone, chkminor, chksome, chksignificant)"
+	static let significant = "#id:chksignificant| #title:Significant | #type:#radio | #group: (chknone, chkminor, chksome, chksignificant)"
 	
 	// Pulmonary -> Acute exacerbation:
 	static let acute = "#id:chkexacerbation| #title:Acute Exacerbation | #type:#check"

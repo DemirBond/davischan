@@ -310,7 +310,7 @@ class DataManager {
 	
 	func extractEvaluation(by uuid: String) -> Evaluation? {
 		guard patients != nil, patients!.count > 0 else  { return nil }
-		
+	
 		for patient in self.patients!{
 			if patient.evaluationUUID == uuid {
 				do {
@@ -596,7 +596,6 @@ class DataManager {
 	
 	
 	func fetchEvaluationsFromRestAPI(completionHandler: @escaping (String?, NSError?) -> (Void)) {
-		
 		guard let loginName = currentDoctor?.loginName else { return }
 		
 		var savedPatients: [Patient]?
@@ -685,9 +684,8 @@ class DataManager {
 	
 
 	func fetchEvaluationByIDFromRestAPI(uuid: Int, completionHandler: @escaping (String?, NSError?) -> (Void)) {
-		
+		print("fetchEvaluationByID")
 		RestClient.client.retrieveEvaluationByID(uuid: uuid, success: { (responseJson) in
-			
 			let evaluation = Evaluation()
 			
 			var parameters = [String:Any]()
@@ -716,6 +714,7 @@ class DataManager {
 				
 				if prefix == "chk" {
 					parameters[attribute] = true
+					
 				} else if prefix == "txt" {
 					let pair = attribute.components(separatedBy: "=")
 					if pair.count == 2 {

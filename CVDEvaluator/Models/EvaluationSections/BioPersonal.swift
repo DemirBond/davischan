@@ -59,11 +59,12 @@ class BioPersonal: EvaluationItem {
 		]
 	}
 	
-	
+	//Phillips Edit: This function is never called... Past devs?
 	func copyValuesFrom(model: BioPersonal) {
 		self.name.storedValue?.value = model.name.storedValue?.value
 		self.age.storedValue?.value = model.age.storedValue?.value
 		self.gender.male.storedValue!.radioGroup?.selectedRadioItem = model.gender.male.storedValue!.radioGroup?.selectedRadioItem
+		//print("theres gender in here")
 		self.bmi.storedValue?.value = model.bmi.storedValue?.value
 		self.weight.storedValue?.value = model.weight.storedValue?.value
 		self.heartRate.storedValue?.value = model.heartRate.storedValue?.value
